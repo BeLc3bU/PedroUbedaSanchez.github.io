@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículum Interactivo - Pedro Úbeda Sánchez</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        stone: {
+                            100: '#f5f5f4',
+                            200: '#e7e5e4',
+                        },
+                        slate: {
+                            500: '#64748b',
+                            600: '#475569',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        },
+                        orange: {
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: Se ha diseñado una aplicación de una sola página con desplazamiento vertical y una barra de navegación fija. La estructura sigue un flujo lógico: introducción (Sobre Mí), cronología de la carrera (Experiencia), visualización de capacidades (Habilidades) y secciones informativas (Formación, Logros). Esta estructura es intuitiva y permite a los reclutadores escanear rápidamente el perfil o profundizar en secciones específicas mediante la navegación. El uso de una línea de tiempo interactiva para la experiencia y un gráfico de radar para las habilidades convierte un documento estático en una experiencia de usuario atractiva. -->
+    <!-- Visualization & Content Choices: 
+        - Sobre Mí: (Meta: Informar) Bloque de texto prominente. Presentación: Párrafo simple. Interacción: Ninguna. Justificación: Claridad y concisión.
+        - Experiencia: (Meta: Mostrar progresión) Línea de tiempo vertical. Presentación: HTML/CSS con Tailwind. Interacción: Sutil resaltado al pasar el ratón para mejorar el feedback visual. Justificación: Es una forma visualmente más efectiva de mostrar la cronología que una lista simple.
+        - Habilidades Interpersonales: (Meta: Comparar/Evaluar) Gráfico de Radar. Presentación: Chart.js (Canvas). Interacción: Tooltips al pasar el ratón muestran la habilidad. Justificación: Ofrece una visión holística e impactante de las fortalezas del candidato.
+        - Habilidades Técnicas: (Meta: Informar) Lista categorizada. Presentación: HTML/CSS. Interacción: Ninguna. Justificación: Máxima legibilidad y escaneo rápido.
+        - Formación y Logros: (Meta: Informar) Listas limpias. Presentación: HTML/CSS con iconos. Interacción: Ninguna. Justificación: Presentación clara y directa de la información. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .timeline-item {
+            transition: all 0.3s ease-in-out;
+        }
+        .timeline-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .nav-link.active {
+            font-weight: 700;
+            color: #c2410c; /* text-orange-700 */
+        }
+        /* Custom progress bar styles */
+        .progress-bar-container {
+            background-color: #e5e7eb; /* bg-gray-200 */
+            border-radius: 9999px;
+            height: 1.5rem; /* h-6 */
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+        }
+        .progress-bar {
+            background-color: #ea580c; /* bg-orange-600 */
+            height: 100%;
+            border-radius: 9999px;
+            transition: width 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-stone-100 text-slate-800">
+
+    <header id="header" class="bg-stone-100/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <div class="text-xl font-bold text-orange-800">
+                    Pedro Úbeda Sánchez
+                </div>
+            </div>
+            <ul class="hidden md:flex space-x-8">
+                <li><a href="#about" class="nav-link text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105">
+                    <span>👤</span> <span>Sobre Mí</span>
+                </a></li>
+                <li><a href="#experience" class="nav-link text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105">
+                    <span>💼</span> <span>Experiencia</span>
+                </a></li>
+                <li><a href="#skills" class="nav-link text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105">
+                    <span>💡</span> <span>Habilidades</span>
+                </a></li>
+                <li><a href="#education" class="nav-link text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105">
+                    <span>📜</span> <span>Formación</span>
+                </a></li>
+                <li><a href="#contact" class="nav-link text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105">
+                    <span>📞</span> <span>Contacto</span>
+                </a></li>
+            </ul>
+            <button id="mobile-menu-button" class="md:hidden text-slate-800">
+                <span class="text-2xl">☰</span>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-stone-100/90 backdrop-blur-md">
+            <ul class="flex flex-col items-center space-y-4 py-4">
+                <li><a href="#about" class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105">
+                    <span>👤</span> <span>Sobre Mí</span>
+                </a></li>
+                <li><a href="#experience" class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105">
+                    <span>💼</span> <span>Experiencia</span>
+                </a></li>
+                <li><a href="#skills" class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105">
+                    <span>💡</span> <span>Habilidades</span>
+                </a></li>
+                <li><a href="#education" class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105">
+                    <span>📜</span> <span>Formación</span>
+                </a></li>
+                <li><a href="#contact" class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105">
+                    <span>📞</span> <span>Contacto</span>
+                </a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <section id="about" class="mb-24 flex flex-col md:flex-row items-center md:items-start gap-8">
+            <div class="flex-shrink-0">
+                <img src="foto.jpg" alt="Pedro Úbeda Sánchez" class="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover shadow-lg">
+            </div>
+            <div class="flex-grow text-center md:text-left">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 text-orange-900">Técnico especialista en informática, aviónica y administración</h1>
+                <p class="max-w-3xl mx-auto md:mx-0 text-lg text-slate-600">
+                    Técnico especialista con más de dos décadas de experiencia en el mantenimiento, diagnóstico y resolución de averías en equipos informáticos y de aviónica. Mi trayectoria en las Fuerzas Armadas me ha proporcionado sólidos valores como la disciplina, el compromiso y el trabajo en equipo, habilidades que aplico en mi día a día.
+                </p>
+            </div>
+        </section>
+
+        <section id="experience" class="mb-24">
+            <h2 class="text-3xl font-bold mb-12 text-center text-orange-900">💼 Experiencia Profesional</h2>
+            <div class="relative max-w-4xl mx-auto space-y-8">
+                
+                <div class="relative timeline-item bg-white p-6 rounded-lg shadow-md border-l-4 border-orange-600">
+                    <h3 class="text-xl font-bold text-slate-900">✈️ Militar (Informático/Aviónico)</h3>
+                    <p class="text-sm text-slate-500 mb-2">FAS | 2008 - 2025</p>
+                    <ul class="list-disc list-inside text-slate-600 space-y-1">
+                        <li>Mantenimiento, diagnóstico y solución de averías de simuladores de vuelo y flota de aviones a nivel informático y electrónico.</li>
+                        <li>Gestión administrativa y logística.</li>
+                        <li>Elaboración de informes, registro y control.</li>
+                        <li>Servicio de control de accesos y vigilancia.</li>
+                    </ul>
+                </div>
+
+                <div class="relative timeline-item bg-white p-6 rounded-lg shadow-md border-l-4 border-orange-600">
+                    <h3 class="text-xl font-bold text-slate-900">💰 Administrativo Contable</h3>
+                    <p class="text-sm text-slate-500 mb-2">ICONO TELECOM | 2007 - 2008</p>
+                    <ul class="list-disc list-inside text-slate-600 space-y-1">
+                        <li>Gestión de pagos a proveedores y clientes.</li>
+                        <li>Contabilización de asientos, control bancario y facturación.</li>
+                        <li>Elaboración de informes y gestión de gastos.</li>
+                        <li>Atención telefónica y correo.</li>
+                    </ul>
+                </div>
+
+                <div class="relative timeline-item bg-white p-6 rounded-lg shadow-md border-l-4 border-orange-600">
+                    <h3 class="text-xl font-bold text-slate-900">📁 Auxiliar Administrativo</h3>
+                    <p class="text-sm text-slate-500 mb-2">TRUCCSA | 2006 - 2007</p>
+                    <ul class="list-disc list-inside text-slate-600 space-y-1">
+                        <li>Gestión de pedidos, albaranes y facturación.</li>
+                        <li>Contabilidad, control de stock, archivo y registro.</li>
+                        <li>Gestión de pagarés y atención telefónica.</li>
+                    </ul>
+                </div>
+                
+                <div class="relative timeline-item bg-white p-6 rounded-lg shadow-md border-l-4 border-orange-600">
+                    <h3 class="text-xl font-bold text-slate-900">📡 Militar (Admin/Telecom)</h3>
+                    <p class="text-sm text-slate-500 mb-2">FAS | 2002 - 2005</p>
+                    <ul class="list-disc list-inside text-slate-600 space-y-1">
+                        <li>Archivo, correspondencia y registro.</li>
+                        <li>Mantenimiento de BBDD e inventario.</li>
+                        <li>Instalación y mantenimiento de telecomunicaciones.</li>
+                        <li>Servicio de control de acceso, patrulla, CCTV y verificación de alarmas.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="mb-24">
+            <h2 class="text-3xl font-bold mb-12 text-center text-orange-900">💡 Habilidades Clave</h2>
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6 text-center text-slate-700">🧠 Habilidades Interpersonales</h3>
+                    <p class="text-center text-slate-600 mb-4">Mi experiencia me ha permitido desarrollar un conjunto equilibrado de habilidades interpersonales, esenciales para la colaboración efectiva y la resolución de problemas en entornos dinámicos.</p>
+                    
+                    <!-- Progress Bar for Soft Skills -->
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4">
+                            <span class="w-1/3 md:w-1/4 text-sm font-medium text-slate-700">🤝 Trabajo en Equipo</span>
+                            <div class="w-2/3 md:w-3/4 flex items-center space-x-2">
+                                <div class="progress-bar-container w-full">
+                                    <div class="progress-bar" style="width: 98%;"></div>
+                                </div>
+                                <span class="text-sm font-medium text-slate-700">98%</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <span class="w-1/3 md:w-1/4 text-sm font-medium text-slate-700">🚀 Proactividad</span>
+                            <div class="w-2/3 md:w-3/4 flex items-center space-x-2">
+                                <div class="progress-bar-container w-full">
+                                    <div class="progress-bar" style="width: 95%;"></div>
+                                </div>
+                                <span class="text-sm font-medium text-slate-700">95%</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <span class="w-1/3 md:w-1/4 text-sm font-medium text-slate-700">📋 Organización</span>
+                            <div class="w-2/3 md:w-3/4 flex items-center space-x-2">
+                                <div class="progress-bar-container w-full">
+                                    <div class="progress-bar" style="width: 92%;"></div>
+                                </div>
+                                <span class="text-sm font-medium text-slate-700">92%</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <span class="w-1/3 md:w-1/4 text-sm font-medium text-slate-700">❤️ Empatía</span>
+                            <div class="w-2/3 md:w-3/4 flex items-center space-x-2">
+                                <div class="progress-bar-container w-full">
+                                    <div class="progress-bar" style="width: 90%;"></div>
+                                </div>
+                                <span class="text-sm font-medium text-slate-700">90%</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <span class="w-1/3 md:w-1/4 text-sm font-medium text-slate-700">⏳ Gestión de Tiempo</span>
+                            <div class="w-2/3 md:w-3/4 flex items-center space-x-2">
+                                <div class="progress-bar-container w-full">
+                                    <div class="progress-bar" style="width: 88%;"></div>
+                                </div>
+                                <span class="text-sm font-medium text-slate-700">88%</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <span class="w-1/3 md:w-1/4 text-sm font-medium text-slate-700">🧩 Resolución de Problemas</span>
+                            <div class="w-2/3 md:w-3/4 flex items-center space-x-2">
+                                <div class="progress-bar-container w-full">
+                                    <div class="progress-bar" style="width: 85%;"></div>
+                                </div>
+                                <span class="text-sm font-medium text-slate-700">85%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Progress Bar -->
+
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6 text-center text-slate-700">🛠️ Habilidades Técnicas</h3>
+                    <div class="space-y-6">
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <h4 class="font-bold text-lg mb-2 text-orange-800">💻 Informática y Hardware</h4>
+                            <p class="text-slate-600">Mantenimiento de hardware y software, informática de gestión, diagnóstico y resolución de averías.</p>
+                        </div>
+                         <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <h4 class="font-bold text-lg mb-2 text-orange-800">⚙️ Sistemas Especializados</h4>
+                            <p class="text-slate-600">Mantenimiento de sistemas de aviónica, telecomunicaciones y sistemas de seguridad (CCTV).</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <h4 class="font-bold text-lg mb-2 text-orange-800">🔒 Seguridad</h4>
+                            <p class="text-slate-600">Ciberseguridad (formación INCIBE), gestión de criptografía (NATO HPS CRYPTO).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="mb-24">
+            <h2 class="text-3xl font-bold mb-12 text-center text-orange-900">📜 Formación y Logros</h2>
+            <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6 text-slate-700">Formación Académica y Cursos</h3>
+                    <ul class="space-y-4">
+                        <li class="bg-white p-4 rounded-lg shadow-sm flex items-start">
+                            <span class="text-orange-600 mr-4 mt-1">🎓</span>
+                            <div>
+                                <p class="font-bold">Técnico Especialista en Informática de Gestión</p>
+                                <p class="text-sm text-slate-500">CIF CARLOS III, Cartagena (1998-2001)</p>
+                            </div>
+                        </li>
+                        <li class="bg-white p-4 rounded-lg shadow-sm flex items-start">
+                             <span class="text-orange-600 mr-4 mt-1">🔒</span>
+                            <div>
+                                <p class="font-bold">Curso de Ciberseguridad</p>
+                                <p class="text-sm text-slate-500">Instituto Nacional de Ciberseguridad (INCIBE), León (2018)</p>
+                            </div>
+                        </li>
+                        <li class="bg-white p-4 rounded-lg shadow-sm flex items-start">
+                             <span class="text-orange-600 mr-4 mt-1">🛡️</span>
+                             <div>
+                                <p class="font-bold">Curso NATO HPS CRYPTO</p>
+                                <p class="text-sm text-slate-500">Ministerio de Defensa (2024)</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6 text-slate-700">Reconocimientos</h3>
+                     <ul class="space-y-4">
+                        <li class="bg-white p-4 rounded-lg shadow-sm flex items-start">
+                             <span class="text-orange-600 mr-4 mt-1">✈️</span>
+                            <p>Cruz del Mérito Aeronáutico con distintivo Blanco.</p>
+                        </li>
+                        <li class="bg-white p-4 rounded-lg shadow-sm flex items-start">
+                            <span class="text-orange-600 mr-4 mt-1">🎖️</span>
+                             <p>Cruz a la constancia en el Servicio de bronce.</p>
+                        </li>
+                         <li class="bg-white p-4 rounded-lg shadow-sm flex items-start">
+                           <span class="text-orange-600 mr-4 mt-1">🌟</span>
+                             <p>Reconocimiento DANA 2024.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="text-center bg-white py-16 rounded-lg shadow-lg">
+             <h2 class="text-3xl font-bold mb-4 text-orange-900">📌 Contacto</h2>
+             <p class="text-slate-600 mb-8 max-w-lg mx-auto">Estoy abierto a nuevos retos profesionales y con ganas de aportar mi experiencia. No dudes en contactarme.</p>
+             <div class="flex flex-wrap justify-center items-center gap-8">
+                <a href="tel:635945779" class="font-medium text-slate-700 hover:text-orange-700">📞 635 945 779</a>
+                <a href="mailto:pubesan@gmail.com" class="font-medium text-slate-700 hover:text-orange-700">✉️ pubesan@gmail.com</a>
+                <a href="https://www.linkedin.com/in/pubesan" target="_blank" class="font-medium text-slate-700 hover:text-orange-700">🔗 LinkedIn</a>
+             </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-6 bg-stone-200 mt-16">
+        <p class="text-slate-600">© 2025 Pedro Úbeda Sánchez. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            const mobileLinks = document.querySelectorAll('.nav-link-mobile');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.5
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
