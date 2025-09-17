@@ -4,7 +4,7 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>
-   Sobre Mí - Pedro Úbeda Sánchez
+   Contacto - Pedro Úbeda Sánchez
   </title>
   <script src="https://cdn.tailwindcss.com">
   </script>
@@ -105,6 +105,8 @@
             transition: width 0.5s ease-in-out;
         }
   </style>
+  <script async="" defer="" src="https://www.google.com/recaptcha/api.js">
+  </script>
  </head>
  <body class="bg-stone-100 text-slate-800">
   <header class="bg-stone-100/80 backdrop-blur-md sticky top-0 z-50 shadow-sm" id="header">
@@ -116,7 +118,7 @@
     </div>
     <ul class="hidden md:flex space-x-8">
      <li>
-      <a class="nav-link text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105 active" href="index.html">
+      <a class="nav-link text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105" href="index.html">
        <span>
         👤
        </span>
@@ -166,7 +168,7 @@
       </a>
      </li>
      <li>
-      <a class="nav-link text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105" href="contacto.html">
+      <a class="nav-link text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105 active" href="contacto.html">
        <span>
         📞
        </span>
@@ -185,7 +187,7 @@
    <div class="hidden md:hidden bg-stone-100/90 backdrop-blur-md" id="mobile-menu">
     <ul class="flex flex-col items-center space-y-4 py-4">
      <li>
-      <a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105 active" href="index.html">
+      <a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105" href="index.html">
        <span>
         👤
        </span>
@@ -235,7 +237,7 @@
       </a>
      </li>
      <li>
-      <a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105" href="contacto.html">
+      <a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105 active" href="contacto.html">
        <span>
         📞
        </span>
@@ -248,22 +250,62 @@
    </div>
   </header>
   <main class="container mx-auto px-6 py-12">
-   <section class="mb-24 flex flex-col md:flex-row items-center md:items-start gap-8" id="about">
-    <div class="flex-shrink-0">
-     <img alt="Pedro Úbeda Sánchez" class="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover shadow-lg" src="foto.png"/>
+   <section class="text-center bg-white py-16 rounded-lg shadow-lg" id="contact">
+    <h2 class="text-3xl font-bold mb-4 text-orange-900">
+     📌 Contacto
+    </h2>
+    <p class="text-slate-600 mb-8 max-w-lg mx-auto">
+     Estoy abierto a nuevos retos profesionales y con ganas de aportar mi experiencia. No dudes en contactarme.
+    </p>
+    <div class="flex flex-wrap justify-center items-center gap-8">
+     <a class="font-medium text-slate-700 hover:text-orange-700" href="tel:635945779">
+      📞 635 945 779
+     </a>
+     <a class="font-medium text-slate-700 hover:text-orange-700" href="mailto:pubesan@gmail.com">
+      ✉️ pubesan@gmail.com
+     </a>
+     <a class="font-medium text-slate-700 hover:text-orange-700" href="https://www.linkedin.com/in/pubesan" target="_blank">
+      🔗 LinkedIn
+     </a>
     </div>
-    <div class="flex-grow text-center md:text-left">
-     <h1 class="text-4xl md:text-5xl font-bold mb-4 text-orange-900">
-      Técnico especialista en informática, aviónica y administración
-     </h1>
-     <p class="max-w-3xl mx-auto md:mx-0 text-lg text-slate-600">
-      Técnico especialista con más de dos décadas de experiencia en el mantenimiento, diagnóstico y resolución de averías en equipos informáticos y de aviónica. Mi trayectoria en las Fuerzas Armadas me ha proporcionado sólidos valores como la disciplina, el compromiso y el trabajo en equipo, habilidades que aplico en mi día a día.
-     </p>
-     <div class="mt-8 text-center md:text-left">
-      <a class="inline-block bg-orange-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-800 transition-colors duration-300 shadow-lg transform hover:scale-105" download="CV-Pedro-Ubeda-Sanchez.pdf" href="cv.pdf">
-       📄 Descargar CV en PDF
-      </a>
-     </div>
+    <hr class="my-12 border-stone-200"/>
+    <div class="max-w-2xl mx-auto text-left">
+     <h3 class="text-2xl font-bold mb-6 text-slate-800">
+      O envíame un mensaje directamente
+     </h3>
+     <form action="https://formsubmit.co/pubesan@gmail.com" method="POST">
+      <!-- Configuración de FormSubmit -->
+      <input name="_subject" type="hidden" value="Nuevo Mensaje desde tu Web de Currículum!"/>
+      <input name="_next" type="hidden" value="gracias.html"/>
+      <!-- Campos del formulario -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+       <div>
+        <label class="block text-slate-600 mb-2" for="name">
+         Nombre completo
+        </label>
+        <input class="w-full p-3 border border-stone-200 rounded-lg focus:ring-2 focus:ring-orange-600 focus:border-transparent transition" id="name" name="name" placeholder="Tu nombre" required="" type="text"/>
+       </div>
+       <div>
+        <label class="block text-slate-600 mb-2" for="email">
+         Dirección de correo
+        </label>
+        <input class="w-full p-3 border border-stone-200 rounded-lg focus:ring-2 focus:ring-orange-600 focus:border-transparent transition" id="email" name="email" placeholder="tu@email.com" required="" type="email"/>
+       </div>
+      </div>
+      <div class="mb-6">
+       <label class="block text-slate-600 mb-2" for="message">
+        Mensaje
+       </label>
+       <textarea class="w-full p-3 border border-stone-200 rounded-lg focus:ring-2 focus:ring-orange-600 focus:border-transparent transition" id="message" name="message" placeholder="Escribe tu mensaje aquí..." required="" rows="5"></textarea>
+      </div>
+      <div class="mb-6">
+       <div class="g-recaptcha" data-sitekey="6Ley2cwrAAAAAMnFKC9_fEFfsQefM8wsRf87jGuO">
+       </div>
+      </div>
+      <button class="w-full bg-orange-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-800 transition-colors duration-300 shadow-lg transform hover:scale-105" type="submit">
+       Enviar Consulta
+      </button>
+     </form>
     </div>
    </section>
   </main>

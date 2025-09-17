@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="es">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Gracias - Pedro Úbeda Sánchez
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <script>
+   tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        stone: {
+                            100: '#f5f5f4',
+                            200: '#e7e5e4',
+                        },
+                        slate: {
+                            600: '#475569',
+                            800: '#1e293b',
+                        },
+                        orange: {
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
+                        }
+                    }
+                }
+            }
+        }
+  </script>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            font-family: 'Inter', sans-serif;
+        }
+  </style>
+ </head>
+ <body class="bg-stone-100 text-slate-800">
+  <header class="bg-stone-100/80 backdrop-blur-md sticky top-0 z-50 shadow-sm" id="header">
+   <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-4">
+     <div class="text-xl font-bold text-orange-800">
+      Pedro Úbeda Sánchez
+     </div>
+    </div>
+    <ul class="hidden md:flex space-x-8">
+     <li>
+      <a class="nav-link text-slate-600 hover:text-orange-700 transition" href="index.html">
+       Volver al inicio
+      </a>
+     </li>
+    </ul>
+   </nav>
+  </header>
+  <main class="container mx-auto px-6 py-12">
+   <section class="text-center bg-white py-24 rounded-lg shadow-lg">
+    <h2 class="text-4xl font-bold mb-4 text-orange-900">
+     ¡Mensaje Enviado!
+    </h2>
+    <p class="text-slate-600 mb-8 max-w-lg mx-auto">
+     Gracias por ponerte en contacto. He recibido tu mensaje y te responderé lo antes posible.
+    </p>
+    <div class="mt-8">
+     <a class="inline-block bg-orange-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-800 transition-colors duration-300 shadow-lg transform hover:scale-105" href="index.html">
+      Volver a la página principal
+     </a>
+    </div>
+   </section>
+  </main>
+  <footer class="text-center py-6 bg-stone-200 mt-16">
+   <p class="text-slate-600">
+    © 2025 Pedro Úbeda Sánchez. Todos los derechos reservados.
+   </p>
+  </footer>
+ </body>
+</html>
