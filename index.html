@@ -2,10 +2,26 @@
 <html class="scroll-smooth" lang="es">
  <head>
   <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <!-- SEO: Título optimizado para buscadores -->
   <title>
-   Sobre Mí - Pedro Úbeda Sánchez
+   Pedro Úbeda Sánchez | Técnico en Informática, Aviónica y Administración
   </title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <!-- SEO: Meta Descripción para Google -->
+  <meta content="Sitio web profesional de Pedro Úbeda Sánchez, técnico especialista con más de 20 años de experiencia en informática, aviónica y administración. Descubre mi trayectoria y habilidades." name="description"/>
+  <!-- SEO: URL Canónica para evitar contenido duplicado -->
+  <link href="https://pedroubedasanchez.es/index.html" rel="canonical"/>
+  <!-- SEO: Open Graph para compartir en redes sociales (LinkedIn, Facebook) -->
+  <meta content="Pedro Úbeda Sánchez | Técnico Especialista" property="og:title"/>
+  <meta content="Técnico con más de 20 años de experiencia en informática, aviónica y administración." property="og:description"/>
+  <meta content="https://pedroubedasanchez.es/foto.jpg" property="og:image"/>
+  <meta content="https://pedroubedasanchez.es/index.html" property="og:url"/>
+  <meta content="website" property="og:type"/>
+  <!-- SEO: Twitter Card para compartir en Twitter -->
+  <meta content="summary_large_image" name="twitter:card"/>
+  <meta content="Pedro Úbeda Sánchez | Técnico Especialista" name="twitter:title"/>
+  <meta content="Técnico con más de 20 años de experiencia en informática, aviónica y administración." name="twitter:description"/>
+  <meta content="https://pedroubedasanchez.es/foto.jpg" name="twitter:image"/>
   <script src="https://cdn.tailwindcss.com">
   </script>
   <script>
@@ -104,6 +120,18 @@
             border-radius: 9999px;
             transition: width 0.5s ease-in-out;
         }
+        /* For screen-reader only content */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
   </style>
  </head>
  <body class="bg-stone-100 text-slate-800">
@@ -117,7 +145,7 @@
     <ul class="hidden md:flex space-x-8">
      <li>
       <a class="nav-link text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105 active" href="index.html">
-       <span>
+       <span aria-hidden="true">
         👤
        </span>
        <span>
@@ -127,7 +155,7 @@
      </li>
      <li>
       <a class="nav-link text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105" href="experiencia.html">
-       <span>
+       <span aria-hidden="true">
         💼
        </span>
        <span>
@@ -137,7 +165,7 @@
      </li>
      <li>
       <a class="nav-link text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105" href="habilidades.html">
-       <span>
+       <span aria-hidden="true">
         💡
        </span>
        <span>
@@ -147,7 +175,7 @@
      </li>
      <li>
       <a class="nav-link text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105" href="formacion.html">
-       <span>
+       <span aria-hidden="true">
         📜
        </span>
        <span>
@@ -157,7 +185,7 @@
      </li>
      <li>
       <a class="nav-link text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105" href="otros-datos.html">
-       <span>
+       <span aria-hidden="true">
         📚
        </span>
        <span>
@@ -167,7 +195,7 @@
      </li>
      <li>
       <a class="nav-link text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105" href="contacto.html">
-       <span>
+       <span aria-hidden="true">
         📞
        </span>
        <span>
@@ -176,7 +204,7 @@
       </a>
      </li>
     </ul>
-    <button aria-controls="mobile-menu" aria-expanded="false" class="md:hidden text-slate-800" id="mobile-menu-button">
+    <button aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menú de navegación" class="md:hidden text-slate-800" id="mobile-menu-button">
      <span aria-hidden="true" class="text-2xl">
       ☰
      </span>
@@ -186,7 +214,7 @@
     <ul class="flex flex-col items-center space-y-4 py-4">
      <li>
       <a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105 active" href="index.html">
-       <span>
+       <span aria-hidden="true">
         👤
        </span>
        <span>
@@ -196,7 +224,7 @@
      </li>
      <li>
       <a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105" href="experiencia.html">
-       <span>
+       <span aria-hidden="true">
         💼
        </span>
        <span>
@@ -206,7 +234,7 @@
      </li>
      <li>
       <a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105" href="habilidades.html">
-       <span>
+       <span aria-hidden="true">
         💡
        </span>
        <span>
@@ -216,7 +244,7 @@
      </li>
      <li>
       <a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105" href="formacion.html">
-       <span>
+       <span aria-hidden="true">
         📜
        </span>
        <span>
@@ -226,7 +254,7 @@
      </li>
      <li>
       <a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105" href="otros-datos.html">
-       <span>
+       <span aria-hidden="true">
         📚
        </span>
        <span>
@@ -236,7 +264,7 @@
      </li>
      <li>
       <a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105" href="contacto.html">
-       <span>
+       <span aria-hidden="true">
         📞
        </span>
        <span>
@@ -250,7 +278,10 @@
   <main class="container mx-auto px-6 py-12">
    <section class="mb-24 flex flex-col md:flex-row items-center md:items-start gap-8" id="about">
     <div class="flex-shrink-0">
-     <img alt="Pedro Úbeda Sánchez" class="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover shadow-lg" src="foto.png"/>
+     <picture>
+      <source srcset="foto.webp" type="image/webp"/>
+      <img alt="Pedro Úbeda Sánchez" class="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover shadow-lg" decoding="async" src="foto.jpg"/>
+     </picture>
     </div>
     <div class="flex-grow text-center md:text-left">
      <h1 class="text-4xl md:text-5xl font-bold mb-4 text-orange-900">
@@ -260,8 +291,11 @@
       Técnico especialista con más de dos décadas de experiencia en el mantenimiento, diagnóstico y resolución de averías en equipos informáticos y de aviónica. Mi trayectoria en las Fuerzas Armadas me ha proporcionado sólidos valores como la disciplina, el compromiso y el trabajo en equipo, habilidades que aplico en mi día a día.
      </p>
      <div class="mt-8 text-center md:text-left">
-      <a class="inline-block bg-orange-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-800 transition-colors duration-300 shadow-lg transform hover:scale-105" download="CV-Pedro-Ubeda-Sanchez.pdf" href="cv.pdf">
-       📄 Descargar CV en PDF
+      <a class="inline-block bg-orange-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-800 transition-colors duration-300 shadow-lg transform hover:scale-105" href="curriculum.html">
+       <span aria-hidden="true">
+        📄
+       </span>
+       Descargar CV
       </a>
      </div>
     </div>

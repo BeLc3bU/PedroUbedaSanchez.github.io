@@ -5,7 +5,7 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>
    Contacto - Pedro Úbeda Sánchez
-  </title>
+  </title>  
   <script src="https://cdn.tailwindcss.com">
   </script>
   <script>
@@ -104,6 +104,18 @@
             border-radius: 9999px;
             transition: width 0.5s ease-in-out;
         }
+        /* For screen-reader only content */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
   </style>
   <script async="" defer="" src="https://www.google.com/recaptcha/api.js">
   </script>
@@ -119,7 +131,7 @@
     <ul class="hidden md:flex space-x-8">
      <li>
       <a class="nav-link text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105" href="index.html">
-       <span>
+       <span aria-hidden="true">
         👤
        </span>
        <span>
@@ -129,7 +141,7 @@
      </li>
      <li>
       <a class="nav-link text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105" href="experiencia.html">
-       <span>
+       <span aria-hidden="true">
         💼
        </span>
        <span>
@@ -139,7 +151,7 @@
      </li>
      <li>
       <a class="nav-link text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105" href="habilidades.html">
-       <span>
+       <span aria-hidden="true">
         💡
        </span>
        <span>
@@ -149,7 +161,7 @@
      </li>
      <li>
       <a class="nav-link text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105" href="formacion.html">
-       <span>
+       <span aria-hidden="true">
         📜
        </span>
        <span>
@@ -159,7 +171,7 @@
      </li>
      <li>
       <a class="nav-link text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105" href="otros-datos.html">
-       <span>
+       <span aria-hidden="true">
         📚
        </span>
        <span>
@@ -169,7 +181,7 @@
      </li>
      <li>
       <a class="nav-link text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105 active" href="contacto.html">
-       <span>
+       <span aria-hidden="true">
         📞
        </span>
        <span>
@@ -178,7 +190,7 @@
       </a>
      </li>
     </ul>
-    <button aria-controls="mobile-menu" aria-expanded="false" class="md:hidden text-slate-800" id="mobile-menu-button">
+    <button aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menú de navegación" class="md:hidden text-slate-800" id="mobile-menu-button">
      <span aria-hidden="true" class="text-2xl">
       ☰
      </span>
@@ -188,7 +200,7 @@
     <ul class="flex flex-col items-center space-y-4 py-4">
      <li>
       <a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105" href="index.html">
-       <span>
+       <span aria-hidden="true">
         👤
        </span>
        <span>
@@ -198,7 +210,7 @@
      </li>
      <li>
       <a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105" href="experiencia.html">
-       <span>
+       <span aria-hidden="true">
         💼
        </span>
        <span>
@@ -208,7 +220,7 @@
      </li>
      <li>
       <a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105" href="habilidades.html">
-       <span>
+       <span aria-hidden="true">
         💡
        </span>
        <span>
@@ -218,7 +230,7 @@
      </li>
      <li>
       <a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105" href="formacion.html">
-       <span>
+       <span aria-hidden="true">
         📜
        </span>
        <span>
@@ -228,7 +240,7 @@
      </li>
      <li>
       <a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105" href="otros-datos.html">
-       <span>
+       <span aria-hidden="true">
         📚
        </span>
        <span>
@@ -238,7 +250,7 @@
      </li>
      <li>
       <a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105 active" href="contacto.html">
-       <span>
+       <span aria-hidden="true">
         📞
        </span>
        <span>
@@ -259,13 +271,25 @@
     </p>
     <div class="flex flex-wrap justify-center items-center gap-8">
      <a class="font-medium text-slate-700 hover:text-orange-700" href="tel:635945779">
-      📞 635 945 779
+      <span aria-hidden="true">
+       📞
+      </span>
+      635 945 779
      </a>
      <a class="font-medium text-slate-700 hover:text-orange-700" href="mailto:pubesan@gmail.com">
-      ✉️ pubesan@gmail.com
+      <span aria-hidden="true">
+       ✉️
+      </span>
+      pubesan@gmail.com
      </a>
      <a class="font-medium text-slate-700 hover:text-orange-700" href="https://www.linkedin.com/in/pubesan" target="_blank">
-      🔗 LinkedIn
+      <span aria-hidden="true">
+       🔗
+      </span>
+      LinkedIn
+      <span class="sr-only">
+       (se abre en una nueva pestaña)
+      </span>
      </a>
     </div>
     <hr class="my-12 border-stone-200"/>
