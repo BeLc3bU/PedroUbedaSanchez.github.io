@@ -1,6 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./*.html"], // Escanea todos los archivos HTML en la raíz
+  safelist: [
+    'bg-slate-500',
+    'hover:bg-slate-600',
+  ],
   theme: {
     extend: {
       colors: {
