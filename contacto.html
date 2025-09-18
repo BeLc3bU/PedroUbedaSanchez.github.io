@@ -120,7 +120,7 @@
   <script async="" defer="" src="https://www.google.com/recaptcha/api.js">
   </script>
  </head>
- <body class="bg-stone-100 text-slate-800">
+ <body class="bg-stone-100 text-slate-800 flex flex-col min-h-screen">
   <header class="bg-stone-100/80 backdrop-blur-md sticky top-0 z-50 shadow-sm" id="header">
    <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
     <div class="flex items-center space-x-4">
@@ -261,7 +261,7 @@
     </ul>
    </div>
   </header>
-  <main class="container mx-auto px-6 py-12">
+  <main class="container mx-auto px-6 py-12 flex-grow">
    <section class="text-center bg-white py-16 rounded-lg shadow-lg" id="contact">
     <h2 class="text-3xl font-bold mb-4 text-orange-900">
      📌 Contacto
@@ -269,18 +269,18 @@
     <p class="text-slate-600 mb-8 max-w-lg mx-auto">
      Estoy abierto a nuevos retos profesionales y con ganas de aportar mi experiencia. No dudes en contactarme.
     </p>
-    <div class="flex flex-wrap justify-center items-center gap-8">
-     <a class="font-medium text-slate-700 hover:text-orange-700" href="tel:635945779">
+    <div class="flex flex-wrap justify-center items-center gap-8" id="contact-info">
+     <a class="font-medium text-slate-700 hover:text-orange-700" href="#" id="phone-contact">
       <span aria-hidden="true">
        📞
       </span>
-      635 945 779
+      <span id="phone-text-contact">Mostrar teléfono</span>
      </a>
-     <a class="font-medium text-slate-700 hover:text-orange-700" href="mailto:pubesan@gmail.com">
+     <a class="font-medium text-slate-700 hover:text-orange-700" href="mailto:contacto@pedroubedasanchez.es">
       <span aria-hidden="true">
        ✉️
       </span>
-      pubesan@gmail.com
+      contacto@pedroubedasanchez.es
      </a>
      <a class="font-medium text-slate-700 hover:text-orange-700" href="https://www.linkedin.com/in/pubesan" target="_blank">
       <span aria-hidden="true">
@@ -297,7 +297,7 @@
      <h3 class="text-2xl font-bold mb-6 text-slate-800">
       O envíame un mensaje directamente
      </h3>
-     <form action="https://formsubmit.co/pubesan@gmail.com" method="POST">
+     <form action="https://formsubmit.co/contacto@pedroubedasanchez.es" method="POST">
       <!-- Configuración de FormSubmit -->
       <input name="_subject" type="hidden" value="Nuevo Mensaje desde tu Web de Currículum!"/>
       <input name="_next" type="hidden" value="https://pedroubedasanchez.es/gracias.html"/>
@@ -376,6 +376,25 @@
                     });
                 }
             });
+
+            // Phone obfuscation script
+            const phoneContactLink = document.getElementById('phone-contact');
+            if (phoneContactLink) {
+                const phoneTextElement = document.getElementById('phone-text-contact');
+                const originalText = phoneTextElement.textContent;
+
+                phoneContactLink.addEventListener('mouseover', function() {
+                    const part1 = '635';
+                    const part2 = '945';
+                    const part3 = '779';
+                    this.href = 'tel:' + part1 + part2 + part3;
+                    phoneTextElement.textContent = part1 + ' ' + part2 + ' ' + part3;
+                });
+                phoneContactLink.addEventListener('mouseout', function() {
+                    this.href = '#';
+                    phoneTextElement.textContent = originalText;
+                });
+            }
         });
   </script>
  </body>

@@ -134,7 +134,7 @@
         }
   </style>
  </head>
- <body class="bg-stone-100 text-slate-800">
+ <body class="bg-stone-100 text-slate-800 flex flex-col min-h-screen">
   <header class="bg-stone-100/80 backdrop-blur-md sticky top-0 z-50 shadow-sm" id="header">
    <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
     <div class="flex items-center space-x-4">
@@ -275,12 +275,12 @@
     </ul>
    </div>
   </header>
-  <main class="container mx-auto px-6 py-12">
+  <main class="container mx-auto px-6 py-12 flex-grow">
    <section class="mb-24 flex flex-col md:flex-row items-center md:items-start gap-8" id="about">
     <div class="flex-shrink-0">
      <picture>
       <source srcset="foto.png" type="image/png"/>
-      <img alt="Pedro Úbeda Sánchez" class="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover shadow-lg" decoding="async" src="foto.png"/>
+      <img alt="Pedro Úbeda Sánchez" class="w-40 h-56 md:w-48 md:h-64 rounded-full object-cover shadow-2xl" decoding="async" src="foto.png"/>
      </picture>
     </div>
     <div class="flex-grow text-center md:text-left">
@@ -291,7 +291,7 @@
       Técnico especialista con más de dos décadas de experiencia en el mantenimiento, diagnóstico y resolución de averías en equipos informáticos y de aviónica. Mi trayectoria en las Fuerzas Armadas me ha proporcionado sólidos valores como la disciplina, el compromiso y el trabajo en equipo, habilidades que aplico en mi día a día.
      </p>
      <div class="mt-8 text-center md:text-left">
-      <a class="inline-block bg-orange-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-800 transition-colors duration-300 shadow-lg transform hover:scale-105" href="curriculum.html">
+      <a class="inline-block bg-orange-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-800 transition-colors duration-300 shadow-lg transform hover:scale-105 animate-pulse" href="curriculum.html">
        <span aria-hidden="true">
         📄
        </span>

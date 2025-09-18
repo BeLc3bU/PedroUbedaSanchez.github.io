@@ -54,7 +54,7 @@
             }
         }
         .section-header {
-            border-bottom: 2px solid #c2410c;
+            border-bottom: 2px solid #c2410c; /* orange-700 */
             padding-bottom: 0.5rem;
             margin-bottom: 1rem;
         }
@@ -71,15 +71,17 @@
         <div class="flex-shrink-0">
             <picture>
                 <source srcset="foto.png" type="image/png"/>
-                <img src="foto.jpg" alt="Pedro Úbeda Sánchez" class="w-32 h-32 rounded-full object-cover shadow-lg" decoding="async">
+                <img src="foto.jpg" alt="Pedro Úbeda Sánchez" class="w-28 h-36 rounded-full object-cover shadow-lg" decoding="async">
             </picture>
         </div>
         <div class="flex-grow">
             <h1 class="text-3xl font-bold text-orange-900">Pedro Úbeda Sánchez</h1>
             <p class="text-xl font-medium text-slate-700">Técnico especialista en informática, aviónica y administración</p>
             <div class="mt-4 text-slate-600 flex flex-wrap gap-x-4 gap-y-1 text-sm">
-                <a href="tel:635945779" class="hover:text-orange-700">📞 635 945 779</a>
-                <a href="mailto:pubesan@gmail.com" class="hover:text-orange-700">✉️ pubesan@gmail.com</a>
+                <a href="#" class="hover:text-orange-700" id="phone-cv">
+                    <span id="phone-text-cv">📞 Mostrar teléfono</span>
+                </a>
+                <a href="mailto:contacto@pedroubedasanchez.es" class="hover:text-orange-700">✉️ contacto@pedroubedasanchez.es</a>
                 <a href="https://linkedin.com/in/pubesan" target="_blank" class="hover:text-orange-700">🔗 linkedin.com/in/pubesan</a>
             </div>
         </div>
@@ -222,6 +224,25 @@
         // Agrega un botón para volver a la página principal
         const printButton = document.getElementById('print-button');
         printButton.insertAdjacentHTML('afterend', '<button id="home-button" class="bg-gray-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-600 transition-colors duration-300 shadow-lg transform hover:scale-105 ml-4" onclick="window.location.href=\'index.html\'">🏠 Volver a la página principal</button>');
+        
+        // Phone obfuscation script for CV page
+        const phoneCvLink = document.getElementById('phone-cv');
+        if (phoneCvLink) {
+            const phoneTextElement = document.getElementById('phone-text-cv');
+            const originalText = phoneTextElement.textContent;
+
+            phoneCvLink.addEventListener('mouseover', function() {
+                const part1 = '635';
+                const part2 = '945';
+                const part3 = '779';
+                this.href = 'tel:' + part1 + part2 + part3;
+                phoneTextElement.textContent = '📞 ' + part1 + ' ' + part2 + ' ' + part3;
+            });
+            phoneCvLink.addEventListener('mouseout', function() {
+                this.href = '#';
+                phoneTextElement.textContent = originalText;
+            });
+        }
     </script>
 </body>
 </html>
