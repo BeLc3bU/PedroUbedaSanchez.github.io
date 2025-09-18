@@ -8,11 +8,8 @@
   </title>
   <!-- SEO -->
   <meta content="Información adicional sobre Pedro Úbeda Sánchez: disponibilidad, idiomas y hobbies. Totalmente disponible para nuevos retos profesionales." name="description"/>
-  <link href="https://pedroubedasanchez.es/otros-datos" rel="canonical"/>
+  <link href="https://pedroubedasanchez.es/otros-datos.html" rel="canonical"/>
   <!-- Fin SEO -->
-  <link href="https://fonts.googleapis.com" rel="preconnect"/>
-  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
   <!-- Chosen Palette: Warm Neutrals -->
   <!-- Application Structure Plan: Se ha diseñado una aplicación de una sola página con desplazamiento vertical y una barra de navegación fija. La estructura sigue un flujo lógico: introducción (Sobre Mí), cronología de la carrera (Experiencia), visualización de capacidades (Habilidades) y secciones informativas (Formación, Logros). Esta estructura es intuitiva y permite a los reclutadores escanear rápidamente el perfil o profundizar en secciones específicas mediante la navegación. El uso de una línea de tiempo interactiva para la experiencia y un gráfico de radar para las habilidades convierte un documento estático en una experiencia de usuario atractiva. -->
   <!-- Visualization & Content Choices: 
@@ -34,6 +31,9 @@
  <body class="bg-stone-100 text-slate-800 flex flex-col min-h-screen">
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-NGDK68DN" style="display:none;visibility:hidden" width="0"></iframe></noscript>
+  <a class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-4 focus:left-4 focus:bg-white focus:p-3 focus:rounded-lg focus:shadow-lg" href="#main-content">
+   Saltar al contenido principal
+  </a>
   <!-- End Google Tag Manager (noscript) -->
   <header class="bg-stone-100/80 backdrop-blur-md sticky top-0 z-50 shadow-sm" id="header">
    <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
@@ -104,7 +104,7 @@
       </a>
      </li>
     </ul>
-    <button aria-controls="mobile-menu" aria-expanded="false" class="md:hidden text-slate-800" id="mobile-menu-button">
+    <button aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menú de navegación" class="md:hidden text-slate-800" id="mobile-menu-button">
      <span aria-hidden="true" class="text-2xl">
       ☰
      </span>
@@ -175,7 +175,7 @@
     </ul>
    </div>
   </header>
-  <main class="container mx-auto px-6 py-12 flex-grow">
+  <main class="container mx-auto px-6 py-12 flex-grow" id="main-content">
    <section class="mb-24" id="other_data">
     <h2 class="text-3xl font-bold mb-12 text-center text-orange-900">
      📚 Otros Datos
@@ -290,6 +290,6 @@
     © 2025 Pedro Úbeda Sánchez. Todos los derechos reservados.
    </p>
   </footer>
-  <script src="assets/js/main.js"></script>
+  <script defer="" src="assets/js/main.js"></script>
  </body>
 </html>

@@ -24,8 +24,8 @@
   <meta content="Técnico con más de 20 años de experiencia en informática, aviónica y administración." name="twitter:description"/>
   <meta content="https://pedroubedasanchez.es/foto.jpg" name="twitter:image"/>
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
-  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+  <!-- Performance: Preload the LCP image to improve loading speed -->
+  <link as="image" href="foto.webp" rel="preload" type="image/webp"/>  <link as="image" href="foto.png" rel="preload" type="image/png"/>
   <!-- Chosen Palette: Warm Neutrals -->
   <!-- Application Structure Plan: Se ha diseñado una aplicación de una sola página con desplazamiento vertical y una barra de navegación fija. La estructura sigue un flujo lógico: introducción (Sobre Mí), cronología de la carrera (Experiencia), visualización de capacidades (Habilidades) y secciones informativas (Formación, Logros). Esta estructura es intuitiva y permite a los reclutadores escanear rápidamente el perfil o profundizar en secciones específicas mediante la navegación. El uso de una línea de tiempo interactiva para la experiencia y un gráfico de radar para las habilidades convierte un documento estático en una experiencia de usuario atractiva. -->
   <!-- Visualization & Content Choices: 
@@ -35,7 +35,15 @@
         - Habilidades Técnicas: (Meta: Informar) Lista categorizada. Presentación: HTML/CSS. Interacción: Ninguna. Justificación: Máxima legibilidad y escaneo rápido.
         - Formación y Logros: (Meta: Informar) Listas limpias. Presentación: HTML/CSS con iconos. Interacción: Ninguna. Justificación: Presentación clara y directa de la información. -->
   <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-  <link href="assets/css/style.css" rel="stylesheet"/>
+  <!-- Critical CSS: Inlined for instant rendering of above-the-fold content -->
+  <style>
+    /* Pega aquí el CSS crítico que has generado en el Paso 1 */
+  </style>
+  
+  <!-- Asynchronously load the full stylesheet -->
+  <link as="style" href="assets/css/style.css" rel="preload" onload="this.onload=null;this.rel='stylesheet'"/>
+  <noscript><link href="assets/css/style.css" rel="stylesheet"/></noscript>
+
   <!-- SEO: Structured Data (Schema.org) para Person -->
   <script type="application/ld+json">
   {
@@ -207,7 +215,7 @@
     </ul>
    </div>
   </header>
-  <main class="container mx-auto px-6 py-12 flex-grow">
+  <main class="container mx-auto px-6 py-12 flex-grow" id="main-content">
    <section class="mb-24 flex flex-col md:flex-row items-center md:items-start gap-8" id="about">
     <div class="flex-shrink-0">
       <picture>
@@ -238,6 +246,6 @@
     © 2025 Pedro Úbeda Sánchez. Todos los derechos reservados.
    </p>
   </footer>
-  <script src="assets/js/main.js"></script>
+  <script defer="" src="assets/js/main.js"></script>
  </body>
 </html>
