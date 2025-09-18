@@ -109,9 +109,14 @@ document.addEventListener('DOMContentLoaded', function () {
         // Crear y añadir el botón de "Volver" usando buenas prácticas
         const homeButton = document.createElement('button');
         homeButton.id = 'home-button';
-        homeButton.className = 'bg-gray-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-600 transition-colors duration-300 shadow-lg transform hover:scale-105 ml-4';
+        homeButton.className = 'bg-slate-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-slate-600 transition-colors duration-300 shadow-lg transform hover:scale-105 ml-4';
         homeButton.innerHTML = '🏠 Volver a la página principal';
         homeButton.addEventListener('click', () => window.location.href = 'index.html');
         printButton.insertAdjacentElement('afterend', homeButton);
     }
+
+    // Lógica para la animación escalonada
+    document.querySelectorAll('.stagger-item').forEach((item, index) => {
+        item.style.animationDelay = `${index * 100}ms`;
+    });
 });

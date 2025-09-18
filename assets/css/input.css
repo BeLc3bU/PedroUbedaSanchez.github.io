@@ -45,6 +45,13 @@ body {
         transform: translateY(0);
     }
 }
+.card-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); /* shadow-xl */
+}
 body.fade-out {
     animation: fadeOutAnimation ease 0.5s;
     animation-iteration-count: 1;
