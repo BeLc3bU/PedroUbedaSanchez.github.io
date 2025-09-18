@@ -217,10 +217,11 @@
             window.print();
         });
 
-        // Este evento se dispara después de que el diálogo de impresión se cierra (ya sea imprimiendo, guardando o cancelando).
-        window.addEventListener('afterprint', function() {
-            window.location.href = 'index.html';
-        });
+        // Elimina la redirección automática después de imprimir
+
+        // Agrega un botón para volver a la página principal
+        const printButton = document.getElementById('print-button');
+        printButton.insertAdjacentHTML('afterend', '<button id="home-button" class="bg-gray-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-600 transition-colors duration-300 shadow-lg transform hover:scale-105 ml-4" onclick="window.location.href=\'index.html\'">🏠 Volver a la página principal</button>');
     </script>
 </body>
 </html>
