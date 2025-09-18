@@ -40,8 +40,26 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Lógica para la transición entre páginas
+    const currentPageFile = window.location.pathname.split('/').pop();
+
     document.querySelectorAll('a[href]').forEach(link => {
-        if (link.hostname === window.location.hostname && !link.hasAttribute('download') && link.pathname !== window.location.pathname && !link.href.endsWith('#')) {
+        const linkHref = link.getAttribute('href');
+
+        // Ignorar enlaces sin href, anclas, o protocolos externos
+        if (!linkHref || linkHref.startsWith('#') || linkHref.startsWith('mailto:') || linkHref.startsWith('tel:')) {
+            return;
+        }
+
+        // Ignorar enlaces externos, de descarga, o que abren en una nueva pestaña
+        if (link.hostname !== window.location.hostname || link.hasAttribute('download') || link.target === '_blank') {
+            return;
+        }
+
+        // Comprobar si el enlace apunta a la página actual para evitar el efecto de recarga
+        const linkPageFile = linkHref.split('/').pop();
+        const isSamePage = linkPageFile === currentPageFile || (currentPageFile === '' && (linkPageFile === 'index.html' || linkPageFile === ''));
+
+        if (!isSamePage) {
             link.addEventListener('click', function (e) {
                 const destination = this.href;
                 e.preventDefault();
