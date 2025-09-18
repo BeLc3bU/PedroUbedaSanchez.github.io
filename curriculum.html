@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Currículum - Pedro Úbeda Sánchez</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
@@ -59,6 +58,7 @@
             margin-bottom: 1rem;
         }
     </style>
+    <link href="assets/css/style.css" rel="stylesheet"/>
 </head>
 <body class="bg-white p-8 md:p-12">
     <div class="no-print text-center my-8">
@@ -70,8 +70,8 @@
     <header class="flex flex-row items-center gap-6 mb-8">
         <div class="flex-shrink-0">
             <picture>
-                <source srcset="foto.png" type="image/png"/>
-                <img src="foto.jpg" alt="Pedro Úbeda Sánchez" class="w-28 h-36 rounded-full object-cover shadow-lg" decoding="async">
+                <source srcset="foto.webp" type="image/webp"/>
+                <img src="foto.jpg" alt="Pedro Úbeda Sánchez" class="w-28 h-36 rounded-full object-cover shadow-lg" decoding="async" width="112" height="144">
             </picture>
         </div>
         <div class="flex-grow">
@@ -214,35 +214,6 @@
         </div>
     </section>
 
-    <script>
-        document.getElementById('print-button').addEventListener('click', function() {
-            window.print();
-        });
-
-        // Elimina la redirección automática después de imprimir
-
-        // Agrega un botón para volver a la página principal
-        const printButton = document.getElementById('print-button');
-        printButton.insertAdjacentHTML('afterend', '<button id="home-button" class="bg-gray-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-600 transition-colors duration-300 shadow-lg transform hover:scale-105 ml-4" onclick="window.location.href=\'index.html\'">🏠 Volver a la página principal</button>');
-        
-        // Phone obfuscation script for CV page
-        const phoneCvLink = document.getElementById('phone-cv');
-        if (phoneCvLink) {
-            const phoneTextElement = document.getElementById('phone-text-cv');
-            const originalText = phoneTextElement.textContent;
-
-            phoneCvLink.addEventListener('mouseover', function() {
-                const part1 = '635';
-                const part2 = '945';
-                const part3 = '779';
-                this.href = 'tel:' + part1 + part2 + part3;
-                phoneTextElement.textContent = '📞 ' + part1 + ' ' + part2 + ' ' + part3;
-            });
-            phoneCvLink.addEventListener('mouseout', function() {
-                this.href = '#';
-                phoneTextElement.textContent = originalText;
-            });
-        }
-    </script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

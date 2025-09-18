@@ -6,34 +6,10 @@
   <title>
    Habilidades - Pedro Úbeda Sánchez
   </title>
-  <script src="https://cdn.tailwindcss.com">
-  </script>
-  <script>
-   tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        stone: {
-                            100: '#f5f5f4',
-                            200: '#e7e5e4',
-                        },
-                        slate: {
-                            500: '#64748b',
-                            600: '#475569',
-                            800: '#1e293b',
-                            900: '#0f172a',
-                        },
-                        orange: {
-                            600: '#ea580c',
-                            700: '#c2410c',
-                            800: '#9a3412',
-                            900: '#7c2d12',
-                        }
-                    }
-                }
-            }
-        }
-  </script>
+  <!-- SEO -->
+  <meta content="Descubre las habilidades interpersonales y técnicas de Pedro Úbeda Sánchez, incluyendo trabajo en equipo, proactividad, informática, hardware y ciberseguridad." name="description"/>
+  <link href="https://pedroubedasanchez.es/habilidades.html" rel="canonical"/>
+  <!-- Fin SEO -->
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
@@ -46,65 +22,7 @@
         - Habilidades Técnicas: (Meta: Informar) Lista categorizada. Presentación: HTML/CSS. Interacción: Ninguna. Justificación: Máxima legibilidad y escaneo rápido.
         - Formación y Logros: (Meta: Informar) Listas limpias. Presentación: HTML/CSS con iconos. Interacción: Ninguna. Justificación: Presentación clara y directa de la información. -->
   <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-  <style>
-   body {
-            font-family: 'Inter', sans-serif;
-            opacity: 0;
-            animation: fadeInAnimation ease 0.6s;
-            animation-fill-mode: forwards;
-            animation-delay: 0.1s;
-        }
-        @keyframes fadeInAnimation {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        body.fade-out {
-            animation: fadeOutAnimation ease 0.5s;
-            animation-iteration-count: 1;
-            animation-fill-mode: forwards;
-        }
-        @keyframes fadeOutAnimation {
-            from {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            to {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-        }
-        .timeline-item {
-            transition: all 0.3s ease-in-out;
-        }
-        .timeline-item:hover {
-            transform: scale(1.02);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-        }
-        .nav-link.active {
-            font-weight: 700;
-            color: #c2410c; /* text-orange-700 */
-        }
-        /* Custom progress bar styles */
-        .progress-bar-container {
-            background-color: #e5e7eb; /* bg-gray-200 */
-            border-radius: 9999px;
-            height: 1.5rem; /* h-6 */
-            overflow: hidden;
-            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
-        }
-        .progress-bar {
-            background-color: #ea580c; /* bg-orange-600 */
-            height: 100%;
-            border-radius: 9999px;
-            transition: width 0.5s ease-in-out;
-        }
-  </style>
+  <link href="assets/css/style.css" rel="stylesheet"/>
  </head>
  <body class="bg-stone-100 text-slate-800 flex flex-col min-h-screen">
   <header class="bg-stone-100/80 backdrop-blur-md sticky top-0 z-50 shadow-sm" id="header">
@@ -136,7 +54,7 @@
       </a>
      </li>
      <li>
-      <a class="nav-link text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105 active" href="habilidades.html">
+      <a class="nav-link text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105" href="habilidades.html">
        <span>
         💡
        </span>
@@ -205,7 +123,7 @@
       </a>
      </li>
      <li>
-      <a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105 active" href="habilidades.html">
+      <a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-2 p-2 rounded-lg hover:bg-stone-200 transition-all duration-300 transform hover:scale-105" href="habilidades.html">
        <span>
         💡
        </span>
@@ -267,7 +185,7 @@
          🤝 Trabajo en Equipo
         </span>
         <div class="w-2/3 md:w-3/4 flex items-center space-x-2">
-         <div class="progress-bar-container w-full">
+         <div aria-label="Nivel de habilidad en Trabajo en Equipo: 98%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="98" class="progress-bar-container w-full" role="progressbar">
           <div class="progress-bar" style="width: 98%;">
           </div>
          </div>
@@ -281,7 +199,7 @@
          🚀 Proactividad
         </span>
         <div class="w-2/3 md:w-3/4 flex items-center space-x-2">
-         <div class="progress-bar-container w-full">
+         <div aria-label="Nivel de habilidad en Proactividad: 95%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="95" class="progress-bar-container w-full" role="progressbar">
           <div class="progress-bar" style="width: 95%;">
           </div>
          </div>
@@ -295,7 +213,7 @@
          📋 Organización
         </span>
         <div class="w-2/3 md:w-3/4 flex items-center space-x-2">
-         <div class="progress-bar-container w-full">
+         <div aria-label="Nivel de habilidad en Organización: 92%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="92" class="progress-bar-container w-full" role="progressbar">
           <div class="progress-bar" style="width: 92%;">
           </div>
          </div>
@@ -309,7 +227,7 @@
          ❤️ Empatía
         </span>
         <div class="w-2/3 md:w-3/4 flex items-center space-x-2">
-         <div class="progress-bar-container w-full">
+         <div aria-label="Nivel de habilidad en Empatía: 90%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="90" class="progress-bar-container w-full" role="progressbar">
           <div class="progress-bar" style="width: 90%;">
           </div>
          </div>
@@ -323,7 +241,7 @@
          ⏳ Gestión de Tiempo
         </span>
         <div class="w-2/3 md:w-3/4 flex items-center space-x-2">
-         <div class="progress-bar-container w-full">
+         <div aria-label="Nivel de habilidad en Gestión de Tiempo: 88%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="88" class="progress-bar-container w-full" role="progressbar">
           <div class="progress-bar" style="width: 88%;">
           </div>
          </div>
@@ -337,7 +255,7 @@
          🧩 Resolución de Problemas
         </span>
         <div class="w-2/3 md:w-3/4 flex items-center space-x-2">
-         <div class="progress-bar-container w-full">
+         <div aria-label="Nivel de habilidad en Resolución de Problemas: 85%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="85" class="progress-bar-container w-full" role="progressbar">
           <div class="progress-bar" style="width: 85%;">
           </div>
          </div>
@@ -388,45 +306,6 @@
     © 2025 Pedro Úbeda Sánchez. Todos los derechos reservados.
    </p>
   </footer>
-  <script>
-   document.addEventListener('DOMContentLoaded', function () {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            if (mobileMenuButton && mobileMenu) {
-                mobileMenuButton.addEventListener('click', () => {
-                    const isHidden = mobileMenu.classList.toggle('hidden');
-                    mobileMenuButton.setAttribute('aria-expanded', !isHidden);
-                });
-            }
-            
-            const mobileLinks = document.querySelectorAll('.nav-link-mobile');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    if (mobileMenu) {
-                        mobileMenu.classList.add('hidden');
-                    }
-                });
-            });
-
-            // Page transition script
-            document.querySelectorAll('a[href]').forEach(link => {
-                // Apply only to internal, non-download, non-current-page links
-                if (link.hostname === window.location.hostname && !link.hasAttribute('download') && link.pathname !== window.location.pathname) {
-                    link.addEventListener('click', function (e) {
-                        const destination = this.href;
-
-                        // Prevent default navigation
-                        e.preventDefault();
-
-                        // Add class for fade-out animation
-                        document.body.classList.add('fade-out');
-
-                        // Wait for animation to finish, then navigate
-                        setTimeout(() => { window.location.href = destination; }, 500); // Match CSS animation duration
-                    });
-                }
-            });
-        });
-  </script>
+  <script src="assets/js/main.js"></script>
  </body>
 </html>
