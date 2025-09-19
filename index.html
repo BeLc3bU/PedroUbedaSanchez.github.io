@@ -18,12 +18,23 @@
   <meta content="https://pedroubedasanchez.es/foto.jpg" property="og:image"/>
   <meta content="https://pedroubedasanchez.es/" property="og:url"/>
   <meta content="website" property="og:type"/>
+  <meta content="es_ES" property="og:locale"/>
+  <meta content="1200" property="og:image:width"/>
+  <meta content="630" property="og:image:height"/>
   <!-- SEO: Twitter Card para compartir en Twitter -->
   <meta content="summary_large_image" name="twitter:card"/>
   <meta content="Pedro Úbeda Sánchez | Técnico Especialista" name="twitter:title"/>
   <meta content="Técnico con más de 20 años de experiencia en informática, aviónica y administración." name="twitter:description"/>
   <meta content="https://pedroubedasanchez.es/foto.jpg" name="twitter:image"/>
   <!-- Performance: Preload LCP image and critical fonts -->
+  <!-- Favicon -->
+  <link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+  <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+  <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
+  <link href="/site.webmanifest" rel="manifest"/>
+  <link color="#c2410c" href="/safari-pinned-tab.svg" rel="mask-icon"/>
+  <meta content="#f5f5f4" name="msapplication-TileColor"/>
+  <meta content="#ffffff" name="theme-color"/>
   <link as="image" href="foto.webp" rel="preload" type="image/webp"/>
   <link as="font" crossorigin="" href="assets/fonts/inter-v20-latin-regular.woff2" rel="preload" type="font/woff2"/>
   <link as="font" crossorigin="" href="assets/fonts/inter-v20-latin-700.woff2" rel="preload" type="font/woff2"/>
@@ -38,7 +49,11 @@
   <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
   <!-- Critical CSS: Inlined for instant rendering of above-the-fold content -->
   <style>
-    /* Pega aquí el CSS crítico que has generado en el Paso 1 */
+    @media (min-width: 768px) {
+      #about-text-block {
+        margin-left: 8rem; /* 128px */
+      }
+    }
   </style>
   
   <!-- Asynchronously load the full stylesheet -->
@@ -217,15 +232,15 @@
    </div>
   </header>
   <main class="container mx-auto px-6 py-12 flex-grow" id="main-content">
-   <section class="mb-24 flex flex-col md:flex-row items-center md:items-start gap-8" id="about">
+   <section class="mb-24 flex flex-col md:flex-row items-center md:items-start gap-y-8" id="about">
     <div class="flex-shrink-0">
       <picture>
        <source srcset="foto.webp" type="image/webp"/>
        <img alt="Pedro Úbeda Sánchez" class="w-40 h-56 md:w-48 md:h-64 rounded-full object-cover shadow-2xl" decoding="async" height="256" src="foto.png" width="192"/>
       </picture>
     </div>
-    <div class="flex-grow text-center md:text-left">
-     <h1 class="text-4xl md:text-5xl font-bold mb-4 text-orange-900">
+    <div class="flex-grow text-center md:text-left" id="about-text-block">
+     <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-orange-900">
       Técnico especialista en informática, aviónica y administración
      </h1>
      <p class="max-w-3xl mx-auto md:mx-0 text-lg text-slate-600">

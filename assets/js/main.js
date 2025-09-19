@@ -41,7 +41,7 @@ function setupMobileMenu() {
 
     // UX: Cerrar menú al hacer clic fuera
     document.addEventListener('click', (e) => {
-        if (!mobileMenu.classList.contains('hidden') && !mobileMenu.contains(e.target) && e.target !== mobileMenuButton) {
+        if (!mobileMenu.classList.contains('hidden') && !mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
             closeMenu();
         }
     });
