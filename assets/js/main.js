@@ -1,122 +1,159 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // Lógica para el menú móvil
+/**
+ * Gestiona la apertura, cierre y accesibilidad del menú de navegación móvil.
+ */
+function setupMobileMenu() {
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
-    if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', () => {
-            const isHidden = mobileMenu.classList.toggle('hidden');
-            mobileMenuButton.setAttribute('aria-expanded', !isHidden);
 
-            // Gestionar el foco
-            if (!isHidden) {
-                // Si el menú se muestra, mover el foco al primer enlace
-                mobileMenu.querySelector('a').focus();
-            }
-        });
-    }
+    if (!mobileMenuButton || !mobileMenu) return;
 
-    const mobileLinks = document.querySelectorAll('.nav-link-mobile');
-    mobileLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (mobileMenu) {
-                mobileMenu.classList.add('hidden');
-                mobileMenuButton.setAttribute('aria-expanded', 'false');
-                mobileMenuButton.focus(); // Devolver el foco al botón del menú
-            }
-        });
+    const closeMenu = () => {
+        mobileMenu.classList.add('hidden');
+        mobileMenuButton.setAttribute('aria-expanded', 'false');
+        mobileMenuButton.focus();
+    };
+
+    const openMenu = () => {
+        mobileMenu.classList.remove('hidden');
+        mobileMenuButton.setAttribute('aria-expanded', 'true');
+        mobileMenu.querySelector('a').focus();
+    };
+
+    mobileMenuButton.addEventListener('click', () => {
+        const isHidden = mobileMenu.classList.contains('hidden');
+        if (isHidden) {
+            openMenu();
+        } else {
+            closeMenu();
+        }
     });
 
-    // Lógica para el enlace de navegación activo
-    const currentPage = window.location.pathname.split('/').pop();
+    mobileMenu.querySelectorAll('.nav-link-mobile').forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    // UX: Cerrar menú con la tecla Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+            closeMenu();
+        }
+    });
+
+    // UX: Cerrar menú al hacer clic fuera
+    document.addEventListener('click', (e) => {
+        if (!mobileMenu.classList.contains('hidden') && !mobileMenu.contains(e.target) && e.target !== mobileMenuButton) {
+            closeMenu();
+        }
+    });
+}
+
+/**
+ * Resalta el enlace de navegación correspondiente a la página actual.
+ */
+function setActiveNavLink() {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     const navLinks = document.querySelectorAll('.nav-link, .nav-link-mobile');
 
     navLinks.forEach(link => {
         const linkPage = link.getAttribute('href');
-        // Comprueba si el href del enlace coincide con la página actual.
-        // También maneja el caso de la página de inicio (index.html) cuando la ruta está vacía.
-        if (linkPage === currentPage || (currentPage === '' && linkPage === 'index.html')) {
+        if (linkPage === currentPage) {
             link.classList.add('active');
         }
     });
+}
 
-    // Lógica para la transición entre páginas
-    const currentPageFile = window.location.pathname.split('/').pop();
+/**
+ * Añade una animación de "fade-out" al navegar entre páginas internas.
+ */
+function setupPageTransitions() {
+    const currentPageFile = window.location.pathname.split('/').pop() || 'index.html';
 
     document.querySelectorAll('a[href]').forEach(link => {
-        const linkHref = link.getAttribute('href');
-
         // Ignorar enlaces sin href, anclas, o protocolos externos
-        if (!linkHref || linkHref.startsWith('#') || linkHref.startsWith('mailto:') || linkHref.startsWith('tel:')) {
+        if (!link.href || link.href.includes('#') || !link.href.startsWith(window.location.origin)) {
             return;
         }
 
-        // Ignorar enlaces externos, de descarga, o que abren en una nueva pestaña
-        if (link.hostname !== window.location.hostname || link.hasAttribute('download') || link.target === '_blank') {
+        // Ignorar enlaces de descarga o que abren en una nueva pestaña
+        if (link.hasAttribute('download') || link.target === '_blank') {
             return;
         }
 
-        // Comprobar si el enlace apunta a la página actual para evitar el efecto de recarga
-        const linkPageFile = linkHref.split('/').pop();
-        const isSamePage = linkPageFile === currentPageFile || (currentPageFile === '' && (linkPageFile === 'index.html' || linkPageFile === ''));
-
-        if (!isSamePage) {
+        const linkPageFile = link.pathname.split('/').pop() || 'index.html';
+        if (linkPageFile !== currentPageFile) {
             link.addEventListener('click', function (e) {
-                const destination = this.href;
                 e.preventDefault();
                 document.body.classList.add('fade-out');
-                setTimeout(() => { window.location.href = destination; }, 500);
+                setTimeout(() => { window.location.href = this.href; }, 500);
             });
         }
     });
+}
 
-    /**
-     * Función reutilizable para ofuscar y mostrar un número de teléfono al pasar el ratón.
-     * @param {string} linkId - El ID del elemento <a> que contendrá el enlace tel:.
-     * @param {string} textId - El ID del elemento <span> que mostrará el texto del teléfono.
-     * @param {string} [prefix=''] - Un prefijo opcional para añadir antes del número (ej. un emoji).
-     */
-    const setupPhoneObfuscation = (linkId, textId, prefix = '') => {
-        const linkElement = document.getElementById(linkId);
-        const textElement = document.getElementById(textId);
+/**
+ * Ofusca un número de teléfono, revelándolo al pasar el ratón o al enfocarlo.
+ * @param {string} linkId - El ID del elemento <a> que contendrá el enlace tel:.
+ * @param {string} textId - El ID del elemento <span> que mostrará el texto del teléfono.
+ * @param {string} [prefix=''] - Un prefijo opcional para añadir antes del número (ej. un emoji).
+ */
+function setupPhoneObfuscation(linkId, textId, prefix = '') {
+    const linkElement = document.getElementById(linkId);
+    const textElement = document.getElementById(textId);
 
-        if (!linkElement || !textElement) return; // No hacer nada si los elementos no existen en la página
+    if (!linkElement || !textElement) return;
 
-        const originalText = textElement.textContent;
+    const originalText = textElement.textContent;
+    const phoneNumber = ['635', '945', '779'];
 
-        linkElement.addEventListener('mouseover', function() {
-            const part1 = '635';
-            const part2 = '945';
-            const part3 = '779';
-            this.href = 'tel:' + part1 + part2 + part3;
-            textElement.textContent = `${prefix}${part1} ${part2} ${part3}`.trim();
-        });
-
-        linkElement.addEventListener('mouseout', function() {
-            this.href = '#';
-            textElement.textContent = originalText;
-        });
+    const revealPhone = () => {
+        linkElement.href = 'tel:' + phoneNumber.join('');
+        textElement.textContent = `${prefix}${phoneNumber.join(' ')}`.trim();
     };
 
-    // Inicializar la ofuscación para los diferentes elementos
-    setupPhoneObfuscation('phone-contact', 'phone-text-contact');
-    setupPhoneObfuscation('phone-cv', 'phone-text-cv', '📞 ');
+    const hidePhone = () => {
+        linkElement.href = '#';
+        textElement.textContent = originalText;
+    };
 
-    // Lógica para el botón de imprimir en curriculum.html
+    linkElement.addEventListener('mouseover', revealPhone);
+    linkElement.addEventListener('focus', revealPhone);
+    linkElement.addEventListener('mouseout', hidePhone);
+    linkElement.addEventListener('blur', hidePhone);
+}
+
+/**
+ * Configura el botón de impresión y añade un botón para volver al inicio.
+ */
+function setupPrintButton() {
     const printButton = document.getElementById('print-button');
-    if (printButton) {
-        printButton.addEventListener('click', () => window.print());
+    if (!printButton) return;
 
-        // Crear y añadir el botón de "Volver" usando buenas prácticas
-        const homeButton = document.createElement('button');
-        homeButton.id = 'home-button';
-        homeButton.className = 'bg-slate-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-slate-600 transition-colors duration-300 shadow-lg transform hover:scale-105 ml-4';
-        homeButton.innerHTML = '🏠 Volver a la página principal';
-        homeButton.addEventListener('click', () => window.location.href = 'index.html');
-        printButton.insertAdjacentElement('afterend', homeButton);
-    }
+    printButton.addEventListener('click', () => window.print());
 
-    // Lógica para la animación escalonada
+    const homeButton = document.createElement('button');
+    homeButton.id = 'home-button';
+    homeButton.className = 'bg-slate-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-slate-600 transition-colors duration-300 shadow-lg transform hover:scale-105 ml-4';
+    homeButton.innerHTML = '🏠 Volver a la página principal';
+    homeButton.addEventListener('click', () => window.location.href = 'index.html');
+    printButton.insertAdjacentElement('afterend', homeButton);
+}
+
+/**
+ * Aplica una animación de entrada escalonada a los elementos designados.
+ */
+function staggerAnimations() {
     document.querySelectorAll('.stagger-item').forEach((item, index) => {
         item.style.animationDelay = `${index * 100}ms`;
     });
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    setupMobileMenu();
+    setActiveNavLink();
+    setupPageTransitions();
+    setupPhoneObfuscation('phone-contact', 'phone-text-contact');
+    setupPhoneObfuscation('phone-cv', 'phone-text-cv', '📞 ');
+    setupPrintButton();
+    staggerAnimations();
 });

@@ -14,35 +14,58 @@
             body {
                 width: 210mm;
                 margin: 0;
-                padding: 10mm;
-                font-size: 9.5pt; /* Reducido aún más */
-                line-height: 1.25; /* Más compacto */
+                padding: 6mm; /* Márgenes mínimos para maximizar espacio */
+                font-size: 9pt; /* Tamaño de fuente final para compactar */
+                line-height: 1.2; /* Interlineado mínimo para legibilidad */
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
             .no-print {
                 display: none !important;
             }
-            .printable-grid {
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 1.5rem !important;
+            /* Ajustes de espaciado y tipografía para una mejor legibilidad en impresión */
+            header { 
+                margin-bottom: 0.4rem !important; 
+                gap: 1rem !important;
             }
-            /* Reducción de espacios y tamaños de fuente para impresión */
-            header { margin-bottom: 1rem !important; }
-            section { margin-bottom: 0.6rem !important; }
+            header img {
+                width: 6rem !important; /* w-24 */
+                height: auto !important;
+            }
+            header h1 { font-size: 1.5rem !important; }
+            header p { font-size: 1rem !important; }
+            header .mt-4 { margin-top: 0.5rem !important; }
+
+            section { margin-bottom: 0.4rem !important; } /* Menos espacio entre secciones */
+            .experience-section > * + * {
+                margin-top: 0.4rem !important; /* Reduce drásticamente el espacio entre trabajos */
+            }
+            .experience-section ul {
+                margin-top: 0.1rem !important;
+            }
+            .experience-section ul > * + * {
+                margin-top: 0.1rem !important; /* Reduce el espacio entre puntos de la experiencia */
+            }
             .section-header {
                 font-size: 1.1rem !important;
                 padding-bottom: 0.25rem !important;
-                margin-bottom: 0.5rem !important;
+                margin-bottom: 0.4rem !important;
             }
             .experience-section > div {
-                margin-bottom: 0.4rem !important;
+                margin-bottom: 0.3rem !important; /* Más compacto */
             }
             ul {
                 margin-top: 0 !important;
+                padding-left: 1.2em; /* Alineación estándar de viñetas */
             }
             section, div {
                 page-break-inside: avoid;
+            }
+            /* Optimización para la lista de Hobbies: al ser una sola línea, se muestra mejor sin viñeta */
+            .hobbies-list {
+                list-style: none !important;
+                padding-left: 0 !important;
+                margin-top: 0.25rem !important;
             }
             a {
                 text-decoration: none;
@@ -107,34 +130,34 @@
         <h2 class="text-xl font-bold section-header text-orange-900">Experiencia Profesional</h2>
         <div class="space-y-4 experience-section">
             <div>
-                <h3 class="font-semibold text-slate-900">Militar (Informático/Aviónico) <span class="text-sm font-normal text-slate-500 float-right">2008 - 2025</span></h3>
-                <p class="text-xs text-slate-500">FAS</p>
-                <ul class="list-disc list-inside text-slate-600 text-sm mt-1 space-y-0.5">
+                <h3 class="font-semibold text-slate-900">Militar (Informático/Aviónico) <span class="font-normal text-slate-500 float-right">2008 - 2025</span></h3>
+                <p class="text-sm text-slate-500">FAS</p>
+                <ul class="list-disc list-inside text-slate-600 text-sm mt-1 space-y-1">
                     <li>Mantenimiento, diagnóstico y solución de averías de simuladores de vuelo y flota de aviones a nivel informático y electrónico.</li>
                     <li>Gestión administrativa y logística. Elaboración de informes, registro y control.</li>
                     <li>Servicio de control de accesos y vigilancia.</li>
                 </ul>
             </div>
             <div>
-                <h3 class="font-semibold text-slate-900">Administrativo Contable <span class="text-sm font-normal text-slate-500 float-right">2007 - 2008</span></h3>
-                <p class="text-xs text-slate-500">ICONO TELECOM</p>
-                <ul class="list-disc list-inside text-slate-600 text-sm mt-1 space-y-0.5">
+                <h3 class="font-semibold text-slate-900">Administrativo Contable <span class="font-normal text-slate-500 float-right">2007 - 2008</span></h3>
+                <p class="text-sm text-slate-500">ICONO TELECOM</p>
+                <ul class="list-disc list-inside text-slate-600 text-sm mt-1 space-y-1">
                     <li>Gestión de pagos a proveedores y clientes.</li>
                     <li>Contabilidad, facturación, informes, gestión de gastos y atención telefónica.</li>
                 </ul>
             </div>
             <div>
-                <h3 class="font-semibold text-slate-900">Auxiliar Administrativo <span class="text-sm font-normal text-slate-500 float-right">2006 - 2007</span></h3>
-                <p class="text-xs text-slate-500">TRUCCSA</p>
-                <ul class="list-disc list-inside text-slate-600 text-sm mt-1 space-y-0.5">
+                <h3 class="font-semibold text-slate-900">Auxiliar Administrativo <span class="font-normal text-slate-500 float-right">2006 - 2007</span></h3>
+                <p class="text-sm text-slate-500">TRUCCSA</p>
+                <ul class="list-disc list-inside text-slate-600 text-sm mt-1 space-y-1">
                     <li>Gestión de pedidos, albaranes y facturación.</li>
                     <li>Contabilidad, control de stock, archivo, registro y gestión de pagarés.</li>
                 </ul>
             </div>
-             <div>
-                <h3 class="font-semibold text-slate-900">Militar (Admin/Telecom) <span class="text-sm font-normal text-slate-500 float-right">2002 - 2005</span></h3>
-                <p class="text-xs text-slate-500">FAS</p>
-                <ul class="list-disc list-inside text-slate-600 text-sm mt-1 space-y-0.5">
+            <div>
+                <h3 class="font-semibold text-slate-900">Militar (Admin/Telecom) <span class="font-normal text-slate-500 float-right">2002 - 2005</span></h3>
+                <p class="text-sm text-slate-500">FAS</p>
+                <ul class="list-disc list-inside text-slate-600 text-sm mt-1 space-y-1">
                     <li>Tareas administrativas: Archivo, correspondencia, registro, BBDD e inventario.</li>
                     <li>Instalación y mantenimiento de telecomunicaciones.</li>
                     <li>Servicio de control de acceso, patrulla, CCTV y verificación de alarmas.</li>
@@ -143,80 +166,63 @@
         </div>
     </section>
 
-    <!-- Formación y Logros Section -->
-    <section class="mb-6">
-        <h2 class="text-xl font-bold section-header text-orange-900">Formación y Logros</h2>
-        <div class="grid grid-cols-2 gap-6">
-            <div class="text-sm">
-                <h3 class="font-semibold text-slate-700">Formación Académica</h3>
-                <ul class="list-disc list-inside text-slate-600 text-xs mt-1 space-y-0.5">
-                    <li>Técnico Especialista en Informática de Gestión (CIF CARLOS III)</li>
-                    <li>Curso de Ciberseguridad (INCIBE)</li>
-                    <li>Curso NATO HPS CRYPTO (Ministerio de Defensa)</li>
-                </ul>
-            </div>
-            <div class="text-sm">
-                <h3 class="font-semibold text-slate-700">Reconocimientos</h3>
-                <ul class="list-disc list-inside text-slate-600 text-xs mt-1 space-y-0.5">
-                    <li>Cruz del Mérito Aeronáutico con distintivo Blanco.</li>
-                    <li>Cruz a la constancia en el Servicio de bronce.</li>
-                    <li>Reconocimiento DANA 2024.</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills & Other Data Section -->
-    <section class="grid md:grid-cols-2 gap-6 printable-grid">
-        <div>
+    <!-- Grid for lower sections -->
+    <div class="grid grid-cols-2 gap-x-8">
+        <section class="mb-6">
             <h2 class="text-xl font-bold section-header text-orange-900">Habilidades</h2>
-            <div class="grid grid-cols-2 gap-4 text-sm">
+            <div class="text-sm space-y-3">
                 <div>
-                    <h3 class="font-semibold text-slate-700">Interpersonales</h3>
-                    <ul class="list-disc list-inside text-slate-600 text-xs mt-1 space-y-0.5">
-                        <li>Trabajo en Equipo</li>
-                        <li>Proactividad</li>
-                        <li>Organización</li>
-                        <li>Empatía</li>
-                        <li>Resolución de Problemas</li>
+                    <h3 class="font-semibold text-slate-700 mb-1">Herramientas y conocimientos</h3>
+                    <p class="text-slate-600">
+                        Microsoft 365, HTML5/CSS/JS, IA para automatización, Active Directory y VM, Gestión de hosting, BBDD, Gestión documental, Interpretación de esquemas, Equipos de diagnóstico.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-slate-700 mb-1">Competencias y habilidades</h3>
+                    <p class="text-slate-600">
+                        Análisis de incidencias, Gestión logística, Mantenimiento preventivo, Control documental, Comunicación efectiva, Adaptabilidad, Aprendizaje continuo, Orientación a resultados, Organización.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-6">
+            <h2 class="text-xl font-bold section-header text-orange-900">Formación y Logros</h2>
+            <div class="text-sm space-y-4">
+                <div>
+                    <h3 class="font-semibold text-slate-700">Formación Académica</h3>
+                    <ul class="list-disc list-inside text-slate-600 text-sm mt-1 space-y-1">
+                        <li>Técnico Especialista en Informática de Gestión (CIF CARLOS III)</li>
+                        <li>Curso de Ciberseguridad (INCIBE)</li>
+                        <li>Curso NATO HPS CRYPTO (Ministerio de Defensa)</li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="font-semibold text-slate-700">Técnicas</h3>
-                    <ul class="list-disc list-inside text-slate-600 text-xs mt-1 space-y-0.5">
-                        <li>Informática y Hardware</li>
-                        <li>Sistemas de Aviónica</li>
-                        <li>Telecomunicaciones</li>
-                        <li>Ciberseguridad</li>
+                    <h3 class="font-semibold text-slate-700">Reconocimientos</h3>
+                    <ul class="list-disc list-inside text-slate-600 text-sm mt-1 space-y-1">
+                        <li>Cruz del Mérito Aeronáutico con distintivo Blanco.</li>
+                        <li>Cruz a la constancia en el Servicio de bronce.</li>
+                        <li>Reconocimiento DANA 2024.</li>
                     </ul>
                 </div>
             </div>
-        </div>
+        </section>
+    </div>
 
-        <div>
-            <h2 class="text-xl font-bold section-header text-orange-900">Otros Datos</h2>
-            <div class="grid grid-cols-3 gap-4 text-sm">
-                <div class="text-sm">
-                    <h3 class="font-semibold text-slate-700">Disponibilidad</h3>
-                    <ul class="list-disc list-inside text-slate-600 text-xs mt-1 space-y-0.5">
-                        <li>Disponibilidad para viajar.</li>
-                        <li>Disponibilidad inmediata.</li>
-                        <li>Carnet y vehículo propio.</li>
-                    </ul>
-                </div>
-                <div class="text-sm">
-                    <h3 class="font-semibold text-slate-700">Idiomas</h3>
-                    <ul class="list-disc list-inside text-slate-600 text-xs mt-1 space-y-0.5">
-                        <li>Español: Lengua materna.</li>
-                        <li>Inglés: Nivel A2.</li>
-                    </ul>
-                </div>
-                <div class="text-sm">
-                    <h3 class="font-semibold text-slate-700">Hobbies</h3>
-                    <ul class="list-disc list-inside text-slate-600 text-xs mt-1 space-y-0.5">
-                        <li>Running, Ciclismo, Natación, Videojuegos e Informática.</li>
-                    </ul>
-                </div>
+    <section>
+        <h2 class="text-xl font-bold section-header text-orange-900">Otros Datos</h2>
+        <div class="grid grid-cols-3 gap-x-8 text-sm">
+            <div>
+                <h3 class="font-semibold text-slate-700">Disponibilidad</h3>
+                <p class="text-slate-600 text-sm mt-1">Disponibilidad para viajar, inmediata y vehículo propio.</p>
+            </div>
+            <div>
+                <h3 class="font-semibold text-slate-700">Idiomas</h3>
+                <p class="text-slate-600 text-sm mt-1">Español (Nativo), Inglés (A2).</p>
+            </div>
+            <div>
+                <h3 class="font-semibold text-slate-700">Hobbies</h3>
+                <p class="text-slate-600 text-sm mt-1">Running, Ciclismo, Natación, Videojuegos e Informática.</p>
             </div>
         </div>
     </section>

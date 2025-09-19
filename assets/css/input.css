@@ -114,3 +114,49 @@ body.fade-out {
     clip: auto;
     white-space: normal;
 }
+/* Accessibility: Disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-pulse {
+    animation: none;
+  }
+}
+
+/* Print-specific styles for all pages */
+@media print {
+  /* Hide non-essential elements for printing */
+  header, footer, #mobile-menu-button, #mobile-menu {
+    display: none !important;
+  }
+
+  /* Reset body and main container for a clean print layout */
+  body {
+    background-color: #fff !important;
+    color: #000 !important;
+    font-size: 11pt;
+    line-height: 1.4;
+    padding: 0;
+    margin: 0;
+  }
+
+  main {
+    padding: 1cm !important; /* Add some margin to the printed page */
+    margin: 0 !important;
+  }
+
+  /* Remove shadows and decorative styles */
+  .shadow-lg, .shadow-md, .shadow-sm, .shadow-2xl, .card-lift, .timeline-item {
+    box-shadow: none !important;
+    border: 1px solid #ccc; /* Add a light border to cards */
+  }
+
+  /* Avoid breaking elements across pages */
+  h2, h3, ul, li, div, section {
+    page-break-inside: avoid;
+  }
+}
