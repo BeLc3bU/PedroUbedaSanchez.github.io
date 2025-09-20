@@ -337,6 +337,23 @@ function setActiveNavLink() {
     });
 }
 
+/**
+ * Inicializa los scripts específicos de una página después de que su contenido se haya cargado.
+ * @param {string} pageId - El ID de la página cargada (ej. 'contacto').
+ */
+function initializePageSpecificScripts(pageId) {
+    // Scripts que se deben ejecutar en CADA carga de página
+    setupScrollAnimations();
+
+    // Scripts para páginas específicas
+    if (pageId === 'contacto') {
+        setupFormValidation();
+        // La ofuscación del teléfono también es específica de la página de contacto
+        setupPhoneObfuscation('phone-contact', 'phone-text-contact');
+    }
+    // Aquí se podrían añadir más inicializaciones para otras páginas si fuera necesario
+}
+
 const pageCache = new Map();
 
 /**
@@ -398,10 +415,7 @@ async function loadPageContent(path) {
     // 4. Re-inicializar scripts que dependen del nuevo contenido
     window.scrollTo(0, 0);
     setActiveNavLink();
-    setupScrollAnimations();
-    if (pageId === 'contacto') {
-        setupFormValidation();
-    }
+    initializePageSpecificScripts(pageId);
 
     // 5. Iniciar la animación de fade-in eliminando la clase
     mainContent.classList.remove('content-fade-out');
@@ -452,23 +466,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // Muestra el cuerpo de la página una vez que el DOM está listo.
     document.body.style.opacity = '1';
 
-    // Inicializa el router inmediatamente para que intercepte los clics desde el principio.
-    initializeRouter();
-
     // Cargar componentes de la página
     Promise.all([
         loadComponent('#header', 'header.html'),
         loadComponent('#footer', 'footer.html')
     ]).then(() => {
-        // Una vez que el header y el footer están cargados,
-        // podemos inicializar los scripts que dependen de ellos, como el menú móvil.
+        // Una vez que el header está cargado, inicializamos el menú móvil.
+        // Esto solo necesita hacerse una vez, ya que el header es persistente.
         initializeMobileMenu();
     });
 
-    // Estos scripts se pueden inicializar de inmediato
+    // Inicializa el router, que se encargará de cargar la página inicial
+    // y los scripts específicos de esa página a través de loadPageContent.
+    initializeRouter();
+
+    // Inicializa componentes globales que no dependen del contenido de la página
     setupSkipLink();
     setupBackToTopButton();
-    setupPhoneObfuscation('phone-contact', 'phone-text-contact');
+
+    // Inicializa los scripts para páginas que no son parte de la SPA (como curriculum.html).
+    // Estos tienen guardias internas y solo se activarán si están en la página correcta.
     setupPhoneObfuscation('phone-cv', 'phone-text-cv', '📞 ');
     setupPrintButton();
 });
