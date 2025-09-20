@@ -56,6 +56,16 @@ body.slide-out {
   transform: translateX(0);
 }
 
+/* --- Animación de Fade para el contenido de la SPA --- */
+main#main-content {
+  transition: opacity 0.3s ease-in-out;
+}
+
+main#main-content.content-fade-out {
+  opacity: 0;
+}
+
+
 /* --- Componentes Personalizados --- */
 
 /* Enlace de navegación activo (accesibilidad) */

@@ -1,25 +1,4 @@
 /**
- * Maneja la redirección para SPAs en GitHub Pages.
- * Este script se ejecuta primero para corregir la URL si venimos de un 404.
- * Lee el parámetro `p` de la URL, lo usa para reescribir la ruta correcta
- * en el historial del navegador, y luego el router de la SPA puede funcionar.
- * Fuente: https://github.com/rafgraph/spa-github-pages
- */
-(function() {
-    const l = window.location;
-    if (l.search) {
-        const params = {};
-        l.search.slice(1).split('&').forEach(function (part) {
-            const item = part.split('=');
-            params[item[0]] = decodeURIComponent(item[1]).replace(/~and~/g, '&');
-        });
-        if (params.p) {
-            window.history.replaceState(null, null, params.p + (params.q ? '?' + params.q : '') + l.hash);
-        }
-    }
-}());
-
-/**
  * Gestiona la apertura y cierre del menú de navegación móvil tipo overlay.
  */
 function initializeMobileMenu() {
@@ -113,6 +92,8 @@ function setupPhoneObfuscation(linkId, textId, prefix = '') {
 
     if (!linkElement || !textElement) return;
 
+    const originalText = textElement.textContent;
+    // Simple "obfuscation"
     const phoneNumber = atob('KzM0IDYzNSA5NDUgNzc5'); // Decodifica a: +34 635 945 779
 
     linkElement.addEventListener('click', function revealPhone(e) {
@@ -140,7 +121,7 @@ function setupPrintButton() {
     homeButton.id = 'home-button';
     homeButton.className = 'bg-slate-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-slate-600 transition-colors duration-300 shadow-lg transform hover:scale-105 ml-4';
     homeButton.innerHTML = '🏠 Volver a la página principal';
-    homeButton.addEventListener('click', () => window.location.href = '/');
+    homeButton.addEventListener('click', () => window.location.href = 'index.html');
     printButton.insertAdjacentElement('afterend', homeButton);
 }
 
@@ -323,13 +304,15 @@ async function loadComponent(selector, url) {
  * Resalta el enlace de navegación correspondiente a la sección actual en la SPA.
  */
 function setActiveNavLink() {
-    const currentPath = window.location.pathname;
+    const currentHash = window.location.hash || '#sobre-mi';
     const navLinks = document.querySelectorAll('.nav-link, .nav-link-mobile');
 
     navLinks.forEach(link => {
-        const linkPath = new URL(link.href).pathname;
+        const linkHref = link.getAttribute('href');
+        // Considerar que 'index.html' es la ruta base para '#sobre-mi'
+        const linkHash = linkHref.includes('#') ? linkHref.substring(linkHref.indexOf('#')) : '#sobre-mi';
 
-        if (linkPath === currentPath) {
+        if (linkHash === currentHash) {
             link.setAttribute('aria-current', 'page');
         } else {
             link.removeAttribute('aria-current');
@@ -342,42 +325,33 @@ let initialContent = null;
 
 /**
  * Carga el contenido de una página en el contenedor principal.
- * @param {string} path - La ruta de la página a cargar (ej. '/experiencia').
+ * @param {string} pageId - El identificador de la página a cargar (ej. 'experiencia').
  */
-async function loadPageContent(path) {
+async function loadPageContent(pageId) {
     const mainContent = document.getElementById('main-content');
     if (!mainContent) return;
-
-    // 1. Iniciar la animación de fade-out
-    mainContent.classList.add('content-fade-out');
-
-    // 2. Esperar a que la animación termine antes de cambiar el contenido
-    await new Promise(resolve => setTimeout(resolve, 300));
 
     // Guardar el contenido inicial de "Sobre Mí" la primera vez
     if (!initialContent) {
         initialContent = mainContent.innerHTML;
     }
 
-    // Normaliza la ruta para obtener el ID de la página (ej. '/experiencia' -> 'experiencia')
-    const pageId = (path === '/') ? 'sobre-mi' : path.substring(1);
-
-    // 3. Cargar el contenido nuevo usando una estructura if/else if/else
-    if (pageId === 'sobre-mi') {
-        // Restaurar el contenido inicial
+    // Si es la página de inicio (o el hash está vacío), restaurar desde la variable
+    if (pageId === 'sobre-mi' || pageId === '') {
         mainContent.innerHTML = initialContent;
         document.title = 'Pedro Úbeda Sánchez | Técnico en Informática, Aviónica y Administración';
-        updateMetaTags('description', 'Sitio web profesional de Pedro Úbeda Sánchez, técnico especialista con más de 20 años de experiencia en informática, aviónica y administración. Descubre mi trayectoria y habilidades.');
-        updateMetaTags('canonical', 'https://pedroubedasanchez.es/');
-    } else if (pageCache.has(pageId)) {
-        // Cargar desde la caché
-        const { content, title, description, canonical } = pageCache.get(pageId);
+        setActiveNavLink();
+        setupScrollAnimations(); // Re-inicializar animaciones para el contenido restaurado
+        window.scrollTo(0, 0);
+        return;
+    }
+
+    // Usar caché para no volver a solicitar archivos ya cargados
+    if (pageCache.has(pageId)) {
+        const { content, title } = pageCache.get(pageId);
         mainContent.innerHTML = content;
         document.title = title;
-        updateMetaTags('description', description);
-        updateMetaTags('canonical', canonical);
     } else {
-        // Cargar desde el archivo HTML
         mainContent.innerHTML = '<div class="text-center p-12">Cargando...</div>';
         try {
             const response = await fetch(`${pageId}.html`);
@@ -387,51 +361,24 @@ async function loadPageContent(path) {
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
             
-            const section = doc.querySelector('section');
-            const newContent = section ? section.outerHTML : '<div class="text-center p-12">Error: No se encontró contenido en la página cargada.</div>';
-            const newTitle = doc.querySelector('title')?.textContent || 'Pedro Úbeda Sánchez';
-            const newDescription = doc.querySelector('meta[name="description"]')?.getAttribute('content') || '';
-            const newCanonical = doc.querySelector('link[rel="canonical"]')?.getAttribute('href') || `https://pedroubedasanchez.es/${pageId}`;
+            const newContent = doc.getElementById('main-content').innerHTML;
+            const newTitle = doc.querySelector('title').textContent;
 
-            pageCache.set(pageId, { content: newContent, title: newTitle, description: newDescription, canonical: newCanonical });
+            pageCache.set(pageId, { content: newContent, title: newTitle });
             mainContent.innerHTML = newContent;
             document.title = newTitle;
-            updateMetaTags('description', newDescription);
-            updateMetaTags('canonical', newCanonical);
         } catch (error) {
             console.error(error);
             mainContent.innerHTML = '<div class="text-center p-12">Error al cargar el contenido.</div>';
-            document.title = 'Error - Página no encontrada';
         }
     }
 
-    // 4. Re-inicializar scripts que dependen del nuevo contenido
     window.scrollTo(0, 0);
     setActiveNavLink();
+    // Re-inicializar scripts que dependen del nuevo contenido
     setupScrollAnimations();
     if (pageId === 'contacto') {
         setupFormValidation();
-    }
-
-    // 5. Iniciar la animación de fade-in eliminando la clase
-    mainContent.classList.remove('content-fade-out');
-}
-
-/**
- * Actualiza las metaetiquetas SEO importantes.
- * @param {string} type - 'description' o 'canonical'.
- * @param {string} value - El nuevo valor para la etiqueta.
- */
-function updateMetaTags(type, value) {
-    let element;
-    if (type === 'description') {
-        element = document.querySelector('meta[name="description"]');
-    } else if (type === 'canonical') {
-        element = document.querySelector('link[rel="canonical"]');
-    }
-
-    if (element) {
-        element.setAttribute(type === 'canonical' ? 'href' : 'content', value);
     }
 }
 
@@ -439,43 +386,30 @@ function updateMetaTags(type, value) {
  * Inicializa el router de la SPA.
  */
 function initializeRouter() {
-    // Intercepta los clics en los enlaces locales
-    document.addEventListener('click', (e) => {
-        const link = e.target.closest('a');
-        if (!link || link.target === '_blank' || link.hasAttribute('download') || link.href.includes('mailto:')) {
-            return;
-        }
-
-        const url = new URL(link.href);
-        if (url.origin === window.location.origin) {
-            e.preventDefault();
-            history.pushState({}, '', url.pathname);
-            loadPageContent(url.pathname);
-        }
-    });
-
-    window.addEventListener('popstate', () => loadPageContent(window.location.pathname));
-    loadPageContent(window.location.pathname);
+    window.addEventListener('hashchange', () => loadPageContent(window.location.hash.substring(1)));
+    // Cargar contenido inicial basado en el hash al cargar la página
+    loadPageContent(window.location.hash ? window.location.hash.substring(1) : 'sobre-mi');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     // Muestra el cuerpo de la página una vez que el DOM está listo.
     document.body.style.opacity = '1';
 
-    // Inicializa el router inmediatamente para que intercepte los clics desde el principio.
-    initializeRouter();
-
-    // Cargar componentes de la página
+    // Cargar componentes y luego inicializar los scripts que dependen de ellos
     Promise.all([
         loadComponent('#header', 'header.html'),
         loadComponent('#footer', 'footer.html')
     ]).then(() => {
-        // Una vez que el header y el footer están cargados,
-        // podemos inicializar los scripts que dependen de ellos, como el menú móvil.
+        // Estos scripts dependen de que el header y el footer estén cargados
         initializeMobileMenu();
+        initializeRouter(); // El router ahora se encarga de llamar a setActiveNavLink
     });
 
     // Estos scripts se pueden inicializar de inmediato
     setupSkipLink();
+    setupPhoneObfuscation('phone-contact', 'phone-text-contact');
+    setupPhoneObfuscation('phone-cv', 'phone-text-cv', '📞 ');
+    setupPrintButton();
+    // La validación del formulario y las animaciones se llamarán después de cargar cada página
     setupBackToTopButton();
 });
