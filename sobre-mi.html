@@ -1,0 +1,28 @@
+<!-- No se necesitan meta tags aquí, ya que se gestionan desde index.html y se actualizan con JS -->
+<section class="mb-24 flex flex-col md:flex-row items-center md:items-start gap-y-8" id="about">
+    <div class="flex-shrink-0">
+      <!-- Imagen Responsiva y Optimizada -->
+      <picture>
+        <!-- Fuentes WebP para navegadores modernos -->
+        <source media="(min-width: 768px)" srcset="/foto-384.webp" type="image/webp">
+        <source media="(max-width: 767px)" srcset="/foto-320.webp" type="image/webp">
+        <!-- Imagen por defecto para máxima compatibilidad -->
+        <img alt="Foto de Pedro Úbeda Sánchez, técnico especialista en informática, aviónica y administración" class="w-40 h-56 md:w-48 md:h-64 rounded-full object-cover shadow-2xl" decoding="async" height="256" loading="eager" src="/foto-384.jpg" width="192">
+      </picture>
+    </div>
+    <div class="flex-grow text-center md:text-left" id="about-text-block">
+     <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-orange-900">
+      Técnico especialista en informática, aviónica y administración
+     </h1>
+     <p class="max-w-3xl mx-auto md:mx-0 text-lg text-slate-600">
+      Técnico especialista con más de dos décadas de experiencia en el mantenimiento, diagnóstico y resolución de averías en equipos informáticos y de aviónica. Mi trayectoria en las Fuerzas Armadas me ha proporcionado sólidos valores como la disciplina, el compromiso y el trabajo en equipo, habilidades que aplico en mi día a día.
+     </p>
+     <div class="mt-8 text-center md:text-left">
+      <a class="inline-block bg-orange-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-800 transition-colors duration-300 shadow-lg transform hover:scale-105 animate-pulse" href="curriculum.html" rel="noopener noreferrer" target="_blank">
+       <span aria-hidden="true">📄</span>
+       Ver CV para Imprimir
+       <span class="sr-only">(se abre en una nueva pestaña)</span>
+      </a>
+     </div>
+    </div>
+</section>

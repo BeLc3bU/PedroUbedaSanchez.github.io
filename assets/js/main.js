@@ -338,7 +338,6 @@ function setActiveNavLink() {
 }
 
 const pageCache = new Map();
-let initialContent = null;
 
 /**
  * Carga el contenido de una página en el contenedor principal.
@@ -354,22 +353,12 @@ async function loadPageContent(path) {
     // 2. Esperar a que la animación termine antes de cambiar el contenido
     await new Promise(resolve => setTimeout(resolve, 300));
 
-    // Guardar el contenido inicial de "Sobre Mí" la primera vez
-    if (!initialContent) {
-        initialContent = mainContent.innerHTML;
-    }
-
     // Normaliza la ruta para obtener el ID de la página (ej. '/experiencia' -> 'experiencia')
-    const pageId = (path === '/') ? 'sobre-mi' : path.substring(1);
+    // Si la ruta es '/', la página a cargar es 'sobre-mi'.
+    const pageId = (path === '/' || path === '/index.html') ? 'sobre-mi' : path.substring(1);
 
-    // 3. Cargar el contenido nuevo usando una estructura if/else if/else
-    if (pageId === 'sobre-mi') {
-        // Restaurar el contenido inicial
-        mainContent.innerHTML = initialContent;
-        document.title = 'Pedro Úbeda Sánchez | Técnico en Informática, Aviónica y Administración';
-        updateMetaTags('description', 'Sitio web profesional de Pedro Úbeda Sánchez, técnico especialista con más de 20 años de experiencia en informática, aviónica y administración. Descubre mi trayectoria y habilidades.');
-        updateMetaTags('canonical', 'https://pedroubedasanchez.es/');
-    } else if (pageCache.has(pageId)) {
+    // 3. Cargar el contenido nuevo
+    if (pageCache.has(pageId)) {
         // Cargar desde la caché
         const { content, title, description, canonical } = pageCache.get(pageId);
         mainContent.innerHTML = content;
@@ -377,23 +366,24 @@ async function loadPageContent(path) {
         updateMetaTags('description', description);
         updateMetaTags('canonical', canonical);
     } else {
-        // Cargar desde el archivo HTML
+        // Cargar desde el archivo HTML si no está en caché
         mainContent.innerHTML = '<div class="text-center p-12">Cargando...</div>';
         try {
             const response = await fetch(`/${pageId}.html`);
             if (!response.ok) throw new Error(`Página no encontrada: ${pageId}.html`);
-            
+
             const html = await response.text();
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
-            
-            const section = doc.querySelector('section');
-            const newContent = section ? section.outerHTML : '<div class="text-center p-12">Error: No se encontró contenido en la página cargada.</div>';
+
+            // Extraer el contenido del body, el título y las metaetiquetas del archivo parcial
+            const newContent = doc.body.innerHTML;
             const newTitle = doc.querySelector('title')?.textContent || 'Pedro Úbeda Sánchez';
             const newDescription = doc.querySelector('meta[name="description"]')?.getAttribute('content') || '';
             const newCanonical = doc.querySelector('link[rel="canonical"]')?.getAttribute('href') || `https://pedroubedasanchez.es/${pageId}`;
 
             pageCache.set(pageId, { content: newContent, title: newTitle, description: newDescription, canonical: newCanonical });
+
             mainContent.innerHTML = newContent;
             document.title = newTitle;
             updateMetaTags('description', newDescription);
@@ -478,4 +468,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Estos scripts se pueden inicializar de inmediato
     setupSkipLink();
     setupBackToTopButton();
+    setupPhoneObfuscation('phone-contact', 'phone-text-contact');
+    setupPhoneObfuscation('phone-cv', 'phone-text-cv', '📞 ');
+    setupPrintButton();
 });
