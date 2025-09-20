@@ -277,6 +277,8 @@ function setupFormValidation() {
             grecaptcha.execute('6LcfUs8rAAAAAErA7-oGbid2aiEL8_iBy7jZ-WYl', {action: 'submit'})
             .then(function(token) {
                 // 5. Añadir el token al formulario y enviarlo
+                // --- PUNTO DE VERIFICACIÓN ---
+                console.log('Token de reCAPTCHA generado:', token);
                 document.getElementById('recaptcha-response').value = token;
                 form.submit();
             })
