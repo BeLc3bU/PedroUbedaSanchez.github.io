@@ -284,8 +284,8 @@ async function loadComponent(selector, url) {
 document.addEventListener('DOMContentLoaded', () => {
     // Cargar componentes y luego inicializar los scripts que dependen de ellos
     Promise.all([
-        loadComponent('#header', '_header.html'),
-        loadComponent('#footer', '_footer.html')
+        loadComponent('#header', 'header.html'),
+        loadComponent('#footer', 'footer.html')
     ]).then(() => {
         // Estos scripts dependen de que el header y el footer estén cargados
         initializeMobileMenu();
