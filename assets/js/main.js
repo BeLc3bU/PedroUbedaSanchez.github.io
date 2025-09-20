@@ -60,6 +60,26 @@ function initializeMobileMenu() {
 }
 
 /**
+ * Mejora la accesibilidad del enlace "Saltar al contenido principal".
+ */
+function setupSkipLink() {
+    const skipLink = document.querySelector('a[href="#main-content"]');
+    const mainContent = document.getElementById('main-content');
+
+    if (!skipLink || !mainContent) return;
+
+    skipLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        // Mueve el foco al contenedor principal, haciéndolo enfocable temporalmente.
+        mainContent.setAttribute('tabindex', '-1');
+        mainContent.focus();
+        // Elimina el tabindex después de enfocar para no alterar el orden de tabulación natural.
+        mainContent.addEventListener('blur', () => {
+            mainContent.removeAttribute('tabindex');
+        }, { once: true });
+    });
+}
+/**
  * Resalta el enlace de navegación correspondiente a la página actual.
  */
 function setActiveNavLink() {
@@ -259,6 +279,59 @@ function setupFormValidation() {
         });
     });
 }
+
+/**
+ * Gestiona la visibilidad y funcionalidad del botón "Volver Arriba".
+ */
+function setupBackToTopButton() {
+    const backToTopButton = document.getElementById('back-to-top');
+    if (!backToTopButton) return;
+
+    // Mostrar/ocultar el botón al hacer scroll
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTopButton.classList.add('is-visible');
+        } else {
+            backToTopButton.classList.remove('is-visible');
+        }
+    });
+
+    // Scroll suave hacia arriba al hacer clic
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
+/**
+ * Gestiona el banner de consentimiento de cookies.
+ */
+function setupCookieConsent() {
+    const banner = document.getElementById('cookie-banner');
+    const acceptButton = document.getElementById('accept-cookies');
+
+    if (!banner || !acceptButton) return;
+
+    // Si el consentimiento ya fue dado, eliminar el banner del DOM.
+    if (localStorage.getItem('cookie_consent') === 'true') {
+        banner.remove();
+        return;
+    }
+
+    // Mostrar el banner después de un breve retraso.
+    setTimeout(() => {
+        banner.classList.add('is-visible');
+    }, 1500);
+
+    // Al hacer clic en aceptar, guardar la preferencia y ocultar el banner.
+    acceptButton.addEventListener('click', () => {
+        localStorage.setItem('cookie_consent', 'true');
+        banner.classList.remove('is-visible');
+        banner.addEventListener('transitionend', () => banner.remove(), { once: true });
+    });
+}
 /**
  * Carga componentes HTML reutilizables como el header y el footer.
  * @param {string} selector - El selector CSS del contenedor donde se cargará el componente.
@@ -293,10 +366,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Estos scripts se pueden inicializar de inmediato
+    setupSkipLink();
     setupPageTransitions();
     setupPhoneObfuscation('phone-contact', 'phone-text-contact');
     setupPhoneObfuscation('phone-cv', 'phone-text-cv', '📞 ');
     setupPrintButton();
     setupFormValidation();
     setupScrollAnimations();
+    setupBackToTopButton();
+    setupCookieConsent();
 });

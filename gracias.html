@@ -4,7 +4,7 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>
-   Gracias - Pedro Úbeda Sánchez
+   Mensaje Enviado | Gracias por Contactar
   </title>
   <!-- Favicon -->
   <link href="favicon.ico" rel="icon" type="image/x-icon"/>
@@ -14,6 +14,8 @@
   <link href="site.webmanifest" rel="manifest"/>
   <link color="#c2410c" href="safari-pinned-tab.svg" rel="mask-icon"/>
   <meta content="#f5f5f4" name="msapplication-TileColor"/>
+  <!-- SEO: Evitar que esta página sea indexada por los buscadores -->
+  <meta name="robots" content="noindex, nofollow">
   <meta content="#ffffff" name="theme-color"/>
   <!-- Previene el "Flash of Unstyled Content" (FOUC) ocultando el cuerpo hasta que el CSS se cargue -->
   <style>
@@ -31,26 +33,33 @@
  <body class="bg-stone-100 text-slate-800 flex flex-col min-h-screen">
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-NGDK68DN" style="display:none;visibility:hidden" width="0"></iframe></noscript>
+  <!-- Overlay del Menú Móvil -->
+  <div id="mobile-menu-overlay" class="hidden fixed inset-0 bg-stone-100/95 backdrop-blur-md z-[100] flex flex-col" aria-hidden="true">
+      <div class="flex justify-end p-4">
+          <button id="mobile-menu-close-button" type="button" class="p-2 rounded-full hover:bg-stone-200 transition" aria-label="Cerrar menú">
+              <svg class="w-8 h-8 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+      </div>
+      <div class="flex-grow flex items-start justify-center overflow-y-auto pt-12">
+        <ul class="flex flex-col items-center space-y-8 text-2xl p-4">
+            <li><a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-4" href="index.html"><span aria-hidden="true">👤</span><span>Sobre Mí</span></a></li>
+            <li><a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-4" href="experiencia.html"><span aria-hidden="true">💼</span><span>Experiencia</span></a></li>
+            <li><a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-4" href="habilidades.html"><span aria-hidden="true">💡</span><span>Habilidades</span></a></li>
+            <li><a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-4" href="formacion.html"><span aria-hidden="true">📜</span><span>Formación</span></a></li>
+            <li><a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-4" href="otros-datos.html"><span aria-hidden="true">📚</span><span>Otros Datos</span></a></li>
+            <li><a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-4" href="contacto.html"><span aria-hidden="true">📞</span><span>Contacto</span></a></li>
+        </ul>
+      </div>
+  </div>
   <a class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-4 focus:left-4 focus:bg-white focus:p-3 focus:rounded-lg focus:shadow-lg" href="#main-content">
    Saltar al contenido principal
   </a>
-  <header class="bg-stone-100/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
-   <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-    <div class="flex items-center space-x-4">
-     <div class="text-xl font-bold text-orange-800">
-      Pedro Úbeda Sánchez
-     </div>
-    </div>
-    <a class="text-slate-600 hover:text-orange-700 transition p-2 rounded-lg hover:bg-stone-200" href="index.html">
-     Volver al inicio
-    </a>
-   </nav>
-  </header>
+  <header class="bg-stone-100/80 backdrop-blur-md sticky top-0 z-50 shadow-sm" id="header"></header>
   <main class="container mx-auto px-6 py-12 flex-grow" id="main-content">
    <section class="text-center bg-white py-24 rounded-lg shadow-lg">
-    <h2 class="text-4xl font-bold mb-4 text-orange-900">
+    <h1 class="text-4xl font-bold mb-4 text-orange-900">
      ¡Mensaje Enviado!
-    </h2>
+    </h1>
     <p class="text-slate-600 mb-8 max-w-lg mx-auto">
      Gracias por ponerte en contacto. He recibido tu mensaje y te responderé lo antes posible.
     </p>
@@ -61,7 +70,18 @@
     </div>
    </section>
   </main>
+  <button aria-label="Volver arriba" class="back-to-top-button fixed bottom-6 right-6 z-[100] bg-orange-700 text-white p-3 rounded-full shadow-lg hover:bg-orange-800 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500" id="back-to-top" title="Volver arriba">
+   <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 15l7-7 7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+  </button>
   <footer class="text-center py-6 bg-stone-200 mt-16" id="footer"></footer>
   <script defer="" src="dist/assets/js/main.min.js"></script>
+  <noscript>
+  <style>
+    body { opacity: 1 !important; }
+  </style>
+  <div style="background: #fff3cd; color: #c2410c; padding: 1em; text-align: center;">
+    Para una mejor experiencia, activa JavaScript y CSS en tu navegador.
+  </div>
+  </noscript>
  </body>
 </html>

@@ -56,15 +56,12 @@
       }
     }
   </style>
-  <!-- Previene el "Flash of Unstyled Content" (FOUC) ocultando el cuerpo hasta que el CSS se cargue -->
+  <!-- Previene el "Flash of Unstyled Content" (FOUC) -->
   <style>
     body { opacity: 0; }
   </style>
-  
   <!-- Asynchronously load the full stylesheet -->
-  <link as="style" href="dist/assets/css/style.min.css" rel="preload" onload="this.onload=null;this.rel='stylesheet'"/>
-  <noscript><link href="dist/assets/css/style.min.css" rel="stylesheet"/></noscript>
-
+  <link href="dist/assets/css/style.min.css" rel="stylesheet"/>
   <!-- SEO: Structured Data (Schema.org) para Person -->
   <script type="application/ld+json">
   {
@@ -115,19 +112,16 @@
    Saltar al contenido principal
   </a>
   <header class="bg-stone-100/80 backdrop-blur-md sticky top-0 z-50 shadow-sm" id="header"></header>
-  <main class="container mx-auto px-6 py-12 flex-grow" id="main-content">
+  <main class="container mx-auto px-6 py-12 flex-grow" id="main-content" tabindex="-1">
    <section class="mb-24 flex flex-col md:flex-row items-center md:items-start gap-y-8" id="about">
     <div class="flex-shrink-0">
       <!-- Imagen Responsiva y Optimizada -->
       <picture>
         <!-- Fuentes WebP para navegadores modernos -->
-        <source media="(min-width: 768px)" srcset="foto-384.webp" type="image/webp"/>
-        <source media="(max-width: 767px)" srcset="foto-320.webp" type="image/webp"/>
-        <!-- Fuentes JPG como fallback para navegadores antiguos -->
-        <source media="(min-width: 768px)" srcset="foto-384.jpg" type="image/jpeg"/>
-        <source media="(max-width: 767px)" srcset="foto-320.jpg" type="image/jpeg"/>
+        <source media="(min-width: 768px)" srcset="foto-384.webp" type="image/webp">
+        <source media="(max-width: 767px)" srcset="foto-320.webp" type="image/webp">
         <!-- Imagen por defecto para máxima compatibilidad -->
-        <img alt="Pedro Úbeda Sánchez" class="w-40 h-56 md:w-48 md:h-64 rounded-full object-cover shadow-2xl" decoding="async" height="256" src="foto-384.jpg" width="192"/>
+        <img alt="Foto de Pedro Úbeda Sánchez, técnico especialista en informática, aviónica y administración" class="w-40 h-56 md:w-48 md:h-64 rounded-full object-cover shadow-2xl" decoding="async" height="256" loading="eager" src="foto-384.jpg" width="192">
       </picture>
     </div>
     <div class="flex-grow text-center md:text-left" id="about-text-block">
@@ -139,16 +133,35 @@
      </p>
      <div class="mt-8 text-center md:text-left">
       <a class="inline-block bg-orange-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-800 transition-colors duration-300 shadow-lg transform hover:scale-105 animate-pulse" href="curriculum.html" rel="noopener noreferrer" target="_blank">
-       <span aria-hidden="true">
-        📄
-       </span>
-       Descargar CV
+       <span aria-hidden="true">📄</span>
+       Ver CV para Imprimir
+       <span class="sr-only">(se abre en una nueva pestaña)</span>
       </a>
      </div>
     </div>
    </section>
   </main>
+  <!-- Cookie Consent Banner -->
+  <div class="cookie-banner fixed bottom-0 left-0 right-0 z-[100] flex flex-col items-center justify-center gap-4 bg-stone-200/95 p-4 text-center shadow-lg backdrop-blur-md sm:flex-row sm:text-left" id="cookie-banner">
+   <p class="max-w-xl text-sm text-slate-700">
+    Este sitio web utiliza cookies para asegurar que obtengas la mejor experiencia. Al continuar navegando, aceptas nuestro uso de cookies.
+   </p>
+   <button class="flex-shrink-0 rounded-lg bg-orange-700 py-2 px-4 text-sm font-bold text-white transition-colors duration-300 hover:bg-orange-800" id="accept-cookies">
+    De acuerdo
+   </button>
+  </div>
+  <button aria-label="Volver arriba" class="back-to-top-button fixed bottom-6 right-6 z-[100] bg-orange-700 text-white p-3 rounded-full shadow-lg hover:bg-orange-800 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500" id="back-to-top" title="Volver arriba">
+   <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 15l7-7 7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+  </button>
   <footer class="text-center py-6 bg-stone-200 mt-16" id="footer"></footer>
   <script defer="" src="dist/assets/js/main.min.js"></script>
+  <noscript>
+  <style>
+    body { opacity: 1 !important; }
+  </style>
+  <div style="background: #fff3cd; color: #c2410c; padding: 1em; text-align: center;">
+    Para una mejor experiencia, activa JavaScript y CSS en tu navegador.
+  </div>
+  </noscript>
  </body>
 </html>

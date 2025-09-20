@@ -4,7 +4,7 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>
-   Formación - Pedro Úbeda Sánchez
+   Formación y Reconocimientos - Pedro Úbeda Sánchez
   </title>
   <!-- Favicon -->
   <link href="favicon.ico" rel="icon" type="image/x-icon"/>
@@ -28,14 +28,12 @@
         - Habilidades Técnicas: (Meta: Informar) Lista categorizada. Presentación: HTML/CSS. Interacción: Ninguna. Justificación: Máxima legibilidad y escaneo rápido.
         - Formación y Logros: (Meta: Informar) Listas limpias. Presentación: HTML/CSS con iconos. Interacción: Ninguna. Justificación: Presentación clara y directa de la información. -->
   <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-  <!-- Previene el "Flash of Unstyled Content" (FOUC) ocultando el cuerpo hasta que el CSS se cargue -->
+  <!-- Previene el "Flash of Unstyled Content" (FOUC) -->
   <style>
     body { opacity: 0; }
   </style>
   <!-- Asynchronously load the full stylesheet -->
-  <link as="style" href="dist/assets/css/style.min.css" rel="preload" onload="this.onload=null;this.rel='stylesheet'"/>
-  <noscript><link href="dist/assets/css/style.min.css" rel="stylesheet"/></noscript>
-  <!-- Google Tag Manager -->
+  <link href="dist/assets/css/style.min.css" rel="stylesheet"/>  <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -71,9 +69,9 @@
   <header class="bg-stone-100/80 backdrop-blur-md sticky top-0 z-50 shadow-sm" id="header"></header>
   <main class="container mx-auto px-6 py-12 flex-grow" id="main-content">
    <section class="mb-24" id="education">
-    <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center text-orange-900">
+    <h1 class="text-3xl sm:text-4xl font-bold mb-12 text-center text-orange-900">
      📜 Formación y Logros
-    </h2>
+    </h1>
     <div class="grid md:grid-cols-2 gap-8 md:gap-12 max-w-5xl mx-auto">
      <div>
       <h3 class="text-xl md:text-2xl font-semibold mb-6 text-slate-700">
@@ -81,7 +79,7 @@
       </h3>
       <ul class="space-y-4">
        <li class="bg-white p-4 rounded-lg shadow-sm flex items-start card-lift animate-on-scroll slide-in-left">
-        <span class="text-orange-600 mr-4 mt-1">
+        <span class="text-orange-600 mr-4 mt-1" aria-hidden="true">
          🎓
         </span>
         <div>
@@ -94,7 +92,7 @@
         </div>
        </li>
        <li class="bg-white p-4 rounded-lg shadow-sm flex items-start card-lift animate-on-scroll slide-in-left">
-        <span class="text-orange-600 mr-4 mt-1">
+        <span class="text-orange-600 mr-4 mt-1" aria-hidden="true">
          🔒
         </span>
         <div>
@@ -107,7 +105,7 @@
         </div>
        </li>
        <li class="bg-white p-4 rounded-lg shadow-sm flex items-start card-lift animate-on-scroll slide-in-left">
-        <span class="text-orange-600 mr-4 mt-1">
+        <span class="text-orange-600 mr-4 mt-1" aria-hidden="true">
          🛡️
         </span>
         <div>
@@ -127,7 +125,7 @@
       </h3>
       <ul class="space-y-4">
        <li class="bg-white p-4 rounded-lg shadow-sm flex items-start card-lift animate-on-scroll slide-in-right">
-        <span class="text-orange-600 mr-4 mt-1">
+        <span class="text-orange-600 mr-4 mt-1" aria-hidden="true">
          ✈️
         </span>
         <p>
@@ -135,7 +133,7 @@
         </p>
        </li>
        <li class="bg-white p-4 rounded-lg shadow-sm flex items-start card-lift animate-on-scroll slide-in-right">
-        <span class="text-orange-600 mr-4 mt-1">
+        <span class="text-orange-600 mr-4 mt-1" aria-hidden="true">
          🎖️
         </span>
         <p>
@@ -143,7 +141,7 @@
         </p>
        </li>
        <li class="bg-white p-4 rounded-lg shadow-sm flex items-start card-lift animate-on-scroll slide-in-right">
-        <span class="text-orange-600 mr-4 mt-1">
+        <span class="text-orange-600 mr-4 mt-1" aria-hidden="true">
          🌟
         </span>
         <p>
@@ -155,6 +153,9 @@
     </div>
    </section>
   </main>
+  <button aria-label="Volver arriba" class="back-to-top-button fixed bottom-6 right-6 z-[100] bg-orange-700 text-white p-3 rounded-full shadow-lg hover:bg-orange-800 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500" id="back-to-top" title="Volver arriba">
+   <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 15l7-7 7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+  </button>
   <footer class="text-center py-6 bg-stone-200 mt-16" id="footer"></footer>
   <script defer="" src="dist/assets/js/main.min.js"></script>
  </body>

@@ -1,3 +1,4 @@
 User-agent: *
+Allow: /
 
 Sitemap: https://pedroubedasanchez.es/sitemap.xml
