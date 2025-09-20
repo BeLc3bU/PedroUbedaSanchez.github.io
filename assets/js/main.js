@@ -210,6 +210,9 @@ function setupFormValidation() {
     if (!form) return;
 
     const fields = form.querySelectorAll('input[required], textarea[required]');
+    const submitButton = form.querySelector('button[type="submit"]');
+    const generalErrorContainer = document.getElementById('form-general-error');
+    const originalButtonText = submitButton ? submitButton.innerHTML : '';
 
     const showError = (field, message) => {
         const errorContainer = document.getElementById(`${field.id}-error`);
@@ -245,6 +248,11 @@ function setupFormValidation() {
     form.addEventListener('submit', function(e) {
         // 1. Prevenir siempre el envío inicial del formulario
         e.preventDefault();
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.innerHTML = 'Enviando...';
+        }
+        if (generalErrorContainer) generalErrorContainer.textContent = '';
 
         // 2. Validar todos los campos del formulario
         let isFormValid = true;
@@ -257,15 +265,28 @@ function setupFormValidation() {
         // 3. Si el formulario no es válido, detener el proceso
         if (!isFormValid) {
             console.log('Formulario no válido. No se enviará.');
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalButtonText;
+            }
             return;
         }
 
         // 4. Si el formulario es válido, ejecutar reCAPTCHA v3
         grecaptcha.ready(function() {
-            grecaptcha.execute('6LcfUs8rAAAAAErA7-oGbid2aiEL8_iBy7jZ-WYl', {action: 'submit'}).then(function(token) {
+            grecaptcha.execute('6LcfUs8rAAAAAErA7-oGbid2aiEL8_iBy7jZ-WYl', {action: 'submit'})
+            .then(function(token) {
                 // 5. Añadir el token al formulario y enviarlo
                 document.getElementById('recaptcha-response').value = token;
                 form.submit();
+            })
+            .catch(function(error) {
+                console.error('Error de reCAPTCHA:', error);
+                if (generalErrorContainer) generalErrorContainer.textContent = 'No se pudo verificar el reCAPTCHA. Por favor, inténtalo de nuevo.';
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = originalButtonText;
+                }
             });
         });
     });
