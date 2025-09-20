@@ -329,33 +329,6 @@ function setupBackToTopButton() {
 }
 
 /**
- * Gestiona el banner de consentimiento de cookies.
- */
-function setupCookieConsent() {
-    const banner = document.getElementById('cookie-banner');
-    const acceptButton = document.getElementById('accept-cookies');
-
-    if (!banner || !acceptButton) return;
-
-    // Si el consentimiento ya fue dado, eliminar el banner del DOM.
-    if (localStorage.getItem('cookie_consent') === 'true') {
-        banner.remove();
-        return;
-    }
-
-    // Mostrar el banner después de un breve retraso.
-    setTimeout(() => {
-        banner.classList.add('is-visible');
-    }, 1500);
-
-    // Al hacer clic en aceptar, guardar la preferencia y ocultar el banner.
-    acceptButton.addEventListener('click', () => {
-        localStorage.setItem('cookie_consent', 'true');
-        banner.classList.remove('is-visible');
-        banner.addEventListener('transitionend', () => banner.remove(), { once: true });
-    });
-}
-/**
  * Carga componentes HTML reutilizables como el header y el footer.
  * @param {string} selector - El selector CSS del contenedor donde se cargará el componente.
  * @param {string} url - La URL del archivo HTML del componente.
@@ -397,5 +370,4 @@ document.addEventListener('DOMContentLoaded', () => {
     setupFormValidation();
     setupScrollAnimations();
     setupBackToTopButton();
-    setupCookieConsent();
 });
