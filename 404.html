@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Redirigiendo...</title>
+    <script type="text/javascript">
+      // Script para Single Page Apps en GitHub Pages
+      // Fuente: https://github.com/rafgraph/spa-github-pages
+      //
+      // Este script toma la URL actual y convierte la ruta y los parámetros
+      // en un parámetro de consulta en la página raíz.
+      //
+      // Ejemplo: https://user.github.io/repo/experiencia?a=1
+      // se convierte en:
+      // https://user.github.io/repo/?p=/experiencia&q=a=1
+
+      var l = window.location;
+      // `pathSegmentsToKeep` es 1 si tu sitio está en un subdirectorio como `user.github.io/repo-name/`
+      // y 0 si estás usando un dominio personalizado como `pedroubedasanchez.es`.
+      // Como este proyecto usa un dominio personalizado (o se sirve desde la raíz), el valor debe ser 0.
+      // Esto asegura que una ruta como /experiencia se convierta en /?p=/experiencia.
+      var pathSegmentsToKeep = 0; 
+
+      l.replace(
+        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?p=' +
+        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+        (l.search ? '&q=' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+        l.hash
+      );
+    </script>
+  </head>
+  <body></body>
+</html>
