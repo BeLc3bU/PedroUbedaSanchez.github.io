@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build:css": "tailwindcss -i assets/css/input.css -o dist/assets/css/style.min.css --minify",
-    "build:js": "terser assets/js/main.js -o dist/assets/js/main.min.js -c -m",
+    "build:js": "terser assets/js/main.js --output dist/assets/js/main.min.js --compress --mangle",
     "build": "npm run build:css && npm run build:js"
   },
   "keywords": [],

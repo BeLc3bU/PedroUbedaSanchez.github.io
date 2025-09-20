@@ -93,20 +93,22 @@
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-NGDK68DN" style="display:none;visibility:hidden" width="0"></iframe></noscript>
   <!-- Overlay del Menú Móvil -->
-  <div id="mobile-menu-overlay" class="hidden fixed inset-0 bg-stone-100/95 backdrop-blur-md z-[100]" aria-hidden="true">
+  <div id="mobile-menu-overlay" class="hidden fixed inset-0 bg-stone-100/95 backdrop-blur-md z-[100] flex flex-col" aria-hidden="true">
       <div class="flex justify-end p-4">
           <button id="mobile-menu-close-button" type="button" class="p-2 rounded-full hover:bg-stone-200 transition" aria-label="Cerrar menú">
               <svg class="w-8 h-8 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
           </button>
       </div>
-      <ul class="flex flex-col items-center justify-center h-full space-y-8 -mt-16 text-2xl">
-          <li><a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-4" href="index.html"><span aria-hidden="true">👤</span><span>Sobre Mí</span></a></li>
-          <li><a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-4" href="experiencia.html"><span aria-hidden="true">💼</span><span>Experiencia</span></a></li>
-          <li><a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-4" href="habilidades.html"><span aria-hidden="true">💡</span><span>Habilidades</span></a></li>
-          <li><a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-4" href="formacion.html"><span aria-hidden="true">📜</span><span>Formación</span></a></li>
-          <li><a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-4" href="otros-datos.html"><span aria-hidden="true">📚</span><span>Otros Datos</span></a></li>
-          <li><a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-4" href="contacto.html"><span aria-hidden="true">📞</span><span>Contacto</span></a></li>
-      </ul>
+      <div class="flex-grow flex items-center justify-center overflow-y-auto">
+        <ul class="flex flex-col items-center space-y-8 text-2xl p-4">
+            <li><a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-4" href="index.html"><span aria-hidden="true">👤</span><span>Sobre Mí</span></a></li>
+            <li><a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-4" href="experiencia.html"><span aria-hidden="true">💼</span><span>Experiencia</span></a></li>
+            <li><a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-4" href="habilidades.html"><span aria-hidden="true">💡</span><span>Habilidades</span></a></li>
+            <li><a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-4" href="formacion.html"><span aria-hidden="true">📜</span><span>Formación</span></a></li>
+            <li><a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-4" href="otros-datos.html"><span aria-hidden="true">📚</span><span>Otros Datos</span></a></li>
+            <li><a class="nav-link-mobile text-slate-600 hover:text-orange-700 transition flex items-center space-x-4" href="contacto.html"><span aria-hidden="true">📞</span><span>Contacto</span></a></li>
+        </ul>
+      </div>
   </div>
   <!-- End Google Tag Manager (noscript) -->
   <a class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-4 focus:left-4 focus:bg-white focus:p-3 focus:rounded-lg focus:shadow-lg" href="#main-content">
