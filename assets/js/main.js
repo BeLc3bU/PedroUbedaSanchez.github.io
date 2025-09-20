@@ -380,7 +380,7 @@ async function loadPageContent(path) {
         // Cargar desde el archivo HTML
         mainContent.innerHTML = '<div class="text-center p-12">Cargando...</div>';
         try {
-            const response = await fetch(`${pageId}.html`);
+            const response = await fetch(`/${pageId}.html`);
             if (!response.ok) throw new Error(`Página no encontrada: ${pageId}.html`);
             
             const html = await response.text();
