@@ -13,6 +13,10 @@
     <link color="#c2410c" href="safari-pinned-tab.svg" rel="mask-icon"/>
     <meta content="#f5f5f4" name="msapplication-TileColor"/>
     <meta content="#ffffff" name="theme-color"/>
+    <!-- Previene el "Flash of Unstyled Content" (FOUC) ocultando el cuerpo hasta que el CSS se cargue -->
+    <style>
+        body { opacity: 0; }
+    </style>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -87,7 +91,7 @@
             margin-bottom: 1rem;
         }
     </style>
-    <link href="assets/css/style.css" rel="stylesheet"/>
+    <link href="dist/assets/css/style.min.css" rel="stylesheet"/>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -108,10 +112,7 @@
     <!-- Header Section -->
     <header class="flex flex-row items-center gap-6 mb-8">
         <div class="flex-shrink-0">
-            <picture>
-                <source srcset="foto.webp" type="image/webp"/>
-                <img src="foto.jpg" alt="Pedro Úbeda Sánchez" class="w-28 h-36 rounded-full object-cover shadow-lg" decoding="async" width="112" height="144">
-            </picture>
+            <img src="foto.webp" alt="Pedro Úbeda Sánchez" class="w-28 h-36 rounded-full object-cover shadow-lg" decoding="async" width="112" height="144">
         </div>
         <div class="flex-grow">
             <h1 class="text-3xl font-bold text-orange-900">Pedro Úbeda Sánchez</h1>
@@ -236,6 +237,6 @@
         </div>
     </section>
 
-    <script defer="" src="assets/js/main.js"></script>
+    <script defer="" src="dist/assets/js/main.min.js"></script>
 </body>
 </html>

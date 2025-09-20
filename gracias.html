@@ -15,7 +15,11 @@
   <link color="#c2410c" href="safari-pinned-tab.svg" rel="mask-icon"/>
   <meta content="#f5f5f4" name="msapplication-TileColor"/>
   <meta content="#ffffff" name="theme-color"/>
-  <link href="assets/css/style.css" rel="stylesheet"/>
+  <!-- Previene el "Flash of Unstyled Content" (FOUC) ocultando el cuerpo hasta que el CSS se cargue -->
+  <style>
+    body { opacity: 0; }
+  </style>
+  <link href="dist/assets/css/style.min.css" rel="stylesheet"/>
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -30,23 +34,19 @@
   <a class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-4 focus:left-4 focus:bg-white focus:p-3 focus:rounded-lg focus:shadow-lg" href="#main-content">
    Saltar al contenido principal
   </a>
-  <!-- End Google Tag Manager (noscript) -->
-  <header class="bg-stone-100/80 backdrop-blur-md sticky top-0 z-50 shadow-sm" id="header">
+  <header class="bg-stone-100/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
    <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
     <div class="flex items-center space-x-4">
      <div class="text-xl font-bold text-orange-800">
       Pedro Úbeda Sánchez
      </div>
     </div>
-    <ul class="hidden md:flex space-x-8">
-     <li>
-      <a class="nav-link text-slate-600 hover:text-orange-700 transition" href="index.html">
-       Volver al inicio
-      </a>
-     </li>
-    </ul>
+    <a class="text-slate-600 hover:text-orange-700 transition p-2 rounded-lg hover:bg-stone-200" href="index.html">
+     Volver al inicio
+    </a>
    </nav>
-  </header>  <main class="container mx-auto px-6 py-12 flex-grow" id="main-content">
+  </header>
+  <main class="container mx-auto px-6 py-12 flex-grow" id="main-content">
    <section class="text-center bg-white py-24 rounded-lg shadow-lg">
     <h2 class="text-4xl font-bold mb-4 text-orange-900">
      ¡Mensaje Enviado!
@@ -61,11 +61,7 @@
     </div>
    </section>
   </main>
-  <footer class="text-center py-6 bg-stone-200 mt-16">
-   <p class="text-slate-600">
-    © 2025 Pedro Úbeda Sánchez. Todos los derechos reservados.
-   </p>
-  </footer>
-  <script defer="" src="assets/js/main.js"></script>
+  <footer class="text-center py-6 bg-stone-200 mt-16" id="footer"></footer>
+  <script defer="" src="dist/assets/js/main.min.js"></script>
  </body>
 </html>
