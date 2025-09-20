@@ -84,19 +84,16 @@ function setupSkipLink() {
  */
 function setActiveNavLink() {
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    // Se ejecuta en el siguiente ciclo de eventos para asegurar que el header esté cargado
-    setTimeout(() => {
-        const navLinks = document.querySelectorAll('.nav-link, .nav-link-mobile');
+    const navLinks = document.querySelectorAll('.nav-link, .nav-link-mobile');
 
-        navLinks.forEach(link => {
-            const linkPage = link.getAttribute('href');
-            if (linkPage === currentPage) {
-                link.setAttribute('aria-current', 'page');
-            } else {
-                link.removeAttribute('aria-current');
-            }
-        });
-    }, 0);
+    navLinks.forEach(link => {
+        const linkPage = link.getAttribute('href');
+        if (linkPage === currentPage) {
+            link.setAttribute('aria-current', 'page');
+        } else {
+            link.removeAttribute('aria-current');
+        }
+    });
 }
 
 /**
@@ -124,6 +121,10 @@ function setupPageTransitions() {
             if (linkPageFile !== currentPageFile) {
                 e.preventDefault();
                 document.body.classList.add('slide-out');
+                // Forzar la opacidad a 0 para evitar FOUC en la página siguiente.
+                // El navegador puede eliminar la clase 'slide-out' durante la carga,
+                // pero el estilo en línea permanecerá hasta que el JS de la nueva página tome el control.
+                document.body.style.opacity = '0';
                 setTimeout(() => { window.location.href = link.href; }, 500);
             }
         }
@@ -351,6 +352,9 @@ async function loadComponent(selector, url) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Muestra el cuerpo de la página una vez que el DOM está listo.
+    document.body.style.opacity = '1';
+
     // Cargar componentes y luego inicializar los scripts que dependen de ellos
     Promise.all([
         loadComponent('#header', 'header.html'),
