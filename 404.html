@@ -17,9 +17,9 @@
       var l = window.location;
       // `pathSegmentsToKeep` es 1 si tu sitio está en un subdirectorio como `user.github.io/repo-name/`
       // y 0 si estás usando un dominio personalizado como `pedroubedasanchez.es`.
-      // Para GitHub Pages (en un repositorio de proyecto), el valor debe ser 1.
-      // Esto asegura que una ruta como /repo/experiencia se convierta en /repo/?p=/experiencia.
-      var pathSegmentsToKeep = 1; 
+      // Como este proyecto usa un dominio personalizado (o se sirve desde la raíz), el valor debe ser 0.
+      // Esto asegura que una ruta como /experiencia se convierta en /?p=/experiencia.
+      var pathSegmentsToKeep = 0; 
 
       l.replace(
         l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
