@@ -437,7 +437,8 @@ function initializeRouter() {
     // Maneja los botones de avance y retroceso del navegador
     window.addEventListener('popstate', () => loadPageContent(window.location.pathname));
 
-    // El router NO se encarga de la carga inicial. De eso se encarga el listener DOMContentLoaded.
+    // Ahora que el index.html está vacío, el router SÍ se encarga de la carga inicial.
+    loadPageContent(window.location.pathname);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -451,14 +452,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Inicializar el router para que escuche futuros clics y cambios de historial.
     initializeRouter();
 
-    // 3. Inicializar todos los scripts de la página inicial.
-    // Esto incluye scripts globales y los específicos de la página 'sobre-mi'.
-    setActiveNavLink(); // Marcar el enlace de la página actual
-    initializePageSpecificScripts('sobre-mi'); // Ejecutar scripts para la página de inicio
+    // 3. Inicializar scripts globales que no dependen del contenido de la página.
     setupSkipLink();
     setupBackToTopButton();
 
-    // 4. Inicializar scripts para páginas estáticas que no son parte de la SPA (ej. curriculum.html).
+    // 4. Inicializar scripts para páginas estáticas que no son parte de la SPA.
     setupPhoneObfuscation('phone-cv', 'phone-text-cv', '📞 ');
     setupPrintButton();
 });
