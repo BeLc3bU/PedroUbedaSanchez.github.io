@@ -374,14 +374,25 @@ async function loadPageContent(path) {
     // Si la ruta es '/', la página a cargar es 'sobre-mi'.
     const pageId = (path === '/' || path === '/index.html') ? 'sobre-mi' : path.substring(1);
 
+    // Si es la página de inicio, no hacemos nada, ya que el contenido ya está en el HTML.
+    // Esto solo se aplica a la carga inicial de la página.
+    if (pageId === 'sobre-mi' && !mainContent.hasAttribute('data-initial-load-done')) {
+        mainContent.setAttribute('data-initial-load-done', 'true');
+        window.scrollTo(0, 0);
+        setActiveNavLink();
+        initializePageSpecificScripts(pageId);
+        mainContent.classList.remove('content-fade-out');
+        return;
+    }
+
     // 3. Cargar el contenido nuevo
     if (pageCache.has(pageId)) {
         // Cargar desde la caché
         const { content, title, description, canonical } = pageCache.get(pageId);
         mainContent.innerHTML = content;
         document.title = title;
-        updateMetaTags('description', description);
-        updateMetaTags('canonical', canonical);
+        updateMetaTag('description', description);
+        updateMetaTag('canonical', canonical, 'link', 'href');
     } else {
         // Cargar desde el archivo HTML si no está en caché
         mainContent.innerHTML = '<div class="text-center p-12">Cargando...</div>';
@@ -403,8 +414,8 @@ async function loadPageContent(path) {
 
             mainContent.innerHTML = newContent;
             document.title = newTitle;
-            updateMetaTags('description', newDescription);
-            updateMetaTags('canonical', newCanonical);
+            updateMetaTag('description', newDescription);
+            updateMetaTag('canonical', newCanonical, 'link', 'href');
         } catch (error) {
             console.error(error);
             mainContent.innerHTML = '<div class="text-center p-12">Error al cargar el contenido.</div>';
@@ -423,19 +434,17 @@ async function loadPageContent(path) {
 
 /**
  * Actualiza las metaetiquetas SEO importantes.
- * @param {string} type - 'description' o 'canonical'.
+ * @param {string} name - El valor del atributo 'name' o 'rel' de la etiqueta.
  * @param {string} value - El nuevo valor para la etiqueta.
+ * @param {string} [tag='meta'] - El tipo de etiqueta ('meta' o 'link').
+ * @param {string} [attr='content'] - El atributo a actualizar ('content' o 'href').
  */
-function updateMetaTags(type, value) {
-    let element;
-    if (type === 'description') {
-        element = document.querySelector('meta[name="description"]');
-    } else if (type === 'canonical') {
-        element = document.querySelector('link[rel="canonical"]');
-    }
+function updateMetaTag(name, value, tag = 'meta', attr = 'content') {
+    const selector = tag === 'link' ? `link[rel="${name}"]` : `meta[name="${name}"]`;
+    let element = document.querySelector(selector);
 
     if (element) {
-        element.setAttribute(type === 'canonical' ? 'href' : 'content', value);
+        element.setAttribute(attr, value);
     }
 }
 
