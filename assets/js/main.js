@@ -298,28 +298,6 @@ function setupBackToTopButton() {
 }
 
 /**
- * Carga componentes HTML reutilizables como el header y el footer.
- * @param {string} selector - El selector CSS del contenedor donde se cargará el componente.
- * @param {string} url - La URL del archivo HTML del componente.
- * @returns {Promise<void>}
- */
-async function loadComponent(selector, url) {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`Error al cargar ${url}: ${response.statusText}`);
-        }
-        const data = await response.text();
-        const element = document.querySelector(selector);
-        if (element) {
-            element.innerHTML = data;
-        }
-    } catch (error) {
-        console.error(`No se pudo cargar el componente desde ${url}:`, error);
-    }
-}
-
-/**
  * Resalta el enlace de navegación correspondiente a la sección actual en la SPA.
  */
 function setActiveNavLink() {
@@ -373,17 +351,6 @@ async function loadPageContent(path) {
     // Normaliza la ruta para obtener el ID de la página (ej. '/experiencia' -> 'experiencia')
     // Si la ruta es '/', la página a cargar es 'sobre-mi'.
     const pageId = (path === '/' || path === '/index.html') ? 'sobre-mi' : path.substring(1);
-
-    // Si es la página de inicio, no hacemos nada, ya que el contenido ya está en el HTML.
-    // Esto solo se aplica a la carga inicial de la página.
-    if (pageId === 'sobre-mi' && !mainContent.hasAttribute('data-initial-load-done')) {
-        mainContent.setAttribute('data-initial-load-done', 'true');
-        window.scrollTo(0, 0);
-        setActiveNavLink();
-        initializePageSpecificScripts(pageId);
-        mainContent.classList.remove('content-fade-out');
-        return;
-    }
 
     // 3. Cargar el contenido nuevo
     if (pageCache.has(pageId)) {
@@ -467,32 +434,31 @@ function initializeRouter() {
         }
     });
 
+    // Maneja los botones de avance y retroceso del navegador
     window.addEventListener('popstate', () => loadPageContent(window.location.pathname));
-    loadPageContent(window.location.pathname);
+
+    // El router NO se encarga de la carga inicial. De eso se encarga el listener DOMContentLoaded.
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', () => {
     // Muestra el cuerpo de la página una vez que el DOM está listo.
     document.body.style.opacity = '1';
 
-    // 1. Cargar componentes reutilizables (header, footer).
-    // Es crucial esperar a que terminen (await) antes de inicializar scripts
-    // que dependen de ellos (como el menú móvil o el router).
-    await Promise.all([
-        loadComponent('#header', 'header.html'),
-        loadComponent('#footer', 'footer.html')
-    ]);
-
-    // 2. Ahora que el header y footer están en el DOM, inicializamos el resto.
+    // 1. Inicializar funcionalidades que dependen del header (como el menú móvil).
+    // El header ya está en el DOM, por lo que no hay que esperar.
     initializeMobileMenu();
+
+    // 2. Inicializar el router para que escuche futuros clics y cambios de historial.
     initializeRouter();
 
-    // 3. Inicializa componentes globales que no dependen del contenido de la página.
+    // 3. Inicializar todos los scripts de la página inicial.
+    // Esto incluye scripts globales y los específicos de la página 'sobre-mi'.
+    setActiveNavLink(); // Marcar el enlace de la página actual
+    initializePageSpecificScripts('sobre-mi'); // Ejecutar scripts para la página de inicio
     setupSkipLink();
     setupBackToTopButton();
 
-    // 4. Inicializa scripts para páginas que no son parte de la SPA (como curriculum.html).
-    // Estos tienen guardias internas y solo se activan si están en la página correcta.
+    // 4. Inicializar scripts para páginas estáticas que no son parte de la SPA (ej. curriculum.html).
     setupPhoneObfuscation('phone-cv', 'phone-text-cv', '📞 ');
     setupPrintButton();
 });
