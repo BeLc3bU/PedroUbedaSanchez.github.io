@@ -471,30 +471,28 @@ function initializeRouter() {
     loadPageContent(window.location.pathname);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     // Muestra el cuerpo de la página una vez que el DOM está listo.
     document.body.style.opacity = '1';
 
-    // Cargar componentes de la página
-    Promise.all([
+    // 1. Cargar componentes reutilizables (header, footer).
+    // Es crucial esperar a que terminen (await) antes de inicializar scripts
+    // que dependen de ellos (como el menú móvil o el router).
+    await Promise.all([
         loadComponent('#header', 'header.html'),
         loadComponent('#footer', 'footer.html')
-    ]).then(() => {
-        // Una vez que el header está cargado, inicializamos el menú móvil.
-        // Esto solo necesita hacerse una vez, ya que el header es persistente.
-        initializeMobileMenu();
-    });
+    ]);
 
-    // Inicializa el router, que se encargará de cargar la página inicial
-    // y los scripts específicos de esa página a través de loadPageContent.
+    // 2. Ahora que el header y footer están en el DOM, inicializamos el resto.
+    initializeMobileMenu();
     initializeRouter();
 
-    // Inicializa componentes globales que no dependen del contenido de la página
+    // 3. Inicializa componentes globales que no dependen del contenido de la página.
     setupSkipLink();
     setupBackToTopButton();
 
-    // Inicializa los scripts para páginas que no son parte de la SPA (como curriculum.html).
-    // Estos tienen guardias internas y solo se activarán si están en la página correcta.
+    // 4. Inicializa scripts para páginas que no son parte de la SPA (como curriculum.html).
+    // Estos tienen guardias internas y solo se activan si están en la página correcta.
     setupPhoneObfuscation('phone-cv', 'phone-text-cv', '📞 ');
     setupPrintButton();
 });
