@@ -12,6 +12,8 @@
   <meta content="Sitio web profesional de Pedro Úbeda Sánchez, técnico especialista con más de 20 años de experiencia en informática, aviónica y administración. Descubre mi trayectoria y habilidades." name="description"/>
   <!-- SEO: URL Canónica para evitar contenido duplicado -->
   <link href="https://pedroubedasanchez.es/" rel="canonical"/>
+  <!-- Base Href para resolver rutas relativas en la SPA -->
+  <base href="/"/>
   <!-- SEO: Open Graph para compartir en redes sociales (LinkedIn, Facebook) -->
   <meta content="Pedro Úbeda Sánchez | Técnico Especialista" property="og:title"/>
   <meta content="Técnico con más de 20 años de experiencia en informática, aviónica y administración." property="og:description"/>
@@ -37,10 +39,10 @@
   <meta content="#f5f5f4" name="msapplication-TileColor"/>
   <meta content="#ffffff" name="theme-color"/>
   <!-- Preload responsive LCP image -->
-  <link as="image" href="foto-384.webp" media="(min-width: 768px)" rel="preload" type="image/webp"/>
-  <link as="image" href="foto-320.webp" media="(max-width: 767px)" rel="preload" type="image/webp"/>
-  <link as="font" crossorigin="" href="assets/fonts/inter-v20-latin-regular.woff2" rel="preload" type="font/woff2"/>
-  <link as="font" crossorigin="" href="assets/fonts/inter-v20-latin-700.woff2" rel="preload" type="font/woff2"/>
+  <link as="image" href="/foto-384.webp" media="(min-width: 768px)" rel="preload" type="image/webp"/>
+  <link as="image" href="/foto-320.webp" media="(max-width: 767px)" rel="preload" type="image/webp"/>
+  <link as="font" crossorigin="" href="/assets/fonts/inter-v20-latin-regular.woff2" rel="preload" type="font/woff2"/>
+  <link as="font" crossorigin="" href="/assets/fonts/inter-v20-latin-700.woff2" rel="preload" type="font/woff2"/>
   <!-- Chosen Palette: Warm Neutrals -->
   <!-- Application Structure Plan: Se ha diseñado una aplicación de una sola página con desplazamiento vertical y una barra de navegación fija. La estructura sigue un flujo lógico: introducción (Sobre Mí), cronología de la carrera (Experiencia), visualización de capacidades (Habilidades) y secciones informativas (Formación, Logros). Esta estructura es intuitiva y permite a los reclutadores escanear rápidamente el perfil o profundizar en secciones específicas mediante la navegación. El uso de una línea de tiempo interactiva para la experiencia y un gráfico de radar para las habilidades convierte un documento estático en una experiencia de usuario atractiva. -->
   <!-- Visualization & Content Choices: 
@@ -63,7 +65,7 @@
     body { opacity: 0; }
   </style>
   <!-- Asynchronously load the full stylesheet -->
-  <link href="assets/css/style.min.css" rel="stylesheet"/>
+  <link href="/assets/css/style.min.css" rel="stylesheet"/>
   <!-- reCAPTCHA v3 script, cargado de forma asíncrona para no bloquear el renderizado -->
   <script async="" defer="" src="https://www.google.com/recaptcha/api.js?render=6LcfUs8rAAAAAErA7-oGbid2aiEL8_iBy7jZ-WYl"></script>
   <!-- SEO: Structured Data (Schema.org) para Person -->
@@ -121,11 +123,11 @@
     <div class="flex-shrink-0">
       <!-- Imagen Responsiva y Optimizada -->
       <picture>
-        <!-- Fuentes WebP para navegadores modernos (rutas relativas) -->
-        <source media="(min-width: 768px)" srcset="foto-384.webp" type="image/webp">
-        <source media="(max-width: 767px)" srcset="foto-320.webp" type="image/webp">
+        <!-- Fuentes WebP para navegadores modernos (rutas absolutas) -->
+        <source media="(min-width: 768px)" srcset="/foto-384.webp" type="image/webp">
+        <source media="(max-width: 767px)" srcset="/foto-320.webp" type="image/webp">
         <!-- Imagen por defecto para máxima compatibilidad -->
-        <img alt="Foto de Pedro Úbeda Sánchez, técnico especialista en informática, aviónica y administración" class="w-40 h-56 md:w-48 md:h-64 rounded-full object-cover shadow-2xl" decoding="async" height="256" loading="eager" src="foto-384.jpg" width="192">
+        <img alt="Foto de Pedro Úbeda Sánchez, técnico especialista en informática, aviónica y administración" class="w-40 h-56 md:w-48 md:h-64 rounded-full object-cover shadow-2xl" decoding="async" height="256" loading="eager" src="/foto-384.jpg" width="192">
       </picture>
     </div>
     <div class="flex-grow text-center md:text-left" id="about-text-block">
@@ -136,7 +138,7 @@
       Técnico especialista con más de dos décadas de experiencia en el mantenimiento, diagnóstico y resolución de averías en equipos informáticos y de aviónica. Mi trayectoria en las Fuerzas Armadas me ha proporcionado sólidos valores como la disciplina, el compromiso y el trabajo en equipo, habilidades que aplico en mi día a día.
      </p>
      <div class="mt-8 text-center md:text-left">
-      <a class="inline-block bg-orange-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-800 transition-colors duration-300 shadow-lg transform hover:scale-105 animate-pulse" href="curriculum.html" rel="noopener noreferrer" target="_blank">
+      <a class="inline-block bg-orange-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-800 transition-colors duration-300 shadow-lg transform hover:scale-105 animate-pulse" href="/curriculum.html" rel="noopener noreferrer" target="_blank">
        <span aria-hidden="true">📄</span>
        Ver CV para Imprimir
        <span class="sr-only">(se abre en una nueva pestaña)</span>
@@ -149,7 +151,7 @@
    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 15l7-7 7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
   </button>
   <footer class="text-center py-6 bg-stone-200 mt-16" id="footer"></footer>
-  <script defer="" src="assets/js/main.min.js"></script>
+  <script defer="" src="/assets/js/main.min.js"></script>
   <noscript>
   <style>
     body { opacity: 1 !important; }
