@@ -101,50 +101,6 @@ function setupSkipLink() {
     });
 }
 /**
- * Resalta el enlace de navegación correspondiente a la página actual.
- * Ofusca un número de teléfono, revelándolo al pasar el ratón o al enfocarlo.
- * @param {string} linkId - El ID del elemento <a> que contendrá el enlace tel:.
- * @param {string} textId - El ID del elemento <span> que mostrará el texto del teléfono.
- * @param {string} [prefix=''] - Un prefijo opcional para añadir antes del número (ej. un emoji).
- */
-function setupPhoneObfuscation(linkId, textId, prefix = '') {
-    const linkElement = document.getElementById(linkId);
-    const textElement = document.getElementById(textId);
-
-    if (!linkElement || !textElement) return;
-
-    const phoneNumber = atob('KzM0IDYzNSA5NDUgNzc5'); // Decodifica a: +34 635 945 779
-
-    linkElement.addEventListener('click', function revealPhone(e) {
-        e.preventDefault();
-        
-        // Cambia el texto y el enlace
-        textElement.textContent = `${prefix}${phoneNumber}`.trim();
-        linkElement.href = `tel:${phoneNumber.replace(/\s/g, '')}`;
-        
-        // Elimina el listener para que los siguientes clics funcionen como una llamada normal
-        linkElement.removeEventListener('click', revealPhone);
-    });
-}
-
-/**
- * Configura el botón de impresión y añade un botón para volver al inicio.
- */
-function setupPrintButton() {
-    const printButton = document.getElementById('print-button');
-    if (!printButton) return;
-
-    printButton.addEventListener('click', () => window.print());
-
-    const homeButton = document.createElement('button');
-    homeButton.id = 'home-button';
-    homeButton.className = 'bg-slate-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-slate-600 transition-colors duration-300 shadow-lg transform hover:scale-105 ml-4';
-    homeButton.innerHTML = '🏠 Volver a la página principal';
-    homeButton.addEventListener('click', () => window.location.href = '/');
-    printButton.insertAdjacentElement('afterend', homeButton);
-}
-
-/**
  * Anima los elementos cuando entran en el viewport usando Intersection Observer.
  */
 function setupScrollAnimations() {
@@ -281,11 +237,7 @@ function setupBackToTopButton() {
 
     // Mostrar/ocultar el botón al hacer scroll
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            backToTopButton.classList.add('is-visible');
-        } else {
-            backToTopButton.classList.remove('is-visible');
-        }
+        backToTopButton.classList.toggle('is-visible', window.scrollY > 300);
     });
 
     // Scroll suave hacia arriba al hacer clic
@@ -320,6 +272,26 @@ function setActiveNavLink() {
  * @param {string} pageId - El ID de la página cargada (ej. 'contacto').
  */
 function initializePageSpecificScripts(pageId) {
+    /**
+     * Ofusca un número de teléfono, revelándolo al hacer clic.
+     * @param {string} linkId - El ID del elemento <a>.
+     * @param {string} textId - El ID del elemento <span>.
+     */
+    function setupPhoneObfuscation(linkId, textId) {
+        const linkElement = document.getElementById(linkId);
+        const textElement = document.getElementById(textId);
+
+        if (!linkElement || !textElement) return;
+
+        const phoneNumber = atob('KzM0IDYzNSA5NDUgNzc5'); // +34 635 945 779
+
+        linkElement.addEventListener('click', function revealPhone(e) {
+            e.preventDefault();
+            textElement.textContent = phoneNumber;
+            linkElement.href = `tel:${phoneNumber.replace(/\s/g, '')}`;
+            linkElement.removeEventListener('click', revealPhone);
+        }, { once: true }); // El listener se ejecuta solo una vez
+    }
     // Scripts que se deben ejecutar en CADA carga de página
     setupScrollAnimations();
 
@@ -327,7 +299,7 @@ function initializePageSpecificScripts(pageId) {
     if (pageId === 'contacto') {
         setupFormValidation();
         // La ofuscación del teléfono también es específica de la página de contacto
-        setupPhoneObfuscation('phone-contact', 'phone-text-contact');
+        setupPhoneObfuscation('phone-contact', 'phone-text-contact', '📞 ');
     }
     // Aquí se podrían añadir más inicializaciones para otras páginas si fuera necesario
 }
@@ -442,21 +414,13 @@ function initializeRouter() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Muestra el cuerpo de la página una vez que el DOM está listo.
+    // Previene el FOUC (Flash Of Unstyled Content) haciendo visible el body
+    // de forma síncrona y temprana.
     document.body.style.opacity = '1';
 
-    // 1. Inicializar funcionalidades que dependen del header (como el menú móvil).
-    // El header ya está en el DOM, por lo que no hay que esperar.
+    // Inicializa los componentes y la lógica de la SPA
     initializeMobileMenu();
-
-    // 2. Inicializar el router para que escuche futuros clics y cambios de historial.
     initializeRouter();
-
-    // 3. Inicializar scripts globales que no dependen del contenido de la página.
     setupSkipLink();
     setupBackToTopButton();
-
-    // 4. Inicializar scripts para páginas estáticas que no son parte de la SPA.
-    setupPhoneObfuscation('phone-cv', 'phone-text-cv', '📞 ');
-    setupPrintButton();
 });

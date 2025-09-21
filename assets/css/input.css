@@ -21,15 +21,7 @@
 /* --- Estilos Globales y Animaciones --- */
 body {
   font-family: 'Inter', sans-serif;
-  opacity: 0;
-  animation: fadeInAnimation 0.6s ease forwards;
-  animation-delay: 0.1s;
   overflow-x: hidden; /* Previene barras de scroll horizontales por animaciones */
-}
-
-@keyframes fadeInAnimation {
-  from { opacity: 0; }
-  to { opacity: 1; }
 }
 /* Animación de transición de página */
 body.slide-out {
