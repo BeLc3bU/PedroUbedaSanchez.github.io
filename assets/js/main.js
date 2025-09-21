@@ -1,25 +1,4 @@
 /**
- * Maneja la redirección para SPAs en GitHub Pages.
- * Este script se ejecuta primero para corregir la URL si venimos de un 404.
- * Lee el parámetro `p` de la URL, lo usa para reescribir la ruta correcta
- * en el historial del navegador, y luego el router de la SPA puede funcionar.
- * Fuente: https://github.com/rafgraph/spa-github-pages
- */
-(function() {
-    const l = window.location;
-    if (l.search) {
-        const params = {};
-        l.search.slice(1).split('&').forEach(function (part) {
-            const item = part.split('=');
-            params[item[0]] = decodeURIComponent(item[1]).replace(/~and~/g, '&');
-        });
-        if (params.p) {
-            window.history.replaceState(null, null, params.p + (params.q ? '?' + params.q : '') + l.hash);
-        }
-    }
-}());
-
-/**
  * Gestiona la apertura y cierre del menú de navegación móvil tipo overlay.
  */
 function initializeMobileMenu() {
@@ -409,18 +388,39 @@ function initializeRouter() {
     // Maneja los botones de avance y retroceso del navegador
     window.addEventListener('popstate', () => loadPageContent(window.location.pathname));
 
-    // Ahora que el index.html está vacío, el router SÍ se encarga de la carga inicial.
-    loadPageContent(window.location.pathname);
+    // El router ya no se encarga de la carga inicial.
+    // Se moverá al final del DOMContentLoaded para asegurar que todo esté listo.
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Previene el FOUC (Flash Of Unstyled Content) haciendo visible el body
-    // de forma síncrona y temprana.
+    // 1. Saneamiento de la URL (lógica de redirección de 404.html)
+    // Esto se ejecuta primero para asegurar que la URL es la correcta antes de que el router actúe.
+    const l = window.location;
+    if (l.search) {
+        const params = {};
+        l.search.slice(1).split('&').forEach(function (part) {
+            const item = part.split('=');
+            params[item[0]] = decodeURIComponent(item[1]).replace(/~and~/g, '&');
+        });
+        if (params.p) {
+            // Reemplaza la URL en el historial para que sea limpia (ej. /experiencia)
+            window.history.replaceState(null, null, params.p + (params.q ? '?' + params.q : '') + l.hash);
+        }
+    }
+
+    // 2. Hacer visible la página para evitar FOUC (Flash of Unstyled Content)
     document.body.style.opacity = '1';
 
-    // Inicializa los componentes y la lógica de la SPA
+    // 3. Inicializar componentes de la UI que son independientes del contenido
     initializeMobileMenu();
-    initializeRouter();
     setupSkipLink();
     setupBackToTopButton();
+
+    // 4. Inicializar el router para que escuche los clics y los eventos de popstate.
+    // IMPORTANTE: Ya no llama a loadPageContent() internamente.
+    initializeRouter();
+
+    // 5. Cargar el contenido de la página inicial (o la que corresponda según la URL ya saneada).
+    // Esta es ahora la única fuente de verdad para la carga inicial.
+    loadPageContent(window.location.pathname);
 });
