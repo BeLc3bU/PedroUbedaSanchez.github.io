@@ -41,10 +41,6 @@
   <link as="image" href="/foto-320.webp" media="(max-width: 767px)" rel="preload" type="image/webp"/>
   <link as="font" crossorigin="" href="/assets/fonts/inter-v20-latin-regular.woff2" rel="preload" type="font/woff2"/>
   <link as="font" crossorigin="" href="/assets/fonts/inter-v20-latin-700.woff2" rel="preload" type="font/woff2"/>
-  <!-- Performance: Preconnect to third-party origins -->
-  <link href="https://www.google.com" rel="preconnect"/>
-  <link href="https://www.googletagmanager.com" rel="preconnect"/>
-  <link href="https://www.google-analytics.com" rel="preconnect"/>
   <!-- Chosen Palette: Warm Neutrals -->
   <!-- Application Structure Plan: Se ha diseñado una aplicación de una sola página con desplazamiento vertical y una barra de navegación fija. La estructura sigue un flujo lógico: introducción (Sobre Mí), cronología de la carrera (Experiencia), visualización de capacidades (Habilidades) y secciones informativas (Formación, Logros). Esta estructura es intuitiva y permite a los reclutadores escanear rápidamente el perfil o profundizar en secciones específicas mediante la navegación. El uso de una línea de tiempo interactiva para la experiencia y un gráfico de radar para las habilidades convierte un documento estático en una experiencia de usuario atractiva. -->
   <!-- Visualization & Content Choices: 
@@ -66,8 +62,8 @@
   <style>
     body { opacity: 0; }
   </style>
-  <!-- Estilos unificados de Tailwind y personalizados -->
-  <link href="dist/style.css" rel="stylesheet"/>
+  <!-- Asynchronously load the full stylesheet -->
+  <link href="dist/assets/css/style.min.css" rel="stylesheet"/>
   <!-- reCAPTCHA v3 script, cargado de forma asíncrona para no bloquear el renderizado -->
   <script async="" defer="" src="https://www.google.com/recaptcha/api.js?render=6LcfUs8rAAAAAErA7-oGbid2aiEL8_iBy7jZ-WYl"></script>
   <!-- SEO: Structured Data (Schema.org) para Person -->
@@ -119,42 +115,41 @@
   <a class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-4 focus:left-4 focus:bg-white focus:p-3 focus:rounded-lg focus:shadow-lg" href="#main-content">
    Saltar al contenido principal
   </a>
-  <header class="bg-stone-100/80 backdrop-blur-md sticky top-0 z-50 shadow-sm" id="header"><nav class="container mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
-    <div class="flex-shrink-0 text-xl font-bold text-orange-800">
-        <a href="/" aria-label="Página de inicio de Pedro Úbeda Sánchez">Pedro Úbeda Sánchez</a>
+  <header class="bg-stone-100/80 backdrop-blur-md sticky top-0 z-50 shadow-sm" id="header"></header>
+  <main class="container mx-auto px-6 py-12 flex-grow" id="main-content">
+   <section class="mb-24 flex flex-col md:flex-row items-center md:items-start gap-y-8" id="about">
+    <div class="flex-shrink-0">
+      <!-- Imagen Responsiva y Optimizada -->
+      <picture>
+        <!-- Fuentes WebP para navegadores modernos -->
+        <source media="(min-width: 768px)" srcset="/foto-384.webp" type="image/webp">
+        <source media="(max-width: 767px)" srcset="/foto-320.webp" type="image/webp">
+        <!-- Imagen por defecto para máxima compatibilidad -->
+        <img alt="Foto de Pedro Úbeda Sánchez, técnico especialista en informática, aviónica y administración" class="w-40 h-56 md:w-48 md:h-64 rounded-full object-cover shadow-2xl" decoding="async" height="256" loading="eager" src="/foto-384.jpg" width="192">
+      </picture>
     </div>
-
-    <!-- Menú de Escritorio -->
-    <ul class="hidden md:flex items-center space-x-8">
-        <li><a class="nav-link" href="/"><span aria-hidden="true">👤</span> <span>Sobre Mí</span></a></li>
-        <li><a class="nav-link" href="/experiencia"><span aria-hidden="true">💼</span> <span>Experiencia</span></a></li>
-        <li><a class="nav-link" href="/habilidades"><span aria-hidden="true">💡</span> <span>Habilidades</span></a></li>
-        <li><a class="nav-link" href="/formacion"><span aria-hidden="true">📜</span> <span>Formación</span></a></li>
-        <li><a class="nav-link" href="/otros-datos"><span aria-hidden="true">📚</span> <span>Otros Datos</span></a></li>
-        <li><a class="nav-link" href="/contacto"><span aria-hidden="true">📞</span> <span>Contacto</span></a></li>
-    </ul>
-
-    <!-- Botón del Menú Móvil -->
-    <div class="md:hidden">
-        <button id="mobile-menu-button" type="button" class="flex items-center space-x-2 text-slate-600 hover:text-orange-700 p-2 rounded-lg hover:bg-stone-200 transition" aria-controls="mobile-menu-overlay" aria-expanded="false">
-            <span>Menú</span>
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-        </button>
+    <div class="flex-grow text-center md:text-left" id="about-text-block">
+     <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-orange-900">
+      Técnico especialista en informática, aviónica y administración
+     </h1>
+     <p class="max-w-3xl mx-auto md:mx-0 text-lg text-slate-600">
+      Técnico especialista con más de dos décadas de experiencia en el mantenimiento, diagnóstico y resolución de averías en equipos informáticos y de aviónica. Mi trayectoria en las Fuerzas Armadas me ha proporcionado sólidos valores como la disciplina, el compromiso y el trabajo en equipo, habilidades que aplico en mi día a día.
+     </p>
+     <div class="mt-8 text-center md:text-left">
+      <a class="inline-block bg-orange-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-800 transition-colors duration-300 shadow-lg transform hover:scale-105 animate-pulse" href="curriculum.html" rel="noopener noreferrer" target="_blank">
+       <span aria-hidden="true">📄</span>
+       Ver CV para Imprimir
+       <span class="sr-only">(se abre en una nueva pestaña)</span>
+      </a>
+     </div>
     </div>
-</nav></header>
-  <main class="container mx-auto px-6 py-12 flex-grow" id="main-content"></main>
+   </section>
+  </main>  
   <button aria-label="Volver arriba" class="back-to-top-button fixed bottom-6 right-6 z-[100] bg-orange-700 text-white p-3 rounded-full shadow-lg hover:bg-orange-800 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500" id="back-to-top" title="Volver arriba">
    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 15l7-7 7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
   </button>
-  <footer class="text-center py-6 bg-stone-200 mt-16" id="footer"><p class="text-slate-600">
-    © 2025 Pedro Úbeda Sánchez. Todos los derechos reservados.
-</p>
-<p class="text-xs text-slate-500 mt-4">
-    Este sitio está protegido por reCAPTCHA y se aplican la
-    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="hover:text-orange-700 underline">Política de Privacidad</a> y los
-    <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" class="hover:text-orange-700 underline">Términos de Servicio</a> de Google.
-</p></footer>
-  <script defer="" src="assets/js/main.js"></script>
+  <footer class="text-center py-6 bg-stone-200 mt-16" id="footer"></footer>
+  <script defer="" src="dist/assets/js/main.min.js"></script>
   <noscript>
   <style>
     body { opacity: 1 !important; }
