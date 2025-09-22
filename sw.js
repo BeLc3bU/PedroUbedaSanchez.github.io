@@ -1,4 +1,4 @@
-const CACHE_NAME = 'curriculum-spa-cache-v2';
+const CACHE_NAME = 'curriculum-spa-cache-v3';
 // Lista de archivos que componen el "cascarón" de la aplicación.
 const APP_SHELL_URLS = [
   '/',
@@ -64,6 +64,18 @@ self.addEventListener('activate', event => {
  * Intercepta las peticiones y sirve desde la caché si es posible (estrategia Stale-While-Revalidate).
  */
 self.addEventListener('fetch', event => {
+  const url = new URL(event.request.url);
+
+  // --- LÓGICA CLAVE PARA LA SPA ---
+  // Si es una petición de navegación (HTML) Y contiene el parámetro de redirección `p`,
+  // debemos ir siempre a la red para que el script de redirección de la SPA funcione.
+  // No podemos servir el 'index.html' desde la caché porque no tendría el parámetro `p`.
+  if (event.request.mode === 'navigate' && url.searchParams.has('p')) {
+    // No usamos event.respondWith, dejamos que el navegador maneje la petición a la red.
+    console.log('[Service Worker] Petición de navegación con parámetro "p", se omite la caché.');
+    return;
+  }
+
   event.respondWith(
     caches.open(CACHE_NAME).then(async (cache) => {
       const cachedResponse = await cache.match(event.request);
