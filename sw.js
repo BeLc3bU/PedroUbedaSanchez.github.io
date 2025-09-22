@@ -1,4 +1,4 @@
-const CACHE_NAME = 'curriculum-spa-cache-v3';
+const CACHE_NAME = 'curriculum-spa-cache-v4';
 // Lista de archivos que componen el "cascarón" de la aplicación.
 const APP_SHELL_URLS = [
   '/',
@@ -64,31 +64,40 @@ self.addEventListener('activate', event => {
  * Intercepta las peticiones y sirve desde la caché si es posible (estrategia Stale-While-Revalidate).
  */
 self.addEventListener('fetch', event => {
-  const url = new URL(event.request.url);
+  const { request } = event;
+  const url = new URL(request.url);
 
-  // --- LÓGICA CLAVE PARA LA SPA ---
-  // Si es una petición de navegación (HTML) Y contiene el parámetro de redirección `p`,
-  // debemos ir siempre a la red para que el script de redirección de la SPA funcione.
-  // No podemos servir el 'index.html' desde la caché porque no tendría el parámetro `p`.
-  if (event.request.mode === 'navigate' && url.searchParams.has('p')) {
-    // No usamos event.respondWith, dejamos que el navegador maneje la petición a la red.
-    console.log('[Service Worker] Petición de navegación con parámetro "p", se omite la caché.');
+  // Estrategia para peticiones de navegación (páginas HTML)
+  if (request.mode === 'navigate') {
+    // Siempre intentar ir a la red primero para las páginas.
+    // Esto asegura que la redirección 404 funcione siempre.
+    // Si la red falla, se sirve el index.html desde la caché como fallback.
+    event.respondWith(
+      fetch(request).catch(() => {
+        console.log('[Service Worker] Fallo de red en navegación. Sirviendo index.html desde caché.');
+        return caches.match('/');
+      })
+    );
     return;
   }
 
-  event.respondWith(
-    caches.open(CACHE_NAME).then(async (cache) => {
-      const cachedResponse = await cache.match(event.request);
-      const fetchedResponse = fetch(event.request).then((networkResponse) => {
-        // Si la petición es exitosa, la guardamos en caché para la próxima vez.
-        if (networkResponse && networkResponse.status === 200) {
-          cache.put(event.request, networkResponse.clone());
+  // Estrategia para todos los demás recursos (CSS, JS, imágenes, fuentes)
+  // "Cache First": si está en caché, se sirve desde ahí. Si no, se va a la red.
+  if (APP_SHELL_URLS.includes(url.pathname) || url.pathname.startsWith('/assets/')) {
+    event.respondWith(
+      caches.match(request).then(cachedResponse => {
+        if (cachedResponse) {
+          return cachedResponse;
         }
-        return networkResponse;
-      }).catch(() => {
-        // Si la red falla y no hay nada en caché, la petición fallará.
-        // Podríamos devolver una página offline aquí si quisiéramos.
-      });
+        return fetch(request).then(networkResponse => {
+          // Opcional: guardar en caché los nuevos assets que se encuentren
+          // caches.open(CACHE_NAME).then(cache => cache.put(request, networkResponse.clone()));
+          return networkResponse;
+        });
+      })
+    );
+  }
+});
 
       // Devuelve la respuesta de la caché si existe, si no, espera a la respuesta de la red.
       return cachedResponse || fetchedResponse;
