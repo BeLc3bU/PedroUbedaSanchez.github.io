@@ -15,6 +15,10 @@
 <meta property="twitter:url" content="https://pedroubedasanchez.es/contacto">
 <meta name="twitter:title" content="Contacto | Pedro Úbeda Sánchez">
 <meta name="twitter:description" content="Contacta con Pedro Úbeda Sánchez para oportunidades profesionales, colaboraciones o cualquier consulta.">
+
+<!-- Previene el FOUC si este fragmento se carga directamente -->
+<style>body { opacity: 0; }</style>
+
 <script>
     // Si este fragmento se carga directamente, redirige a la SPA principal.
     if (window.self === window.top) {
