@@ -1,5 +1,5 @@
-const CACHE_NAME = 'curriculum-spa-cache-v8';
-// Lista de archivos que componen el "cascarón" de la aplicación.
+const CACHE_NAME = 'curriculum-spa-cache-v9'; // Incrementa la versión para forzar la actualización
+// Lista de archivos que componen el "App Shell", la estructura básica de la aplicación.
 const APP_SHELL_URLS = [
   '/',
   '/index.html',
@@ -16,7 +16,7 @@ const APP_SHELL_URLS = [
   '/favicon-32x32.png',
   '/favicon-16x16.png',
   '/site.webmanifest',
-  // Página de CV para que esté disponible offline
+  // Página de CV para que esté disponible offline al hacer clic en "Descargar"
   '/curriculum.html'
 ];
 
@@ -60,32 +60,34 @@ self.addEventListener('fetch', event => {
   const { request } = event;
   const url = new URL(request.url);
 
-  // Estrategia para peticiones de navegación (páginas HTML)
+  // Estrategia "Network falling back to cache" para peticiones de navegación.
+  // Esto es crucial para que la SPA funcione correctamente.
+  // 1. Intenta ir a la red. Esto permite que la redirección 404 de GitHub Pages funcione cuando hay conexión.
+  // 2. Si la red falla (offline), sirve el 'index.html' principal desde la caché.
+  //    La SPA se cargará y el router se encargará de mostrar el contenido correcto según la URL.
   if (request.mode === 'navigate') {
-    // Siempre intentar ir a la red primero para las páginas.
-    // Esto asegura que la redirección 404 funcione siempre.
-    // Si la red falla, se sirve el index.html desde la caché como fallback.
     event.respondWith(
       fetch(request).catch(() => {
         console.log('[Service Worker] Fallo de red en navegación. Sirviendo index.html desde caché.');
-        return caches.match('/');
+        return caches.match('/'); // Sirve la página principal como fallback.
       })
     );
     return;
   }
 
-  // Estrategia para todos los demás recursos (CSS, JS, imágenes, fuentes)
-  // "Cache First": si está en caché, se sirve desde ahí. Si no, se va a la red.
-  // No interceptamos las peticiones de parciales HTML (ej. /experiencia.html),
-  // esas las gestiona el fetch del router en main.js.
-  if (APP_SHELL_URLS.includes(url.pathname) || url.pathname.startsWith('/assets/') || /\.(webp|png|jpg|svg)$/.test(url.pathname)) {
+  // Estrategia "Cache First" para los assets del App Shell y otros recursos estáticos.
+  // Si el recurso está en la caché, se sirve desde ahí para máxima velocidad.
+  // Si no, se va a la red, se sirve y se añade a la caché para futuras peticiones.
+  // Esto no intercepta las peticiones de parciales HTML (ej. /experiencia.html),
+  // ya que no están en la lista y son gestionadas por el fetch() del router en main.js.
+  if (APP_SHELL_URLS.includes(url.pathname) || url.pathname.startsWith('/assets/') || /\.(webp|png|jpg|jpeg|gif|svg|ico)$/.test(url.pathname)) {
     event.respondWith(
       caches.match(request).then(cachedResponse => {
         if (cachedResponse) {
           return cachedResponse;
         }
+        // Si no está en caché, lo busca en la red y lo cachea para la próxima vez.
         return fetch(request).then(networkResponse => {
-          // Opcional: guardar en caché los nuevos assets que se encuentren
           const cacheableResponse = networkResponse.clone();
           caches.open(CACHE_NAME).then(cache => cache.put(request, cacheableResponse));
           return networkResponse;
