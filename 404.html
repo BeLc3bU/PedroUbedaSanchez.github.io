@@ -4,37 +4,23 @@
     <meta charset="utf-8">
     <title>Redirigiendo...</title>
     <script type="text/javascript">
-      // Script para Single Page Apps en GitHub Pages
-      // Fuente: https://github.com/rafgraph/spa-github-pages
-      //
-      // Este script toma la URL actual y convierte la ruta y los parámetros
-      // en un parámetro de consulta en la página raíz.
-      //
-      // Ejemplo: https://user.github.io/repo/experiencia?a=1
-      // se convierte en: https://user.github.io/repo/?p=/experiencia&q=a=1
-      //
-      // MODIFICACIÓN: Se añade una comprobación para ignorar las rutas que parecen
-      // ser archivos (contienen un punto en el último segmento), para evitar que
-      // las peticiones a assets como CSS o JS sean redirigidas incorrectamente.
-      var path = window.location.pathname;
-      if (path.split('/').pop().indexOf('.') > -1) {
-        // Es probable que sea una petición a un archivo, no hacer nada.
-        // El navegador mostrará su propio error 404 en la consola.
-      } else {
-        var l = window.location;
-        // `pathSegmentsToKeep` es 1 si tu sitio está en un subdirectorio como `user.github.io/repo-name/`
-        // y 0 si estás usando un dominio personalizado (ej. pedroubedasanchez.es).
-        // Para un dominio personalizado, la ruta base es siempre la raíz ('/').
-        var pathSegmentsToKeep = 0;
-        var basePath = l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/';
-
-        l.replace(
-          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + basePath + '?p=/' +
-          l.pathname.slice(basePath.length).replace(/&/g, '~and~') +
-          (l.search ? '&q=' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-          l.hash
-        );
-      }
+      /**
+       * Script de redirección para Single Page Apps (SPA) en GitHub Pages.
+       * Fuente: https://github.com/rafgraph/spa-github-pages (versión simplificada)
+       *
+       * Cuando se accede a una ruta como `dominio.com/experiencia`, GitHub Pages sirve este 404.html.
+       * Este script toma la ruta (`/experiencia`), la codifica y redirige a la página principal
+       * con la ruta como un parámetro de búsqueda: `dominio.com/?p=/experiencia`.
+       *
+       * El script principal (main.js) en la página de inicio detectará este parámetro,
+       * limpiará la URL y cargará el contenido de la sección 'experiencia'.
+       */
+      const location = window.location;
+      const redirectUrl = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') +
+                        '/?p=' + encodeURIComponent(location.pathname) +
+                        (location.search ? '&q=' + encodeURIComponent(location.search.substring(1)) : '') +
+                        location.hash;
+      location.replace(redirectUrl);
     </script>
   </head>
   <body></body>
