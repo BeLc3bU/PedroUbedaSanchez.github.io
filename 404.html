@@ -23,15 +23,14 @@
       } else {
         var l = window.location;
         // `pathSegmentsToKeep` es 1 si tu sitio está en un subdirectorio como `user.github.io/repo-name/`
-        // y 0 si estás usando un dominio personalizado como `pedroubedasanchez.es`.
-        // Como este proyecto usa un dominio personalizado (o se sirve desde la raíz), el valor debe ser 0.
-        // Esto asegura que una ruta como /experiencia se convierta en /?p=/experiencia.
-        var pathSegmentsToKeep = 0; 
+        // y 0 si estás usando un dominio personalizado (ej. pedroubedasanchez.es).
+        // Para un dominio personalizado, la ruta base es siempre la raíz ('/').
+        var pathSegmentsToKeep = 0;
+        var basePath = l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/';
 
         l.replace(
-          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-          l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?p=/' +
-          l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + basePath + '?p=/' +
+          l.pathname.slice(basePath.length).replace(/&/g, '~and~') +
           (l.search ? '&q=' + l.search.slice(1).replace(/&/g, '~and~') : '') +
           l.hash
         );
