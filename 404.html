@@ -4,23 +4,19 @@
     <meta charset="utf-8">
     <title>Redirigiendo...</title>
     <script type="text/javascript">
-      /**
-       * Script de redirección para Single Page Apps (SPA) en GitHub Pages.
-       * Fuente: https://github.com/rafgraph/spa-github-pages (versión simplificada)
-       *
-       * Cuando se accede a una ruta como `dominio.com/experiencia`, GitHub Pages sirve este 404.html.
-       * Este script toma la ruta (`/experiencia`), la codifica y redirige a la página principal
-       * con la ruta como un parámetro de búsqueda: `dominio.com/?p=/experiencia`.
-       *
-       * El script principal (main.js) en la página de inicio detectará este parámetro,
-       * limpiará la URL y cargará el contenido de la sección 'experiencia'.
-       */
-      const location = window.location;
-      const redirectUrl = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') +
-                        '/?p=' + encodeURIComponent(location.pathname) +
-                        (location.search ? '&q=' + encodeURIComponent(location.search.substring(1)) : '') +
-                        location.hash;
-      location.replace(redirectUrl);
+      // Simple y robusto script de redirección para SPA en GitHub Pages.
+      // 1. Obtiene la ruta a la que se intentó acceder (ej. "/experiencia").
+      const path = window.location.pathname;
+
+      // 2. Construye la URL de redirección a la raíz, pasando la ruta original como parámetro 'p'.
+      // Ejemplo: https://dominio.com/?p=/experiencia
+      const redirect = '/?p=' + encodeURIComponent(path) + window.location.search + window.location.hash;
+
+      // 3. Reemplaza el historial para que el botón "atrás" funcione correctamente.
+      window.history.replaceState(null, '', redirect);
+
+      // 4. Recarga la página en la nueva URL. El main.js se encargará del resto.
+      window.location.reload();
     </script>
   </head>
   <body></body>
