@@ -1,4 +1,4 @@
-const CACHE_NAME = 'curriculum-spa-cache-v7';
+const CACHE_NAME = 'curriculum-spa-cache-v8';
 // Lista de archivos que componen el "cascarón" de la aplicación.
 const APP_SHELL_URLS = [
   '/',
@@ -17,14 +17,7 @@ const APP_SHELL_URLS = [
   '/favicon-16x16.png',
   '/site.webmanifest',
   // Página de CV para que esté disponible offline
-  '/curriculum.html',
-  '/foto.webp',
-  // Añadir las páginas parciales para una experiencia offline completa
-  '/experiencia.html',
-  '/habilidades.html',
-  '/formacion.html',
-  '/otros-datos.html',
-  '/contacto.html'
+  '/curriculum.html'
 ];
 
 /**
@@ -83,7 +76,9 @@ self.addEventListener('fetch', event => {
 
   // Estrategia para todos los demás recursos (CSS, JS, imágenes, fuentes)
   // "Cache First": si está en caché, se sirve desde ahí. Si no, se va a la red.
-  if (APP_SHELL_URLS.includes(url.pathname) || url.pathname.startsWith('/assets/')) {
+  // No interceptamos las peticiones de parciales HTML (ej. /experiencia.html),
+  // esas las gestiona el fetch del router en main.js.
+  if (APP_SHELL_URLS.includes(url.pathname) || url.pathname.startsWith('/assets/') || /\.(webp|png|jpg|svg)$/.test(url.pathname)) {
     event.respondWith(
       caches.match(request).then(cachedResponse => {
         if (cachedResponse) {
@@ -91,7 +86,8 @@ self.addEventListener('fetch', event => {
         }
         return fetch(request).then(networkResponse => {
           // Opcional: guardar en caché los nuevos assets que se encuentren
-          // caches.open(CACHE_NAME).then(cache => cache.put(request, networkResponse.clone()));
+          const cacheableResponse = networkResponse.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(request, cacheableResponse));
           return networkResponse;
         });
       })
