@@ -1,4 +1,4 @@
-const CACHE_NAME = 'curriculum-spa-cache-v5';
+const CACHE_NAME = 'curriculum-spa-cache-v7';
 // Lista de archivos que componen el "cascarón" de la aplicación.
 const APP_SHELL_URLS = [
   '/',
