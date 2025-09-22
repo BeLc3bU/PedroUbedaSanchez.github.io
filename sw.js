@@ -1,4 +1,4 @@
-const CACHE_NAME = 'curriculum-spa-cache-v4';
+const CACHE_NAME = 'curriculum-spa-cache-v5';
 // Lista de archivos que componen el "cascarón" de la aplicación.
 const APP_SHELL_URLS = [
   '/',
@@ -97,10 +97,4 @@ self.addEventListener('fetch', event => {
       })
     );
   }
-});
-
-      // Devuelve la respuesta de la caché si existe, si no, espera a la respuesta de la red.
-      return cachedResponse || fetchedResponse;
-    })
-  );
 });
