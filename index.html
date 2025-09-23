@@ -64,6 +64,22 @@
   <style>
     body { opacity: 0; }
   </style>
+  <!-- Animación para mensajes de error del formulario -->
+  <style>
+    .form-error-active {
+      animation: fadeInSlideUp 0.3s ease-out forwards;
+    }
+    @keyframes fadeInSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
   <!-- Asynchronously load the full stylesheet -->
   <link href="/assets/css/style.min.css" rel="stylesheet"/>
   <!-- reCAPTCHA v3 script, cargado de forma asíncrona para no bloquear el renderizado -->

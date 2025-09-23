@@ -214,5 +214,14 @@
       Para una mejor experiencia, activa JavaScript en tu navegador.
     </div>
     </noscript>
+    <script>
+      // Script autónomo para la página de impresión
+      document.addEventListener('DOMContentLoaded', () => {
+        document.body.style.opacity = '1';
+        // Descomenta la siguiente línea si quieres que el diálogo de impresión
+        // se abra automáticamente al cargar la página.
+        // window.print();
+      });
+    </script>
 </body>
 </html>

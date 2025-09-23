@@ -73,15 +73,15 @@
                         <div class="flex-grow border-t border-slate-200"></div>
                     </div>
 
-                    <div id="contact-form-wrapper">
-                        <form id="contact-form" novalidate>
+                    <div id="contact-form-wrapper" class="max-w-xl mx-auto">
+                        <form id="contact-form">
                             <!-- Endpoint de FormSubmit para AJAX -->
                             <input name="_formsubmit_endpoint" type="hidden" value="https://formsubmit.co/ajax/contacto@pedroubedasanchez.es"/>
                             <!-- Asunto del correo -->
                             <input name="_subject" type="hidden" value="Nuevo mensaje desde pedroubedasanchez.es"/>
                             <!-- reCAPTCHA v3 Response -->
                             <input id="recaptcha-response" name="g-recaptcha-response" type="hidden"/>
-    
+                            <!-- Campos del formulario -->
                             <div class="mb-4">
                                 <label for="name" class="block text-slate-700 font-bold mb-2">Nombre</label>
                                 <input type="text" id="name" name="name" required class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" aria-describedby="name-error">
@@ -98,8 +98,13 @@
                                 <p id="message-error" class="text-red-500 text-sm mt-1" aria-live="polite"></p>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="bg-orange-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-800 transition-colors duration-300 shadow-lg transform hover:scale-105 disabled:bg-slate-400 disabled:scale-100">
-                                    Enviar mensaje
+                                <button type="submit" class="w-48 flex items-center justify-center bg-orange-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-800 transition-colors duration-300 shadow-lg transform hover:scale-105 disabled:bg-slate-400 disabled:scale-100 disabled:cursor-not-allowed">
+                                    <span class="button-text">Enviar mensaje</span>
+                                    <!-- Spinner de carga (oculto por defecto) -->
+                                    <svg class="animate-spin h-5 w-5 text-white hidden button-spinner" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
                                 </button>
                                 <p id="form-general-error" class="text-red-500 text-sm mt-4" aria-live="polite"></p>
                             </div>
