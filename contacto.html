@@ -94,8 +94,11 @@
                             </div>
                             <div class="mb-6">
                                 <label for="message" class="block text-slate-700 font-bold mb-2">Mensaje</label>
-                                <textarea id="message" name="message" rows="5" required class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" aria-describedby="message-error"></textarea>
-                                <p id="message-error" class="text-red-500 text-sm mt-1" aria-live="polite"></p>
+                                <textarea id="message" name="message" rows="5" required maxlength="1000" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" aria-describedby="message-error char-counter"></textarea>
+                                <div class="flex justify-between items-start mt-1">
+                                    <p id="message-error" class="text-red-500 text-sm" aria-live="polite"></p>
+                                    <p id="char-counter" class="text-sm text-slate-500 ml-auto transition-colors" aria-live="polite">0 / 1000</p>
+                                </div>
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="w-48 flex items-center justify-center bg-orange-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-800 transition-colors duration-300 shadow-lg transform hover:scale-105 disabled:bg-slate-400 disabled:scale-100 disabled:cursor-not-allowed">

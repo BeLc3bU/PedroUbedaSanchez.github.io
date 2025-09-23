@@ -80,6 +80,29 @@
       }
     }
   </style>
+  <!-- Estilos para el "esqueleto" de carga -->
+  <style>
+    .skeleton {
+      background-color: #e5e7eb; /* gray-200 */
+      border-radius: 0.375rem; /* rounded-lg */
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    @keyframes pulse {
+      50% {
+        opacity: .5;
+      }
+    }
+  </style>
+  <!-- Animación de fundido para el contenido nuevo -->
+  <style>
+    .content-fade-in {
+      animation: contentFadeIn 0.4s ease-out;
+    }
+    @keyframes contentFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
   <!-- Asynchronously load the full stylesheet -->
   <link href="/assets/css/style.min.css" rel="stylesheet"/>
   <!-- reCAPTCHA v3 script, cargado de forma asíncrona para no bloquear el renderizado -->

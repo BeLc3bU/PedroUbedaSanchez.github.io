@@ -60,39 +60,52 @@ self.addEventListener('fetch', event => {
   const { request } = event;
   const url = new URL(request.url);
 
-  // Estrategia "Network falling back to cache" para peticiones de navegación.
-  // Esto es crucial para que la SPA funcione correctamente.
-  // 1. Intenta ir a la red. Esto permite que la redirección 404 de GitHub Pages funcione cuando hay conexión.
-  // 2. Si la red falla (offline), sirve el 'index.html' principal desde la caché.
-  //    La SPA se cargará y el router se encargará de mostrar el contenido correcto según la URL.
+  // Ignorar peticiones que no son del mismo origen (ej. Google Analytics, reCAPTCHA).
+  if (url.origin !== self.origin) {
+    return;
+  }
+
+  // 1. Peticiones de navegación (el documento principal):
+  // Estrategia: Network falling back to cache. Intenta la red primero, si falla (offline), sirve el index.html desde la caché.
   if (request.mode === 'navigate') {
     event.respondWith(
       fetch(request).catch(() => {
         console.log('[Service Worker] Fallo de red en navegación. Sirviendo index.html desde caché.');
-        return caches.match('/'); // Sirve la página principal como fallback.
+        return caches.match('/');
       })
     );
     return;
   }
 
-  // Estrategia "Cache First" para los assets del App Shell y otros recursos estáticos.
-  // Si el recurso está en la caché, se sirve desde ahí para máxima velocidad.
-  // Si no, se va a la red, se sirve y se añade a la caché para futuras peticiones.
-  // Esto no intercepta las peticiones de parciales HTML (ej. /experiencia.html),
-  // ya que no están en la lista y son gestionadas por el fetch() del router en main.js.
-  if (APP_SHELL_URLS.includes(url.pathname) || url.pathname.startsWith('/assets/') || /\.(webp|png|jpg|jpeg|gif|svg|ico)$/.test(url.pathname)) {
+  // 2. Fragmentos de página HTML (ej. /experiencia.html):
+  // Estrategia: Stale-While-Revalidate. Sirve desde caché para velocidad, pero actualiza en segundo plano.
+  if (url.pathname.endsWith('.html') && !APP_SHELL_URLS.includes(url.pathname)) {
     event.respondWith(
-      caches.match(request).then(cachedResponse => {
-        if (cachedResponse) {
-          return cachedResponse;
-        }
-        // Si no está en caché, lo busca en la red y lo cachea para la próxima vez.
-        return fetch(request).then(networkResponse => {
-          const cacheableResponse = networkResponse.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(request, cacheableResponse));
-          return networkResponse;
+      caches.open(CACHE_NAME).then(cache => {
+        return cache.match(request).then(cachedResponse => {
+          const fetchPromise = fetch(request).then(networkResponse => {
+            cache.put(request, networkResponse.clone());
+            return networkResponse;
+          });
+          // Devuelve la respuesta cacheada si existe, si no, espera a la red.
+          return cachedResponse || fetchPromise;
         });
       })
     );
+    return;
   }
+
+  // 3. App Shell y assets estáticos (CSS, JS, fuentes, imágenes):
+  // Estrategia: Cache First. Si está en caché, se sirve desde ahí. Si no, se va a la red y se cachea.
+  event.respondWith(
+    caches.match(request).then(cachedResponse => {
+      return cachedResponse || fetch(request).then(networkResponse => {
+        const responseToCache = networkResponse.clone();
+        caches.open(CACHE_NAME).then(cache => {
+          cache.put(request, responseToCache);
+        });
+        return networkResponse;
+      });
+    })
+  );
 });
