@@ -67,11 +67,14 @@ self.addEventListener('fetch', event => {
 
   // 1. Peticiones de navegación (el documento principal):
   // Estrategia: Network falling back to cache. Intenta la red primero, si falla (offline), sirve el index.html desde la caché.
+  // Esto asegura que la SPA siempre pueda arrancar, incluso sin conexión.
   if (request.mode === 'navigate') {
     event.respondWith(
       fetch(request).catch(() => {
         console.log('[Service Worker] Fallo de red en navegación. Sirviendo index.html desde caché.');
-        return caches.match('/');
+        // Servimos el App Shell principal desde la caché para que la SPA pueda manejar la ruta.
+        // Usar '/' o '/index.html' es equivalente gracias al cacheo inicial.
+        return caches.match('/index.html');
       })
     );
     return;
