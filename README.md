@@ -16,13 +16,14 @@ Este repositorio contiene el código fuente del currículum interactivo de Pedro
   - Actualización dinámica de metaetiquetas (título, descripción, canónicas, Open Graph, Twitter Cards) para cada sección.
   - Datos estructurados (Schema.org) para mejorar la visibilidad en buscadores.
   - Sitemap y `robots.txt` para una correcta indexación.
+- **CV Imprimible:** Versión optimizada para impresión (`curriculum.html`) que incluye un código QR para acceder rápidamente al sitio web.
 - **Accesibilidad (a11y):**
   - Roles y atributos ARIA para una correcta interpretación por lectores de pantalla.
   - Gestión del foco en la navegación para no desorientar al usuario.
   - Contraste de color adecuado y navegación por teclado garantizada.
 - **Experiencia de Usuario (UX) Cuidada:** Interfaces de carga "esqueleto" (skeleton screens) para percepciones de carga más rápidas, animaciones de entrada sutiles al hacer scroll y ofuscación de datos de contacto para mayor privacidad.
 - **Rendimiento Optimizado:**
-  - Carga diferida (lazy loading) de imágenes.
+  - Carga optimizada de imágenes y precarga de assets críticos (LCP, fuentes).
   - Minificación de CSS y JavaScript en el proceso de build.
   - Uso de la API `View Transitions` para animaciones de página eficientes.
   - Preload de fuentes y assets críticos.
@@ -74,22 +75,23 @@ Sigue estos pasos para configurar el proyecto en tu entorno local.
 
 ## 🛠️ Scripts Disponibles
 
-Puedes ejecutar los siguientes comandos desde la raíz del proyecto:
+Puedes ejecutar los siguientes comandos desde la raíz del proyecto.
 
 - **`npm run dev`**
   Inicia un servidor de desarrollo local con BrowserSync, vigila los cambios en los archivos y recarga el navegador automáticamente. **Este es el comando que usarás la mayor parte del tiempo.**
 
 - **`npm run build`**
-  Genera la versión de producción del sitio en la carpeta `/dist`. Incluye la minificación de CSS y JavaScript y la copia de todos los assets necesarios.
+  Genera la versión de producción del sitio en la carpeta `dist/`. Incluye la minificación de CSS y JavaScript y la copia de todos los assets necesarios.
 
 - **`npm run serve`**
-  Inicia un servidor local para previsualizar el contenido de la carpeta `/dist` tal y como se vería en producción.
+  Inicia un servidor local para previsualizar el contenido de la carpeta `dist/` tal y como se vería en producción.
 
 - **`npm run cypress:open`**
   Abre el Test Runner interactivo de Cypress para ejecutar y depurar las pruebas de integración.
 
 - **`npm run cypress:run`**
   Ejecuta todas las pruebas de Cypress en modo "headless" (sin interfaz gráfica), ideal para entornos de integración continua.
+
 
 ## ☁️ Despliegue
 
@@ -101,7 +103,7 @@ El proyecto está configurado para ser desplegado en **GitHub Pages** con un dom
     ```
 
 2.  **Sube los cambios a GitHub:**
-    Asegúrate de que todos tus archivos, incluida la carpeta `/dist` actualizada, estén subidos a tu repositorio.
+    Asegúrate de que todos tus archivos, incluida la carpeta `dist/` actualizada, estén subidos a tu repositorio.
 
 3.  **Configura GitHub Pages:**
     - En tu repositorio, ve a `Settings` > `Pages`.
@@ -121,7 +123,7 @@ El proyecto está configurado para ser desplegado en **GitHub Pages** con un dom
 - **Cypress:** Framework para pruebas End-to-End.
 - **BrowserSync:** Servidor de desarrollo con recarga en vivo.
 - **npm-run-all & onchange:** Utilidades para orquestar los scripts de build y watch.
-- **Service Worker API:** Para capacidades offline y cacheo.
+- **Service Worker API:** Para capacidades offline y estrategias de caché avanzadas.
 - **View Transitions API:** Para animaciones de página nativas.
 
 ---
