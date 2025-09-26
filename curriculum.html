@@ -61,6 +61,14 @@
             padding-bottom: 0.5rem;
             margin-bottom: 1rem;
         }
+        /* Asegura que el QR se renderice con bordes nítidos */
+        .qr-code-image {
+            image-rendering: -moz-crisp-edges;         /* Firefox */
+            image-rendering: -webkit-optimize-contrast;/* Webkit (Chrome, Safari) */
+            image-rendering: pixelated;                /* Chrome 41+ */
+            image-rendering: crisp-edges;              /* Estándar obsoleto */
+            -ms-interpolation-mode: nearest-neighbor;  /* IE */
+        }
     </style>
     <link href="/assets/css/style.min.css" rel="stylesheet"/>
     <!-- Google Tag Manager -->
@@ -76,27 +84,37 @@
     <noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-NGDK68DN" style="display:none;visibility:hidden" width="0"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <!-- Header Section -->
-    <header class="flex flex-row items-center gap-6 mb-8">
-        <div class="flex-shrink-0">
-            <picture>
-                <source srcset="/foto.webp" type="image/webp"/>
-                <img src="/foto.jpg" alt="Pedro Úbeda Sánchez" class="w-28 h-36 rounded-full object-cover shadow-lg" decoding="async" loading="eager" width="112" height="144"/>
-            </picture>
-        </div>
-        <div class="flex-grow">
-            <h1 class="text-3xl font-bold text-orange-900">Pedro Úbeda Sánchez</h1>
-            <p class="text-xl font-medium text-slate-700">Técnico especialista en informática, aviónica y administración</p>
-            <div class="mt-4 text-slate-600 flex flex-wrap gap-x-4 gap-y-1 text-sm">
-                <p><span aria-hidden="true">📞</span> +34 635 945 779</p>
-                <a href="mailto:contacto@pedroubedasanchez.es" class="hover:text-orange-700"><span aria-hidden="true">✉️</span> contacto@pedroubedasanchez.es</a>
-                <a href="https://linkedin.com/in/pubesan" target="_blank" rel="noopener noreferrer" class="hover:text-orange-700"><span aria-hidden="true">🔗</span> linkedin.com/in/pubesan</a>
+    <header class="flex flex-row items-center justify-between gap-6 mb-8">
+        <div class="flex items-center gap-6">
+            <div class="flex-shrink-0">
+                <picture>
+                    <source srcset="/foto-112.webp" type="image/webp"/>
+                    <img src="/foto-384.jpg" alt="Pedro Úbeda Sánchez" class="w-28 h-36 rounded-full object-cover shadow-lg" decoding="async" loading="eager" width="112" height="144"/>
+                </picture>
             </div>
+            <div class="flex-grow">
+                <h1 class="text-3xl font-bold text-orange-900">Pedro Úbeda Sánchez</h1>
+                <p class="text-xl font-medium text-slate-700">Técnico especialista en informática, aviónica y administración</p>
+                <div class="mt-4 text-slate-600 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+                    <p><span aria-hidden="true">📞</span><span class="sr-only">Teléfono:</span> +34 635 945 779</p>
+                    <a href="mailto:contacto@pedroubedasanchez.es" class="hover:text-orange-700"><span aria-hidden="true">✉️</span><span class="sr-only">Correo electrónico:</span> contacto@pedroubedasanchez.es</a>
+                    <a href="https://linkedin.com/in/pubesan" target="_blank" rel="noopener noreferrer" class="hover:text-orange-700" aria-label="Visitar perfil de LinkedIn (se abre en una nueva pestaña)"><span aria-hidden="true">🔗</span> linkedin.com/in/pubesan</a>
+                </div>
+            </div>
+        </div>
+        <div class="flex-shrink-0">
+            <a href="https://pedroubedasanchez.es" target="_blank" rel="noopener noreferrer" title="Visitar sitio web">
+                <picture>
+                    <source srcset="/qr-code.svg" type="image/svg+xml"/>
+                    <img src="/qr-code.png" alt="Código QR para pedroubedasanchez.es" class="w-24 h-24 qr-code-image"/>
+                </picture>
+            </a>
         </div>
     </header>
 
     <!-- About Me Section -->
     <section class="mb-6">
-        <h2 class="text-xl font-bold section-header text-orange-900">Sobre Mí</h2>
+        <h2 id="sobre-mi" class="text-xl font-bold section-header text-orange-900">Sobre Mí</h2>
         <p class="text-slate-600 text-sm">
             Técnico especialista con más de dos décadas de experiencia en el mantenimiento, diagnóstico y resolución de averías en equipos informáticos y de aviónica. Mi trayectoria en las Fuerzas Armadas me ha proporcionado sólidos valores como la disciplina, el compromiso y el trabajo en equipo, habilidades que aplico en mi día a día. En constante formación y motivado para asumir futuros retos que supongan un desarrollo profesional en mi carrera.
         </p>
@@ -104,7 +122,7 @@
 
     <!-- Experience Section -->
     <section class="mb-6">
-        <h2 class="text-xl font-bold section-header text-orange-900">Experiencia Profesional</h2>
+        <h2 id="experiencia" class="text-xl font-bold section-header text-orange-900">Experiencia Profesional</h2>
         <div class="space-y-4 experience-section">
             <div>
                 <h3 class="font-semibold text-slate-900">Militar (Informático/Aviónico) <span class="font-normal text-slate-500 float-right">2008 - 2025</span></h3>
@@ -149,7 +167,7 @@
 
     <!-- Grid for lower sections -->
     <section class="mb-6">
-        <h2 class="text-xl font-bold section-header text-orange-900">Habilidades</h2>
+        <h2 id="habilidades" class="text-xl font-bold section-header text-orange-900">Habilidades</h2>
         <div class="text-sm space-y-4">
             <div>
                 <h3 class="font-semibold text-slate-700">Herramientas y conocimientos</h3>
@@ -171,7 +189,7 @@
     </section>
 
     <section class="mb-6">
-        <h2 class="text-xl font-bold section-header text-orange-900">Formación y Logros</h2>
+        <h2 id="formacion" class="text-xl font-bold section-header text-orange-900">Formación y Logros</h2>
         <div class="text-sm space-y-4">
             <h3 class="font-semibold text-slate-700">Formación Académica</h3>
             <ul class="list-disc list-inside text-slate-600 text-sm">
@@ -189,7 +207,7 @@
     </section>
 
     <section>
-        <h2 class="text-xl font-bold section-header text-orange-900">Otros Datos</h2>
+        <h2 id="otros-datos" class="text-xl font-bold section-header text-orange-900">Otros Datos</h2>
         <div id="otros-datos-print-grid" class="grid grid-cols-3 gap-x-8 text-sm">
             <div>
                 <h3 class="font-semibold text-slate-700">Disponibilidad</h3>

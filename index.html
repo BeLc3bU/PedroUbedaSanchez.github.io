@@ -103,6 +103,20 @@
       to { opacity: 1; }
     }
   </style>
+  <!-- Estilos de accesibilidad (sr-only) y transiciones de página -->
+  <style>
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
+    .content-fade-out {
+      animation: contentFadeOut 0.15s ease-in forwards;
+    }
+    @keyframes contentFadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+    .content-fade-in {
+      animation: contentFadeIn 0.3s ease-out;
+    }
+  </style>
   <!-- Asynchronously load the full stylesheet -->
   <link href="/assets/css/style.min.css" rel="stylesheet"/>
   <!-- reCAPTCHA v3 script, cargado de forma asíncrona para no bloquear el renderizado -->
@@ -156,6 +170,8 @@
   <a class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-4 focus:left-4 focus:bg-white focus:p-3 focus:rounded-lg focus:shadow-lg" href="#main-content">
    Saltar al contenido principal
   </a>
+  <!-- Contenedor para anuncios de accesibilidad (lectores de pantalla) -->
+  <div id="a11y-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
   <header class="bg-stone-100/80 backdrop-blur-md sticky top-0 z-50 shadow-sm" id="header"></header>
   <main class="container mx-auto px-6 py-12 flex-grow" id="main-content">
    <section class="mb-24 flex flex-col md:flex-row items-center md:items-start gap-y-8" id="about">
@@ -184,10 +200,10 @@
         </a>
      </div>
      <div class="mt-8 text-center md:text-left">
-      <button id="print-cv-button" class="inline-block bg-orange-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-800 transition-colors duration-300 shadow-lg transform hover:scale-105 animate-pulse" type="button">
+      <a id="print-cv-button" class="inline-block bg-orange-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-800 transition-colors duration-300 shadow-lg transform hover:scale-105 animate-pulse">
        <span aria-hidden="true">📄</span>
        Descargar CV
-      </button>
+      </a>
      </div>
     </div>
    </section>

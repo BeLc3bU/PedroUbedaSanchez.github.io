@@ -1,23 +1,33 @@
-const CACHE_NAME = 'curriculum-spa-cache-v9'; // Incrementa la versión para forzar la actualización
+const CACHE_NAME = 'curriculum-spa-cache-v11'; // Incrementa la versión para forzar la actualización
 // Lista de archivos que componen el "App Shell", la estructura básica de la aplicación.
 const APP_SHELL_URLS = [
   '/',
   '/index.html',
   '/assets/css/style.min.css',
   '/assets/js/main.min.js',
+  '/experiencia.html',
+  '/habilidades.html',
+  '/formacion.html',
+  '/otros-datos.html',
+  '/contacto.html',
+  // Componentes reutilizables
   '/header.html',
   '/footer.html',
   '/assets/fonts/inter-v20-latin-regular.woff2',
   '/assets/fonts/inter-v20-latin-700.woff2',
   '/foto-384.webp',
   '/foto-320.webp',
+  '/foto-112.webp', // Añadida para el CV imprimible
+  '/foto.jpg', // Fallback para el CV imprimible
   '/favicon.ico',
   '/apple-touch-icon.png',
   '/favicon-32x32.png',
   '/favicon-16x16.png',
   '/site.webmanifest',
   // Página de CV para que esté disponible offline al hacer clic en "Descargar"
-  '/curriculum.html'
+  '/curriculum.html',
+  '/qr-code.svg',
+  '/qr-code.png' // Añadido el fallback del QR
 ];
 
 /**
@@ -30,13 +40,20 @@ self.addEventListener('install', event => {
       console.log('[Service Worker] Cacheando el App Shell');
       return cache.addAll(APP_SHELL_URLS);
     })
-  );
+  ).then(() => self.skipWaiting()); // Forzar la activación del nuevo SW
+  
 });
 
 /**
  * Durante la activación, se limpian las cachés antiguas.
  */
 self.addEventListener('activate', event => {
+  // Habilitar la precarga de navegación para mejorar el rendimiento.
+  // Esto permite que el navegador comience a buscar la página de navegación
+  // mientras el Service Worker se está iniciando.
+  if (self.registration.navigationPreload) {
+    event.waitUntil(self.registration.navigationPreload.enable());
+  }
   console.log('[Service Worker] Activando...');
   event.waitUntil(
     caches.keys().then(cacheNames => {
@@ -57,58 +74,49 @@ self.addEventListener('activate', event => {
  * Intercepta las peticiones y sirve desde la caché si es posible (estrategia Stale-While-Revalidate).
  */
 self.addEventListener('fetch', event => {
-  const { request } = event;
-  const url = new URL(request.url);
+    const { request } = event;
+    const url = new URL(request.url);
 
-  // Ignorar peticiones que no son del mismo origen (ej. Google Analytics, reCAPTCHA).
-  if (url.origin !== self.origin) {
-    return;
-  }
+    // Ignorar peticiones que no son del mismo origen o no son GET.
+    if (url.origin !== self.origin || request.method !== 'GET') {
+        return;
+    }
 
-  // 1. Peticiones de navegación (el documento principal):
-  // Estrategia: Network falling back to cache. Intenta la red primero, si falla (offline), sirve el index.html desde la caché.
-  // Esto asegura que la SPA siempre pueda arrancar, incluso sin conexión.
-  if (request.mode === 'navigate') {
+    // 1. Peticiones de navegación (documento principal)
+    if (request.mode === 'navigate') {
+        event.respondWith((async () => {
+            try {
+                const preloadResponse = await event.preloadResponse;
+                if (preloadResponse) return preloadResponse;
+                return await fetch(request);
+            } catch (error) {
+                console.log('[Service Worker] Fallo de red en navegación, sirviendo index.html desde caché.');
+                return caches.match('/index.html');
+            }
+        })());
+        return;
+    }
+
+    // 2. Contenido HTML de las sub-páginas (Stale-While-Revalidate)
+    if (url.pathname.endsWith('.html')) {
+        event.respondWith(
+            caches.match(request).then(cachedResponse => {
+                const fetchPromise = fetch(request).then(networkResponse => {
+                    caches.open(CACHE_NAME).then(cache => {
+                        cache.put(request, networkResponse.clone());
+                    });
+                    return networkResponse;
+                });
+                return cachedResponse || fetchPromise;
+            })
+        );
+        return;
+    }
+
+    // 3. Assets estáticos (CSS, JS, imágenes, fuentes) - Cache First
     event.respondWith(
-      fetch(request).catch(() => {
-        console.log('[Service Worker] Fallo de red en navegación. Sirviendo index.html desde caché.');
-        // Servimos el App Shell principal desde la caché para que la SPA pueda manejar la ruta.
-        // Usar '/' o '/index.html' es equivalente gracias al cacheo inicial.
-        return caches.match('/index.html');
-      })
+        caches.match(request).then(cachedResponse => {
+            return cachedResponse || fetch(request);
+        })
     );
-    return;
-  }
-
-  // 2. Fragmentos de página HTML (ej. /experiencia.html):
-  // Estrategia: Stale-While-Revalidate. Sirve desde caché para velocidad, pero actualiza en segundo plano.
-  if (url.pathname.endsWith('.html') && !APP_SHELL_URLS.includes(url.pathname)) {
-    event.respondWith(
-      caches.open(CACHE_NAME).then(cache => {
-        return cache.match(request).then(cachedResponse => {
-          const fetchPromise = fetch(request).then(networkResponse => {
-            cache.put(request, networkResponse.clone());
-            return networkResponse;
-          });
-          // Devuelve la respuesta cacheada si existe, si no, espera a la red.
-          return cachedResponse || fetchPromise;
-        });
-      })
-    );
-    return;
-  }
-
-  // 3. App Shell y assets estáticos (CSS, JS, fuentes, imágenes):
-  // Estrategia: Cache First. Si está en caché, se sirve desde ahí. Si no, se va a la red y se cachea.
-  event.respondWith(
-    caches.match(request).then(cachedResponse => {
-      return cachedResponse || fetch(request).then(networkResponse => {
-        const responseToCache = networkResponse.clone();
-        caches.open(CACHE_NAME).then(cache => {
-          cache.put(request, responseToCache);
-        });
-        return networkResponse;
-      });
-    })
-  );
 });
