@@ -1,4 +1,4 @@
-const CACHE_NAME = 'curriculum-spa-cache-v11'; // Incrementa la versión para forzar la actualización
+const CACHE_NAME = 'curriculum-spa-cache-v12'; // Incrementa la versión para forzar la actualización
 // Lista de archivos que componen el "App Shell", la estructura básica de la aplicación.
 const APP_SHELL_URLS = [
   '/',
