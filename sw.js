@@ -97,26 +97,36 @@ self.addEventListener('fetch', event => {
         return;
     }
 
-    // 2. Contenido HTML de las sub-páginas (Stale-While-Revalidate)
-    if (url.pathname.endsWith('.html')) {
+    // 2. Estrategia Stale-While-Revalidate para todos los demás assets (HTML, CSS, JS, imágenes, etc.)
+    // Esto asegura que el usuario vea el contenido cacheado al instante,
+    // mientras se busca una versión nueva en segundo plano para la próxima visita.
+    // Es ideal para assets que pueden cambiar entre despliegues.
+    if (request.destination === 'document' || 
+        request.destination === 'style' || 
+        request.destination === 'script' || 
+        request.destination === 'image' ||
+        request.destination === 'font') {
         event.respondWith(
             caches.match(request).then(cachedResponse => {
                 const fetchPromise = fetch(request).then(networkResponse => {
+                    // Si la petición a la red tiene éxito, actualizamos la caché.
                     caches.open(CACHE_NAME).then(cache => {
                         cache.put(request, networkResponse.clone());
                     });
                     return networkResponse;
                 });
+                // Devuelve la respuesta cacheada si existe, si no, espera a la red.
+                // La próxima vez, la versión de red ya estará en caché.
                 return cachedResponse || fetchPromise;
             })
         );
         return;
     }
-
-    // 3. Assets estáticos (CSS, JS, imágenes, fuentes) - Cache First
+    
+    // 3. Estrategia Cache First (con fallback a red) para cualquier otra cosa.
+    // Esto es un "catch-all" seguro.
     event.respondWith(
-        caches.match(request).then(cachedResponse => {
-            return cachedResponse || fetch(request);
-        })
+        caches.match(request).then(cachedResponse => cachedResponse || fetch(request))
     );
+
 });

@@ -8,25 +8,31 @@ Este repositorio contiene el código fuente del currículum interactivo de Pedro
 
 ## ✨ Características Principales
 
-- **Single-Page Application (SPA):** Navegación fluida y sin recargas de página gracias a un router personalizado basado en la History API.
-- **Progressive Web App (PWA):** Instalable en dispositivos de escritorio y móviles. Utiliza un Service Worker con estrategia *Stale-While-Revalidate* para los contenidos y *Cache First* para el App Shell, garantizando funcionamiento offline y cargas ultrarrápidas.
+- **Single-Page Application (SPA) Avanzada:** Navegación instantánea sin recargas de página. Utiliza un router personalizado basado en la **History API** (`pushState`, `popstate`) y es totalmente compatible con el despliegue en servicios como GitHub Pages gracias a un script de redirección inteligente.
+- **Progressive Web App (PWA) Resiliente:** Instalable en escritorio y móvil. Utiliza un Service Worker con estrategias de caché avanzadas:
+  - **Network Falling Back to Cache** para la navegación principal, priorizando el contenido fresco.
+  - **Stale-While-Revalidate** para todos los assets (HTML, CSS, JS, imágenes), garantizando cargas instantáneas y actualizaciones en segundo plano.
 - **Diseño Responsivo:** Totalmente adaptable a dispositivos móviles, tabletas y ordenadores de escritorio, utilizando Tailwind CSS.
-- **Formulario de Contacto Seguro:** Integración con FormSubmit.co mediante AJAX para evitar recargas de página, protegido con Google reCAPTCHA v3 para prevenir spam. Incluye validación en tiempo real y feedback claro al usuario.
+- **Formulario de Contacto Robusto y Seguro:** Envío de datos mediante **AJAX (Fetch API)** sin recargar la página. Incluye:
+  - Protección anti-spam con **Google reCAPTCHA v3**.
+  - Validación de campos en tiempo real con feedback claro.
+  - Estados de carga, éxito y error para una UX impecable.
 - **SEO Optimizado para SPA:**
   - Actualización dinámica de metaetiquetas (título, descripción, canónicas, Open Graph, Twitter Cards) para cada sección.
   - Datos estructurados (Schema.org) para mejorar la visibilidad en buscadores.
   - Sitemap y `robots.txt` para una correcta indexación.
-- **CV Imprimible:** Versión optimizada para impresión (`curriculum.html`) que incluye un código QR para acceder rápidamente al sitio web.
+- **CV Imprimible sin Navegación:** Genera una vista de impresión del CV en un `iframe` oculto, permitiendo al usuario imprimir sin abandonar la página principal.
 - **Accesibilidad (a11y):**
   - Roles y atributos ARIA para una correcta interpretación por lectores de pantalla.
-  - Gestión del foco en la navegación para no desorientar al usuario.
+  - Gestión del foco inteligente en la navegación, menús y modales para no desorientar al usuario.
   - Contraste de color adecuado y navegación por teclado garantizada.
-- **Experiencia de Usuario (UX) Cuidada:** Interfaces de carga "esqueleto" (skeleton screens) para percepciones de carga más rápidas, animaciones de entrada sutiles al hacer scroll y ofuscación de datos de contacto para mayor privacidad.
+- **Experiencia de Usuario (UX) Superior:**
+  - **Transiciones de Página Fluidas:** Utiliza la **View Transitions API** con animaciones de deslizamiento direccional para una navegación contextual y moderna.
+  - **Interfaces de Carga "Esqueleto" (Skeleton Screens):** Muestra esqueletos de carga específicos para cada tipo de página, mejorando drásticamente la percepción de velocidad.
+  - Animaciones de entrada sutiles al hacer scroll y ofuscación de datos de contacto para mayor privacidad.
 - **Rendimiento Optimizado:**
   - Carga optimizada de imágenes y precarga de assets críticos (LCP, fuentes).
   - Minificación de CSS y JavaScript en el proceso de build.
-  - Uso de la API `View Transitions` para animaciones de página eficientes.
-  - Preload de fuentes y assets críticos.
 - **Pruebas Automatizadas:** Suite de pruebas de integración (End-to-End) con Cypress para verificar la navegación y la funcionalidad principal.
 
 ## 📂 Estructura del Proyecto
