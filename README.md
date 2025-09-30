@@ -8,32 +8,32 @@ Este repositorio contiene el código fuente del currículum interactivo de Pedro
 
 ## ✨ Características Principales
 
-- **Single-Page Application (SPA) Avanzada:** Navegación instantánea sin recargas de página. Utiliza un router personalizado basado en la **History API** (`pushState`, `popstate`) y es totalmente compatible con el despliegue en servicios como GitHub Pages gracias a un script de redirección inteligente.
+- **Single-Page Application (SPA) Real:** Navegación instantánea sin recargas. Utiliza un router personalizado basado en la **History API** (`pushState`, `popstate`) para URLs limpias (ej. `/experiencia`). Es totalmente compatible con servicios de hosting estático como GitHub Pages gracias a un script de redirección inteligente en `404.html`.
 - **Progressive Web App (PWA) Resiliente:** Instalable en escritorio y móvil. Utiliza un Service Worker con estrategias de caché avanzadas:
-  - **Network Falling Back to Cache** para la navegación principal, priorizando el contenido fresco.
+  - **Network First (con fallback a caché)** para la navegación principal, asegurando que el usuario siempre vea la versión más reciente si está online.
   - **Stale-While-Revalidate** para todos los assets (HTML, CSS, JS, imágenes), garantizando cargas instantáneas y actualizaciones en segundo plano.
 - **Diseño Responsivo:** Totalmente adaptable a dispositivos móviles, tabletas y ordenadores de escritorio, utilizando Tailwind CSS.
 - **Formulario de Contacto Robusto y Seguro:** Envío de datos mediante **AJAX (Fetch API)** sin recargar la página. Incluye:
   - Protección anti-spam con **Google reCAPTCHA v3**.
   - Validación de campos en tiempo real con feedback claro.
-  - Estados de carga, éxito y error para una UX impecable.
+  - Estados de carga (spinner), éxito y error para una experiencia de usuario impecable.
 - **SEO Optimizado para SPA:**
   - Actualización dinámica de metaetiquetas (título, descripción, canónicas, Open Graph, Twitter Cards) para cada sección.
   - Datos estructurados (Schema.org) para mejorar la visibilidad en buscadores.
   - Sitemap y `robots.txt` para una correcta indexación.
-- **CV Imprimible sin Navegación:** Genera una vista de impresión del CV en un `iframe` oculto, permitiendo al usuario imprimir sin abandonar la página principal.
+- **CV Imprimible sin Interrupciones:** Permite al usuario imprimir una versión optimizada del CV (`curriculum.html`) directamente desde la SPA a través de un `iframe` oculto, sin abandonar la página principal.
 - **Accesibilidad (a11y):**
   - Roles y atributos ARIA para una correcta interpretación por lectores de pantalla.
-  - Gestión del foco inteligente en la navegación, menús y modales para no desorientar al usuario.
+  - Gestión del foco inteligente en la navegación, menús y modales para no desorientar al usuario (incluyendo trampas de foco en el menú móvil).
   - Contraste de color adecuado y navegación por teclado garantizada.
 - **Experiencia de Usuario (UX) Superior:**
-  - **Transiciones de Página Fluidas:** Utiliza la **View Transitions API** con animaciones de deslizamiento direccional para una navegación contextual y moderna.
+  - **Transiciones de Página Nativas:** Utiliza la **View Transitions API** para crear animaciones de deslizamiento direccional (`slide-forward`, `slide-backward`) que dan contexto a la navegación.
   - **Interfaces de Carga "Esqueleto" (Skeleton Screens):** Muestra esqueletos de carga específicos para cada tipo de página, mejorando drásticamente la percepción de velocidad.
   - Animaciones de entrada sutiles al hacer scroll y ofuscación de datos de contacto para mayor privacidad.
 - **Rendimiento Optimizado:**
   - Carga optimizada de imágenes y precarga de assets críticos (LCP, fuentes).
   - Minificación de CSS y JavaScript en el proceso de build.
-- **Pruebas Automatizadas:** Suite de pruebas de integración (End-to-End) con Cypress para verificar la navegación y la funcionalidad principal.
+- **Pruebas Automatizadas:** Suite de pruebas de integración (End-to-End) con **Cypress** para verificar la navegación, la carga de contenido y la validación de formularios.
 
 ## 📂 Estructura del Proyecto
 

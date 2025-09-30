@@ -86,11 +86,14 @@ self.addEventListener('fetch', event => {
     if (request.mode === 'navigate') {
         event.respondWith((async () => {
             try {
+                // Intenta usar la respuesta precargada si está disponible.
                 const preloadResponse = await event.preloadResponse;
                 if (preloadResponse) return preloadResponse;
+                // Si no, ve a la red.
                 return await fetch(request);
             } catch (error) {
-                console.log('[Service Worker] Fallo de red en navegación, sirviendo index.html desde caché.');
+                // Si la red falla, sirve el 'cascarón' principal desde la caché.
+                console.log('[Service Worker] Fallo de red en navegación. Sirviendo App Shell desde caché.');
                 return caches.match('/index.html');
             }
         })());
@@ -122,11 +125,5 @@ self.addEventListener('fetch', event => {
         );
         return;
     }
-    
-    // 3. Estrategia Cache First (con fallback a red) para cualquier otra cosa.
-    // Esto es un "catch-all" seguro.
-    event.respondWith(
-        caches.match(request).then(cachedResponse => cachedResponse || fetch(request))
-    );
 
 });
