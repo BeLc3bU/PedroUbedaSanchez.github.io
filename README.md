@@ -132,6 +132,33 @@ El proyecto está configurado para ser desplegado en **GitHub Pages** con un dom
 - **Service Worker API:** Para capacidades offline y estrategias de caché avanzadas.
 - **View Transitions API:** Para animaciones de página nativas.
 
+## 🗺️ Roadmap y Futuras Mejoras
+
+Esta es una lista de características y mejoras planificadas para futuras versiones del proyecto, enfocadas en enriquecer la experiencia de usuario y la robustez técnica.
+
+- **[ ] 🌙 Modo Oscuro (Dark Mode):**
+  - Implementar una paleta de colores para modo oscuro que mantenga la legibilidad y la estética del sitio, utilizando las utilidades `dark:` de Tailwind CSS.
+  - Añadir un interruptor en la UI para que el usuario pueda alternar entre el modo claro y oscuro, guardando su preferencia.
+  - Respetar la preferencia del sistema operativo del usuario (`prefers-color-scheme`) como estado inicial.
+
+- **[ ] 🌐 Internacionalización (i18n):**
+  - Abstraer todo el contenido de texto (títulos, párrafos, etc.) a archivos de idioma (ej. `es.json`, `en.json`).
+  - Añadir un selector de idioma en la navegación para permitir a los visitantes cambiar entre español e inglés.
+  - Ajustar las metaetiquetas SEO y atributos `lang` dinámicamente según el idioma seleccionado.
+
+- **[ ] 🧪 Expansión de la Cobertura de Pruebas:**
+  - Integrar `cypress-axe` para ejecutar auditorías de accesibilidad automatizadas en cada página durante las pruebas E2E.
+  - Añadir pruebas de regresión visual para detectar cambios inesperados en la UI entre commits.
+  - Crear pruebas para flujos de usuario más complejos, como la funcionalidad de impresión del CV y la interacción completa con el menú móvil.
+
+- **[ ] ✨ Micro-interacciones y Mejoras de UX:**
+  - Añadir animaciones sutiles a elementos interactivos (botones, enlaces) al pasar el ratón o enfocarlos para mejorar el feedback.
+  - Animar la carga del gráfico de habilidades para una presentación más dinámica y atractiva.
+
+- **[ ] 🚀 Monitorización del Rendimiento en Producción:**
+  - Integrar un sistema de monitorización de Core Web Vitals para rastrear el rendimiento real que experimentan los usuarios.
+  - Configurar Lighthouse CI en un flujo de GitHub Actions para prevenir regresiones de rendimiento, accesibilidad y SEO en cada `push`.
+
 ---
 
 *Desarrollado con dedicación por Pedro Úbeda Sánchez.*
