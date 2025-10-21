@@ -1,4 +1,4 @@
-const CACHE_NAME = 'curriculum-spa-cache-v12'; // Incrementa la versión para forzar la actualización
+const CACHE_NAME = 'curriculum-spa-cache-v13'; // Incrementa la versión para forzar la actualización
 // Lista de archivos que componen el "App Shell", la estructura básica de la aplicación.
 const APP_SHELL_URLS = [
   '/',
@@ -39,6 +39,13 @@ self.addEventListener('install', event => {
     caches.open(CACHE_NAME).then(cache => {
       console.log('[Service Worker] Cacheando el App Shell');
       return cache.addAll(APP_SHELL_URLS);
+    }).then(() => {
+      // Envía un mensaje a los clientes para indicar que una nueva versión está lista.
+      self.clients.matchAll({ type: 'window' }).then(clients => {
+        clients.forEach(client => {
+          client.postMessage({ type: 'NEW_VERSION_INSTALLED' });
+        });
+      });
     })
   ).then(() => self.skipWaiting()); // Forzar la activación del nuevo SW
   
