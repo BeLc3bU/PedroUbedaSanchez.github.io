@@ -87,40 +87,58 @@
       border-radius: 0.375rem; /* rounded-lg */
       animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
     }
+    .dark .skeleton {
+      background-color: #374151; /* gray-700 */
+    }
     @keyframes pulse {
       50% {
         opacity: .5;
       }
     }
   </style>
-  <!-- Animación de fundido para el contenido nuevo -->
+  <!-- Estilos para View Transitions API (animaciones de página) -->
   <style>
-    .content-fade-in {
-      animation: contentFadeIn 0.4s ease-out;
+    @keyframes slide-from-right {
+      from { transform: translateX(30px); opacity: 0; }
     }
-    @keyframes contentFadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    @keyframes slide-to-left {
+      to { transform: translateX(-30px); opacity: 0; }
+    }
+    @keyframes slide-from-left {
+      from { transform: translateX(-30px); opacity: 0; }
+    }
+    @keyframes slide-to-right {
+      to { transform: translateX(30px); opacity: 0; }
+    }
+    .slide-forward::view-transition-old(root) { animation: 200ms ease-in both slide-to-left; }
+    .slide-forward::view-transition-new(root) { animation: 200ms ease-out 90ms both slide-from-right; }
+    .slide-backward::view-transition-old(root) { animation: 200ms ease-in both slide-to-right; }
+    .slide-backward::view-transition-new(root) { animation: 200ms ease-out 90ms both slide-from-left; }
+  </style>
+  <!-- Accesibilidad: Respetar la preferencia de movimiento reducido -->
+  <style>
+    @media (prefers-reduced-motion: reduce) {
+      /* Desactivar transiciones y animaciones suaves */
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      /* Desactivar View Transitions API */
+      ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
     }
   </style>
-  <!-- Estilos de accesibilidad (sr-only) y transiciones de página -->
+  <!-- Accesibilidad: Mejorar la visibilidad del foco del teclado -->
   <style>
-    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
-    .content-fade-out {
-      animation: contentFadeOut 0.15s ease-in forwards;
-    }
-    @keyframes contentFadeOut {
-      from { opacity: 1; }
-      to { opacity: 0; }
-    }
-    .content-fade-in {
-      animation: contentFadeIn 0.3s ease-out;
+    :focus-visible {
+      outline: 3px solid #f97316; /* orange-500 */
+      outline-offset: 2px;
+      border-radius: 2px; /* Opcional: para que el outline sea ligeramente redondeado */
     }
   </style>
   <!-- Asynchronously load the full stylesheet -->
   <link href="/assets/css/style.min.css" rel="stylesheet"/>
-  <!-- reCAPTCHA v3 script, cargado de forma asíncrona para no bloquear el renderizado -->
-  <script async="" defer="" src="https://www.google.com/recaptcha/api.js?render=6LcfUs8rAAAAAErA7-oGbid2aiEL8_iBy7jZ-WYl"></script>
   <!-- SEO: Structured Data (Schema.org) para Person -->
   <script type="application/ld+json">
   {
@@ -143,15 +161,15 @@
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-NGDK68DN');</script>
-  <!-- End Google Tag Manager -->
  </head>
- <body class="bg-stone-100 text-slate-800 flex flex-col min-h-screen">
+ <body class="bg-stone-100 text-slate-800 dark:bg-slate-900 dark:text-slate-200 flex flex-col min-h-screen transition-colors duration-300">
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-NGDK68DN" style="display:none;visibility:hidden" width="0"></iframe></noscript>
+  <!-- End Google Tag Manager -->
   <!-- Overlay del Menú Móvil -->
-  <div id="mobile-menu-overlay" class="hidden fixed inset-0 bg-stone-100/95 backdrop-blur-md z-[100] flex flex-col" aria-hidden="true">
+  <div id="mobile-menu-overlay" class="hidden fixed inset-0 bg-stone-100/95 dark:bg-slate-900/95 backdrop-blur-md z-[100] flex flex-col" aria-hidden="true">
       <div class="flex justify-end p-4">
-          <button id="mobile-menu-close-button" type="button" class="p-2 rounded-full hover:bg-stone-200 transition" aria-label="Cerrar menú">
+          <button id="mobile-menu-close-button" type="button" class="p-2 rounded-full hover:bg-stone-200 dark:hover:bg-slate-800 transition" aria-label="Cerrar menú">
               <svg class="w-8 h-8 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
           </button>
       </div>
@@ -166,13 +184,12 @@
         </ul>
       </div>
   </div>
-  <!-- End Google Tag Manager (noscript) -->
-  <a class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-4 focus:left-4 focus:bg-white focus:p-3 focus:rounded-lg focus:shadow-lg" href="#main-content">
+  <a class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-4 focus:left-4 bg-white dark:bg-slate-800 text-slate-800 dark:text-white focus:p-3 focus:rounded-lg focus:shadow-lg" href="#main-content">
    Saltar al contenido principal
   </a>
   <!-- Contenedor para anuncios de accesibilidad (lectores de pantalla) -->
   <div id="a11y-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
-  <header class="bg-stone-100/80 backdrop-blur-md sticky top-0 z-50 shadow-sm" id="header"></header>
+  <header class="bg-stone-100/80 dark:bg-slate-900/80 backdrop-blur-md sticky top-0 z-50 shadow-sm dark:shadow-slate-800" id="header"></header>
   <main class="container mx-auto px-6 py-12 flex-grow" id="main-content">
    <section class="mb-24 flex flex-col md:flex-row items-center md:items-start gap-y-8" id="about">
     <div class="flex-shrink-0">
@@ -186,19 +203,19 @@
       </picture>
     </div>
     <div class="flex-grow text-center md:text-left" id="about-text-block">
-     <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-orange-900">
+     <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-orange-900 dark:text-orange-400">
       Técnico especialista en informática, aviónica y administración
      </h1>
-     <p class="max-w-3xl mx-auto md:mx-0 text-lg text-slate-600">
+     <p class="max-w-3xl mx-auto md:mx-0 text-lg text-slate-600 dark:text-slate-400">
       Técnico especialista con más de dos décadas de experiencia en el mantenimiento, diagnóstico y resolución de averías en equipos informáticos y de aviónica. Mi trayectoria en las Fuerzas Armadas me ha proporcionado sólidos valores como la disciplina, el compromiso y el trabajo en equipo, habilidades que aplico en mi día a día. En constante formación y motivado para asumir futuros retos que supongan un desarrollo profesional en mi carrera.
      </p>
      <div class="mt-6 flex justify-center md:justify-start space-x-4">
-        <a href="https://www.linkedin.com/in/pubesan" target="_blank" rel="noopener noreferrer" aria-label="Visitar perfil de LinkedIn" title="LinkedIn" class="text-slate-500 hover:text-orange-700 transition-colors duration-300">
+        <a href="https://www.linkedin.com/in/pubesan" target="_blank" rel="noopener noreferrer" aria-label="Visitar perfil de LinkedIn" title="LinkedIn" class="text-slate-500 dark:text-slate-400 hover:text-orange-700 dark:hover:text-orange-400 transition-colors duration-300">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
             </svg>
         </a>
-        <a href="https://github.com/BeLc3bU" target="_blank" rel="noopener noreferrer" aria-label="Visitar perfil de GitHub" title="GitHub" class="text-slate-500 hover:text-orange-700 transition-colors duration-300">
+        <a href="https://github.com/BeLc3bU" target="_blank" rel="noopener noreferrer" aria-label="Visitar perfil de GitHub" title="GitHub" class="text-slate-500 dark:text-slate-400 hover:text-orange-700 dark:hover:text-orange-400 transition-colors duration-300">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
             </svg>
@@ -206,17 +223,17 @@
      </div>
      <div class="mt-8 text-center md:text-left">
       <a id="print-cv-button" class="inline-block bg-orange-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-800 transition-colors duration-300 shadow-lg transform hover:scale-105 animate-pulse">
-       <span aria-hidden="true">📄</span>
+       <span aria-hidden="true" class="mr-2">📄</span>
        Descargar CV
       </a>
      </div>
     </div>
    </section>
   </main>  
-  <button aria-label="Volver arriba" class="back-to-top-button fixed bottom-6 right-6 z-[100] bg-orange-700 text-white p-3 rounded-full shadow-lg hover:bg-orange-800 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500" id="back-to-top" title="Volver arriba">
+  <button aria-label="Volver arriba" class="back-to-top-button fixed bottom-6 right-6 z-[100] bg-orange-700 text-white p-3 rounded-full shadow-lg hover:bg-orange-800 dark:bg-orange-600 dark:hover:bg-orange-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500" id="back-to-top" title="Volver arriba">
    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 15l7-7 7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
   </button>
-  <footer class="text-center py-6 bg-stone-200 mt-16" id="footer"></footer>
+  <footer class="text-center py-6 bg-stone-200 dark:bg-slate-800 mt-16" id="footer"></footer>
   <script defer="" src="/assets/js/main.min.js"></script>
   <noscript>
   <style>

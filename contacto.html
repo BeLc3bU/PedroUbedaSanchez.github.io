@@ -28,7 +28,7 @@
 <section class="py-12 sm:py-16 md:py-20 animate-on-scroll">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl mx-auto">
-                <h1 class="text-3xl sm:text-4xl font-bold text-slate-800 mb-4 text-center flex items-center justify-center gap-2">
+                <h1 class="text-3xl sm:text-4xl font-bold text-slate-800 dark:text-slate-100 mb-4 text-center flex items-center justify-center gap-2">
                     <span aria-hidden="true">📌</span>
                     <span>Contacto</span>
                 </h1>
@@ -36,41 +36,41 @@
                     ¿Tienes alguna pregunta o propuesta? No dudes en contactarme.
                 </p>
 
-                <div class="bg-white p-8 rounded-lg shadow-lg">
+                <div class="bg-white dark:bg-slate-800 p-8 rounded-lg shadow-lg">
                     <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-8 mb-8">
                         <div class="text-center sm:text-left">
-                            <h3 class="font-bold text-slate-700 mb-1 flex items-center justify-center sm:justify-start gap-2">
+                            <h3 class="font-bold text-slate-700 dark:text-slate-300 mb-1 flex items-center justify-center sm:justify-start gap-2">
                                 <span aria-hidden="true">✉️</span>
                                 Correo electrónico
                             </h3>
-                            <a href="mailto:contacto@pedroubedasanchez.es" class="text-orange-700 hover:text-orange-800 transition-colors duration-300 break-all">
+                            <a href="mailto:contacto@pedroubedasanchez.es" class="text-orange-700 dark:text-orange-400 hover:text-orange-800 dark:hover:text-orange-500 transition-colors duration-300 break-all">
                                 contacto@pedroubedasanchez.es
                             </a>
                         </div>
                         <div class="text-center sm:text-left">
-                            <h3 class="font-bold text-slate-700 mb-1 flex items-center justify-center sm:justify-start gap-2">
+                            <h3 class="font-bold text-slate-700 dark:text-slate-300 mb-1 flex items-center justify-center sm:justify-start gap-2">
                                 <span aria-hidden="true">📞</span>
                                 Teléfono
                             </h3>
-                            <a id="phone-contact" href="#" class="text-orange-700 hover:text-orange-800 transition-colors duration-300">
+                            <a id="phone-contact" href="#" class="text-orange-700 dark:text-orange-400 hover:text-orange-800 dark:hover:text-orange-500 transition-colors duration-300">
                                 <span id="phone-text-contact">Mostrar número</span>
                             </a>
                         </div>
                         <div class="text-center sm:text-left">
-                            <h3 class="font-bold text-slate-700 mb-1 flex items-center justify-center sm:justify-start gap-2">
+                            <h3 class="font-bold text-slate-700 dark:text-slate-300 mb-1 flex items-center justify-center sm:justify-start gap-2">
                                 <span aria-hidden="true">🔗</span>
                                 LinkedIn
                             </h3>
-                            <a href="https://linkedin.com/in/pubesan" target="_blank" rel="noopener noreferrer" class="text-orange-700 hover:text-orange-800 transition-colors duration-300">
+                            <a href="https://linkedin.com/in/pubesan" target="_blank" rel="noopener noreferrer" class="text-orange-700 dark:text-orange-400 hover:text-orange-800 dark:hover:text-orange-500 transition-colors duration-300">
                                 linkedin.com/in/pubesan
                             </a>
                         </div>
                     </div>
 
                     <div class="relative flex items-center my-8">
-                        <div class="flex-grow border-t border-slate-200"></div>
-                        <span class="flex-shrink mx-4 text-slate-500">O envíame un mensaje directamente:</span>
-                        <div class="flex-grow border-t border-slate-200"></div>
+                        <div class="flex-grow border-t border-slate-200 dark:border-slate-700"></div>
+                        <span class="flex-shrink mx-4 text-slate-500 dark:text-slate-400">O envíame un mensaje directamente:</span>
+                        <div class="flex-grow border-t border-slate-200 dark:border-slate-700"></div>
                     </div>
 
                     <div id="contact-form-wrapper" class="max-w-xl mx-auto">
@@ -79,25 +79,25 @@
                             <input name="_formsubmit_endpoint" type="hidden" value="https://formsubmit.co/ajax/contacto@pedroubedasanchez.es"/>
                             <!-- Asunto del correo -->
                             <input name="_subject" type="hidden" value="Nuevo mensaje desde pedroubedasanchez.es"/>
-                            <!-- reCAPTCHA v3 Response -->
-                            <input id="recaptcha-response" name="g-recaptcha-response" type="hidden"/>
+                            <!-- Campo Honeypot para protección anti-spam -->
+                            <input type="text" name="_honey" style="display:none">
                             <!-- Campos del formulario -->
                             <div class="mb-4">
-                                <label for="name" class="block text-slate-700 font-bold mb-2">Nombre</label>
-                                <input type="text" id="name" name="name" required class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" aria-describedby="name-error">
+                                <label for="name" class="block text-slate-700 dark:text-slate-300 font-bold mb-2">Nombre</label>
+                                <input type="text" id="name" name="name" required class="w-full px-3 py-2 border dark:border-slate-600 bg-white dark:bg-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" aria-describedby="name-error">
                                 <p id="name-error" class="text-red-500 text-sm mt-1" aria-live="polite"></p>
                             </div>
                             <div class="mb-4">
-                                <label for="email" class="block text-slate-700 font-bold mb-2">Tu correo electrónico</label>
-                                <input type="email" id="email" name="email" required class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" aria-describedby="email-error">
+                                <label for="email" class="block text-slate-700 dark:text-slate-300 font-bold mb-2">Tu correo electrónico</label>
+                                <input type="email" id="email" name="email" required class="w-full px-3 py-2 border dark:border-slate-600 bg-white dark:bg-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" aria-describedby="email-error">
                                 <p id="email-error" class="text-red-500 text-sm mt-1" aria-live="polite"></p>
                             </div>
                             <div class="mb-6">
-                                <label for="message" class="block text-slate-700 font-bold mb-2">Mensaje</label>
-                                <textarea id="message" name="message" rows="5" required maxlength="1000" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" aria-describedby="message-error char-counter"></textarea>
+                                <label for="message" class="block text-slate-700 dark:text-slate-300 font-bold mb-2">Mensaje</label>
+                                <textarea id="message" name="message" rows="5" required maxlength="1000" class="w-full px-3 py-2 border dark:border-slate-600 bg-white dark:bg-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" aria-describedby="message-error char-counter"></textarea>
                                 <div class="flex justify-between items-start mt-1">
                                     <p id="message-error" class="text-red-500 text-sm" aria-live="polite"></p>
-                                    <p id="char-counter" class="text-sm text-slate-500 ml-auto transition-colors" aria-live="polite">0 / 1000</p>
+                                    <p id="char-counter" class="text-sm text-slate-500 dark:text-slate-400 ml-auto transition-colors" aria-live="polite">0 / 1000</p>
                                 </div>
                             </div>
                             <div class="text-center">
@@ -113,10 +113,10 @@
                             </div>
                         </form>
                         <!-- Mensaje de éxito (oculto por defecto) -->
-                        <div id="form-success-message" class="hidden text-center bg-green-100 border border-green-400 text-green-700 px-4 py-8 rounded-lg shadow-md" role="alert">
+                        <div id="form-success-message" class="hidden text-center bg-green-100 dark:bg-green-900/50 border border-green-400 dark:border-green-600 text-green-700 dark:text-green-300 px-4 py-8 rounded-lg shadow-md" role="alert">
                             <h3 class="font-bold text-2xl mb-2">¡Mensaje Enviado!</h3>
                             <p>Gracias por ponerte en contacto. He recibido tu mensaje y te responderé lo antes posible.</p>
-                            <button id="form-reset-button" class="mt-6 inline-block bg-orange-700 text-white font-bold py-2 px-4 rounded-lg hover:bg-orange-800 transition-colors">Enviar otro mensaje</button>
+                            <button id="form-reset-button" class="mt-6 inline-block bg-orange-700 text-white font-bold py-2 px-4 rounded-lg hover:bg-orange-800 dark:bg-orange-600 dark:hover:bg-orange-700 transition-colors">Enviar otro mensaje</button>
                         </div>
                     </div>
                 </div>
