@@ -1,4 +1,4 @@
-const CACHE_NAME = 'curriculum-spa-cache-v13'; // Incrementa la versión para forzar la actualización
+const CACHE_NAME = 'curriculum-spa-cache-v14'; // Incrementa la versión para forzar la actualización
 // Lista de archivos que componen el "App Shell", la estructura básica de la aplicación.
 const APP_SHELL_URLS = [
   '/',
@@ -41,14 +41,13 @@ self.addEventListener('install', event => {
       return cache.addAll(APP_SHELL_URLS);
     }).then(() => {
       // Envía un mensaje a los clientes para indicar que una nueva versión está lista.
-      self.clients.matchAll({ type: 'window' }).then(clients => {
+      return self.clients.matchAll({ type: 'window' }).then(clients => {
         clients.forEach(client => {
           client.postMessage({ type: 'NEW_VERSION_INSTALLED' });
         });
       });
-    })
-  ).then(() => self.skipWaiting()); // Forzar la activación del nuevo SW
-  
+    }).then(() => self.skipWaiting()) // Forzar la activación del nuevo SW
+  );
 });
 
 /**
@@ -119,11 +118,14 @@ self.addEventListener('fetch', event => {
         event.respondWith(
             caches.match(request).then(cachedResponse => {
                 const fetchPromise = fetch(request).then(networkResponse => {
-                    // Si la petición a la red tiene éxito, actualizamos la caché.
+                    const responseToCache = networkResponse.clone();
                     caches.open(CACHE_NAME).then(cache => {
-                        cache.put(request, networkResponse.clone());
+                        cache.put(request, responseToCache);
                     });
                     return networkResponse;
+                }).catch(error => {
+                    console.error('[SW] Fetch failed:', error);
+                    throw error;
                 });
                 // Devuelve la respuesta cacheada si existe, si no, espera a la red.
                 // La próxima vez, la versión de red ya estará en caché.
