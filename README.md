@@ -4,8 +4,6 @@ Este repositorio contiene el código fuente del currículum interactivo de Pedro
 
 **➡️ Sitio en vivo:** [pedroubedasanchez.es](https://pedroubedasanchez.es)
 
-![Captura de pantalla del currículum interactivo de Pedro Úbeda Sánchez](https://pedroubedasanchez.es/foto.webp)
-
 ## ✨ Características Principales
 
 - **Arquitectura Moderna:** Desarrollada con React 18+ y TypeScript para máxima robustez y mantenibilidad.
