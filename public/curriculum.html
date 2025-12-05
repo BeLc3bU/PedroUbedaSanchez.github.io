@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículum para Imprimir - Pedro Úbeda Sánchez</title>
+    <!-- Favicon -->
+    <link href="favicon.ico" rel="icon" type="image/x-icon" />
+    <link href="apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
+    <link href="favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link href="favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="site.webmanifest" rel="manifest" />
+    <link color="#c2410c" href="safari-pinned-tab.svg" rel="mask-icon" />
+    <meta content="#f5f5f4" name="msapplication-TileColor" />
+    <meta content="#ffffff" name="theme-color" />
+    <!-- Previene el "Flash of Unstyled Content" (FOUC) -->
+    <style>
+        body {
+            opacity: 0;
+        }
+    </style>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1e293b;
+            line-height: 1.5;
+        }
+
+        @media print {
+
+            /* --- ESTILOS PARA IMPRESIÓN LEGIBLE EN 2 PÁGINAS --- */
+            body {
+                width: 210mm;
+                margin: 0;
+                padding: 15mm;
+                /* Margen estándar para impresión */
+                font-size: 10pt;
+                /* Tamaño de fuente legible (10-12pt es ideal) */
+                line-height: 1.3;
+                /* Interlineado cómodo */
+                background: #fff !important;
+                color: #000 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                box-sizing: border-box;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            * {
+                page-break-inside: avoid;
+            }
+
+            a {
+                text-decoration: none;
+                color: inherit;
+            }
+
+            /* --- QR CODE SPECIFIC FIX --- */
+            .qr-code-container-print {
+                position: absolute !important;
+                top: 0 !important;
+                right: 0 !important;
+                width: 25mm !important;
+                height: 25mm !important;
+                z-index: 9999;
+                /* Eliminamos cualquier margen/padding que pueda moverlo */
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .qr-code-image {
+                width: 100% !important;
+                height: 100% !important;
+                max-width: 25mm !important;
+                max-height: 25mm !important;
+                object-fit: contain;
+            }
+
+            /* --- AJUSTES DE ESPACIADO Y TIPOGRAFÍA --- */
+            header {
+                margin-bottom: 1rem !important;
+            }
+
+            section {
+                margin-bottom: 1rem !important;
+            }
+
+            .section-header {
+                font-size: 1.2rem !important;
+                padding-bottom: 0.4rem !important;
+                margin-bottom: 0.6rem !important;
+            }
+        }
+
+        .section-header {
+            border-bottom: 2px solid #c2410c;
+            /* orange-700 */
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Asegura que el QR se renderice con bordes nítidos */
+        .qr-code-image {
+            image-rendering: -moz-crisp-edges;
+            /* Firefox */
+            image-rendering: -webkit-optimize-contrast;
+            /* Webkit (Chrome, Safari) */
+            image-rendering: pixelated;
+            /* Chrome 41+ */
+            image-rendering: crisp-edges;
+            /* Estándar obsoleto */
+            -ms-interpolation-mode: nearest-neighbor;
+            /* IE */
+        }
+    </style>
+    <link href="/assets/css/style.min.css" rel="stylesheet" />
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-NGDK68DN');</script>
+    <!-- End Google Tag Manager -->
+</head>
+
+<body class="bg-white p-8 md:p-12">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-NGDK68DN"
+            style="display:none;visibility:hidden" width="0"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <!-- Header Section -->
+    <header class="relative flex flex-row items-center justify-between gap-6 mb-8">
+        <div class="flex items-center gap-6">
+            <div class="flex-shrink-0">
+                <picture>
+                    <source srcset="/foto-112.webp" type="image/webp" />
+                    <img src="/foto-384.jpg" alt="Pedro Úbeda Sánchez"
+                        class="w-28 h-36 rounded-full object-cover shadow-lg" decoding="async" loading="eager"
+                        width="112" height="144" />
+                </picture>
+            </div>
+            <div class="flex-grow">
+                <h1 class="text-3xl font-bold text-orange-900">Pedro Úbeda Sánchez</h1>
+                <p class="text-xl font-medium text-slate-700">Técnico especialista en informática, aviónica y
+                    administración</p>
+                <div class="mt-4 text-slate-600 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+                    <p><span aria-hidden="true">📞</span><span class="sr-only">Teléfono:</span> +34 635 945 779</p>
+                    <a href="mailto:contacto@pedroubedasanchez.es" class="hover:text-orange-700"><span
+                            aria-hidden="true">✉️</span><span class="sr-only">Correo electrónico:</span>
+                        contacto@pedroubedasanchez.es</a>
+                    <a href="https://linkedin.com/in/pubesan" target="_blank" rel="noopener noreferrer"
+                        class="hover:text-orange-700"
+                        aria-label="Visitar perfil de LinkedIn (se abre en una nueva pestaña)"><span
+                            aria-hidden="true">🔗</span> linkedin.com/in/pubesan</a>
+                </div>
+            </div>
+        </div>
+        <div class="absolute top-0 right-0 qr-code-container-print">
+            <a href="https://pedroubedasanchez.es" target="_blank" rel="noopener noreferrer" title="Visitar sitio web">
+                <picture>
+                    <source srcset="/qr-code.svg" type="image/svg+xml" />
+                    <img src="/qr-code.png" alt="Código QR para pedroubedasanchez.es" class="w-20 h-20 qr-code-image" />
+                </picture>
+            </a>
+        </div>
+    </header>
+
+    <!-- About Me Section -->
+    <section class="mb-6">
+        <h2 id="sobre-mi" class="text-xl font-bold section-header text-orange-900">Sobre Mí</h2>
+        <p class="text-slate-600 text-sm">
+            Técnico especialista con más de dos décadas de experiencia en el mantenimiento, diagnóstico y resolución de
+            averías en equipos informáticos y de aviónica. Mi trayectoria en las Fuerzas Armadas me ha proporcionado
+            sólidos valores como la disciplina, el compromiso y el trabajo en equipo, habilidades que aplico en mi día a
+            día. En constante formación y motivado para asumir futuros retos que supongan un desarrollo profesional en
+            mi carrera.
+        </p>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="mb-6">
+        <h2 id="experiencia" class="text-xl font-bold section-header text-orange-900">Experiencia Profesional</h2>
+        <div class="space-y-4 experience-section">
+            <div>
+                <h3 class="font-semibold text-slate-900">Militar (Informático/Aviónico) <span
+                        class="font-normal text-slate-500 float-right">2008 - 2025</span></h3>
+                <p class="text-sm text-slate-500">FAS</p>
+                <ul class="list-disc list-inside text-slate-600 text-sm mt-1 space-y-1">
+                    <li>Mantenimiento, diagnóstico y solución de averías de simuladores de vuelo y flota de aviones a
+                        nivel informático y electrónico.</li>
+                    <li>Gestión administrativa y logística.</li>
+                    <li>Elaboración de informes, registro y control.</li>
+                    <li>Servicio de control de accesos y vigilancia.</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-slate-900">Administrativo Contable <span
+                        class="font-normal text-slate-500 float-right">2007 - 2008</span></h3>
+                <p class="text-sm text-slate-500">ICONO TELECOM</p>
+                <ul class="list-disc list-inside text-slate-600 text-sm mt-1 space-y-1">
+                    <li>Gestión de pagos a proveedores y clientes.</li>
+                    <li>Contabilización de asientos, control bancario y facturación.</li>
+                    <li>Elaboración de informes y gestión de gastos.</li>
+                    <li>Atención telefónica y correo.</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-slate-900">Auxiliar Administrativo <span
+                        class="font-normal text-slate-500 float-right">2006 - 2007</span></h3>
+                <p class="text-sm text-slate-500">TRUCCSA</p>
+                <ul class="list-disc list-inside text-slate-600 text-sm mt-1 space-y-1">
+                    <li>Gestión de pedidos, albaranes y facturación.</li>
+                    <li>Contabilidad, control de stock, archivo y registro.</li>
+                    <li>Gestión de pagarés y atención telefónica.</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-slate-900">Militar (Admin/Telecom) <span
+                        class="font-normal text-slate-500 float-right">2002 - 2005</span></h3>
+                <p class="text-sm text-slate-500">FAS</p>
+                <ul class="list-disc list-inside text-slate-600 text-sm mt-1 space-y-1">
+                    <li>Tareas administrativas: Archivo, correspondencia, registro, BBDD e inventario.</li>
+                    <li>Instalación y mantenimiento de telecomunicaciones.</li>
+                    <li>Servicio de control de acceso, patrulla, CCTV y verificación de alarmas.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Grid for lower sections -->
+    <section class="mb-6">
+        <h2 id="habilidades" class="text-xl font-bold section-header text-orange-900">Habilidades</h2>
+        <div class="text-sm space-y-4">
+            <div>
+                <h3 class="font-semibold text-slate-700">Herramientas y conocimientos</h3>
+                <ul class="list-disc list-inside text-slate-600 text-sm mt-1 space-y-1">
+                    <li>Microsoft 365, HTML5/CSS/JS, IA para automatización</li>
+                    <li>Active Directory y VM, Gestión de hosting, BBDD</li>
+                    <li>Gestión documental, Interpretación de esquemas, Equipos de diagnóstico</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-slate-700 mt-2">Competencias y habilidades</h3>
+                <ul class="list-disc list-inside text-slate-600 text-sm mt-1 space-y-1">
+                    <li>Análisis de incidencias, Gestión logística, Mantenimiento preventivo</li>
+                    <li>Control documental, Comunicación efectiva, Adaptabilidad</li>
+                    <li>Aprendizaje continuo, Orientación a resultados, Organización</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="mb-6">
+        <h2 id="formacion" class="text-xl font-bold section-header text-orange-900">Formación y Logros</h2>
+        <div class="text-sm space-y-4">
+            <h3 class="font-semibold text-slate-700">Formación Académica</h3>
+            <ul class="list-disc list-inside text-slate-600 text-sm">
+                <li>Técnico Especialista en Informática de Gestión (CIF CARLOS III)</li>
+                <li>Curso de Ciberseguridad (INCIBE)</li>
+                <li>Curso NATO HPS CRYPTO (Ministerio de Defensa)</li>
+            </ul>
+            <h3 class="font-semibold text-slate-700 mt-2">Reconocimientos</h3>
+            <ul class="list-disc list-inside text-slate-600 text-sm">
+                <li>Cruz del Mérito Aeronáutico con distintivo Blanco.</li>
+                <li>Cruz a la constancia en el Servicio de bronce.</li>
+                <li>Reconocimiento DANA 2024.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2 id="otros-datos" class="text-xl font-bold section-header text-orange-900">Otros Datos</h2>
+        <div id="otros-datos-print-grid" class="grid grid-cols-3 gap-x-8 text-sm">
+            <div>
+                <h3 class="font-semibold text-slate-700">Disponibilidad</h3>
+                <ul class="list-disc list-inside text-slate-600 text-sm mt-1">
+                    <li>Para viajar</li>
+                    <li>Inmediata</li>
+                    <li>Vehículo propio</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-slate-700">Idiomas</h3>
+                <ul class="list-disc list-inside text-slate-600 text-sm mt-1">
+                    <li>Español (Nativo)</li>
+                    <li>Inglés (A2)</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-slate-700">Hobbies</h3>
+                <ul class="list-disc list-inside text-slate-600 text-sm mt-1">
+                    <li>Running, Ciclismo, Natación</li>
+                    <li>Videojuegos</li>
+                    <li>Informática</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <noscript>
+        <style>
+            body {
+                opacity: 1 !important;
+            }
+        </style>
+        <div style="background: #fff3cd; color: #c2410c; padding: 1em; text-align: center;">
+            Para una mejor experiencia, activa JavaScript en tu navegador.
+        </div>
+    </noscript>
+    <script>
+        // Script autónomo para la página de impresión
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.style.opacity = '1';
+            // Descomenta la siguiente línea si quieres que el diálogo de impresión
+            // se abra automáticamente al cargar la página.
+            // window.print();
+        });
+    </script>
+</body>
+
+</html>

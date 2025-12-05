@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="es">
+ <head>
+  <meta charset="utf-8"/>
+  <!-- SEO: Título optimizado para buscadores -->
+  <title>
+   Pedro Úbeda Sánchez | Técnico en Informática, Aviónica y Administración
+  </title>
+  <meta name="google-site-verification" content="NhIPU0yXCZM8DUc40aAmsZGm1zAFwbj-3pFb2zzV0uk" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <!-- SEO: Meta Descripción para Google -->
+  <meta content="Sitio web profesional de Pedro Úbeda Sánchez, técnico especialista con más de 20 años de experiencia en informática, aviónica y administración. Descubre mi trayectoria y habilidades." name="description"/>
+  <!-- SEO: URL Canónica para evitar contenido duplicado -->
+  <link href="https://pedroubedasanchez.es/" rel="canonical"/>
+  <!-- Base Href para resolver rutas relativas en la SPA -->
+  <base href="/"/>
+  <!-- SEO: Open Graph para compartir en redes sociales (LinkedIn, Facebook) -->
+  <meta content="Pedro Úbeda Sánchez | Técnico Especialista" property="og:title"/>
+  <meta content="Técnico con más de 20 años de experiencia en informática, aviónica y administración." property="og:description"/>
+  <meta content="https://pedroubedasanchez.es/foto.webp" property="og:image"/>
+  <meta content="https://pedroubedasanchez.es/" property="og:url"/>
+  <meta content="website" property="og:type"/>
+  <meta content="es_ES" property="og:locale"/>
+  <meta content="1200" property="og:image:width"/>
+  <meta content="630" property="og:image:height"/>
+  <!-- SEO: Twitter Card para compartir en Twitter -->
+  <meta content="summary_large_image" name="twitter:card"/>
+  <meta content="Pedro Úbeda Sánchez | Técnico Especialista" name="twitter:title"/>
+  <meta content="Técnico con más de 20 años de experiencia en informática, aviónica y administración." name="twitter:description"/>
+  <meta content="https://pedroubedasanchez.es/foto.webp" name="twitter:image"/>
+  <!-- Performance: Preload LCP image and critical fonts -->
+  <!-- Favicon -->
+  <link href="favicon.ico" rel="icon" type="image/x-icon"/>
+  <link href="apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+  <link href="favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+  <link href="favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
+  <link href="site.webmanifest" rel="manifest"/>
+  <link color="#c2410c" href="safari-pinned-tab.svg" rel="mask-icon"/>
+  <meta content="#f5f5f4" name="msapplication-TileColor"/>
+  <meta content="#ffffff" name="theme-color"/>
+  <!-- Preload responsive LCP image -->
+  <link as="image" href="/foto-384.webp" media="(min-width: 768px)" rel="preload" type="image/webp"/>
+  <link as="image" href="/foto-320.webp" media="(max-width: 767px)" rel="preload" type="image/webp"/>
+  <link as="font" crossorigin="" href="/assets/fonts/inter-v20-latin-regular.woff2" rel="preload" type="font/woff2"/>
+  <link as="font" crossorigin="" href="/assets/fonts/inter-v20-latin-700.woff2" rel="preload" type="font/woff2"/>
+  <!-- Chosen Palette: Warm Neutrals -->
+  <!-- Application Structure Plan: Se ha diseñado una aplicación de una sola página con desplazamiento vertical y una barra de navegación fija. La estructura sigue un flujo lógico: introducción (Sobre Mí), cronología de la carrera (Experiencia), visualización de capacidades (Habilidades) y secciones informativas (Formación, Logros). Esta estructura es intuitiva y permite a los reclutadores escanear rápidamente el perfil o profundizar en secciones específicas mediante la navegación. El uso de una línea de tiempo interactiva para la experiencia y un gráfico de radar para las habilidades convierte un documento estático en una experiencia de usuario atractiva. -->
+  <!-- Visualization & Content Choices: 
+        - Sobre Mí: (Meta: Informar) Bloque de texto prominente. Presentación: Párrafo simple. Interacción: Ninguna. Justificación: Claridad y concisión.
+        - Experiencia: (Meta: Mostrar progresión) Línea de tiempo vertical. Presentación: HTML/CSS con Tailwind. Interacción: Sutil resaltado al pasar el ratón para mejorar el feedback visual. Justificación: Es una forma visualmente más efectiva de mostrar la cronología que una lista simple.
+        - Habilidades Interpersonales: (Meta: Comparar/Evaluar) Gráfico de Radar. Presentación: Chart.js (Canvas). Interacción: Tooltips al pasar el ratón muestran la habilidad. Justificación: Ofrece una visión holística e impactante de las fortalezas del candidato.
+        - Habilidades Técnicas: (Meta: Informar) Lista categorizada. Presentación: HTML/CSS. Interacción: Ninguna. Justificación: Máxima legibilidad y escaneo rápido.
+        - Formación y Logros: (Meta: Informar) Listas limpias. Presentación: HTML/CSS con iconos. Interacción: Ninguna. Justificación: Presentación clara y directa de la información. -->
+  <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+  <!-- Critical CSS: Inlined for instant rendering of above-the-fold content -->
+  <style>
+    @media (min-width: 768px) {
+      #about-text-block {
+        margin-left: 8rem; /* 128px */
+      }
+    }
+  </style>
+  <!-- Previene el "Flash of Unstyled Content" (FOUC) -->
+  <style>
+    body { opacity: 0; }
+  </style>
+  <!-- Animación para mensajes de error del formulario -->
+  <style>
+    .form-error-active {
+      animation: fadeInSlideUp 0.3s ease-out forwards;
+    }
+    @keyframes fadeInSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+  <!-- Estilos para el "esqueleto" de carga -->
+  <style>
+    .skeleton {
+      background-color: #e5e7eb; /* gray-200 */
+      border-radius: 0.375rem; /* rounded-lg */
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    .dark .skeleton {
+      background-color: #374151; /* gray-700 */
+    }
+    @keyframes pulse {
+      50% {
+        opacity: .5;
+      }
+    }
+  </style>
+  <!-- Estilos para View Transitions API (animaciones de página) -->
+  <style>
+    @keyframes slide-from-right {
+      from { transform: translateX(30px); opacity: 0; }
+    }
+    @keyframes slide-to-left {
+      to { transform: translateX(-30px); opacity: 0; }
+    }
+    @keyframes slide-from-left {
+      from { transform: translateX(-30px); opacity: 0; }
+    }
+    @keyframes slide-to-right {
+      to { transform: translateX(30px); opacity: 0; }
+    }
+    .slide-forward::view-transition-old(root) { animation: 200ms ease-in both slide-to-left; }
+    .slide-forward::view-transition-new(root) { animation: 200ms ease-out 90ms both slide-from-right; }
+    .slide-backward::view-transition-old(root) { animation: 200ms ease-in both slide-to-right; }
+    .slide-backward::view-transition-new(root) { animation: 200ms ease-out 90ms both slide-from-left; }
+  </style>
+  <!-- Accesibilidad: Respetar la preferencia de movimiento reducido -->
+  <style>
+    @media (prefers-reduced-motion: reduce) {
+      /* Desactivar transiciones y animaciones suaves */
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      /* Desactivar View Transitions API */
+      ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+    }
+  </style>
+  <!-- Accesibilidad: Mejorar la visibilidad del foco del teclado -->
+  <style>
+    :focus-visible {
+      outline: 3px solid #f97316; /* orange-500 */
+      outline-offset: 2px;
+      border-radius: 2px; /* Opcional: para que el outline sea ligeramente redondeado */
+    }
+  </style>
+  <!-- Asynchronously load the full stylesheet -->
+  <link href="/assets/css/style.min.css" rel="stylesheet"/>
+  <!-- SEO: Structured Data (Schema.org) para Person -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Pedro Úbeda Sánchez",
+    "url": "https://pedroubedasanchez.es",
+    "image": "https://pedroubedasanchez.es/foto.webp",
+    "sameAs": [
+      "https://www.linkedin.com/in/pubesan"
+    ],
+    "jobTitle": "Técnico especialista en informática, aviónica y administración",
+    "description": "Técnico especialista con más de dos décadas de experiencia en el mantenimiento, diagnóstico y resolución de averías en equipos informáticos y de aviónica.",
+    "knowsAbout": ["Informática", "Aviónica", "Administración", "Ciberseguridad", "Mantenimiento de Hardware", "Logística"]
+  }
+  </script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NGDK68DN');</script>
+ </head>
+ <body class="bg-stone-100 text-slate-800 dark:bg-slate-900 dark:text-slate-200 flex flex-col min-h-screen transition-colors duration-300">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-NGDK68DN" style="display:none;visibility:hidden" width="0"></iframe></noscript>
+  <!-- End Google Tag Manager -->
+  <!-- Overlay del Menú Móvil -->
+  <div id="mobile-menu-overlay" class="hidden fixed inset-0 bg-stone-100/95 dark:bg-slate-900/95 backdrop-blur-md z-[100] flex flex-col" aria-hidden="true">
+      <div class="flex justify-end p-4">
+          <button id="mobile-menu-close-button" type="button" class="p-2 rounded-full hover:bg-stone-200 dark:hover:bg-slate-800 transition" aria-label="Cerrar menú">
+              <svg class="w-8 h-8 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+      </div>
+      <div class="flex-grow flex items-start justify-center overflow-y-auto pt-12">
+        <ul class="flex flex-col items-center space-y-8 text-2xl p-4">
+            <li><a class="nav-link-mobile" href="/"><span aria-hidden="true">👤</span><span>Sobre Mí</span></a></li>
+            <li><a class="nav-link-mobile" href="/experiencia"><span aria-hidden="true">💼</span><span>Experiencia</span></a></li>
+            <li><a class="nav-link-mobile" href="/habilidades"><span aria-hidden="true">💡</span><span>Habilidades</span></a></li>
+            <li><a class="nav-link-mobile" href="/formacion"><span aria-hidden="true">📜</span><span>Formación</span></a></li>
+            <li><a class="nav-link-mobile" href="/otros-datos"><span aria-hidden="true">📚</span><span>Otros Datos</span></a></li>
+            <li><a class="nav-link-mobile" href="/contacto"><span aria-hidden="true">📞</span><span>Contacto</span></a></li>
+        </ul>
+      </div>
+  </div>
+  <a class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-4 focus:left-4 bg-white dark:bg-slate-800 text-slate-800 dark:text-white focus:p-3 focus:rounded-lg focus:shadow-lg" href="#main-content">
+   Saltar al contenido principal
+  </a>
+  <!-- Contenedor para anuncios de accesibilidad (lectores de pantalla) -->
+  <div id="a11y-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+  <header class="bg-stone-100/80 dark:bg-slate-900/80 backdrop-blur-md sticky top-0 z-50 shadow-sm dark:shadow-slate-800" id="header"></header>
+  <main class="container mx-auto px-6 py-12 flex-grow" id="main-content">
+   <section class="mb-24 flex flex-col md:flex-row items-center md:items-start gap-y-8" id="about">
+    <div class="flex-shrink-0">
+      <!-- Imagen Responsiva y Optimizada -->
+      <picture>
+        <!-- Fuentes WebP para navegadores modernos (rutas absolutas) -->
+        <source media="(min-width: 768px)" srcset="/foto-384.webp" type="image/webp">
+        <source media="(max-width: 767px)" srcset="/foto-320.webp" type="image/webp">
+        <!-- Imagen por defecto para máxima compatibilidad -->
+        <img alt="Foto de Pedro Úbeda Sánchez, técnico especialista en informática, aviónica y administración" class="w-40 h-56 md:w-48 md:h-64 rounded-full object-cover shadow-2xl" decoding="async" height="256" loading="eager" src="/foto-384.jpg" width="192">
+      </picture>
+    </div>
+    <div class="flex-grow text-center md:text-left" id="about-text-block">
+     <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-orange-900 dark:text-orange-400">
+      Técnico especialista en informática, aviónica y administración
+     </h1>
+     <p class="max-w-3xl mx-auto md:mx-0 text-lg text-slate-600 dark:text-slate-400">
+      Técnico especialista con más de dos décadas de experiencia en el mantenimiento, diagnóstico y resolución de averías en equipos informáticos y de aviónica. Mi trayectoria en las Fuerzas Armadas me ha proporcionado sólidos valores como la disciplina, el compromiso y el trabajo en equipo, habilidades que aplico en mi día a día. En constante formación y motivado para asumir futuros retos que supongan un desarrollo profesional en mi carrera.
+     </p>
+     <div class="mt-6 flex justify-center md:justify-start space-x-4">
+        <a href="https://www.linkedin.com/in/pubesan" target="_blank" rel="noopener noreferrer" aria-label="Visitar perfil de LinkedIn" title="LinkedIn" class="text-slate-500 dark:text-slate-400 hover:text-orange-700 dark:hover:text-orange-400 transition-colors duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+        </a>
+        <a href="https://github.com/BeLc3bU" target="_blank" rel="noopener noreferrer" aria-label="Visitar perfil de GitHub" title="GitHub" class="text-slate-500 dark:text-slate-400 hover:text-orange-700 dark:hover:text-orange-400 transition-colors duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+        </a>
+     </div>
+     <div class="mt-8 text-center md:text-left">
+      <a id="print-cv-button" class="inline-block bg-orange-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-800 transition-colors duration-300 shadow-lg transform hover:scale-105 animate-pulse">
+       <span aria-hidden="true" class="mr-2">📄</span>
+       Descargar CV
+      </a>
+     </div>
+    </div>
+   </section>
+  </main>  
+  <button aria-label="Volver arriba" class="back-to-top-button fixed bottom-6 right-6 z-[100] bg-orange-700 text-white p-3 rounded-full shadow-lg hover:bg-orange-800 dark:bg-orange-600 dark:hover:bg-orange-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500" id="back-to-top" title="Volver arriba">
+   <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 15l7-7 7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+  </button>
+  <footer class="text-center py-6 bg-stone-200 dark:bg-slate-800 mt-16" id="footer"></footer>
+  <script defer="" src="/assets/js/main.min.js"></script>
+  <noscript>
+  <style>
+    body { opacity: 1 !important; }
+  </style>
+  <div style="background: #fff3cd; color: #c2410c; padding: 1em; text-align: center;">
+    Para una mejor experiencia, activa JavaScript en tu navegador.
+  </div>
+  </noscript>
+ </body>
+</html>
