@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { useState, type ChangeEvent, type FormEvent } from 'react';
+import { Mail, Phone, Linkedin, MessageSquare, Send } from 'lucide-react';
 
 interface FormState {
     name: string;
@@ -115,8 +116,8 @@ export default function Contact() {
             </Helmet>
 
             <section className="container mx-auto px-6 py-12 mb-24 animate-in fade-in slide-in-from-bottom-8 duration-700">
-                <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-center text-slate-800 dark:text-slate-100 flex items-center justify-center gap-2">
-                    <span aria-hidden="true">📌</span>
+                <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-center text-slate-800 dark:text-slate-100 flex items-center justify-center gap-3">
+                    <MessageSquare size={40} className="text-orange-700 dark:text-orange-400" />
                     Contacto
                 </h1>
                 <p className="text-lg text-slate-600 dark:text-slate-400 mb-8 text-center max-w-2xl mx-auto">
@@ -128,7 +129,7 @@ export default function Contact() {
                     <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 mb-8 border-b border-slate-200 dark:border-slate-700 pb-8">
                         <div className="text-center md:text-left flex-1">
                             <h3 className="font-bold text-slate-700 dark:text-slate-300 mb-1 flex items-center justify-center md:justify-start gap-2">
-                                <span aria-hidden="true">✉️</span> Correo electrónico
+                                <Mail size={20} className="text-orange-700 dark:text-orange-400" /> Correo electrónico
                             </h3>
                             <a href="mailto:contacto@pedroubedasanchez.es" className="text-orange-700 dark:text-orange-400 hover:text-orange-800 dark:hover:text-orange-500 break-all transition-colors">
                                 contacto@pedroubedasanchez.es
@@ -136,7 +137,7 @@ export default function Contact() {
                         </div>
                         <div className="text-center md:text-left flex-1">
                             <h3 className="font-bold text-slate-700 dark:text-slate-300 mb-1 flex items-center justify-center md:justify-start gap-2">
-                                <span aria-hidden="true">📞</span> Teléfono
+                                <Phone size={20} className="text-orange-700 dark:text-orange-400" /> Teléfono
                             </h3>
                             <a
                                 href={isPhoneRevealed ? `tel:${getPhoneNumber().replace(/\s/g, '')}` : '#'}
@@ -148,7 +149,7 @@ export default function Contact() {
                         </div>
                         <div className="text-center md:text-left flex-1">
                             <h3 className="font-bold text-slate-700 dark:text-slate-300 mb-1 flex items-center justify-center md:justify-start gap-2">
-                                <span aria-hidden="true">🔗</span> LinkedIn
+                                <Linkedin size={20} className="text-orange-700 dark:text-orange-400" /> LinkedIn
                             </h3>
                             <a href="https://linkedin.com/in/pubesan" target="_blank" rel="noopener noreferrer" className="text-orange-700 dark:text-orange-400 hover:text-orange-800 dark:hover:text-orange-500 transition-colors">
                                 linkedin.com/in/pubesan
@@ -223,12 +224,15 @@ export default function Contact() {
                                     <button
                                         type="submit"
                                         disabled={isSubmitting}
-                                        className="w-48 inline-flex items-center justify-center bg-orange-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-800 transition-all duration-300 shadow-lg transform hover:scale-105 disabled:bg-slate-400 disabled:scale-100 disabled:cursor-not-allowed"
+                                        className="w-48 inline-flex items-center justify-center gap-2 bg-orange-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-800 transition-all duration-300 shadow-lg transform hover:scale-105 disabled:bg-slate-400 disabled:scale-100 disabled:cursor-not-allowed"
                                     >
                                         {isSubmitting ? (
                                             <span className="w-5 h-5 border-2 border-white/50 border-t-white rounded-full animate-spin"></span>
                                         ) : (
-                                            'Enviar mensaje'
+                                            <>
+                                                <Send size={18} />
+                                                <span>Enviar mensaje</span>
+                                            </>
                                         )}
                                     </button>
                                 </div>

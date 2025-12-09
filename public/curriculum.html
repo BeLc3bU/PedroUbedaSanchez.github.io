@@ -173,14 +173,16 @@
                 <p class="text-xl font-medium text-slate-700">Técnico especialista en informática, aviónica y
                     administración</p>
                 <div class="mt-4 text-slate-600 flex flex-wrap gap-x-4 gap-y-1 text-sm">
-                    <p><span aria-hidden="true">📞</span><span class="sr-only">Teléfono:</span> +34 635 945 779</p>
-                    <a href="mailto:contacto@pedroubedasanchez.es" class="hover:text-orange-700"><span
-                            aria-hidden="true">✉️</span><span class="sr-only">Correo electrónico:</span>
+                    <p><i data-lucide="phone" class="w-4 h-4 inline mr-1 text-orange-700"></i><span
+                            class="sr-only">Teléfono:</span> +34 635 945 779</p>
+                    <a href="mailto:contacto@pedroubedasanchez.es" class="hover:text-orange-700"><i data-lucide="mail"
+                            class="w-4 h-4 inline mr-1 text-orange-700"></i><span class="sr-only">Correo
+                            electrónico:</span>
                         contacto@pedroubedasanchez.es</a>
                     <a href="https://linkedin.com/in/pubesan" target="_blank" rel="noopener noreferrer"
                         class="hover:text-orange-700"
-                        aria-label="Visitar perfil de LinkedIn (se abre en una nueva pestaña)"><span
-                            aria-hidden="true">🔗</span> linkedin.com/in/pubesan</a>
+                        aria-label="Visitar perfil de LinkedIn (se abre en una nueva pestaña)"><i data-lucide="linkedin"
+                            class="w-4 h-4 inline mr-1 text-orange-700"></i> linkedin.com/in/pubesan</a>
                 </div>
             </div>
         </div>
@@ -336,10 +338,12 @@
             Para una mejor experiencia, activa JavaScript en tu navegador.
         </div>
     </noscript>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         // Script autónomo para la página de impresión
         document.addEventListener('DOMContentLoaded', () => {
             document.body.style.opacity = '1';
+            lucide.createIcons();
             // Descomenta la siguiente línea si quieres que el diálogo de impresión
             // se abra automáticamente al cargar la página.
             // window.print();

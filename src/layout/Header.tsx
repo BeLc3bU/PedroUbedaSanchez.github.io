@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import clsx from 'clsx';
 import { useTheme } from '../hooks/useTheme';
-import { Sun, Moon, Menu, X } from 'lucide-react';
+import { Sun, Moon, Menu, X, User, Briefcase, Lightbulb, GraduationCap, BookOpen, MessageCircle } from 'lucide-react';
 
 export default function Header() {
     const location = useLocation();
@@ -10,12 +10,12 @@ export default function Header() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const navLinks = [
-        { name: 'Sobre Mí', path: '/', icon: '👤' },
-        { name: 'Experiencia', path: '/experiencia', icon: '💼' },
-        { name: 'Habilidades', path: '/habilidades', icon: '💡' },
-        { name: 'Formación', path: '/formacion', icon: '📜' },
-        { name: 'Otros Datos', path: '/otros-datos', icon: '📚' },
-        { name: 'Contacto', path: '/contacto', icon: '📞' },
+        { name: 'Sobre Mí', path: '/', icon: <User size={18} /> },
+        { name: 'Experiencia', path: '/experiencia', icon: <Briefcase size={18} /> },
+        { name: 'Habilidades', path: '/habilidades', icon: <Lightbulb size={18} /> },
+        { name: 'Formación', path: '/formacion', icon: <GraduationCap size={18} /> },
+        { name: 'Otros Datos', path: '/otros-datos', icon: <BookOpen size={18} /> },
+        { name: 'Contacto', path: '/contacto', icon: <MessageCircle size={18} /> },
     ];
 
     const closeMenu = () => setIsMobileMenuOpen(false);
@@ -39,7 +39,7 @@ export default function Header() {
                                 )}
                                 aria-current={location.pathname === link.path ? 'page' : undefined}
                             >
-                                <span aria-hidden="true">{link.icon}</span>
+                                {link.icon}
                                 <span>{link.name}</span>
                             </Link>
                         </li>
@@ -107,7 +107,7 @@ export default function Header() {
                                             location.pathname === link.path && "font-bold text-orange-700"
                                         )}
                                     >
-                                        <span aria-hidden="true">{link.icon}</span>
+                                        {link.icon}
                                         <span>{link.name}</span>
                                     </Link>
                                 </li>

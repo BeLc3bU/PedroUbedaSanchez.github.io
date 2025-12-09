@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import TimelineItem from '../components/TimelineItem';
+import { Briefcase, Plane, Calculator, FileText, Radio } from 'lucide-react';
 
 export default function Experience() {
     return (
@@ -12,7 +13,7 @@ export default function Experience() {
 
             <section className="container mx-auto px-6 py-12 mb-24 animate-in fade-in slide-in-from-right-8 duration-700">
                 <h1 className="text-3xl sm:text-4xl font-bold mb-12 text-center text-orange-900 dark:text-orange-400 flex items-center justify-center gap-3">
-                    <span aria-hidden="true">💼</span>
+                    <Briefcase size={40} className="text-orange-900 dark:text-orange-400" />
                     Experiencia Profesional
                 </h1>
 
@@ -21,7 +22,7 @@ export default function Experience() {
                     <TimelineItem
                         title="Militar (Informático/Aviónico)"
                         subtitle="FAS | 2008 - 2025"
-                        icon="✈️"
+                        icon={<Plane size={24} className="text-orange-600" />}
                     >
                         <ul className="list-disc list-inside space-y-2">
                             <li>Mantenimiento, diagnóstico y solución de averías de simuladores de vuelo y flota de aviones a nivel informático y electrónico.</li>
@@ -34,7 +35,7 @@ export default function Experience() {
                     <TimelineItem
                         title="Administrativo Contable"
                         subtitle="ICONO TELECOM | 2007 - 2008"
-                        icon="💰"
+                        icon={<Calculator size={24} className="text-orange-600" />}
                     >
                         <ul className="list-disc list-inside space-y-2">
                             <li>Gestión de pagos a proveedores y clientes.</li>
@@ -47,7 +48,7 @@ export default function Experience() {
                     <TimelineItem
                         title="Auxiliar Administrativo"
                         subtitle="TRUCCSA | 2006 - 2007"
-                        icon="📁"
+                        icon={<FileText size={24} className="text-orange-600" />}
                     >
                         <ul className="list-disc list-inside space-y-2">
                             <li>Gestión de pedidos, albaranes y facturación.</li>
@@ -59,7 +60,7 @@ export default function Experience() {
                     <TimelineItem
                         title="Militar (Admin/Telecom)"
                         subtitle="FAS | 2002 - 2005"
-                        icon="📡"
+                        icon={<Radio size={24} className="text-orange-600" />}
                     >
                         <ul className="list-disc list-inside space-y-2">
                             <li>Archivo, correspondencia y registro.</li>
