@@ -14,12 +14,142 @@
     <link color="#c2410c" href="safari-pinned-tab.svg" rel="mask-icon" />
     <meta content="#f5f5f4" name="msapplication-TileColor" />
     <meta content="#ffffff" name="theme-color" />
-    <!-- Previene el "Flash of Unstyled Content" (FOUC) -->
-    }); var f = d.getElementsByTagName(s)[0],
-    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-NGDK68DN');</script>
+
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-NGDK68DN');</script>
     <!-- End Google Tag Manager -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Font Definitions */
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url(/assets/fonts/inter-v20-latin-regular.woff2) format('woff2');
+        }
+
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: url(/assets/fonts/inter-v20-latin-700.woff2) format('woff2');
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1e293b;
+            line-height: 1.5;
+        }
+
+        /* PRINT SPECIFIC STYLES */
+        @media print {
+            body {
+                width: 210mm;
+                margin: 0;
+                padding: 10mm 15mm;
+                font-size: 10pt;
+                line-height: 1.3;
+                background: #fff !important;
+                color: #000 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                box-sizing: border-box;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            * {
+                page-break-inside: avoid;
+            }
+
+            a {
+                text-decoration: none;
+                color: inherit;
+            }
+
+            /* Header Adjustments */
+            header {
+                position: relative !important;
+                display: flex !important;
+                flex-direction: row !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                margin-bottom: 1rem !important;
+                width: 100% !important;
+            }
+
+            /* Fix for QR Code Oversizing */
+            .qr-code-container-print {
+                position: absolute !important;
+                top: 0 !important;
+                right: 0 !important;
+                width: 20mm !important;
+                height: 20mm !important;
+                z-index: 50;
+                display: block !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .qr-code-image {
+                width: 20mm !important;
+                height: 20mm !important;
+                max-width: 20mm !important;
+                max-height: 20mm !important;
+                object-fit: contain !important;
+            }
+
+            section {
+                margin-bottom: 1rem !important;
+                page-break-inside: avoid;
+            }
+
+            .section-header {
+                font-size: 1.2rem !important;
+                margin-bottom: 0.5rem !important;
+                border-bottom: 2px solid #ea580c !important;
+                padding-bottom: 0.2rem !important;
+                color: #000 !important;
+            }
+
+            p {
+                margin-bottom: 0.3rem !important;
+            }
+
+            ul {
+                margin: 0.2rem 0 !important;
+                padding-left: 1.2rem !important;
+            }
+
+            li {
+                margin-bottom: 0.1rem !important;
+            }
+        }
+    </style>
 </head>
 
 <body class="bg-white p-8 md:p-12">
