@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from 'react-helmet';
 import { Linkedin, Github, FileText } from 'lucide-react';
 
 export default function Home() {

@@ -11,12 +11,13 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@types/react-helmet": "^6.1.11",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.25",
     "lucide-react": "^0.556.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-helmet-async": "^2.0.5",
+    "react-helmet": "^6.1.0",
     "react-router-dom": "^7.10.1",
     "tailwind-merge": "^3.4.0"
   },

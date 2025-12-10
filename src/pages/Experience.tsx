@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from 'react-helmet';
 import TimelineItem from '../components/TimelineItem';
 import { Briefcase, Plane, Calculator, FileText, Radio } from 'lucide-react';
 

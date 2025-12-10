@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from 'react-helmet';
 import { useState, type ChangeEvent, type FormEvent } from 'react';
 import { Mail, Phone, Linkedin, MessageSquare, Send } from 'lucide-react';
 

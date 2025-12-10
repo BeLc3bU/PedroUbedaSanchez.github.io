@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from 'react-helmet';
 import {
     Lightbulb, Wrench, Brain,
     FileText, Globe, Bot, Monitor, Cloud, Database, ClipboardList, Cpu,

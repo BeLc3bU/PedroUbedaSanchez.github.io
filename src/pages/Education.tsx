@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from 'react-helmet';
 import type { ReactNode } from 'react';
 import { Award, GraduationCap, Shield, ShieldCheck, Medal, Star } from 'lucide-react';
 
