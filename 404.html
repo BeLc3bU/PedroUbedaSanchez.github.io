@@ -29,6 +29,12 @@
       );
     </script>
 
+    <!-- Vite will automatically inject the correct script and link tags during build -->
+  </head>
+  <body class="bg-stone-100 text-slate-800 dark:bg-slate-900 dark:text-slate-200 transition-colors duration-300">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -37,17 +43,11 @@
     })(window,document,'script','dataLayer','GTM-NGDK68DN');</script>
     <!-- End Google Tag Manager -->
 
-    <!-- Preload LCP image if we knew what it was, but in React it's dynamic. keeping it simple for now -->
-    <script type="module" crossorigin src="/assets/index-DoQNbOWW.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-fS11oqSC.css">
-  </head>
-  <body class="bg-stone-100 text-slate-800 dark:bg-slate-900 dark:text-slate-200 transition-colors duration-300">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NGDK68DN"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     
-    <div id="root"></div>
     
     <noscript>
       <div style="background: #fff3cd; color: #c2410c; padding: 1em; text-align: center;">
