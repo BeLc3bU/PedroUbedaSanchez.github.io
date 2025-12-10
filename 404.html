@@ -17,16 +17,23 @@
       // Single Page Apps for GitHub Pages
       // MIT License
       // https://github.com/rafgraph/spa-github-pages
-      var pathSegmentsToKeep = 1; // Cambiado a 1 para dominio personalizado
+      // Modificado para dominios personalizados
+      var pathSegmentsToKeep = 0;
       
       var l = window.location;
-      l.replace(
-        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
-        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-        l.hash
-      );
+      var newPath = l.pathname.split('/').slice(1).join('/');
+      
+      if (newPath) {
+        l.replace(
+          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+          '/#/' + newPath + l.search + l.hash
+        );
+      } else {
+        l.replace(
+          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+          '/' + l.search + l.hash
+        );
+      }
     </script>
 
     <!-- Vite will automatically inject the correct script and link tags during build -->
