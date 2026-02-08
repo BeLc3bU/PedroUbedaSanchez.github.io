@@ -22,7 +22,7 @@ export default function Home() {
     };
 
     return (
-        <div className="bg-grid-pattern min-h-screen pt-24 pb-12 overflow-hidden">
+        <div className="bg-grid-pattern min-h-screen pt-20 md:pt-24 pb-12 overflow-hidden">
             <Helmet>
                 <title>Pedro Úbeda Sánchez | Especialista en IT y Aviónica</title>
                 <meta name="description" content="Técnico especialista con más de 20 años de experiencia en informática, aviónica y administración militar." />
@@ -51,7 +51,7 @@ export default function Home() {
                     </div>
 
                     <div className="max-w-4xl">
-                        <h1 className="text-4xl sm:text-5xl md:text-7xl font-black mb-6 tracking-tight leading-tight">
+                        <h1 className="text-3xl sm:text-5xl md:text-7xl font-black mb-6 tracking-tight leading-tight px-2">
                             <span className="text-gradient">Especialista técnico en </span>
                             <span className="text-accent-gradient">IT y Aviónica</span>
                         </h1>

@@ -38,7 +38,7 @@ const projects = [
 
 export default function Projects() {
     return (
-        <div className="bg-grid-pattern min-h-screen pt-32 pb-24">
+        <div className="bg-grid-pattern min-h-screen pt-24 md:pt-32 pb-24">
             <Helmet>
                 <title>Proyectos | Pedro Úbeda Sánchez</title>
                 <meta name="description" content="Proyectos destacados en IT, Aviónica y administración técnica de Pedro Úbeda Sánchez." />
@@ -46,8 +46,8 @@ export default function Projects() {
 
             <section className="container mx-auto px-6">
                 <div className="max-w-4xl mx-auto mb-16 text-center">
-                    <h1 className="text-4xl md:text-5xl font-black mb-4 text-slate-900 dark:text-white flex items-center justify-center gap-4">
-                        <Code2 size={40} className="text-cyan-600 dark:text-cyan-400" />
+                    <h1 className="text-3xl md:text-5xl font-black mb-4 text-slate-900 dark:text-white flex flex-wrap items-center justify-center gap-3">
+                        <Code2 size={32} className="text-cyan-600 dark:text-cyan-400" />
                         Proyectos <span className="text-accent-gradient">& Logros</span>
                     </h1>
                     <p className="text-lg text-slate-600 dark:text-slate-400 font-light">

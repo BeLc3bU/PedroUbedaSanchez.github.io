@@ -4,7 +4,7 @@ import { Briefcase, Plane, Calculator, FileText, Radio } from 'lucide-react';
 
 export default function Experience() {
     return (
-        <div className="bg-grid-pattern min-h-screen pt-32 pb-24">
+        <div className="bg-grid-pattern min-h-screen pt-24 md:pt-32 pb-24">
             <Helmet>
                 <title>Experiencia Profesional | Pedro Úbeda Sánchez</title>
                 <meta name="description" content="Trayectoria profesional de Pedro Úbeda Sánchez: 20 años en las Fuerzas Armadas y administración técnica." />
@@ -13,13 +13,13 @@ export default function Experience() {
 
             <section className="container mx-auto px-6 animate-in fade-in slide-in-from-right-8 duration-700">
                 <div className="max-w-4xl mx-auto mb-16">
-                    <h1 className="text-4xl md:text-5xl font-black mb-4 text-white flex items-center gap-4">
-                        <div className="p-3 bg-cyan-700/20 rounded-2xl text-cyan-400">
-                            <Briefcase size={32} />
+                    <h1 className="text-3xl md:text-5xl font-black mb-4 text-slate-900 dark:text-white flex items-center gap-4">
+                        <div className="p-2 md:p-3 bg-cyan-700/20 rounded-2xl text-cyan-400">
+                            <Briefcase size={28} className="md:w-8 md:h-8" />
                         </div>
                         Experiencia <span className="text-accent-gradient">Profesional</span>
                     </h1>
-                    <p className="text-lg text-slate-400 font-light">
+                    <p className="text-lg text-slate-600 dark:text-slate-400 font-light">
                         Una trayectoria marcada por la precisión, el mantenimiento de sistemas de alta tecnología y la gestión operativa en entornos críticos.
                     </p>
                 </div>

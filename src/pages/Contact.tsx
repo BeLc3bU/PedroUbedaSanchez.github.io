@@ -87,7 +87,7 @@ export default function Contact() {
     };
 
     return (
-        <div className="bg-grid-pattern min-h-screen pt-32 pb-24">
+        <div className="bg-grid-pattern min-h-screen pt-24 md:pt-32 pb-24">
             <Helmet>
                 <title>Contacto | Pedro Úbeda Sánchez</title>
                 <meta name="description" content="Establezca comunicación con Pedro Úbeda Sánchez para consultas técnicas o profesionales." />
@@ -96,8 +96,8 @@ export default function Contact() {
 
             <section className="container mx-auto px-6 max-w-6xl">
                 <div className="max-w-4xl mx-auto mb-16 text-center">
-                    <h1 className="text-4xl md:text-5xl font-black mb-4 text-slate-900 dark:text-white flex items-center justify-center gap-4">
-                        <MessageSquare size={40} className="text-cyan-600 dark:text-cyan-400" />
+                    <h1 className="text-3xl md:text-5xl font-black mb-4 text-slate-900 dark:text-white flex flex-wrap items-center justify-center gap-3">
+                        <MessageSquare size={32} className="text-cyan-600 dark:text-cyan-400" />
                         Canales de <span className="text-accent-gradient">Comunicación</span>
                     </h1>
                     <p className="text-lg text-slate-600 dark:text-slate-400 font-light">
@@ -155,7 +155,7 @@ export default function Contact() {
 
                     {/* Form Panel */}
                     <div className="lg:col-span-3">
-                        <div className="card-tech p-8 md:p-12 relative overflow-hidden">
+                        <div className="card-tech p-6 md:p-12 relative overflow-hidden">
                             {/* Decorative Glow */}
                             <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/5 blur-[100px] -z-10"></div>
 
