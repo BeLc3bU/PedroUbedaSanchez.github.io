@@ -9,16 +9,26 @@ interface TimelineItemProps {
 
 export default function TimelineItem({ title, subtitle, icon, children }: TimelineItemProps) {
     return (
-        <div className="relative timeline-item bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg border-l-4 border-orange-600 transition-all hover:scale-[1.02] hover:shadow-xl">
-            <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2">
-                <span aria-hidden="true" className="text-2xl">{icon}</span>
-                {title}
-            </h3>
-            <p className="text-sm text-slate-500 dark:text-slate-400 mb-4 font-medium uppercase tracking-wide">
-                {subtitle}
-            </p>
-            <div className="text-slate-600 dark:text-slate-300 space-y-1">
-                {children}
+        <div className="relative pl-8 pb-12 last:pb-0 group">
+            <div className="timeline-line"></div>
+            <div className="timeline-dot group-hover:scale-150 transition-transform duration-300"></div>
+
+            <div className="card-tech">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+                        <span className="w-10 h-10 flex items-center justify-center rounded-lg bg-slate-100 dark:bg-white/5 text-cyan-600 dark:text-cyan-400">
+                            {icon}
+                        </span>
+                        {title}
+                    </h3>
+                    <span className="inline-block px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-bold tracking-widest uppercase">
+                        {subtitle}
+                    </span>
+                </div>
+
+                <div className="text-slate-600 dark:text-slate-400 leading-relaxed font-light pl-2 border-l border-black/5 dark:border-white/5">
+                    {children}
+                </div>
             </div>
         </div>
     );

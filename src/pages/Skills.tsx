@@ -5,7 +5,6 @@ import {
     Search, TrendingUp, Calendar, Clipboard, MessageCircle, RefreshCw, Target, FolderOpen
 } from 'lucide-react';
 
-// Interfaces for better type checking
 interface SkillItem {
     icon: React.ReactNode;
     description: string;
@@ -15,7 +14,6 @@ interface SkillCategoryProps {
     title: string;
     icon: React.ReactNode;
     skills: SkillItem[];
-    animationClass: string;
 }
 
 const toolsSkills: SkillItem[] = [
@@ -27,72 +25,79 @@ const toolsSkills: SkillItem[] = [
     { icon: <Database size={20} />, description: 'Manejo de bases de datos y sistemas de control de inventario' },
     { icon: <ClipboardList size={20} />, description: 'Sistemas de gestión documental y elaboración de informes técnicos' },
     { icon: <Cpu size={20} />, description: 'Interpretación de esquemas eléctricos y manuales técnicos' },
-    { icon: <Wrench size={20} />, description: 'Instrumentación y equipos de diagnóstico para sistemas informáticos y aviónicos' },
+    { icon: <Wrench size={20} />, description: 'Instrumentación y equipos de diagnóstico especializado' },
 ];
 
 const competencySkills: SkillItem[] = [
-    { icon: <Search size={20} />, description: 'Análisis y diagnóstico de incidencias técnicas y administrativas' },
-    { icon: <TrendingUp size={20} />, description: 'Gestión logística y administrativa (pagos, facturación, stock)' },
-    { icon: <Calendar size={20} />, description: 'Planificación y ejecución de mantenimiento preventivo' },
-    { icon: <Clipboard size={20} />, description: 'Elaboración y control de documentación en entornos críticos' },
-    { icon: <MessageCircle size={20} />, description: 'Comunicación efectiva con técnicos, mandos y proveedores' },
-    { icon: <RefreshCw size={20} />, description: 'Adaptabilidad a entornos tecnológicos y administrativos diversos' },
-    { icon: <Brain size={20} />, description: 'Capacidad de aprendizaje continuo y actualización técnica' },
-    { icon: <Target size={20} />, description: 'Orientación a resultados, calidad y cumplimiento de normas' },
-    { icon: <FolderOpen size={20} />, description: 'Organización y disciplina en la gestión de tareas y recursos' },
+    { icon: <Search size={20} />, description: 'Análisis y diagnóstico de incidencias técnicas en entornos críticos' },
+    { icon: <TrendingUp size={20} />, description: 'Gestión logística y administrativa avanzada' },
+    { icon: <Calendar size={20} />, description: 'Planificación y ejecución de mantenimiento preventivo y correctivo' },
+    { icon: <Clipboard size={20} />, description: 'Control de documentación técnica bajo normativas estrictas' },
+    { icon: <MessageCircle size={20} />, description: 'Comunicación técnica efectiva y liderazgo de equipos' },
+    { icon: <RefreshCw size={20} />, description: 'Adaptabilidad a entornos de alta presión y evolución constante' },
+    { icon: <Brain size={20} />, description: 'Capacidad de autoaprendizaje y actualización técnica continua' },
+    { icon: <Target size={20} />, description: 'Orientación a resultados de alta calidad y precisión táctica' },
+    { icon: <FolderOpen size={20} />, description: 'Organización metódica y disciplina profesional militar' },
 ];
 
-function SkillCategory({ title, icon, skills, animationClass }: SkillCategoryProps) {
+function SkillCategory({ title, icon, skills }: SkillCategoryProps) {
     return (
-        <div className={`bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg card-lift animate-in fade-in duration-700 ${animationClass}`}>
-            <h3 className="text-xl md:text-2xl font-semibold mb-6 text-center text-slate-700 dark:text-slate-200 flex items-center justify-center gap-2">
-                {icon}
+        <div className="card-tech animate-in fade-in duration-1000">
+            <h3 className="text-2xl font-black mb-8 text-white flex items-center gap-3">
+                <div className="p-2 bg-cyan-700/10 rounded-lg text-cyan-400">
+                    {icon}
+                </div>
                 {title}
             </h3>
-            <ul className="space-y-4 text-slate-600 dark:text-slate-300">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {skills.map((skill, index) => (
-                    <li key={index} className="flex items-start group">
-                        <span className="text-orange-600 mr-4 mt-1 transition-transform group-hover:scale-125 duration-300">
+                    <div key={index} className="flex items-center gap-3 p-3 rounded-lg bg-white/5 border border-white/5 hover:border-cyan-500/30 transition-all group">
+                        <span className="text-cyan-600 dark:text-cyan-400 group-hover:scale-110 transition-transform">
                             {skill.icon}
                         </span>
-                        <p>{skill.description}</p>
-                    </li>
+                        <span className="text-sm text-slate-600 dark:text-slate-400 font-light group-hover:text-slate-900 dark:group-hover:text-white transition-colors">
+                            {skill.description}
+                        </span>
+                    </div>
                 ))}
-            </ul>
+            </div>
         </div>
     );
 }
 
 export default function Skills() {
     return (
-        <>
+        <div className="bg-grid-pattern min-h-screen pt-32 pb-24">
             <Helmet>
-                <title>Habilidades Técnicas y Personales - Pedro Úbeda Sánchez</title>
-                <meta name="description" content="Descubre las habilidades interpersonales y técnicas de Pedro Úbeda Sánchez, incluyendo trabajo en equipo, proactividad, informática, hardware y ciberseguridad." />
+                <title>Habilidades | Pedro Úbeda Sánchez</title>
+                <meta name="description" content="Habilidades técnicas en IT, Aviónica y competencias profesionales de Pedro Úbeda Sánchez." />
                 <link rel="canonical" href="https://pedroubedasanchez.es/habilidades" />
             </Helmet>
 
-            <section className="container mx-auto px-6 py-12 mb-24">
-                <h1 className="text-3xl sm:text-4xl font-bold mb-12 text-center text-orange-900 dark:text-orange-400 flex items-center justify-center gap-3">
-                    <Lightbulb size={40} className="text-orange-900 dark:text-orange-400" />
-                    Habilidades
-                </h1>
+            <section className="container mx-auto px-6">
+                <div className="max-w-4xl mx-auto mb-16 text-center">
+                    <h1 className="text-4xl md:text-5xl font-black mb-4 text-slate-900 dark:text-white flex items-center justify-center gap-4">
+                        <Lightbulb size={40} className="text-cyan-600 dark:text-cyan-400" />
+                        Skills <span className="text-accent-gradient">& Competencias</span>
+                    </h1>
+                    <p className="text-lg text-slate-600 dark:text-slate-400 font-light">
+                        Un conjunto de habilidades forjadas en el rigor militar y la especialización tecnológica constante.
+                    </p>
+                </div>
 
-                <div className="grid md:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto">
+                <div className="flex flex-col gap-8 max-w-6xl mx-auto">
                     <SkillCategory
-                        title="Herramientas y conocimientos"
-                        icon={<Wrench size={28} className="text-orange-600" />}
+                        title="Herramientas y Conocimientos Técnicos"
+                        icon={<Wrench size={24} />}
                         skills={toolsSkills}
-                        animationClass="slide-in-from-left-8"
                     />
                     <SkillCategory
-                        title="Competencias y habilidades"
-                        icon={<Brain size={28} className="text-orange-600" />}
+                        title="Competencias Profesionales"
+                        icon={<Brain size={24} />}
                         skills={competencySkills}
-                        animationClass="slide-in-from-right-8"
                     />
                 </div>
             </section>
-        </>
+        </div>
     );
 }

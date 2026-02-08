@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet';
 import { useState, type ChangeEvent, type FormEvent } from 'react';
-import { Mail, Phone, Linkedin, MessageSquare, Send } from 'lucide-react';
+import { Mail, Phone, Linkedin, MessageSquare, Send, Globe } from 'lucide-react';
 
 interface FormState {
     name: string;
@@ -16,17 +16,13 @@ interface ErrorsState {
 }
 
 export default function Contact() {
-    // ----- Phone Obfuscation Logic -----
     const [isPhoneRevealed, setIsPhoneRevealed] = useState(false);
     const phoneNumberEncoded = 'KzM0IDYzNSA5NDUgNzc5'; // +34 635 945 779
-
-    // ----- Form State -----
     const [formData, setFormData] = useState<FormState>({ name: '', email: '', message: '' });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const [errors, setErrors] = useState<ErrorsState>({});
 
-    // ----- Phone Handler -----
     const handlePhoneClick = (e: React.MouseEvent) => {
         if (!isPhoneRevealed) {
             e.preventDefault();
@@ -35,19 +31,12 @@ export default function Contact() {
     };
 
     const getPhoneNumber = () => {
-        try {
-            return atob(phoneNumberEncoded);
-        } catch {
-            return '';
-        }
+        try { return atob(phoneNumberEncoded); } catch { return ''; }
     };
 
-    // ----- Form Handlers -----
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
-
-        // Clear error for this field when user types
         if (errors[name as keyof ErrorsState]) {
             setErrors(prev => ({ ...prev, [name]: undefined }));
         }
@@ -55,14 +44,13 @@ export default function Contact() {
 
     const validate = (): boolean => {
         const newErrors: ErrorsState = {};
-        if (!formData.name.trim()) newErrors.name = 'Este campo es obligatorio.';
+        if (!formData.name.trim()) newErrors.name = 'Identidad requerida.';
         if (!formData.email.trim()) {
-            newErrors.email = 'Este campo es obligatorio.';
+            newErrors.email = 'Canal de retorno requerido.';
         } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-            newErrors.email = 'Por favor, introduce una dirección de correo válida.';
+            newErrors.email = 'Formato de comunicación no válido.';
         }
-        if (!formData.message.trim()) newErrors.message = 'Este campo es obligatorio.';
-
+        if (!formData.message.trim()) newErrors.message = 'Mensaje vacío.';
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -70,177 +58,193 @@ export default function Contact() {
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         if (!validate()) return;
-
         setIsSubmitting(true);
-        setIsSuccess(false); // Reset success state
-        setErrors({});
-
         try {
             const formPayload = new FormData();
             formPayload.append('name', formData.name);
             formPayload.append('email', formData.email);
             formPayload.append('message', formData.message);
-            formPayload.append('_subject', 'Nuevo mensaje desde pedroubedasanchez.es (React)');
-            // Simple honeypot handling if needed, usually just hidden input in JSX
+            formPayload.append('_subject', 'Transmisión técnica desde Portfolio');
 
             const response = await fetch("https://formsubmit.co/ajax/contacto@pedroubedasanchez.es", {
                 method: 'POST',
-                headers: {
-                    'Accept': 'application/json'
-                },
+                headers: { 'Accept': 'application/json' },
                 body: formPayload
             });
 
             const data = await response.json();
-
             if (data.success === "true" || data.success === true) {
                 setIsSuccess(true);
                 setFormData({ name: '', email: '', message: '' });
             } else {
-                throw new Error(data.message || 'Hubo un problema con el envío.');
+                throw new Error(data.message || 'Fallo en la transmisión.');
             }
         } catch (error) {
-            console.error('Error submitting form:', error);
-            setErrors({ general: 'Error: No se pudo enviar el mensaje. Inténtalo más tarde.' });
+            setErrors({ general: 'Error crítico en el enlace de comunicación. Reintegre el envío.' });
         } finally {
             setIsSubmitting(false);
         }
     };
 
     return (
-        <>
+        <div className="bg-grid-pattern min-h-screen pt-32 pb-24">
             <Helmet>
                 <title>Contacto | Pedro Úbeda Sánchez</title>
-                <meta name="description" content="Contacta con Pedro Úbeda Sánchez para oportunidades profesionales, colaboraciones o cualquier consulta. Rellena el formulario o envía un correo electrónico." />
+                <meta name="description" content="Establezca comunicación con Pedro Úbeda Sánchez para consultas técnicas o profesionales." />
                 <link rel="canonical" href="https://pedroubedasanchez.es/contacto" />
             </Helmet>
 
-            <section className="container mx-auto px-6 py-12 mb-24 animate-in fade-in slide-in-from-bottom-8 duration-700">
-                <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-center text-slate-800 dark:text-slate-100 flex items-center justify-center gap-3">
-                    <MessageSquare size={40} className="text-orange-700 dark:text-orange-400" />
-                    Contacto
-                </h1>
-                <p className="text-lg text-slate-600 dark:text-slate-400 mb-8 text-center max-w-2xl mx-auto">
-                    ¿Tienes alguna pregunta o propuesta? No dudes en contactarme.
-                </p>
+            <section className="container mx-auto px-6 max-w-6xl">
+                <div className="max-w-4xl mx-auto mb-16 text-center">
+                    <h1 className="text-4xl md:text-5xl font-black mb-4 text-slate-900 dark:text-white flex items-center justify-center gap-4">
+                        <MessageSquare size={40} className="text-cyan-600 dark:text-cyan-400" />
+                        Canales de <span className="text-accent-gradient">Comunicación</span>
+                    </h1>
+                    <p className="text-lg text-slate-600 dark:text-slate-400 font-light">
+                        Disponible para consultas técnicas, colaboraciones profesionales y oportunidades en el sector IT y defensa.
+                    </p>
+                </div>
 
-                <div className="bg-white dark:bg-slate-800 p-8 rounded-lg shadow-lg max-w-3xl mx-auto">
-                    {/* Contact Info Grid */}
-                    <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 mb-8 border-b border-slate-200 dark:border-slate-700 pb-8">
-                        <div className="text-center md:text-left flex-1">
-                            <h3 className="font-bold text-slate-700 dark:text-slate-300 mb-1 flex items-center justify-center md:justify-start gap-2">
-                                <Mail size={20} className="text-orange-700 dark:text-orange-400" /> Correo electrónico
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
+                    {/* Side Info */}
+                    <div className="lg:col-span-2 space-y-6">
+                        <div className="card-tech backdrop-blur-3xl">
+                            <h3 className="text-xl font-bold mb-8 text-slate-900 dark:text-white flex items-center gap-2">
+                                <Globe size={20} className="text-cyan-600 dark:text-cyan-400" /> Detalle de Contacto
                             </h3>
-                            <a href="mailto:contacto@pedroubedasanchez.es" className="text-orange-700 dark:text-orange-400 hover:text-orange-800 dark:hover:text-orange-500 break-all transition-colors">
-                                contacto@pedroubedasanchez.es
-                            </a>
-                        </div>
-                        <div className="text-center md:text-left flex-1">
-                            <h3 className="font-bold text-slate-700 dark:text-slate-300 mb-1 flex items-center justify-center md:justify-start gap-2">
-                                <Phone size={20} className="text-orange-700 dark:text-orange-400" /> Teléfono
-                            </h3>
-                            <a
-                                href={isPhoneRevealed ? `tel:${getPhoneNumber().replace(/\s/g, '')}` : '#'}
-                                onClick={handlePhoneClick}
-                                className="text-orange-700 dark:text-orange-400 hover:text-orange-800 dark:hover:text-orange-500 transition-colors cursor-pointer"
-                            >
-                                {isPhoneRevealed ? getPhoneNumber() : 'Mostrar número'}
-                            </a>
-                        </div>
-                        <div className="text-center md:text-left flex-1">
-                            <h3 className="font-bold text-slate-700 dark:text-slate-300 mb-1 flex items-center justify-center md:justify-start gap-2">
-                                <Linkedin size={20} className="text-orange-700 dark:text-orange-400" /> LinkedIn
-                            </h3>
-                            <a href="https://linkedin.com/in/pubesan" target="_blank" rel="noopener noreferrer" className="text-orange-700 dark:text-orange-400 hover:text-orange-800 dark:hover:text-orange-500 transition-colors">
-                                linkedin.com/in/pubesan
-                            </a>
-                        </div>
-                    </div>
 
-                    <div className="max-w-xl mx-auto">
-                        {isSuccess ? (
-                            <div className="text-center bg-green-100 dark:bg-green-900/50 border border-green-400 dark:border-green-600 text-green-700 dark:text-green-300 px-4 py-8 rounded-lg shadow-md animate-in zoom-in duration-300">
-                                <h3 className="font-bold text-2xl mb-2">¡Mensaje Enviado!</h3>
-                                <p>Gracias por ponerte en contacto. He recibido tu mensaje y te responderé lo antes posible.</p>
-                                <button
-                                    onClick={() => setIsSuccess(false)}
-                                    className="mt-6 inline-block bg-orange-700 text-white font-bold py-2 px-4 rounded-lg hover:bg-orange-800 dark:bg-orange-600 dark:hover:bg-orange-700 transition-colors"
-                                >
-                                    Enviar otro mensaje
-                                </button>
-                            </div>
-                        ) : (
-                            <form onSubmit={handleSubmit} noValidate>
-                                <div className="mb-4">
-                                    <label htmlFor="name" className="block text-slate-700 dark:text-slate-300 font-bold mb-2">Nombre</label>
-                                    <input
-                                        type="text"
-                                        id="name"
-                                        name="name"
-                                        value={formData.name}
-                                        onChange={handleChange}
-                                        className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white dark:bg-slate-700 dark:text-white dark:border-slate-600 ${errors.name ? 'border-red-500' : 'border-gray-300'}`}
-                                    />
-                                    {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
-                                </div>
-
-                                <div className="mb-4">
-                                    <label htmlFor="email" className="block text-slate-700 dark:text-slate-300 font-bold mb-2">Tu correo electrónico</label>
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        name="email"
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white dark:bg-slate-700 dark:text-white dark:border-slate-600 ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
-                                    />
-                                    {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
-                                </div>
-
-                                <div className="mb-6">
-                                    <label htmlFor="message" className="block text-slate-700 dark:text-slate-300 font-bold mb-2">Mensaje</label>
-                                    <textarea
-                                        id="message"
-                                        name="message"
-                                        rows={5}
-                                        maxLength={1000}
-                                        value={formData.message}
-                                        onChange={handleChange}
-                                        className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white dark:bg-slate-700 dark:text-white dark:border-slate-600 ${errors.message ? 'border-red-500' : 'border-gray-300'}`}
-                                    />
-                                    <div className="flex justify-between items-start mt-1">
-                                        <p className="text-red-500 text-sm">{errors.message}</p>
-                                        <p className={`text-sm ml-auto ${formData.message.length > 900 ? 'text-orange-600 font-bold' : 'text-slate-500 dark:text-slate-400'}`}>
-                                            {formData.message.length} / 1000
-                                        </p>
+                            <div className="space-y-8">
+                                <div className="flex gap-4 group">
+                                    <div className="p-3 bg-white/5 rounded-xl text-slate-400 group-hover:text-cyan-400 transition-colors">
+                                        <Mail size={24} />
+                                    </div>
+                                    <div>
+                                        <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Email</p>
+                                        <a href="mailto:contacto@pedroubedasanchez.es" className="text-slate-900 dark:text-white hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
+                                            contacto@pedroubedasanchez.es
+                                        </a>
                                     </div>
                                 </div>
 
-                                {errors.general && (
-                                    <p className="text-red-500 text-sm text-center mb-4">{errors.general}</p>
-                                )}
+                                <div className="flex gap-4 group">
+                                    <div className="p-3 bg-white/5 rounded-xl text-slate-400 group-hover:text-cyan-400 transition-colors">
+                                        <Phone size={24} />
+                                    </div>
+                                    <div>
+                                        <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Teléfono</p>
+                                        <button onClick={handlePhoneClick} className="text-slate-900 dark:text-white hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors text-left">
+                                            {isPhoneRevealed ? getPhoneNumber() : 'Verificación de identidad requerida'}
+                                        </button>
+                                    </div>
+                                </div>
 
-                                <div className="text-center">
+                                <div className="flex gap-4 group">
+                                    <div className="p-3 bg-white/5 rounded-xl text-slate-400 group-hover:text-cyan-400 transition-colors">
+                                        <Linkedin size={24} />
+                                    </div>
+                                    <div>
+                                        <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">LinkedIn</p>
+                                        <a href="https://linkedin.com/in/pubesan" target="_blank" rel="noopener noreferrer" className="text-slate-900 dark:text-white hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
+                                            linkedin.com/in/pubesan
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Form Panel */}
+                    <div className="lg:col-span-3">
+                        <div className="card-tech p-8 md:p-12 relative overflow-hidden">
+                            {/* Decorative Glow */}
+                            <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/5 blur-[100px] -z-10"></div>
+
+                            {isSuccess ? (
+                                <div className="text-center py-12 animate-in zoom-in duration-500">
+                                    <div className="w-20 h-20 bg-cyan-500/20 rounded-full flex items-center justify-center text-cyan-400 mx-auto mb-8 shadow-inner">
+                                        <Send size={40} />
+                                    </div>
+                                    <h3 className="text-3xl font-black text-slate-900 dark:text-white mb-4">¡Transmisión Exitosa!</h3>
+                                    <p className="text-slate-400 font-light mb-8 max-w-md mx-auto leading-relaxed">
+                                        He recibido su mensaje encriptado. Procederé a revisarlo y emitir una respuesta a la brevedad.
+                                    </p>
                                     <button
-                                        type="submit"
-                                        disabled={isSubmitting}
-                                        className="w-48 inline-flex items-center justify-center gap-2 bg-orange-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-800 transition-all duration-300 shadow-lg transform hover:scale-105 disabled:bg-slate-400 disabled:scale-100 disabled:cursor-not-allowed"
+                                        onClick={() => setIsSuccess(false)}
+                                        className="bg-slate-900 dark:bg-white text-white dark:text-slate-950 font-bold py-3 px-8 rounded-full hover:bg-cyan-600 dark:hover:bg-cyan-400 transition-all active:scale-95"
                                     >
-                                        {isSubmitting ? (
-                                            <span className="w-5 h-5 border-2 border-white/50 border-t-white rounded-full animate-spin"></span>
-                                        ) : (
-                                            <>
-                                                <Send size={18} />
-                                                <span>Enviar mensaje</span>
-                                            </>
-                                        )}
+                                        Nueva comunicación
                                     </button>
                                 </div>
-                            </form>
-                        )}
+                            ) : (
+                                <form onSubmit={handleSubmit} noValidate className="space-y-6">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div className="space-y-2">
+                                            <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">Identificación</label>
+                                            <input
+                                                type="text"
+                                                name="name"
+                                                placeholder="Su nombre"
+                                                value={formData.name}
+                                                onChange={handleChange}
+                                                className={`input-tech ${errors.name ? 'border-red-500/50' : ''}`}
+                                            />
+                                            {errors.name && <p className="text-red-400 text-xs italic">{errors.name}</p>}
+                                        </div>
+                                        <div className="space-y-2">
+                                            <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">Procedencia</label>
+                                            <input
+                                                type="email"
+                                                name="email"
+                                                placeholder="su@email.com"
+                                                value={formData.email}
+                                                onChange={handleChange}
+                                                className={`input-tech ${errors.email ? 'border-red-500/50' : ''}`}
+                                            />
+                                            {errors.email && <p className="text-red-400 text-xs italic">{errors.email}</p>}
+                                        </div>
+                                    </div>
+
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">Mensaje técnico</label>
+                                        <textarea
+                                            name="message"
+                                            rows={6}
+                                            placeholder="Describa el motivo de su consulta..."
+                                            value={formData.message}
+                                            onChange={handleChange}
+                                            className={`input-tech resize-none ${errors.message ? 'border-red-500/50' : ''}`}
+                                        />
+                                        {errors.message && <p className="text-red-400 text-xs italic">{errors.message}</p>}
+                                    </div>
+
+                                    {errors.general && (
+                                        <p className="text-red-400 text-sm text-center bg-red-500/10 p-4 rounded-xl border border-red-500/20">
+                                            {errors.general}
+                                        </p>
+                                    )}
+
+                                    <div className="pt-4 flex justify-end">
+                                        <button
+                                            type="submit"
+                                            disabled={isSubmitting}
+                                            className="group relative flex items-center gap-3 bg-cyan-600 text-white font-black py-4 px-10 rounded-xl hover:bg-cyan-500 transition-all shadow-[0_10px_30px_-10px_rgba(34,211,238,0.3)] disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-1 active:scale-95 overflow-hidden"
+                                        >
+                                            {isSubmitting ? (
+                                                <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                                            ) : (
+                                                <>
+                                                    <span>INICIAR ENVÍO</span>
+                                                    <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                                                </>
+                                            )}
+                                        </button>
+                                    </div>
+                                </form>
+                            )}
+                        </div>
                     </div>
                 </div>
             </section>
-        </>
+        </div>
     );
 }

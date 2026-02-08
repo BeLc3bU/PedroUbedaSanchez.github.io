@@ -10,16 +10,16 @@ interface CardProps {
 
 function EducationCard({ icon, title, subtitle }: CardProps) {
     return (
-        <li className="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-sm flex items-start card-lift transition-transform hover:scale-[1.02] hover:shadow-md">
-            <span className="text-orange-600 mr-4 mt-1">
+        <li className="card-tech flex items-start gap-4 hover:border-cyan-500/50 transition-all">
+            <div className="p-3 bg-cyan-700/10 rounded-xl text-cyan-400 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-colors">
                 {icon}
-            </span>
+            </div>
             <div>
-                <p className="font-bold text-slate-800 dark:text-slate-100 mb-1">
+                <p className="font-bold text-slate-900 dark:text-white mb-1">
                     {title}
                 </p>
                 {subtitle && (
-                    <p className="text-sm text-slate-500 dark:text-slate-400">
+                    <p className="text-sm text-slate-500 dark:text-slate-400 font-light italic">
                         {subtitle}
                     </p>
                 )}
@@ -28,34 +28,32 @@ function EducationCard({ icon, title, subtitle }: CardProps) {
     );
 }
 
-function SectionTitle({ children }: { children: ReactNode }) {
-    return (
-        <h3 className="text-xl md:text-2xl font-semibold mb-6 text-slate-700 dark:text-slate-200 border-b-2 border-orange-200 dark:border-slate-700 pb-2 inline-block">
-            {children}
-        </h3>
-    );
-}
-
 export default function Education() {
     return (
-        <>
+        <div className="bg-grid-pattern min-h-screen pt-32 pb-24">
             <Helmet>
-                <title>Formación y Reconocimientos - Pedro Úbeda Sánchez</title>
-                <meta name="description" content="Conoce la formación académica, cursos y reconocimientos de Pedro Úbeda Sánchez, incluyendo su título de Técnico Especialista en Informática y cursos de ciberseguridad." />
+                <title>Formación y Logros | Pedro Úbeda Sánchez</title>
+                <meta name="description" content="Formación académica y reconocimientos militares de Pedro Úbeda Sánchez." />
                 <link rel="canonical" href="https://pedroubedasanchez.es/formacion" />
             </Helmet>
 
-            <section className="container mx-auto px-6 py-12 mb-24 animate-in fade-in slide-in-from-bottom-8 duration-700">
-                <h1 className="text-3xl sm:text-4xl font-bold mb-12 text-center text-orange-900 dark:text-orange-400 flex items-center justify-center gap-3">
-                    <Award size={40} className="text-orange-900 dark:text-orange-400" />
-                    Formación y Logros
-                </h1>
+            <section className="container mx-auto px-6">
+                <div className="max-w-4xl mx-auto mb-16 text-center">
+                    <h1 className="text-4xl md:text-5xl font-black mb-4 text-slate-900 dark:text-white flex items-center justify-center gap-4">
+                        <Award size={40} className="text-cyan-600 dark:text-cyan-400" />
+                        Formación <span className="text-accent-gradient">& Logros</span>
+                    </h1>
+                    <p className="text-lg text-slate-600 dark:text-slate-400 font-light">
+                        Una base académica sólida complementada con formación técnica de alto nivel y reconocimientos al servicio.
+                    </p>
+                </div>
 
-                <div className="grid md:grid-cols-2 gap-8 md:gap-12 max-w-5xl mx-auto">
-                    {/* Formación Académica */}
+                <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
                     <div>
-                        <SectionTitle>Formación Académica y Cursos</SectionTitle>
-                        <ul className="space-y-4">
+                        <h2 className="text-2xl font-black mb-8 text-slate-900 dark:text-white border-b border-black/5 dark:border-white/5 pb-4">
+                            Certificaciones Académicas
+                        </h2>
+                        <ul className="space-y-6">
                             <EducationCard
                                 icon={<GraduationCap size={24} />}
                                 title="Técnico Especialista en Informática de Gestión"
@@ -64,7 +62,7 @@ export default function Education() {
                             <EducationCard
                                 icon={<Shield size={24} />}
                                 title="Curso de Ciberseguridad"
-                                subtitle="Instituto Nacional de Ciberseguridad (INCIBE), León (2018)"
+                                subtitle="INCIBE, León (2018)"
                             />
                             <EducationCard
                                 icon={<ShieldCheck size={24} />}
@@ -74,26 +72,30 @@ export default function Education() {
                         </ul>
                     </div>
 
-                    {/* Reconocimientos */}
                     <div>
-                        <SectionTitle>Reconocimientos</SectionTitle>
-                        <ul className="space-y-4">
+                        <h2 className="text-2xl font-black mb-8 text-slate-900 dark:text-white border-b border-black/5 dark:border-white/5 pb-4">
+                            Honores y Condecoraciones
+                        </h2>
+                        <ul className="space-y-6">
                             <EducationCard
                                 icon={<Medal size={24} />}
-                                title="Cruz del Mérito Aeronáutico con distintivo Blanco."
+                                title="Cruz del Mérito Aeronáutico"
+                                subtitle="Distintivo Blanco"
                             />
                             <EducationCard
                                 icon={<Medal size={24} />}
-                                title="Cruz a la constancia en el Servicio de bronce."
+                                title="Cruz a la Constancia en el Servicio"
+                                subtitle="Categoría Bronce"
                             />
                             <EducationCard
                                 icon={<Star size={24} />}
-                                title="Reconocimiento DANA 2024."
+                                title="Reconocimiento Especial DANA 2024"
+                                subtitle="Operaciones de emergencia y apoyo"
                             />
                         </ul>
                     </div>
                 </div>
             </section>
-        </>
+        </div>
     );
 }

@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet';
-import { Linkedin, Github, FileText } from 'lucide-react';
+import { Linkedin, Github, FileText, ArrowRight, Zap, Target, ShieldCheck } from 'lucide-react';
 
 export default function Home() {
     const handlePrintCv = (e: React.MouseEvent) => {
@@ -22,72 +22,105 @@ export default function Home() {
     };
 
     return (
-        <>
+        <div className="bg-grid-pattern min-h-screen pt-24 pb-12 overflow-hidden">
             <Helmet>
-                <title>Pedro Úbeda Sánchez | Técnico en Informática, Aviónica y Administración</title>
-                <meta name="description" content="Técnico especialista con más de 20 años de experiencia en informática, aviónica y administración." />
+                <title>Pedro Úbeda Sánchez | Especialista en IT y Aviónica</title>
+                <meta name="description" content="Técnico especialista con más de 20 años de experiencia en informática, aviónica y administración militar." />
                 <link rel="canonical" href="https://pedroubedasanchez.es/" />
             </Helmet>
 
-            <section className="container mx-auto px-6 py-12 mb-24 flex flex-col md:flex-row items-center md:items-start gap-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700" id="about">
-                <div className="flex-shrink-0">
-                    {/* Imagen Responsiva y Optimizada */}
-                    <picture>
-                        <source media="(min-width: 768px)" srcSet="/foto-384.webp" type="image/webp" />
-                        <source media="(max-width: 767px)" srcSet="/foto-320.webp" type="image/webp" />
-                        <img
-                            alt="Foto de Pedro Úbeda Sánchez"
-                            className="w-40 h-56 md:w-48 md:h-64 rounded-full object-cover shadow-2xl transition-transform hover:scale-105 duration-500"
-                            src="/foto-384.jpg"
-                            width="192"
-                            height="256"
-                            decoding="async"
-                            loading="eager"
-                        />
-                    </picture>
+            <section className="container mx-auto px-6 py-12 flex flex-col items-center text-center relative z-10" id="about">
+                {/* Visual Accent */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-cyan-500/10 blur-[120px] rounded-full -z-10"></div>
+
+                <div className="flex flex-col items-center gap-8 mb-16 animate-in fade-in slide-in-from-bottom-8 duration-1000">
+                    <div className="relative group">
+                        <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-indigo-500 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+                        <picture>
+                            <source media="(min-width: 768px)" srcSet="/foto-384.webp" type="image/webp" />
+                            <source media="(max-width: 767px)" srcSet="/foto-320.webp" type="image/webp" />
+                            <img
+                                alt="Pedro Úbeda Sánchez"
+                                className="relative w-40 h-52 md:w-56 md:h-72 rounded-full object-cover object-[center_15%] border-4 border-slate-900 shadow-2xl transition-transform hover:scale-105 duration-500"
+                                src="/foto-384.jpg"
+                                width="224"
+                                height="288"
+                                loading="eager"
+                            />
+                        </picture>
+                    </div>
+
+                    <div className="max-w-4xl">
+                        <h1 className="text-4xl sm:text-5xl md:text-7xl font-black mb-6 tracking-tight leading-tight">
+                            <span className="text-gradient">Especialista técnico en </span>
+                            <span className="text-accent-gradient">IT y Aviónica</span>
+                        </h1>
+                        <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed font-light">
+                            Más de <span className="text-slate-900 dark:text-white font-medium">dos décadas</span> de experiencia en mantenimiento, diagnóstico y resolución de sistemas complejos. Disciplina, compromiso y precisión forjados en las <span className="text-slate-900 dark:text-white font-medium">Fuerzas Armadas</span>.
+                        </p>
+                    </div>
                 </div>
 
-                <div className="flex-grow text-center md:text-left md:ml-32">
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-orange-900 dark:text-orange-400">
-                        Técnico especialista en informática, aviónica y administración
-                    </h1>
-                    <p className="max-w-3xl mx-auto md:mx-0 text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Técnico especialista con más de dos décadas de experiencia en el mantenimiento, diagnóstico y resolución de averías en equipos informáticos y de aviónica. Mi trayectoria en las Fuerzas Armadas me ha proporcionado sólidos valores como la disciplina, el compromiso y el trabajo en equipo, habilidades que aplico en mi día a día. En constante formación y motivado para asumir futuros retos que supongan un desarrollo profesional en mi carrera.
-                    </p>
+                <div className="flex flex-wrap justify-center gap-6 mb-24 animate-in fade-in zoom-in duration-1000 delay-300">
+                    <a
+                        href="/curriculum.html"
+                        onClick={handlePrintCv}
+                        className="group flex items-center gap-3 bg-white text-slate-950 px-8 py-4 rounded-full font-bold text-lg hover:bg-cyan-400 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-cyan-400/20 active:scale-95"
+                    >
+                        <FileText size={20} />
+                        Descargar CV
+                        <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                    </a>
 
-                    <div className="mt-8 flex justify-center md:justify-start space-x-6">
+                    <div className="flex items-center gap-3 px-2">
                         <a
                             href="https://www.linkedin.com/in/pubesan"
                             target="_blank"
                             rel="noopener noreferrer"
-                            aria-label="Visitar perfil de LinkedIn"
-                            className="text-slate-500 dark:text-slate-400 hover:text-orange-700 dark:hover:text-orange-400 transition-colors duration-300 transform hover:scale-110"
+                            className="p-4 rounded-full bg-white/5 border border-white/5 text-slate-400 hover:text-cyan-400 hover:bg-white/10 transition-all active:scale-90"
+                            aria-label="LinkedIn"
                         >
-                            <Linkedin size={32} />
+                            <Linkedin size={24} />
                         </a>
                         <a
                             href="https://github.com/BeLc3bU"
                             target="_blank"
                             rel="noopener noreferrer"
-                            aria-label="Visitar perfil de GitHub"
-                            className="text-slate-500 dark:text-slate-400 hover:text-orange-700 dark:hover:text-orange-400 transition-colors duration-300 transform hover:scale-110"
+                            className="p-4 rounded-full bg-white/5 border border-white/5 text-slate-400 hover:text-white hover:bg-white/10 transition-all active:scale-90"
+                            aria-label="GitHub"
                         >
-                            <Github size={32} />
-                        </a>
-                    </div>
-
-                    <div className="mt-10 flex justify-center md:justify-start">
-                        <a
-                            href="/curriculum.html"
-                            onClick={handlePrintCv}
-                            className="inline-flex items-center gap-2 bg-orange-700 text-white font-bold py-3 px-8 rounded-lg hover:bg-orange-800 transition-all duration-300 shadow-lg hover:shadow-orange-900/20 transform hover:-translate-y-1 hover:scale-105"
-                        >
-                            <FileText size={20} />
-                            Descargar CV
+                            <Github size={24} />
                         </a>
                     </div>
                 </div>
+
+                {/* Key Features / Values */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-500">
+                    <div className="card-tech text-left">
+                        <div className="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center text-cyan-400 mb-6 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-colors">
+                            <Zap size={24} />
+                        </div>
+                        <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-white">Rápida Resolución</h3>
+                        <p className="text-slate-500 dark:text-slate-400 leading-relaxed">Capacidad crítica para diagnosticar y ejecutar soluciones en entornos de alta presión.</p>
+                    </div>
+
+                    <div className="card-tech text-left">
+                        <div className="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-400 mb-6 group-hover:bg-indigo-500 group-hover:text-slate-950 transition-colors">
+                            <Target size={24} />
+                        </div>
+                        <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-white">Precisión Extrema</h3>
+                        <p className="text-slate-500 dark:text-slate-400 leading-relaxed">Experiencia en sistemas de aviónica donde el margen de error es inexistente.</p>
+                    </div>
+
+                    <div className="card-tech text-left">
+                        <div className="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500 group-hover:text-slate-950 transition-colors">
+                            <ShieldCheck size={24} />
+                        </div>
+                        <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-white">Compromiso Total</h3>
+                        <p className="text-slate-500 dark:text-slate-400 leading-relaxed">Valores militares aplicados al desarrollo de proyectos y entregas de alta calidad.</p>
+                    </div>
+                </div>
             </section>
-        </>
+        </div>
     );
 }

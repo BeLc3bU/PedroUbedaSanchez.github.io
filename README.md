@@ -1,21 +1,18 @@
-# Currículum Interactivo - Pedro Úbeda Sánchez
+# Currículum Interactivo - Pedro Úbeda Sánchez (Premium Dark Tech Edition)
 
-Este repositorio contiene el código fuente del currículum interactivo de Pedro Úbeda Sánchez, una aplicación web moderna construida con **React**, **TypeScript**, **Tailwind CSS** y **Vite**.
+Este repositorio contiene la versión evolucionada del currículum interactivo de Pedro Úbeda Sánchez. La aplicación ha sido rediseñada con una estética **"Dark Tech"** premium, enfocada en la precisión y el alto rendimiento, ideal para perfiles técnicos y de defensa.
 
 **➡️ Sitio en vivo:** [pedroubedasanchez.es](https://pedroubedasanchez.es)
 
-
 ## ✨ Características Principales
 
-- **Arquitectura Moderna:** Desarrollada con React 18+ y TypeScript para máxima robustez y mantenibilidad.
-- **Rendimiento Ultrarrápido:** Utiliza Vite para un entorno de desarrollo instantáneo y builds optimizados.
-- **Diseño Responsivo y Elegante:** Interfaz adaptable construida con Tailwind CSS, optimizada para móviles, tablets y escritorio.
-- **Navegación Fluida:** SPA (Single Page Application) real con `react-router-dom` y animaciones de transición.
-- **Modo Oscuro:** Soporte nativo para modo claro y oscuro, respetando la preferencia del sistema y permitiendo cambio manual persistente.
-- **SEO Ready:** Gestión dinámica de metaetiquetas con `react-helmet-async` para asegurar la mejor indexación en buscadores.
-- **Accesibilidad (a11y):** Componentes semánticos, gestión de foco y navegación por teclado.
-- **Formulario de Contacto:** Funcionalidad completa con validación en tiempo real y envío asíncrono.
-- **PWA Ready:** Estructura preparada para funcionar como Progressive Web App (Service Workers configurables via Vite PWA plugin).
+- **Estética Dark Tech Premium:** Diseño basado en *glassmorphism*, rejillas geométricas y tipografía técnica de alto impacto (`Space Grotesk`).
+- **Arquitectura Moderna:** Desarrollada con React 19 y TypeScript para máxima robustez.
+- **Sección de Proyectos [NUEVO]:** Galería especializada para destacar intervenciones técnicas en IT y Aviónica.
+- **Rendimiento Optimizado:** Utiliza Vite 7 para builds instantáneos y carga ultra-precisa.
+- **Navegación Fluida:** Header con efecto de desenfoque dinámico y transiciones suaves.
+- **SEO & Accesibilidad:** Metaetiquetas dinámicas y cumplimiento de estándares web modernos.
+- **Suite de Pruebas:** Configuración base con **Vitest** y **React Testing Library** para asegurar la calidad del software.
 
 ## 📂 Estructura del Proyecto
 
@@ -84,12 +81,13 @@ El proyecto está optimizado para desplegarse fácilmente en plataformas estáti
 
 ## 💻 Tecnologías
 
-- **React**
+- **React 19**
 - **TypeScript**
-- **Vite**
+- **Vite 7**
 - **Tailwind CSS**
+- **Vitest** (Testing)
 - **React Router**
-- **React Helmet Async**
+- **React Helmet**
 - **Lucide React** (Iconos)
 
 ---

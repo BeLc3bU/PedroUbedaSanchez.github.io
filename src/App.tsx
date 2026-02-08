@@ -3,6 +3,7 @@ import Layout from './layout/Layout';
 import Home from './pages/Home';
 import Experience from './pages/Experience';
 import Skills from './pages/Skills';
+import Projects from './pages/Projects';
 import Education from './pages/Education';
 import OtherData from './pages/OtherData';
 import Contact from './pages/Contact';
@@ -16,6 +17,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="experiencia" element={<Experience />} />
           <Route path="habilidades" element={<Skills />} />
+          <Route path="proyectos" element={<Projects />} />
           <Route path="formacion" element={<Education />} />
           <Route path="otros-datos" element={<OtherData />} />
           <Route path="contacto" element={<Contact />} />
