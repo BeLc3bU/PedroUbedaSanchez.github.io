@@ -68,6 +68,8 @@ export default function OtherData() {
                 <title>Otros Datos | Pedro Úbeda Sánchez</title>
                 <meta name="description" content="Información adicional: disponibilidad, idiomas y perfil personal de Pedro Úbeda Sánchez." />
                 <link rel="canonical" href="https://pedroubedasanchez.es/otros-datos" />
+                <meta property="og:title" content="Otros Datos e Intereses | Pedro Úbeda" />
+                <meta property="og:description" content="Información complementaria y perfil personal." />
             </Helmet>
 
             <section className="container mx-auto px-6">

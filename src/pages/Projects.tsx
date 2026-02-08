@@ -40,8 +40,11 @@ export default function Projects() {
     return (
         <div className="bg-grid-pattern min-h-screen pt-24 md:pt-32 pb-24">
             <Helmet>
-                <title>Proyectos | Pedro Úbeda Sánchez</title>
-                <meta name="description" content="Proyectos destacados en IT, Aviónica y administración técnica de Pedro Úbeda Sánchez." />
+                <title>Portfolio de Proyectos | Pedro Úbeda Sánchez</title>
+                <meta name="description" content="Explora los proyectos técnicos de Pedro Úbeda: desde mantenimiento de aviónica hasta infraestructura de redes y desarrollo." />
+                <link rel="canonical" href="https://pedroubedasanchez.es/proyectos" />
+                <meta property="og:title" content="Portfolio de Proyectos | Pedro Úbeda Sánchez" />
+                <meta property="og:description" content="Soluciones reales en aviónica, IT y sistemas complejos." />
             </Helmet>
 
             <section className="container mx-auto px-6">

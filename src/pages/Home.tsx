@@ -24,9 +24,14 @@ export default function Home() {
     return (
         <div className="bg-grid-pattern min-h-screen pt-20 md:pt-24 pb-12 overflow-hidden">
             <Helmet>
-                <title>Pedro Úbeda Sánchez | Especialista en IT y Aviónica</title>
-                <meta name="description" content="Técnico especialista con más de 20 años de experiencia en informática, aviónica y administración militar." />
+                <title>Pedro Úbeda | Especialista en IT y Aviónica Senior</title>
+                <meta name="description" content="Evolucionando sistemas complejos con precisión militar y visión tecnológica. Más de 20 años de experiencia en informática y aviónica." />
                 <link rel="canonical" href="https://pedroubedasanchez.es/" />
+                <meta property="og:title" content="Pedro Úbeda | Especialista en IT y Aviónica Senior" />
+                <meta property="og:description" content="Evolucionando sistemas complejos con precisión militar y visión tecnológica." />
+                <meta property="og:url" content="https://pedroubedasanchez.es/" />
+                <meta property="og:type" content="website" />
+                <meta name="twitter:card" content="summary_large_image" />
             </Helmet>
 
             <section className="container mx-auto px-6 py-12 flex flex-col items-center text-center relative z-10" id="about">
@@ -52,11 +57,11 @@ export default function Home() {
 
                     <div className="max-w-4xl">
                         <h1 className="text-3xl sm:text-5xl md:text-7xl font-black mb-6 tracking-tight leading-tight px-2">
-                            <span className="text-gradient">Especialista técnico en </span>
-                            <span className="text-accent-gradient">IT y Aviónica</span>
+                            <span className="text-slate-900 dark:text-white block opacity-90">SISTEMAS CRÍTICOS,</span>
+                            <span className="text-accent-gradient">SOLUCIONES PRECISAS.</span>
                         </h1>
                         <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed font-light">
-                            Más de <span className="text-slate-900 dark:text-white font-medium">dos décadas</span> de experiencia en mantenimiento, diagnóstico y resolución de sistemas complejos. Disciplina, compromiso y precisión forjados en las <span className="text-slate-900 dark:text-white font-medium">Fuerzas Armadas</span>.
+                            Evolucionando infraestructuras complejas con <span className="text-slate-900 dark:text-white font-medium">disciplina militar</span> y visión tecnológica. Especialista en IT y aviónica con más de 20 años de trayectoria.
                         </p>
                     </div>
                 </div>

@@ -9,6 +9,8 @@ export default function Experience() {
                 <title>Experiencia Profesional | Pedro Úbeda Sánchez</title>
                 <meta name="description" content="Trayectoria profesional de Pedro Úbeda Sánchez: 20 años en las Fuerzas Armadas y administración técnica." />
                 <link rel="canonical" href="https://pedroubedasanchez.es/experiencia" />
+                <meta property="og:title" content="Experiencia Profesional | Pedro Úbeda Sánchez" />
+                <meta property="og:description" content="20 años de experiencia técnica de alto nivel en las Fuerzas Armadas." />
             </Helmet>
 
             <section className="container mx-auto px-6 animate-in fade-in slide-in-from-right-8 duration-700">

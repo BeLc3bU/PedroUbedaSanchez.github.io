@@ -79,7 +79,7 @@ export default function Contact() {
             } else {
                 throw new Error(data.message || 'Fallo en la transmisión.');
             }
-        } catch (error) {
+        } catch {
             setErrors({ general: 'Error crítico en el enlace de comunicación. Reintegre el envío.' });
         } finally {
             setIsSubmitting(false);
@@ -92,6 +92,8 @@ export default function Contact() {
                 <title>Contacto | Pedro Úbeda Sánchez</title>
                 <meta name="description" content="Establezca comunicación con Pedro Úbeda Sánchez para consultas técnicas o profesionales." />
                 <link rel="canonical" href="https://pedroubedasanchez.es/contacto" />
+                <meta property="og:title" content="Contacto | Pedro Úbeda Sánchez" />
+                <meta property="og:description" content="Canales oficiales para contactar con Pedro Úbeda Sánchez." />
             </Helmet>
 
             <section className="container mx-auto px-6 max-w-6xl">

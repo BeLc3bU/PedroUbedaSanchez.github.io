@@ -35,6 +35,8 @@ export default function Education() {
                 <title>Formación y Logros | Pedro Úbeda Sánchez</title>
                 <meta name="description" content="Formación académica y reconocimientos militares de Pedro Úbeda Sánchez." />
                 <link rel="canonical" href="https://pedroubedasanchez.es/formacion" />
+                <meta property="og:title" content="Formación y Logros | Pedro Úbeda Sánchez" />
+                <meta property="og:description" content="Reconocimientos militares y trayectoria educativa técnica." />
             </Helmet>
 
             <section className="container mx-auto px-6">
