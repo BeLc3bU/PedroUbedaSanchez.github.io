@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /curriculum.html
-Disallow: /404.html
-
-Sitemap: https://pedroubedasanchez.es/sitemap.xml
