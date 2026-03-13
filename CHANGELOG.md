@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/compare/v1.1.0...v1.2.0) (2026-03-13)
+
+
+### Features
+
+* add analytics event tracking for GA4 ([bf83e1a](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/bf83e1a44221558c7d657f4c9c9342ffb65e4adc))
+
 ## [1.1.0](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/compare/v1.0.0...v1.1.0) (2026-03-13)
 
 
