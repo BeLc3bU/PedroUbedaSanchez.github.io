@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.1](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/compare/v1.7.0...v1.7.1) (2026-03-13)
+
+
+### Bug Fixes
+
+* correct WhatsApp phone number ([6e6ea46](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/6e6ea46fd13f5c9676ff2e55f74543121d5bd9e3))
+* correct WhatsApp phone number to +34635945770 ([c3a66ac](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/c3a66acc697d6880af437b29a29f0945b9d22edf))
+* correct WhatsApp phone number to +34635945779 ([cf1ef7e](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/cf1ef7e7b12909e94c7dee3c3e8f2d2cee152c38))
+
 ## [1.7.0](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/compare/v1.6.0...v1.7.0) (2026-03-13)
 
 
