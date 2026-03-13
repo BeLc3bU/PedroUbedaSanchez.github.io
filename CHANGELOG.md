@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 1.0.0 (2026-03-13)
+
+
+### Features
+
+* add release-please automation for automated releases ([7046906](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/7046906488f4258de4ecc44894b81aa6620b8271))
+
+
+### Bug Fixes
+
+* add CHANGELOG and VERSION files for release-please ([cd5acf8](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/cd5acf8cecfd1b7ebc120d7c9c45879d804dd92f))
+* mobile menu z-index visibility issue ([fec8ae4](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/fec8ae4ed8e34c95e4c8cac9c23437f8cc3e36cc))
+
 ## [1.0.0] - 2026-03-13
 
 ### Features
