@@ -132,7 +132,7 @@ export default function Header() {
       </nav>
 
       {/* Mobile Menu Overlay */}
-      <div id="mobile-menu" className="hidden fixed inset-0 bg-background/98 backdrop-blur-2xl z-[150] flex flex-col p-6">
+      <div id="mobile-menu" className="hidden fixed inset-0 bg-background/98 backdrop-blur-2xl z-[9999] isolate flex flex-col p-6">
         <div className="flex justify-between items-center mb-12">
           <a 
             href="#hero"
