@@ -69,9 +69,20 @@ export default function Contact() {
             <Helmet>
                 <title>Contacto | Pedro Úbeda Sánchez</title>
                 <meta name="description" content="Establezca comunicación con Pedro Úbeda Sánchez para consultas técnicas o profesionales." />
-                <link rel="canonical" href="https://pedroubedasanchez.es/contacto" />
+                <link rel="canonical" href="https://pedroubedasanchez.es/#contact" />
+                
+                {/* Open Graph */}
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content="https://pedroubedasanchez.es/#contact" />
                 <meta property="og:title" content="Contacto | Pedro Úbeda Sánchez" />
                 <meta property="og:description" content="Canales oficiales para contactar con Pedro Úbeda Sánchez." />
+                <meta property="og:image" content="https://pedroubedasanchez.es/og-image.png" />
+                
+                {/* Twitter Card */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="Contacto | Pedro Úbeda Sánchez" />
+                <meta name="twitter:description" content="Canales oficiales para contactar con Pedro Úbeda Sánchez." />
+                <meta name="twitter:image" content="https://pedroubedasanchez.es/og-image.png" />
             </Helmet>
 
             <section className="container mx-auto px-6 max-w-6xl">

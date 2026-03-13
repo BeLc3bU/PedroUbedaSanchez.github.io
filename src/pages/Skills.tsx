@@ -69,13 +69,22 @@ export default function Skills() {
     return (
         <div className="bg-grid-pattern min-h-screen pt-24 md:pt-32 pb-24">
             <Helmet>
-                <Helmet>
-                    <title>Stack Tecnológico y Competencias | Pedro Úbeda Sánchez</title>
-                    <meta name="description" content="Habilidades técnicas en desarrollo web (React, TS), administración de sistemas y mantenimiento de aviónica senior." />
-                    <link rel="canonical" href="https://pedroubedasanchez.es/habilidades" />
-                    <meta property="og:title" content="Stack Tecnológico | Pedro Úbeda Sánchez" />
-                    <meta property="og:description" content="Dominio de herramientas modernas y tecnologías críticas." />
-                </Helmet>
+                <title>Stack Tecnológico y Competencias | Pedro Úbeda Sánchez</title>
+                <meta name="description" content="Habilidades técnicas en desarrollo web (React, TS), administración de sistemas y mantenimiento de aviónica senior." />
+                <link rel="canonical" href="https://pedroubedasanchez.es/#skills" />
+                
+                {/* Open Graph */}
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content="https://pedroubedasanchez.es/#skills" />
+                <meta property="og:title" content="Stack Tecnológico | Pedro Úbeda Sánchez" />
+                <meta property="og:description" content="Dominio de herramientas modernas y tecnologías críticas." />
+                <meta property="og:image" content="https://pedroubedasanchez.es/og-image.png" />
+                
+                {/* Twitter Card */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="Stack Tecnológico | Pedro Úbeda Sánchez" />
+                <meta name="twitter:description" content="Dominio de herramientas modernas y tecnologías críticas." />
+                <meta name="twitter:image" content="https://pedroubedasanchez.es/og-image.png" />
             </Helmet>
 
             <section className="container mx-auto px-6">

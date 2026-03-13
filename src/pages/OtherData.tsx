@@ -67,9 +67,20 @@ export default function OtherData() {
             <Helmet>
                 <title>Otros Datos | Pedro Úbeda Sánchez</title>
                 <meta name="description" content="Información adicional: disponibilidad, idiomas y perfil personal de Pedro Úbeda Sánchez." />
-                <link rel="canonical" href="https://pedroubedasanchez.es/otros-datos" />
+                <link rel="canonical" href="https://pedroubedasanchez.es/#about" />
+                
+                {/* Open Graph */}
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content="https://pedroubedasanchez.es/#about" />
                 <meta property="og:title" content="Otros Datos e Intereses | Pedro Úbeda" />
                 <meta property="og:description" content="Información complementaria y perfil personal." />
+                <meta property="og:image" content="https://pedroubedasanchez.es/og-image.png" />
+                
+                {/* Twitter Card */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="Otros Datos e Intereses | Pedro Úbeda" />
+                <meta name="twitter:description" content="Información complementaria y perfil personal." />
+                <meta name="twitter:image" content="https://pedroubedasanchez.es/og-image.png" />
             </Helmet>
 
             <section className="container mx-auto px-6">

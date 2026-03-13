@@ -56,7 +56,20 @@ export default function CVPage() {
     <div className="h-screen w-screen overflow-hidden bg-zinc-100 dark:bg-zinc-900">
       <Helmet>
         <title>Resume | {portfolioData.name}</title>
-        <meta name="description" content={`Resume/CV of ${portfolioData.name}`} />
+        <meta name="description" content={`Resume/CV of ${portfolioData.name} - ${portfolioData.title}`} />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://pedroubedasanchez.es/cv" />
+        <meta property="og:title" content={`Resume | ${portfolioData.name}`} />
+        <meta property="og:description" content={`Resume/CV of ${portfolioData.name} - ${portfolioData.title}`} />
+        <meta property="og:image" content="https://pedroubedasanchez.es/og-image.png" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`Resume | ${portfolioData.name}`} />
+        <meta name="twitter:description" content={`Resume/CV of ${portfolioData.name} - ${portfolioData.title}`} />
+        <meta name="twitter:image" content="https://pedroubedasanchez.es/og-image.png" />
       </Helmet>
 
       {/* Header flotante */}

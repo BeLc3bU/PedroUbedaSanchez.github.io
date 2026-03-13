@@ -129,6 +129,19 @@ export default function Home() {
         <title>{portfolioData.name} | {portfolioData.title}</title>
         <meta name="description" content={portfolioData.bio.new} />
         <link rel="canonical" href="https://pedroubedasanchez.es/" />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://pedroubedasanchez.es/" />
+        <meta property="og:title" content={`${portfolioData.name} | ${portfolioData.title}`} />
+        <meta property="og:description" content={portfolioData.bio.new} />
+        <meta property="og:image" content="https://pedroubedasanchez.es/og-image.png" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${portfolioData.name} | ${portfolioData.title}`} />
+        <meta name="twitter:description" content={portfolioData.bio.new} />
+        <meta name="twitter:image" content="https://pedroubedasanchez.es/og-image.png" />
       </Helmet>
 
       {/* Hero Section - Like Augusto */}
