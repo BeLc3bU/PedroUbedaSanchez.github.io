@@ -31,3 +31,7 @@ jobs:
 
       - name: Run typecheck
         run: npm run typecheck
+
+      - name: Check Prettier formatting
+        run: npm run format:check || true
+        continue-on-error: true
