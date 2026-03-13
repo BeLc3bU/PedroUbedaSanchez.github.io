@@ -133,11 +133,12 @@ Este documento detalla las mejoras, características y utilidades sugeridas para
 
 ### 12. Optimizaciones Técnicas
 
+- **Estado:** ✅ Completado
 - **Descripción:** Mejoras de rendimiento
-- **Tareas:**
-    - [ ] Bundle analysis con rollup-plugin-visualizer
-    - [ ] Image optimization (WebP/AVIF)
-    - [ ] Code splitting para componentes pesados
+- **Tareas completadas:**
+    - [x] Bundle analysis con rollup-plugin-visualizer (genera dist/stats.html)
+    - [x] Image optimization (WebP ya implementado)
+    - [x] Code splitting (vendor-react, vendor-ui, vendor-motion, vendor-pdf)
 
 ---
 
