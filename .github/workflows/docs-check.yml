@@ -1,0 +1,53 @@
+name: Documentation Check
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Check for documentation updates needed
+        run: |
+          echo "Checking if documentation needs update..."
+          
+          # Check if ROADMAP.md needs review
+          echo "📋 ROADMAP.md status:"
+          grep -c "⏳" ROADMAP.md || echo "0"
+          echo "pending items need review"
+          
+          # Check if CHANGELOG.md exists
+          if [ ! -f "CHANGELOG.md" ]; then
+            echo "⚠️ CHANGELOG.md is missing!"
+          else
+            echo "✅ CHANGELOG.md exists"
+          fi
+          
+          # Check if AGENTS.md exists
+          if [ ! -f "AGENTS.md" ]; then
+            echo "⚠️ AGENTS.md is missing!"
+          else
+            echo "✅ AGENTS.md exists"
+          fi
+          
+          # List all .md files
+          echo ""
+          echo "📄 Documentation files:"
+          ls -la *.md 2>/dev/null || echo "No markdown files in root"
+          
+      - name: Summary
+        run: |
+          echo ""
+          echo "💡 Tips:"
+          echo "- Update ROADMAP.md after completing features"
+          echo "- Run 'release-please' workflow to auto-generate CHANGELOG.md"
+          echo "- Keep AGENTS.md and MCPS.md in sync with code changes"
