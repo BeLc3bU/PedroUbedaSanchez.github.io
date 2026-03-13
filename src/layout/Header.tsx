@@ -85,7 +85,15 @@ export default function Header() {
 
           <li className="ml-2">
             <button
-              onClick={() => navigate('/cv')}
+              onClick={() => {
+                // Track event
+                (window as unknown as { dataLayer?: unknown[] }).dataLayer?.push({
+                  event: 'resume_click',
+                  category: 'engagement',
+                  label: 'header_resume_button'
+                });
+                navigate('/cv');
+              }}
               className="px-4 py-2 rounded-lg text-sm font-medium text-primary hover:bg-primary/10 transition-colors flex items-center gap-2"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -168,7 +176,15 @@ export default function Header() {
             ))}
             <li>
               <button
-                onClick={() => navigate('/cv')}
+                onClick={() => {
+                  // Track event
+                  (window as unknown as { dataLayer?: unknown[] }).dataLayer?.push({
+                    event: 'resume_click',
+                    category: 'engagement',
+                    label: 'mobile_menu_resume_button'
+                  });
+                  navigate('/cv');
+                }}
                 className="block w-full text-left px-4 py-3 rounded-xl text-lg text-primary hover:bg-primary/10 transition-colors flex items-center gap-2"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

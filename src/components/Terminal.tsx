@@ -112,6 +112,13 @@ export function Terminal() {
         newHistory.push({ type: 'error', content: `Command not found: ${command}. Type 'help' for available commands.` });
     }
 
+    // Track terminal command
+    (window as unknown as { dataLayer?: unknown[] }).dataLayer?.push({
+      event: 'terminal_command',
+      category: 'engagement',
+      label: command || 'unknown'
+    });
+
     setHistory(newHistory);
     setInput('');
   };

@@ -23,6 +23,12 @@ export default function Contact() {
     });
 
     const handlePhoneClick = (e: React.MouseEvent) => {
+        // Track event
+        (window as unknown as { dataLayer?: unknown[] }).dataLayer?.push({
+            event: 'contact_click',
+            category: 'engagement',
+            label: 'phone_reveal'
+        });
         if (!isPhoneRevealed) {
             e.preventDefault();
             setIsPhoneRevealed(true);
@@ -111,7 +117,17 @@ export default function Contact() {
                                     </div>
                                     <div>
                                         <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Email</p>
-                                        <a href="mailto:contacto@pedroubedasanchez.es" className="text-slate-900 dark:text-white hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
+                                        <a 
+                                            href="mailto:contacto@pedroubedasanchez.es" 
+                                            onClick={() => {
+                                                (window as unknown as { dataLayer?: unknown[] }).dataLayer?.push({
+                                                    event: 'contact_click',
+                                                    category: 'engagement',
+                                                    label: 'email'
+                                                });
+                                            }}
+                                            className="text-slate-900 dark:text-white hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
+                                        >
                                             contacto@pedroubedasanchez.es
                                         </a>
                                     </div>
@@ -135,7 +151,19 @@ export default function Contact() {
                                     </div>
                                     <div>
                                         <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">LinkedIn</p>
-                                        <a href="https://linkedin.com/in/pubesan" target="_blank" rel="noopener noreferrer" className="text-slate-900 dark:text-white hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
+                                        <a 
+                                            href="https://linkedin.com/in/pubesan" 
+                                            target="_blank" 
+                                            rel="noopener noreferrer" 
+                                            onClick={() => {
+                                                (window as unknown as { dataLayer?: unknown[] }).dataLayer?.push({
+                                                    event: 'contact_click',
+                                                    category: 'engagement',
+                                                    label: 'linkedin'
+                                                });
+                                            }}
+                                            className="text-slate-900 dark:text-white hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
+                                        >
                                             linkedin.com/in/pubesan
                                         </a>
                                     </div>
