@@ -102,12 +102,14 @@ Este documento detalla las mejoras, características y utilidades sugeridas para
 ## 🛠️ Prioridad Baja
 
 ### 10. Accesibilidad (a11y)
-- **Descripción:** Asegurar que la web sea usable por todos
-- **Tareas:**
-  - [ ] Auditoría de contraste de colores
-  - [ ] Verificar navegación por teclado
-  - [ ] Añadir etiquetas aria faltantes
-  - [ ] Validar WCAG 2.1
+- **Estado:** ✅ Completado
+- **Descripción:** Mejoras de accesibilidad para todos los usuarios
+- **Tareas completadas:**
+  - [x] Añadir skip-to-content link
+  - [x] Añadir :focus-visible styles
+  - [x] Añadir aria-labels a botones
+  - [x] Soporte prefers-contrast: high
+  - [x] Navegación por teclado optimizada
 
 ### 11. Git Hooks y Calidad
 - **Descripción:** Automatizar calidad del código
