@@ -45,12 +45,17 @@ Este documento detalla las mejoras, características y utilidades sugeridas para
 
 ---
 
-## 🌟 Prioridad Alta
+## 🌟 Pendiente - Repositorio Separate
 
 ### 5. Portfolio Game 2D (Augusto Polonio Style)
 
+- **Estado:** ⏳ Pendiente (se creará en repositorio separado)
 - **Descripción:** Juego RPG embebido para mostrar el portfolio de forma interactiva
-- **Características:**
+- **Plan:**
+    - Crear nuevo repositorio `portfolio-game-2d`
+    - Desarrollar el juego con controles WASD, NPCs, pixel art
+    - Incrustar en este portfolio mediante iframe
+- **Características planned:**
     - Personaje con controles WASD
     - NPCs con información del portfolio
     - Pixel art tilesets (Pixel_Poem, SIERRASSETS)
@@ -58,6 +63,7 @@ Este documento detalla las mejoras, características y utilidades sugeridas para
     - Iframe embebido con panel de inicio
 - **Referencias:**
     - https://github.com/augustopolonio/portfolio-game-2d
+    - https://augustopolonio.vercel.app
 
 ### 6. SEO Avanzado
 
@@ -68,7 +74,7 @@ Este documento detalla las mejoras, características y utilidades sugeridas para
     - [x] Configurar robots.txt
     - [x] Añadir JSON-LD schema markup (Person, WebSite)
     - [x] Optimizar meta tags (Open Graph, Twitter Cards)
-    - [ ] Mejorar Core Web Vitals (pendiente)
+    - [x] og-image.png para redes sociales
 
 ---
 

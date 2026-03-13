@@ -1,10 +1,27 @@
 {
-  "packages": {
-    ".": {
-      "release-type": "simple",
-      "changelog-path": "CHANGELOG.md",
-      "version-file": "VERSION.txt",
-      "initial-version": "1.0.0"
+    "packages": {
+        ".": {
+            "release-type": "simple",
+            "changelog-path": "CHANGELOG.md",
+            "version-file": "VERSION.txt",
+            "initial-version": "1.0.0",
+            "include-component-in-tag": false,
+            "include-v-in-tag": true,
+            "separate-pull-requests": true,
+            "pull-request-title-component": "",
+            "changelog-sections": {
+                "features": ":sparkles: New Features",
+                "fixes": ":bug: Bug Fixes",
+                "refactor": ":art: Code Refactoring",
+                "perf": ":zap: Performance Improvements",
+                "reverts": ":back: Reverts",
+                "docs": ":book: Documentation",
+                "chore": ":construction: Maintenance",
+                "style": ":art: Styles",
+                "test": ":white_check_mark: Tests",
+                "build": ":hammer: Build System",
+                "ci": ":green_heart: CI/CD"
+            }
+        }
     }
-  }
 }
