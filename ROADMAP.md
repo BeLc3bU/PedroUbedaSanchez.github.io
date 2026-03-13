@@ -55,13 +55,14 @@ Este documento detalla las mejoras, características y utilidades sugeridas para
   - https://github.com/augustopolonio/portfolio-game-2d
 
 ### 6. SEO Avanzado
+- **Estado:** ✅ Completado
 - **Descripción:** Optimización completa para motores de búsqueda
-- **Tareas:**
-  - [ ] Generar sitemap.xml dinámico
-  - [ ] Configurar robots.txt
-  - [ ] Añadir JSON-LD schema markup (Person, WebSite)
-  - [ ] Optimizar meta tags (Open Graph, Twitter Cards)
-  - [ ] Mejorar Core Web Vitals
+- **Tareas completadas:**
+  - [x] Generar sitemap.xml dinámico (actualizado con rutas #)
+  - [x] Configurar robots.txt
+  - [x] Añadir JSON-LD schema markup (Person, WebSite)
+  - [x] Optimizar meta tags (Open Graph, Twitter Cards)
+  - [ ] Mejorar Core Web Vitals (pendiente)
 
 ---
 
