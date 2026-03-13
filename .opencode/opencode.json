@@ -1,0 +1,163 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "orchestrator": {
+      "description": "Main orchestrator that delegates tasks to the correct expert agent",
+      "mode": "primary",
+      "prompt": "You are the orchestrator of a development team. Analyze tasks and delegate them to the appropriate expert agent (react-expert, tailwind-expert, typescript-expert, gamedev-expert, seo-expert, testing-expert, analytics-expert, debug). Always choose the best agent for the job and coordinate complex tasks.",
+      "permission": {
+        "task": "allow",
+        "read": "allow",
+        "grep": "allow",
+        "list": "allow"
+      }
+    },
+    "react-expert": {
+      "description": "React 19 architecture and components",
+      "mode": "subagent",
+      "prompt": "Expert in React 19, hooks, component architecture, performance optimization, and React Router.",
+      "permission": {
+        "read": "allow",
+        "edit": "allow",
+        "grep": "allow",
+        "list": "allow"
+      }
+    },
+    "typescript-expert": {
+      "description": "Type-safe architecture",
+      "mode": "subagent",
+      "prompt": "Expert in strict TypeScript, generics, and scalable typing patterns.",
+      "permission": {
+        "read": "allow",
+        "edit": "allow",
+        "grep": "allow",
+        "list": "allow"
+      }
+    },
+    "tailwind-expert": {
+      "description": "Tailwind design system",
+      "mode": "subagent",
+      "prompt": "Expert in Tailwind CSS, responsive design, animations, and modern UI systems.",
+      "permission": {
+        "read": "allow",
+        "edit": "allow",
+        "grep": "allow",
+        "list": "allow"
+      }
+    },
+    "gamedev-expert": {
+      "description": "2D interactive portfolio game",
+      "mode": "subagent",
+      "prompt": "Expert in Canvas, React game loops, keyboard controls, pixel-art integration, and interactive portfolio experiences.",
+      "permission": {
+        "read": "allow",
+        "edit": "allow",
+        "grep": "allow",
+        "list": "allow",
+        "bash": "allow"
+      }
+    },
+    "seo-expert": {
+      "description": "SEO and discoverability",
+      "mode": "subagent",
+      "prompt": "Expert in SEO optimization, sitemap generation, structured data, and performance.",
+      "permission": {
+        "read": "allow",
+        "edit": "allow",
+        "grep": "allow",
+        "list": "allow"
+      }
+    },
+    "testing-expert": {
+      "description": "Testing automation",
+      "mode": "subagent",
+      "prompt": "Expert in unit testing with Vitest and E2E testing with Playwright.",
+      "permission": {
+        "read": "allow",
+        "edit": "allow",
+        "grep": "allow",
+        "list": "allow",
+        "bash": "allow"
+      }
+    },
+    "analytics-expert": {
+      "description": "Performance and analytics",
+      "mode": "subagent",
+      "prompt": "Expert in Vercel analytics, GA4 tracking, performance metrics, and event monitoring.",
+      "permission": {
+        "read": "allow",
+        "edit": "allow",
+        "grep": "allow",
+        "list": "allow"
+      }
+    },
+    "debug": {
+      "description": "Code investigation agent",
+      "mode": "subagent",
+      "prompt": "Investigate bugs deeply, analyze logs and code, and produce detailed reports.",
+      "permission": {
+        "read": "allow",
+        "grep": "allow",
+        "list": "allow",
+        "bash": "allow",
+        "websearch": "ask"
+      }
+    }
+  },
+  "permission": {
+    "read": "allow",
+    "edit": "allow",
+    "glob": "allow",
+    "grep": "allow",
+    "list": "allow",
+    "bash": "allow",
+    "task": "allow",
+    "websearch": "ask"
+  },
+  "mcp": {
+    "github": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ]
+    },
+    "filesystem": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "."
+      ]
+    },
+    "playwright": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@playwright/mcp"
+      ]
+    },
+    "tavily": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "tavily-mcp"
+      ],
+      "env": {
+        "TAVILY_API_KEY": "${TAVILY_API_KEY}"
+      }
+    },
+    "puppeteer": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@hisma/server-puppeteer"
+      ]
+    }
+  }
+}
