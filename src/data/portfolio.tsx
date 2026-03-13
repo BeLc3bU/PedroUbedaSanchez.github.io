@@ -253,7 +253,7 @@ export const portfolioData = {
         linkedin: "https://www.linkedin.com/in/pubesan/",
         email: "contacto@pedroubedasanchez.es",
         whatsapp:
-            "https://wa.me/34635945770?text=Hola%20Pedro,%20me%20interesa%20contactar%20contigo",
+            "https://wa.me/34635945779?text=Hola%20Pedro,%20me%20interesa%20contactar%20contigo",
     },
 };
 
