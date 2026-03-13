@@ -69,15 +69,15 @@ Este documento detalla las mejoras, características y utilidades sugeridas para
 ## 🚀 Prioridad Media
 
 ### 7. Analytics y Tracking
+- **Estado:** ✅ Completado
 - **Descripción:** Sistema de analíticas para el portfolio
-- **Tareas:**
-  - [ ] Integrar Vercel Analytics
-  - [ ] Configurar Google Analytics 4 (GA4)
-  - [ ] Eventos tracking:
-    - resume_download
-    - contact_click
-    - social_click
-    - terminal_command
+- **Tareas completadas:**
+  - [x] Configurar GA4 en GTM (ya estaba configurado)
+  - [x] Eventos tracking:
+    - [x] resume_click
+    - [x] contact_click
+    - [x] social_click
+    - [x] terminal_command
 
 ### 8. Testing
 - **Descripción:** Cobertura de tests completa
