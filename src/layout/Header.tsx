@@ -94,6 +94,7 @@ export default function Header() {
                 });
                 navigate('/cv');
               }}
+              aria-label="Ver curriculum"
               className="px-4 py-2 rounded-lg text-sm font-medium text-primary hover:bg-primary/10 transition-colors flex items-center gap-2"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -132,6 +133,7 @@ export default function Header() {
               const menu = document.getElementById('mobile-menu');
               if (menu) menu.classList.toggle('hidden');
             }} 
+            aria-label="Abrir menú de navegación"
             className="text-muted-foreground"
           >
             <Menu size={24} />

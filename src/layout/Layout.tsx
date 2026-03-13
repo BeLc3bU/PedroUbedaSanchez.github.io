@@ -9,6 +9,14 @@ export default function Layout() {
 
     return (
         <div className="flex flex-col min-h-screen bg-background dark:bg-slate-900 text-foreground dark:text-slate-200 transition-colors duration-300">
+            {/* Skip to main content link for accessibility */}
+            <a 
+                href="#main-content" 
+                className="skip-to-content"
+            >
+                Saltar al contenido principal
+            </a>
+            
             <Header />
             <main id="main-content" className="flex-grow flex flex-col">
                 <AnimatePresence mode="wait">

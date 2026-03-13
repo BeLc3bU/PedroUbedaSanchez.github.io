@@ -139,7 +139,11 @@ export default function Contact() {
                                     </div>
                                     <div>
                                         <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Teléfono</p>
-                                        <button onClick={handlePhoneClick} className="text-slate-900 dark:text-white hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors text-left">
+                                        <button 
+                                            onClick={handlePhoneClick} 
+                                            aria-label={isPhoneRevealed ? "Número de teléfono" : "Revelar número de teléfono"}
+                                            className="text-slate-900 dark:text-white hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors text-left"
+                                        >
                                             {isPhoneRevealed ? getPhoneNumber() : 'Verificación de identidad requerida'}
                                         </button>
                                     </div>
