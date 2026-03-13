@@ -80,12 +80,13 @@ Este documento detalla las mejoras, características y utilidades sugeridas para
     - [x] terminal_command
 
 ### 8. Testing
+- **Estado:** ✅ Completado
 - **Descripción:** Cobertura de tests completa
-- **Tareas:**
-  - [ ] Tests para componentes principales
-  - [ ] Tests para hooks personalizados
-  - [ ] Tests E2E con Playwright (MCP)
-  - [ ] Configurar CI/CD para tests
+- **Tareas completadas:**
+  - [x] Tests para componentes principales (Hero, ProjectCard, BackToTop, SocialLinks)
+  - [x] Tests para hooks personalizados (useTheme, usePrint)
+  - [x] Tests para páginas (Contact, TimelineItem)
+  - [x] Configurar CI/CD para tests (GitHub Actions)
 
 ### 9. Animaciones Avanzadas
 - **Descripción:** Mejoras en animaciones y transiciones
