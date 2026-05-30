@@ -20,5 +20,5 @@ export interface IAgent {
     description: string;
     skills?: string[];
     canHandle(taskType: string): boolean;
-    execute(task: AgentTask): Promise<unknown>;
+    execute(task: AgentTask, onLog?: (msg: string) => void): Promise<unknown>;
 }

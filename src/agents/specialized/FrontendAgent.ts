@@ -21,22 +21,22 @@ export class FrontendAgent extends BaseAgent {
         return ["frontend", "ui", "component", "animation", "tailwind", "react"].includes(taskType);
     }
 
-    public async execute(task: AgentTask): Promise<unknown> {
-        this.log(`Analyzing frontend task: ${task.description}`);
-        this.log(`Applying React best practices and Tailwind CSS patterns`);
-        this.log(`Ensuring accessibility (WCAG 2.1) and responsive design`);
+    public async execute(task: AgentTask, onLog?: (msg: string) => void): Promise<unknown> {
+        this.log(`Analyzing frontend task: ${task.description}`, onLog);
+        this.log(`Applying React best practices and Tailwind CSS patterns`, onLog);
+        this.log(`Ensuring accessibility (WCAG 2.1) and responsive design`, onLog);
 
         if (task.payload?.animation) {
-            this.log(`Adding Framer Motion animations as specified`);
+            this.log(`Adding Framer Motion animations as specified`, onLog);
         }
 
         if (task.payload?.framework === "react-pdf") {
-            this.log(`Working with @react-pdf/renderer for PDF generation`);
+            this.log(`Working with @react-pdf/renderer for PDF generation`, onLog);
         }
 
         return new Promise((resolve) =>
             setTimeout(() => {
-                this.log(`Successfully generated/modified component code`);
+                this.log(`Successfully generated/modified component code`, onLog);
                 resolve({ filesChanged: ["*.tsx"], status: "success" });
             }, 1000)
         );

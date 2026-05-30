@@ -20,29 +20,29 @@ export class GameDevAgent extends BaseAgent {
         );
     }
 
-    public async execute(task: AgentTask): Promise<unknown> {
-        this.log(`Analyzing game development task: ${task.description}`);
+    public async execute(task: AgentTask, onLog?: (msg: string) => void): Promise<unknown> {
+        this.log(`Analyzing game development task: ${task.description}`, onLog);
 
         if (task.payload?.type === "portfolio-game") {
-            this.log(`Creating 2D RPG portfolio game (Augusto Polonio style)`);
-            this.log(`Using pixel art tilesets: Pixel_Poem Free RPG Basic Tileset`);
-            this.log(`Integrating SIERRASSETS Furniture Pack`);
+            this.log(`Creating 2D RPG portfolio game (Augusto Polonio style)`, onLog);
+            this.log(`Using pixel art tilesets: Pixel_Poem Free RPG Basic Tileset`, onLog);
+            this.log(`Integrating SIERRASSETS Furniture Pack`, onLog);
         }
 
         if (task.payload?.audio) {
-            this.log(`Audio integration: Suno AI generated tracks (non-commercial)`);
+            this.log(`Audio integration: Suno AI generated tracks (non-commercial)`, onLog);
         }
 
         if (task.payload?.iframe) {
-            this.log(`Setting up iframe embed with start panel`);
+            this.log(`Setting up iframe embed with start panel`, onLog);
         }
 
-        this.log(`Implementing WASD/Arrow key movement controls`);
-        this.log(`Adding NPC interactions for portfolio content`);
+        this.log(`Implementing WASD/Arrow key movement controls`, onLog);
+        this.log(`Adding NPC interactions for portfolio content`, onLog);
 
         return new Promise((resolve) =>
             setTimeout(() => {
-                this.log(`Game development task completed`);
+                this.log(`Game development task completed`, onLog);
                 resolve({
                     gameCreated: true,
                     tilesetUsed: "Pixel_Poem Free RPG",

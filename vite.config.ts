@@ -31,6 +31,7 @@ export default defineConfig({
                     "vendor-ui": ["@radix-ui/react-slot", "class-variance-authority", "clsx"],
                     "vendor-motion": ["framer-motion"],
                     "vendor-pdf": ["@react-pdf/renderer"],
+                    "vendor-three": ["three", "@react-three/fiber", "@react-three/drei"],
                 },
             },
         },

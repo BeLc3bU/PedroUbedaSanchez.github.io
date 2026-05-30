@@ -6,23 +6,23 @@ Este archivo contiene las directrices para agentes de IA que operan en este repo
 
 ### Comandos principales
 
-| Comando | Descripción |
-|---------|-------------|
-| `npm run dev` | Iniciar servidor de desarrollo Vite |
-| `npm run build` | Compilar TypeScript + Vite build + copiar 404 |
-| `npm run lint` | Ejecutar ESLint |
-| `npm run preview` | Previsualizar build de producción |
-| `npm run serve` | Previsualizar build de producción |
-| `npm run typecheck` | Verificar tipos TypeScript |
+| Comando             | Descripción                                   |
+| ------------------- | --------------------------------------------- |
+| `npm run dev`       | Iniciar servidor de desarrollo Vite           |
+| `npm run build`     | Compilar TypeScript + Vite build + copiar 404 |
+| `npm run lint`      | Ejecutar ESLint                               |
+| `npm run preview`   | Previsualizar build de producción             |
+| `npm run serve`     | Previsualizar build de producción             |
+| `npm run typecheck` | Verificar tipos TypeScript                    |
 
 ### Ejecución de pruebas
 
-| Comando | Descripción |
-|---------|-------------|
-| `npx vitest` | Ejecutar pruebas en modo watch |
-| `npx vitest run` | Ejecutar pruebas una vez |
+| Comando                                           | Descripción                              |
+| ------------------------------------------------- | ---------------------------------------- |
+| `npx vitest`                                      | Ejecutar pruebas en modo watch           |
+| `npx vitest run`                                  | Ejecutar pruebas una vez                 |
 | `npx vitest src/components/TimelineItem.test.tsx` | Ejecutar un archivo de prueba específico |
-| `npx vitest src/hooks/useTheme.test.ts --run` | Ejecutar prueba específica sin watch |
+| `npx vitest src/hooks/useTheme.test.ts --run`     | Ejecutar prueba específica sin watch     |
 
 ### Rutas del proyecto
 
@@ -59,31 +59,52 @@ src/agents/
 
 ### Descripción de Agentes
 
-| Agente | Descripción | Skills |
-|--------|-------------|--------|
-| FrontendAgent | Desarrollo Frontend con React, TypeScript, Tailwind | react-best-practices, frontend-design, tailwind-styling |
-| TestingAgent | Testing con Vitest y Playwright | webapp-testing, systematic-debugging |
-| DesignAgent | Diseño UI/UX, Tailwind, animaciones | frontend-design, tailwind-design-system |
-| SeoAgent | SEO técnico, sitemap, schema markup | seo-audit |
-| GameDevAgent | Portfolio game 2D ( Augusto Polonio style) | game-development |
-| AnalyticsAgent | Google Analytics, Vercel Analytics | analytics-tracking |
+| Agente         | Descripción                                         | Skills                                                  |
+| -------------- | --------------------------------------------------- | ------------------------------------------------------- |
+| FrontendAgent  | Desarrollo Frontend con React, TypeScript, Tailwind | react-best-practices, frontend-design, tailwind-styling |
+| TestingAgent   | Testing con Vitest y Playwright                     | webapp-testing, systematic-debugging                    |
+| DesignAgent    | Diseño UI/UX, Tailwind, animaciones                 | frontend-design, tailwind-design-system                 |
+| SeoAgent       | SEO técnico, sitemap, schema markup                 | seo-audit                                               |
+| GameDevAgent   | Portfolio game 2D ( Augusto Polonio style)          | game-development                                        |
+| AnalyticsAgent | Google Analytics, Vercel Analytics                  | analytics-tracking                                      |
 
 ---
 
 ## Skills Disponibles
 
-Este proyecto cuenta con skills personalizadas en `.opencode/skills/`:
+Este proyecto cuenta con skills personalizadas e independientes bajo dos directorios:
 
-| Skill | Descripción | Archivo |
-|-------|-------------|---------|
-| vite-build | Comandos de build y dev | `.opencode/skills/vite-build/SKILL.md` |
-| react-testing | Testing con Vitest | `.opencode/skills/react-testing/SKILL.md` |
-| tailwind-styling | Estilos Tailwind | `.opencode/skills/tailwind-styling/SKILL.md` |
-| react-best-practices | Mejores prácticas React | `.opencode/skills/react-best-practices/SKILL.md` |
-| frontend-design | Diseño UI/UX | `.opencode/skills/frontend-design/SKILL.md` |
-| seo-audit | Optimización SEO | `.opencode/skills/seo-audit/SKILL.md` |
-| systematic-debugging | Debug sistemático | `.opencode/skills/systematic-debugging/SKILL.md` |
-| webapp-testing | Testing web apps | `.opencode/skills/webapp-testing/SKILL.md` |
+### 1. Skills para Agentes Generales (`.agent/skills/`)
+
+Estas habilidades extienden las capacidades de agentes generales (como Gemini/Antigravity) que operan sobre la raíz del portafolio:
+
+| Habilidad                  | Descripción                                                            | Archivo                                           |
+| -------------------------- | ---------------------------------------------------------------------- | ------------------------------------------------- |
+| `tailwind-styling`         | Estilos de Tailwind CSS, layouts responsivos y animaciones             | `.agent/skills/tailwind-styling/SKILL.md`         |
+| `react-best-practices`     | Directrices de React 19 y tipado seguro con TypeScript                 | `.agent/skills/react-best-practices/SKILL.md`     |
+| `framer-motion-animations` | Diseño de micro-interacciones y transiciones premium con Framer Motion | `.agent/skills/framer-motion-animations/SKILL.md` |
+| `systematic-debugging`     | Flujo de resolución de errores y diagnóstico metodológico              | `.agent/skills/systematic-debugging/SKILL.md`     |
+| `webapp-testing`           | Estructuras y ejecución de pruebas unitarias y E2E                     | `.agent/skills/webapp-testing/SKILL.md`           |
+| `3d-web-experience`        | Integración y optimización de escenas 3D con Three.js                  | `.agent/skills/3d-web-experience/SKILL.md`        |
+| `copywriting`              | Directrices para redacción de contenido claro y persuasivo             | `.agent/skills/copywriting/SKILL.md`              |
+| `react-flow-architect`     | Patrones avanzados de diagramación y navegación con ReactFlow          | `.agent/skills/react-flow-architect/SKILL.md`     |
+| `react-patterns`           | Patrones de diseño de componentes, estado y manejo de errores          | `.agent/skills/react-patterns/SKILL.md`           |
+| `seo-audit`                | Auditoría, marcado estructurado y optimizaciones de buscadores         | `.agent/skills/seo-audit/SKILL.md`                |
+
+### 2. Skills para Sub-agentes de Desarrollo (`.opencode/skills/`)
+
+Estas habilidades son utilizadas por los sub-agentes del orquestador OpenCode:
+
+| Habilidad              | Descripción                                                   | Archivo                                          |
+| ---------------------- | ------------------------------------------------------------- | ------------------------------------------------ |
+| `vite-build`           | Comandos de empaquetado, servidor dev y optimizaciones Vite   | `.opencode/skills/vite-build/SKILL.md`           |
+| `react-testing`        | Pruebas de integración y unitarias de componentes en Vitest   | `.opencode/skills/react-testing/SKILL.md`        |
+| `tailwind-styling`     | Aplicación móvil-first de clases de utilidad e interactividad | `.opencode/skills/tailwind-styling/SKILL.md`     |
+| `react-best-practices` | Reglas de componentes funcionales y ciclos de hooks           | `.opencode/skills/react-best-practices/SKILL.md` |
+| `frontend-design`      | Directrices y tokens de diseño visual para el portafolio      | `.opencode/skills/frontend-design/SKILL.md`      |
+| `seo-audit`            | Auditoría de meta tags, sitemap y accesibilidad               | `.opencode/skills/seo-audit/SKILL.md`            |
+| `systematic-debugging` | Ciclo de depuración, trazas de pila y resolución de fallos    | `.opencode/skills/systematic-debugging/SKILL.md` |
+| `webapp-testing`       | Cobertura y ejecución de pruebas unitarias y de integración   | `.opencode/skills/webapp-testing/SKILL.md`       |
 
 ---
 
@@ -91,16 +112,16 @@ Este proyecto cuenta con skills personalizadas en `.opencode/skills/`:
 
 Configurados en `.opencode/opencode.json`:
 
-| Sub-agente | Descripción |
-|------------|-------------|
-| react-expert | Especializado en React 19, hooks, React Router |
-| typescript-expert | TypeScript, tipos, código type-safe |
-| testing-expert | Vitest, Playwright, TDD |
-| tailwind-expert | Tailwind CSS, diseño responsive |
-| seo-expert | SEO técnico, sitemap, schema markup |
-| gamedev-expert | Juegos 2D RPG, pixel art |
-| analytics-expert | GA4, Vercel Analytics |
-| debug | Investigación y debugging |
+| Sub-agente        | Descripción                                    |
+| ----------------- | ---------------------------------------------- |
+| react-expert      | Especializado en React 19, hooks, React Router |
+| typescript-expert | TypeScript, tipos, código type-safe            |
+| testing-expert    | Vitest, Playwright, TDD                        |
+| tailwind-expert   | Tailwind CSS, diseño responsive                |
+| seo-expert        | SEO técnico, sitemap, schema markup            |
+| gamedev-expert    | Juegos 2D RPG, pixel art                       |
+| analytics-expert  | GA4, Vercel Analytics                          |
+| debug             | Investigación y debugging                      |
 
 ---
 
@@ -155,6 +176,7 @@ export default function TimelineItem({ title, subtitle, icon, children }: Timeli
 ### Imports
 
 Orden recomendado:
+
 1. React/core imports
 2. Librerías externas (react-router, lucide-react, etc.)
 3. Imports absolutos (@/...)
@@ -162,14 +184,14 @@ Orden recomendado:
 5. Tipos (import type)
 
 ```typescript
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { FileText, Wrench } from 'lucide-react';
-import type { ReactNode } from 'react';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { FileText, Wrench } from "lucide-react";
+import type { ReactNode } from "react";
 
-import { useTheme } from '@/hooks/useTheme';
-import TimelineItem from '@/components/TimelineItem';
-import type { Project } from '@/data/portfolio';
+import { useTheme } from "@/hooks/useTheme";
+import TimelineItem from "@/components/TimelineItem";
+import type { Project } from "@/data/portfolio";
 ```
 
 ### Tailwind CSS
@@ -186,9 +208,7 @@ import type { Project } from '@/data/portfolio';
 // ✅ Correcto
 <div className="card-tech animate-in fade-in duration-1000">
     <h3 className="text-2xl font-black mb-8 text-white flex items-center gap-3">
-        <span className="text-cyan-600 dark:text-cyan-400">
-            {icon}
-        </span>
+        <span className="text-cyan-600 dark:text-cyan-400">{icon}</span>
     </h3>
 </div>
 ```
@@ -214,19 +234,19 @@ import type { Project } from '@/data/portfolio';
 - Mocks con `vi.fn()` de Vitest
 
 ```typescript
-import { renderHook, act } from '@testing-library/react';
-import { useTheme } from './useTheme';
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { renderHook, act } from "@testing-library/react";
+import { useTheme } from "./useTheme";
+import { describe, it, expect, beforeEach, vi } from "vitest";
 
-describe('useTheme hook', () => {
+describe("useTheme hook", () => {
     beforeEach(() => {
         localStorage.clear();
-        document.documentElement.className = '';
+        document.documentElement.className = "";
     });
 
-    it('should default to light theme', () => {
+    it("should default to light theme", () => {
         const { result } = renderHook(() => useTheme());
-        expect(result.current.theme).toBe('light');
+        expect(result.current.theme).toBe("light");
     });
 });
 ```
@@ -266,6 +286,7 @@ describe('useTheme hook', () => {
 Este portfolio está inspirado en el diseño de [Augusto Polonio](https://augustopolonio.vercel.app):
 
 ### Características adoptadas
+
 - Hero section con foto avatar (arriba centrado)
 - Terminal interactivo para explorar contenido
 - Esquema de colores minimalista
@@ -275,6 +296,7 @@ Este portfolio está inspirado en el diseño de [Augusto Polonio](https://august
 - Botón de CV/Resume con icono de documento
 
 ### Referencias
+
 - Web: https://github.com/augustopolonio/augustopolonio-website
 - Juego 2D: https://github.com/augustopolonio/portfolio-game-2d
 
@@ -283,6 +305,7 @@ Este portfolio está inspirado en el diseño de [Augusto Polonio](https://august
 ## Roadmap: Funcionalidades Futuras
 
 ### Portfolio Game 2D (Pendiente)
+
 - Juego estilo RPG embebido (iframe)
 - Personaje con controles WASD
 - NPCs con información del portfolio
@@ -290,12 +313,14 @@ Este portfolio está inspirado en el diseño de [Augusto Polonio](https://august
 - Música de fondo (Suno AI)
 
 ### Mejoras SEO
+
 - sitemap.xml dinámico
 - robots.txt
 - JSON-LD schema markup
 - Open Graph tags
 
 ### Analytics
+
 - Google Analytics 4
 - Vercel Analytics
 - Event tracking
@@ -308,16 +333,16 @@ Este proyecto recomienda los siguientes Model Context Protocols (MCPs):
 
 ### MCPs de Alta Prioridad
 
-| MCP | Descripción | Paquete |
-|-----|-------------|---------|
+| MCP            | Descripción                               | Paquete           |
+| -------------- | ----------------------------------------- | ----------------- |
 | Playwright MCP | Testing E2E y automatización de navegador | `@playwright/mcp` |
-| GitHub MCP | Integración con GitHub API | `github-mcp` |
+| GitHub MCP     | Integración con GitHub API                | `github-mcp`      |
 
 ### MCPs de Prioridad Media
 
-| MCP | Descripción | Paquete |
-|-----|-------------|---------|
-| Tavily MCP | Búsqueda web estructurada | `tavily-mcp` |
+| MCP           | Descripción                   | Paquete                   |
+| ------------- | ----------------------------- | ------------------------- |
+| Tavily MCP    | Búsqueda web estructurada     | `tavily-mcp`              |
 | Puppeteer MCP | Control de navegador headless | `@hisma/server-puppeteer` |
 
 ### Configuración

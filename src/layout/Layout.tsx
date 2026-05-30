@@ -1,22 +1,25 @@
-import { Outlet, useLocation } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
-import Header from './Header';
-import Footer from './Footer';
-import BackToTop from '../components/BackToTop';
+import { lazy, Suspense } from "react";
+import { Outlet, useLocation } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
+import Header from "./Header";
+import Footer from "./Footer";
+import BackToTop from "../components/BackToTop";
+
+const TechBackground = lazy(() => import("../components/TechBackground"));
 
 export default function Layout() {
     const location = useLocation();
 
     return (
         <div className="flex flex-col min-h-screen bg-background dark:bg-slate-900 text-foreground dark:text-slate-200 transition-colors duration-300">
+            <Suspense fallback={null}>
+                <TechBackground />
+            </Suspense>
             {/* Skip to main content link for accessibility */}
-            <a 
-                href="#main-content" 
-                className="skip-to-content"
-            >
+            <a href="#main-content" className="skip-to-content">
                 Saltar al contenido principal
             </a>
-            
+
             <Header />
             <main id="main-content" className="flex-grow flex flex-col">
                 <AnimatePresence mode="wait">
@@ -25,7 +28,7 @@ export default function Layout() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.3, ease: 'easeOut' }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
                         className="flex-grow flex flex-col"
                     >
                         <Outlet />

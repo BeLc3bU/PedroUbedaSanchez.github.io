@@ -19,23 +19,23 @@ export class TestingAgent extends BaseAgent {
         return ["testing", "test", "e2e", "unit", "vitest", "playwright"].includes(taskType);
     }
 
-    public async execute(task: AgentTask): Promise<unknown> {
+    public async execute(task: AgentTask, onLog?: (msg: string) => void): Promise<unknown> {
         const testType = task.payload?.type || "unit";
 
-        this.log(`Reading requirements for testing: ${task.description}`);
-        this.log(`Test type: ${testType}`);
+        this.log(`Reading requirements for testing: ${task.description}`, onLog);
+        this.log(`Test type: ${testType}`, onLog);
 
         if (testType === "e2e") {
-            this.log(`Setting up Playwright E2E tests`);
-            this.log(`Following systematic-debugging approach for test reliability`);
+            this.log(`Setting up Playwright E2E tests`, onLog);
+            this.log(`Following systematic-debugging approach for test reliability`, onLog);
         } else {
-            this.log(`Generating Vitest unit tests with React Testing Library`);
-            this.log(`Ensuring 80%+ coverage target`);
+            this.log(`Generating Vitest unit tests with React Testing Library`, onLog);
+            this.log(`Ensuring 80%+ coverage target`, onLog);
         }
 
         return new Promise((resolve) =>
             setTimeout(() => {
-                this.log(`Tests generated successfully`);
+                this.log(`Tests generated successfully`, onLog);
                 resolve({ testsGenerated: 5, coverageAdded: "10%", testType });
             }, 800)
         );

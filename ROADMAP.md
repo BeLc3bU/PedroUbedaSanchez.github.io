@@ -70,7 +70,7 @@ Este documento detalla las mejoras, características y utilidades sugeridas para
 - **Estado:** ✅ Completado
 - **Descripción:** Optimización completa para motores de búsqueda
 - **Tareas completadas:**
-    - [x] Generar sitemap.xml dinámico (actualizado con rutas #)
+    - [x] Generar sitemap.xml dinámico automatizado mediante script de compilación Node.js
     - [x] Configurar robots.txt
     - [x] Añadir JSON-LD schema markup (Person, WebSite)
     - [x] Optimizar meta tags (Open Graph, Twitter Cards)
@@ -145,6 +145,8 @@ Este documento detalla las mejoras, características y utilidades sugeridas para
     - [x] Bundle analysis con rollup-plugin-visualizer (genera dist/stats.html)
     - [x] Image optimization (WebP ya implementado)
     - [x] Code splitting (vendor-react, vendor-ui, vendor-motion, vendor-pdf)
+    - [x] Code splitting avanzado del motor 3D (Three.js) en chunk dedicado 'vendor-three'
+    - [x] Carga diferida (lazy loading) del componente TechBackground con Suspense de React
 
 ---
 

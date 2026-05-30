@@ -20,24 +20,24 @@ export class SeoAgent extends BaseAgent {
         return ["seo", "content", "meta", "sitemap", "robots", "copywriting"].includes(taskType);
     }
 
-    public async execute(task: AgentTask): Promise<unknown> {
-        this.log(`Processing SEO optimization for: ${task.description}`);
+    public async execute(task: AgentTask, onLog?: (msg: string) => void): Promise<unknown> {
+        this.log(`Processing SEO optimization for: ${task.description}`, onLog);
 
         if (task.payload?.generateSitemap) {
-            this.log(`Generating sitemap.xml with all routes`);
-            this.log(`Adding sitemap to robots.txt`);
+            this.log(`Generating sitemap.xml with all routes`, onLog);
+            this.log(`Adding sitemap to robots.txt`, onLog);
         }
 
         if (task.payload?.schemaMarkup) {
-            this.log(`Adding JSON-LD schema markup (Person, WebSite, Organization)`);
+            this.log(`Adding JSON-LD schema markup (Person, WebSite, Organization)`, onLog);
         }
 
-        this.log(`Performing SEO audit using seo-audit skill`);
-        this.log(`Optimizing meta tags and Open Graph tags`);
+        this.log(`Performing SEO audit using seo-audit skill`, onLog);
+        this.log(`Optimizing meta tags and Open Graph tags`, onLog);
 
         return new Promise((resolve) =>
             setTimeout(() => {
-                this.log(`SEO optimization completed successfully`);
+                this.log(`SEO optimization completed successfully`, onLog);
                 resolve({
                     keywordsAdded: ["React", "Portfolio", "Developer"],
                     metaTagsUpdated: 5,

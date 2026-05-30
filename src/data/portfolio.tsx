@@ -266,5 +266,6 @@ export const terminalCommands = [
     { command: "education", description: "Show education & certifications" },
     { command: "experience", description: "Show work experience summary" },
     { command: "contact", description: "Display contact information" },
+    { command: "agents", description: "Run simulated multi-agent orchestrator demo" },
     { command: "clear", description: "Clear terminal" },
 ];

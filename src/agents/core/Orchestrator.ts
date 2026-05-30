@@ -22,8 +22,13 @@ export class Orchestrator {
         return this.queue.find((t) => t.id === id);
     }
 
-    public async run(): Promise<void> {
-        console.log("[Orchestrator] Starting workflow execution...");
+    public async run(onLog?: (msg: string) => void): Promise<void> {
+        const log = (msg: string) => {
+            console.log(msg);
+            if (onLog) onLog(msg);
+        };
+
+        log("[Orchestrator] Starting workflow execution...");
         while (this.queue.some((t) => t.status === "pending")) {
             const readyTasks = this.queue.filter(
                 (t) =>
@@ -50,19 +55,21 @@ export class Orchestrator {
                             throw new Error(`No agent found for task type: ${task.type}`);
                         }
 
-                        console.log(`[Orchestrator] Delegating task ${task.id} to ${agent.name}`);
-                        const result = await agent.execute(task);
+                        log(`[Orchestrator] Delegating task ${task.id} to ${agent.name}`);
+                        const result = await agent.execute(task, onLog);
                         task.result = result;
                         task.status = "completed";
+                        log(`[Orchestrator] Task ${task.id} completed successfully.`);
                     } catch (error) {
                         const message = error instanceof Error ? error.message : String(error);
                         console.error(`[Orchestrator] Task ${task.id} failed:`, error);
                         task.error = message;
                         task.status = "failed";
+                        log(`[Orchestrator] Task ${task.id} failed: ${message}`);
                     }
                 })
             );
         }
-        console.log("[Orchestrator] Workflow execution finished.");
+        log("[Orchestrator] Workflow execution finished.");
     }
 }

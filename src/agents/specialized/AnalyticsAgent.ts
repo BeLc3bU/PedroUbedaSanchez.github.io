@@ -19,27 +19,30 @@ export class AnalyticsAgent extends BaseAgent {
         );
     }
 
-    public async execute(task: AgentTask): Promise<unknown> {
-        this.log(`Setting up analytics for: ${task.description}`);
+    public async execute(task: AgentTask, onLog?: (msg: string) => void): Promise<unknown> {
+        this.log(`Setting up analytics for: ${task.description}`, onLog);
 
         if (task.payload?.vercel) {
-            this.log(`Installing @vercel/analytics`);
-            this.log(`Configuring Vercel Analytics tracking`);
+            this.log(`Installing @vercel/analytics`, onLog);
+            this.log(`Configuring Vercel Analytics tracking`, onLog);
         }
 
         if (task.payload?.google) {
-            this.log(`Setting up Google Analytics 4 (GA4)`);
-            this.log(`Configuring event tracking: resume_download, contact_click, social_click`);
+            this.log(`Setting up Google Analytics 4 (GA4)`, onLog);
+            this.log(
+                `Configuring event tracking: resume_download, contact_click, social_click`,
+                onLog
+            );
         }
 
         if (task.payload?.performance) {
-            this.log(`Adding Core Web Vitals monitoring`);
-            this.log(`Setting up performance budgets`);
+            this.log(`Adding Core Web Vitals monitoring`, onLog);
+            this.log(`Setting up performance budgets`, onLog);
         }
 
         return new Promise((resolve) =>
             setTimeout(() => {
-                this.log(`Analytics setup completed`);
+                this.log(`Analytics setup completed`, onLog);
                 resolve({
                     vercelAnalytics: task.payload?.vercel || false,
                     googleAnalytics: task.payload?.google || false,
