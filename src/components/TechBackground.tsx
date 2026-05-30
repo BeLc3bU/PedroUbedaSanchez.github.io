@@ -1,25 +1,31 @@
-import { useRef, useMemo } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
-import * as THREE from 'three'
+import { useRef, useMemo } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import * as THREE from "three";
+
+// Generador pseudoaleatorio determinista simple para evitar Math.random en el render
+function getDeterministicRandom(index: number) {
+    const x = Math.sin(index) * 10000;
+    return x - Math.floor(x);
+}
 
 function Particles({ count = 1000 }) {
-    const mesh = useRef<THREE.Points>(null!)
+    const mesh = useRef<THREE.Points>(null!);
 
     const particles = useMemo(() => {
-        const positions = new Float32Array(count * 3)
+        const positions = new Float32Array(count * 3);
         for (let i = 0; i < count; i++) {
-            positions[i * 3] = (Math.random() - 0.5) * 10
-            positions[i * 3 + 1] = (Math.random() - 0.5) * 10
-            positions[i * 3 + 2] = (Math.random() - 0.5) * 10
+            positions[i * 3] = (getDeterministicRandom(i * 3) - 0.5) * 10;
+            positions[i * 3 + 1] = (getDeterministicRandom(i * 3 + 1) - 0.5) * 10;
+            positions[i * 3 + 2] = (getDeterministicRandom(i * 3 + 2) - 0.5) * 10;
         }
-        return positions
-    }, [count])
+        return positions;
+    }, [count]);
 
     useFrame((state) => {
-        const time = state.clock.getElapsedTime()
-        mesh.current.rotation.y = time * 0.05
-        mesh.current.rotation.x = time * 0.02
-    })
+        const time = state.clock.getElapsedTime();
+        mesh.current.rotation.y = time * 0.05;
+        mesh.current.rotation.x = time * 0.02;
+    });
 
     return (
         <points ref={mesh}>
@@ -29,7 +35,6 @@ function Particles({ count = 1000 }) {
                     count={particles.length / 3}
                     array={particles}
                     itemSize={3}
-                    // @ts-ignore - Fiber types sometimes lag behind Three.js BufferAttribute requirements
                     args={[particles, 3]}
                 />
             </bufferGeometry>
@@ -41,7 +46,7 @@ function Particles({ count = 1000 }) {
                 sizeAttenuation
             />
         </points>
-    )
+    );
 }
 
 export default function TechBackground() {
@@ -52,5 +57,5 @@ export default function TechBackground() {
                 <Particles count={1500} />
             </Canvas>
         </div>
-    )
+    );
 }
