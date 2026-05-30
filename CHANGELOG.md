@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.8.0](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/compare/v1.7.3...v1.8.0) (2026-05-30)
+
+
+### Features
+
+* optimize 3D performance, automate sitemap generation and integrate agent skills ([500ff65](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/500ff65ca3533f0ab162302f2f09a19f70f07355))
+
 ## [1.8.0] - 2026-05-30
 
 ### Added
