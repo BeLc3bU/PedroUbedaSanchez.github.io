@@ -23,10 +23,9 @@ function Particles({ count = 1000 }) {
         return positions;
     }, [count]);
 
-    useFrame((state) => {
-        const time = state.clock.getElapsedTime();
-        mesh.current.rotation.y = time * 0.05;
-        mesh.current.rotation.x = time * 0.02;
+    useFrame((state, delta) => {
+        mesh.current.rotation.y += delta * 0.05;
+        mesh.current.rotation.x += delta * 0.02;
     });
 
     return (

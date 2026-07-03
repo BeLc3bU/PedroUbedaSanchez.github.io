@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useState, useEffect, useMemo } from "react";
 import ReactFlow, {
     Background,
     Controls,
@@ -14,9 +14,6 @@ import ReactFlow, {
     type Node,
 } from "reactflow";
 import "reactflow/dist/style.css";
-
-const nodeTypes = {};
-const edgeTypes = {};
 
 const initialNodes: Node[] = [
     {
@@ -69,6 +66,9 @@ export default function SkillsMap() {
     const [mounted, setMounted] = useState(false);
     const [nodes, , onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+
+    const nodeTypes = useMemo(() => ({}), []);
+    const edgeTypes = useMemo(() => ({}), []);
 
     useEffect(() => {
         const timer = setTimeout(() => setMounted(true), 0);
