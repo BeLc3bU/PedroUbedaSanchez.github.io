@@ -4,10 +4,12 @@ description: Apply Tailwind CSS styling and responsive design patterns
 license: MIT
 compatibility: opencode
 metadata:
-  audience: developers
-  workflow: styling
+    audience: developers
+    workflow: styling
 ---
+
 ## What I do
+
 - Apply Tailwind CSS utility classes to components
 - Implement responsive design with mobile-first approach
 - Support dark mode with dark: prefix
@@ -15,7 +17,9 @@ metadata:
 - Apply animations with tailwindcss-animate
 
 ## When to use me
+
 Use this when you need to:
+
 - Style new components
 - Add responsive layouts
 - Implement dark mode
@@ -23,6 +27,7 @@ Use this when you need to:
 - Create responsive grids and flex layouts
 
 ## Tailwind patterns for this project
+
 - Use container mx-auto for centering
 - Apply bg-grid-pattern for backgrounds
 - Use text-accent-gradient for gradient text

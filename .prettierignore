@@ -3,6 +3,7 @@ node_modules/
 
 # Build output
 dist/
+out/
 build/
 
 # Coverage
@@ -20,3 +21,4 @@ coverage/
 
 # Cache
 .cache/
+.next/

@@ -16,12 +16,12 @@ source: community
 
 ### Component Types
 
-| Type | Use | State |
-|------|-----|-------|
-| **Server** | Data fetching, static | None |
-| **Client** | Interactivity | useState, effects |
-| **Presentational** | UI display | Props only |
-| **Container** | Logic/state | Heavy state |
+| Type               | Use                   | State             |
+| ------------------ | --------------------- | ----------------- |
+| **Server**         | Data fetching, static | None              |
+| **Client**         | Interactivity         | useState, effects |
+| **Presentational** | UI display            | Props only        |
+| **Container**      | Logic/state           | Heavy state       |
 
 ### Design Rules
 
@@ -36,12 +36,12 @@ source: community
 
 ### When to Extract Hooks
 
-| Pattern | Extract When |
-|---------|-------------|
+| Pattern             | Extract When              |
+| ------------------- | ------------------------- |
 | **useLocalStorage** | Same storage logic needed |
-| **useDebounce** | Multiple debounced values |
-| **useFetch** | Repeated fetch patterns |
-| **useForm** | Complex form state |
+| **useDebounce**     | Multiple debounced values |
+| **useFetch**        | Repeated fetch patterns   |
+| **useForm**         | Complex form state        |
 
 ### Hook Rules
 
@@ -54,21 +54,21 @@ source: community
 
 ## 3. State Management Selection
 
-| Complexity | Solution |
-|------------|----------|
-| Simple | useState, useReducer |
-| Shared local | Context |
-| Server state | React Query, SWR |
+| Complexity     | Solution               |
+| -------------- | ---------------------- |
+| Simple         | useState, useReducer   |
+| Shared local   | Context                |
+| Server state   | React Query, SWR       |
 | Complex global | Zustand, Redux Toolkit |
 
 ### State Placement
 
-| Scope | Where |
-|-------|-------|
-| Single component | useState |
-| Parent-child | Lift state up |
-| Subtree | Context |
-| App-wide | Global store |
+| Scope            | Where         |
+| ---------------- | ------------- |
+| Single component | useState      |
+| Parent-child     | Lift state up |
+| Subtree          | Context       |
+| App-wide         | Global store  |
 
 ---
 
@@ -76,11 +76,11 @@ source: community
 
 ### New Hooks
 
-| Hook | Purpose |
-|------|---------|
-| **useActionState** | Form submission state |
-| **useOptimistic** | Optimistic UI updates |
-| **use** | Read resources in render |
+| Hook               | Purpose                  |
+| ------------------ | ------------------------ |
+| **useActionState** | Form submission state    |
+| **useOptimistic**  | Optimistic UI updates    |
+| **use**            | Read resources in render |
 
 ### Compiler Benefits
 
@@ -101,11 +101,11 @@ source: community
 
 ### Render Props vs Hooks
 
-| Use Case | Prefer |
-|----------|--------|
-| Reusable logic | Custom hook |
-| Render flexibility | Render props |
-| Cross-cutting | Higher-order component |
+| Use Case           | Prefer                 |
+| ------------------ | ---------------------- |
+| Reusable logic     | Custom hook            |
+| Render flexibility | Render props           |
+| Cross-cutting      | Higher-order component |
 
 ---
 
@@ -113,12 +113,12 @@ source: community
 
 ### When to Optimize
 
-| Signal | Action |
-|--------|--------|
-| Slow renders | Profile first |
-| Large lists | Virtualize |
-| Expensive calc | useMemo |
-| Stable callbacks | useCallback |
+| Signal           | Action        |
+| ---------------- | ------------- |
+| Slow renders     | Profile first |
+| Large lists      | Virtualize    |
+| Expensive calc   | useMemo       |
+| Stable callbacks | useCallback   |
 
 ### Optimization Order
 
@@ -133,10 +133,10 @@ source: community
 
 ### Error Boundary Usage
 
-| Scope | Placement |
-|-------|-----------|
-| App-wide | Root level |
-| Feature | Route/feature level |
+| Scope     | Placement              |
+| --------- | ---------------------- |
+| App-wide  | Root level             |
+| Feature   | Route/feature level    |
 | Component | Around risky component |
 
 ### Error Recovery
@@ -152,29 +152,29 @@ source: community
 
 ### Props Typing
 
-| Pattern | Use |
-|---------|-----|
-| Interface | Component props |
-| Type | Unions, complex |
-| Generic | Reusable components |
+| Pattern   | Use                 |
+| --------- | ------------------- |
+| Interface | Component props     |
+| Type      | Unions, complex     |
+| Generic   | Reusable components |
 
 ### Common Types
 
-| Need | Type |
-|------|------|
-| Children | ReactNode |
-| Event handler | MouseEventHandler |
-| Ref | RefObject<Element> |
+| Need          | Type               |
+| ------------- | ------------------ |
+| Children      | ReactNode          |
+| Event handler | MouseEventHandler  |
+| Ref           | RefObject<Element> |
 
 ---
 
 ## 9. Testing Principles
 
-| Level | Focus |
-|-------|-------|
-| Unit | Pure functions, hooks |
-| Integration | Component behavior |
-| E2E | User flows |
+| Level       | Focus                 |
+| ----------- | --------------------- |
+| Unit        | Pure functions, hooks |
+| Integration | Component behavior    |
+| E2E         | User flows            |
 
 ### Test Priorities
 
@@ -187,17 +187,18 @@ source: community
 
 ## 10. Anti-Patterns
 
-| ❌ Don't | ✅ Do |
-|----------|-------|
-| Prop drilling deep | Use context |
-| Giant components | Split smaller |
+| ❌ Don't                 | ✅ Do             |
+| ------------------------ | ----------------- |
+| Prop drilling deep       | Use context       |
+| Giant components         | Split smaller     |
 | useEffect for everything | Server components |
-| Premature optimization | Profile first |
-| Index as key | Stable unique ID |
+| Premature optimization   | Profile first     |
+| Index as key             | Stable unique ID  |
 
 ---
 
 > **Remember:** React is about composition. Build small, combine thoughtfully.
 
 ## When to Use
+
 This skill is applicable to execute the workflow or actions described in the overview.

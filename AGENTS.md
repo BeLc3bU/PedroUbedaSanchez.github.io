@@ -1,363 +1,137 @@
-# AGENTS.md - Directrices para Agentes de Código
+# AGENTS.md - Directrices de Desarrollo AI-First
 
-Este archivo contiene las directrices para agentes de IA que operan en este repositorio de portfolio personal.
-
-## Comandos de Construcción, Lint y Pruebas
-
-### Comandos principales
-
-| Comando             | Descripción                                   |
-| ------------------- | --------------------------------------------- |
-| `npm run dev`       | Iniciar servidor de desarrollo Vite           |
-| `npm run build`     | Compilar TypeScript + Vite build + copiar 404 |
-| `npm run lint`      | Ejecutar ESLint                               |
-| `npm run preview`   | Previsualizar build de producción             |
-| `npm run serve`     | Previsualizar build de producción             |
-| `npm run typecheck` | Verificar tipos TypeScript                    |
-
-### Ejecución de pruebas
-
-| Comando                                           | Descripción                              |
-| ------------------------------------------------- | ---------------------------------------- |
-| `npx vitest`                                      | Ejecutar pruebas en modo watch           |
-| `npx vitest run`                                  | Ejecutar pruebas una vez                 |
-| `npx vitest src/components/TimelineItem.test.tsx` | Ejecutar un archivo de prueba específico |
-| `npx vitest src/hooks/useTheme.test.ts --run`     | Ejecutar prueba específica sin watch     |
-
-### Rutas del proyecto
-
-- Código fuente: `src/`
-- Build de producción: `dist/`
-- Activos públicos: `public/`
-- Configuración: raíz del proyecto
-- Skills: `.opencode/skills/`
-- Agentes: `src/agents/`
+Este archivo contiene el marco operativo de desarrollo AI-First y las directrices estrictas para los agentes de Inteligencia Artificial que mantengan y extiendan este repositorio.
 
 ---
 
-## Sistema de Agentes
+## 1. Descripción del Proyecto
 
-### Agentes Especializados
-
-Este proyecto cuenta con un sistema de agentes especializados ubicados en `src/agents/`:
-
-```
-src/agents/
-├── core/
-│   ├── Orchestrator.ts      # Orquestador de tareas
-│   ├── BaseAgent.ts         # Clase base
-│   └── types.ts            # Tipos TS
-├── specialized/
-│   ├── FrontendAgent.ts     # Desarrollo Frontend (React, TypeScript)
-│   ├── TestingAgent.ts      # Testing (Vitest, Playwright)
-│   ├── DesignAgent.ts       # Diseño UI/UX (Tailwind, animaciones)
-│   ├── SeoAgent.ts          # SEO (sitemap, meta tags, schema)
-│   ├── GameDevAgent.ts      # Desarrollo de juegos 2D (futuro)
-│   └── AnalyticsAgent.ts    # Analytics (GA4, Vercel)
-└── index.ts                # Configuración
-```
-
-### Descripción de Agentes
-
-| Agente         | Descripción                                         | Skills                                                  |
-| -------------- | --------------------------------------------------- | ------------------------------------------------------- |
-| FrontendAgent  | Desarrollo Frontend con React, TypeScript, Tailwind | react-best-practices, frontend-design, tailwind-styling |
-| TestingAgent   | Testing con Vitest y Playwright                     | webapp-testing, systematic-debugging                    |
-| DesignAgent    | Diseño UI/UX, Tailwind, animaciones                 | frontend-design, tailwind-design-system                 |
-| SeoAgent       | SEO técnico, sitemap, schema markup                 | seo-audit                                               |
-| GameDevAgent   | Portfolio game 2D ( Augusto Polonio style)          | game-development                                        |
-| AnalyticsAgent | Google Analytics, Vercel Analytics                  | analytics-tracking                                      |
+Este proyecto es un portafolio web personal interactivo, dinámico y premium que actúa como Currículum Vitae. Está diseñado bajo una estética minimalista con toques tecnológicos avanzados, incluyendo visualizaciones interactivas (Three.js), diagramación de flujos de conocimiento (ReactFlow), generación dinámica de documentos (React-PDF) y una interfaz de consola/terminal interactiva.
 
 ---
 
-## Skills Disponibles
+## 2. Stack Tecnológico
 
-Este proyecto cuenta con skills personalizadas e independientes bajo dos directorios:
-
-### 1. Skills para Agentes Generales (`.agent/skills/`)
-
-Estas habilidades extienden las capacidades de agentes generales (como Gemini/Antigravity) que operan sobre la raíz del portafolio:
-
-| Habilidad                  | Descripción                                                            | Archivo                                           |
-| -------------------------- | ---------------------------------------------------------------------- | ------------------------------------------------- |
-| `tailwind-styling`         | Estilos de Tailwind CSS, layouts responsivos y animaciones             | `.agent/skills/tailwind-styling/SKILL.md`         |
-| `react-best-practices`     | Directrices de React 19 y tipado seguro con TypeScript                 | `.agent/skills/react-best-practices/SKILL.md`     |
-| `framer-motion-animations` | Diseño de micro-interacciones y transiciones premium con Framer Motion | `.agent/skills/framer-motion-animations/SKILL.md` |
-| `systematic-debugging`     | Flujo de resolución de errores y diagnóstico metodológico              | `.agent/skills/systematic-debugging/SKILL.md`     |
-| `webapp-testing`           | Estructuras y ejecución de pruebas unitarias y E2E                     | `.agent/skills/webapp-testing/SKILL.md`           |
-| `3d-web-experience`        | Integración y optimización de escenas 3D con Three.js                  | `.agent/skills/3d-web-experience/SKILL.md`        |
-| `copywriting`              | Directrices para redacción de contenido claro y persuasivo             | `.agent/skills/copywriting/SKILL.md`              |
-| `react-flow-architect`     | Patrones avanzados de diagramación y navegación con ReactFlow          | `.agent/skills/react-flow-architect/SKILL.md`     |
-| `react-patterns`           | Patrones de diseño de componentes, estado y manejo de errores          | `.agent/skills/react-patterns/SKILL.md`           |
-| `seo-audit`                | Auditoría, marcado estructurado y optimizaciones de buscadores         | `.agent/skills/seo-audit/SKILL.md`                |
-
-### 2. Skills para Sub-agentes de Desarrollo (`.opencode/skills/`)
-
-Estas habilidades son utilizadas por los sub-agentes del orquestador OpenCode:
-
-| Habilidad              | Descripción                                                   | Archivo                                          |
-| ---------------------- | ------------------------------------------------------------- | ------------------------------------------------ |
-| `vite-build`           | Comandos de empaquetado, servidor dev y optimizaciones Vite   | `.opencode/skills/vite-build/SKILL.md`           |
-| `react-testing`        | Pruebas de integración y unitarias de componentes en Vitest   | `.opencode/skills/react-testing/SKILL.md`        |
-| `tailwind-styling`     | Aplicación móvil-first de clases de utilidad e interactividad | `.opencode/skills/tailwind-styling/SKILL.md`     |
-| `react-best-practices` | Reglas de componentes funcionales y ciclos de hooks           | `.opencode/skills/react-best-practices/SKILL.md` |
-| `frontend-design`      | Directrices y tokens de diseño visual para el portafolio      | `.opencode/skills/frontend-design/SKILL.md`      |
-| `seo-audit`            | Auditoría de meta tags, sitemap y accesibilidad               | `.opencode/skills/seo-audit/SKILL.md`            |
-| `systematic-debugging` | Ciclo de depuración, trazas de pila y resolución de fallos    | `.opencode/skills/systematic-debugging/SKILL.md` |
-| `webapp-testing`       | Cobertura y ejecución de pruebas unitarias y de integración   | `.opencode/skills/webapp-testing/SKILL.md`       |
+- **Lenguaje**: TypeScript v5.9 (modo estricto)
+- **Framework**: React v19.2 (Componentes Funcionales)
+- **Runtime & Herramienta de Construcción**: Node.js + Vite v7.3
+- **Estilos**: Tailwind CSS v3.4 (con PostCSS y Autoprefixer)
+- **Interactividad y Animaciones**: Framer Motion v12.4
+- **Librerías de Visualización**: Three.js (`three` y `@react-three/fiber` / `@react-three/drei`), ReactFlow v11
+- **Manejo de Formularios y Validación**: react-hook-form v7.76 + Zod v4
+- **Notificaciones**: Sonner v2.0
+- **SEO**: React Helmet v6.1
+- **Testing**: Vitest v3.2 + React Testing Library v16 + jsdom v26
+- **Lint & Formateo**: ESLint v9.39 + Prettier v3.8
+- **Git Hooks**: Husky v9.1 + lint-staged v16
 
 ---
 
-## Sub-Agentes OpenCode
+## 3. Comandos Reales del Proyecto
 
-Configurados en `.opencode/opencode.json`:
-
-| Sub-agente        | Descripción                                    |
-| ----------------- | ---------------------------------------------- |
-| react-expert      | Especializado en React 19, hooks, React Router |
-| typescript-expert | TypeScript, tipos, código type-safe            |
-| testing-expert    | Vitest, Playwright, TDD                        |
-| tailwind-expert   | Tailwind CSS, diseño responsive                |
-| seo-expert        | SEO técnico, sitemap, schema markup            |
-| gamedev-expert    | Juegos 2D RPG, pixel art                       |
-| analytics-expert  | GA4, Vercel Analytics                          |
-| debug             | Investigación y debugging                      |
-
----
-
-## Convenciones de Código
-
-### Estructura de archivos
-
-- Componentes en `src/components/`, `src/pages/`, `src/layout/`
-- Hooks personalizados en `src/hooks/`
-- Utilidades en `src/lib/`
-- Datos en `src/data/`
-- Tests junto al archivo fuente: `*.test.tsx`
-
-### Convenciones de nomenclatura
-
-- **Componentes**: PascalCase, export default (ej: `TimelineItem.tsx`)
-- **Hooks**: camelCase con prefijo `use` (ej: `useTheme.ts`, `usePrint.ts`)
-- **Utilidades**: camelCase (ej: `utils.ts`)
-- **Constantes/Types**: PascalCase (ej: `Project`, `Experience`)
-- **Archivos de test**: `*.test.tsx` o `*.spec.tsx`
-
-### TypeScript
-
-- Usar `interface` para props de componentes
-- Usar `type` para tipos union, alias simples
-- Usar `import type` cuando solo se necesite el tipo
-- Definir tipos en el mismo archivo o en `types/` si son reutilizables
-- Siempre tipar los props de componentes
-
-```typescript
-// ✅ Correcto
-interface TimelineItemProps {
-    title: string;
-    subtitle: string;
-    icon: string | ReactNode;
-    children: ReactNode;
-}
-
-export default function TimelineItem({ title, subtitle, icon, children }: TimelineItemProps) {
-    // ...
-}
-```
-
-### React y Hooks
-
-- Usar componentes funcionales con arrow functions o function declarations
-- Preferir `useState`, `useEffect`, `useContext`, `useRef`
-- Usar `useMemo` y `useCallback` solo cuando hay problema de rendimiento
-- Crear hooks personalizados para lógica reutilizable
-- Siempre incluir `key` en elementos de listas
-
-### Imports
-
-Orden recomendado:
-
-1. React/core imports
-2. Librerías externas (react-router, lucide-react, etc.)
-3. Imports absolutos (@/...)
-4. Imports relativos (../, ./)
-5. Tipos (import type)
-
-```typescript
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { FileText, Wrench } from "lucide-react";
-import type { ReactNode } from "react";
-
-import { useTheme } from "@/hooks/useTheme";
-import TimelineItem from "@/components/TimelineItem";
-import type { Project } from "@/data/portfolio";
-```
-
-### Tailwind CSS
-
-- Usar enfoque mobile-first
-- Soporte dark mode con prefijo `dark:`
-- Usar clases de utilidad composables
-- Separar clases con espacios, mantener orden lógico
-- Usar tokens de color: `cyan-400`, `cyan-600`, `cyan-700`
-- Usar `text-accent-gradient` para texto con gradiente
-- Usar `bg-grid-pattern` para fondos con patrón
-
-```tsx
-// ✅ Correcto
-<div className="card-tech animate-in fade-in duration-1000">
-    <h3 className="text-2xl font-black mb-8 text-white flex items-center gap-3">
-        <span className="text-cyan-600 dark:text-cyan-400">{icon}</span>
-    </h3>
-</div>
-```
-
-### Convenciones de estilo
-
-- Usar indentación con 4 espacios
-- Comillas simples para strings en JSX
-- Punto y coma al final de statements
-- Máximo ~100-120 caracteres por línea
-- Agrupar imports relacionados
-- Una línea en blanco entre grupos de imports
+| Comando                | Descripción                                                                                                                    |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `npm run dev`          | Inicia el servidor de desarrollo local de Vite en `http://localhost:5173`.                                                     |
+| `npm run build`        | Compila TypeScript (`tsc -b`), genera la build de producción en `dist`, autogenera el sitemap y copia el 404 para despliegues. |
+| `npm run lint`         | Ejecuta el análisis estático de ESLint.                                                                                        |
+| `npm run format`       | Aplica el formateo automático de Prettier en todo el proyecto.                                                                 |
+| `npm run format:check` | Comprueba si existen desviaciones de formato respecto a Prettier.                                                              |
+| `npx vitest`           | Inicia el ejecutor de pruebas en modo interactivo (watch).                                                                     |
+| `npx vitest run`       | Corre todas las pruebas unitarias y de componentes una única vez.                                                              |
+| `npx vitest <path>`    | Ejecuta un archivo de prueba específico.                                                                                       |
+| `npm run preview`      | Previsualiza localmente la build de producción generada en `dist`.                                                             |
 
 ---
 
-## Patrones de Testing
+## 4. Arquitectura y Estructura del Código
 
-### Estructura de tests
+La estructura de carpetas sigue un patrón estructurado modular en React:
 
-- Usar Vitest con describe/it/expect
-- @testing-library/react para componentes
-- @testing-library/jest-dom para matchers
-- Mocks con `vi.fn()` de Vitest
-
-```typescript
-import { renderHook, act } from "@testing-library/react";
-import { useTheme } from "./useTheme";
-import { describe, it, expect, beforeEach, vi } from "vitest";
-
-describe("useTheme hook", () => {
-    beforeEach(() => {
-        localStorage.clear();
-        document.documentElement.className = "";
-    });
-
-    it("should default to light theme", () => {
-        const { result } = renderHook(() => useTheme());
-        expect(result.current.theme).toBe("light");
-    });
-});
-```
-
-### Mejores prácticas de testing
-
-- Tests deben ser independientes entre sí
-- Limpiar estado en beforeEach
-- Mockear APIs externas (localStorage, matchMedia, fetch)
-- Nombrar tests descriptivamente: "debería hacer X cuando Y"
-- Un archivo de test por cada archivo de código
+- [src/main.tsx](file:///c:/Users/pubes/Desktop/Proyectos/Curriculum%20typescrpit/src/main.tsx): Punto de inicio de la aplicación.
+- [src/App.tsx](file:///c:/Users/pubes/Desktop/Proyectos/Curriculum%20typescrpit/src/App.tsx): Componente principal, configurador de rutas con React Router DOM.
+- [src/index.css](file:///c:/Users/pubes/Desktop/Proyectos/Curriculum%20typescrpit/src/index.css): Definición de tokens de diseño, variables HSL, temas y estilos globales.
+- [src/components/](file:///c:/Users/pubes/Desktop/Proyectos/Curriculum%20typescrpit/src/components/): Componentes interactivos de interfaz (Hero, Terminal, CVDocument).
+    - `bento/`: Estructuras y tarjetas del Bento Grid.
+    - `ui/`: Botones, inputs y componentes atómicos basados en Radix y Tailwind CSS.
+- [src/pages/](file:///c:/Users/pubes/Desktop/Proyectos/Curriculum%20typescrpit/src/pages/): Vistas asociadas a las rutas (Home, CVPage, Contact, Projects, etc.).
+- [src/hooks/](file:///c:/Users/pubes/Desktop/Proyectos/Curriculum%20typescrpit/src/hooks/): Custom hooks reutilizables (useTheme, usePrint, useReducedMotion).
+- [src/data/](file:///c:/Users/pubes/Desktop/Proyectos/Curriculum%20typescrpit/src/data/): Archivos JSON/TypeScript que estructuran el contenido dinámico del currículum.
+- [src/lib/](file:///c:/Users/pubes/Desktop/Proyectos/Curriculum%20typescrpit/src/lib/): Proveedores o configuraciones de dependencias externas.
+- [src/utils/](file:///c:/Users/pubes/Desktop/Proyectos/Curriculum%20typescrpit/src/utils/): Funciones de utilidad auxiliares.
 
 ---
 
-## Manejo de Errores
+## 5. Convenciones de Código
 
-- Usar try/catch para operaciones asíncronas
-- Mostrar mensajes de error claros al usuario
-- Logging apropiado sin exponer datos sensibles
-- Validar inputs con Zod cuando sea necesario
+### Naming (Nomenclatura)
 
----
+- **Componentes de React**: PascalCase (ej. `ProjectCard.tsx`, `TimelineItem.tsx`).
+- **Hooks**: camelCase con prefijo `use` (ej. `useTheme.ts`).
+- **Utilidades y Variables**: camelCase (ej. `cn.ts`, `isDark`).
+- **Tipos e Interfaces**: PascalCase (ej. `ProjectProps`, `SkillType`).
+- **Archivos de Tests**: `<Nombre_Fichero>.test.tsx` o `<Nombre_Fichero>.test.ts` situados inmediatamente al lado de su archivo origen.
 
-## Configuración del Proyecto
+### Organización y Estructuración
 
-- **Vite**: `vite.config.ts` - plugins React, path alias
-- **TypeScript**: `tsconfig.app.json` - configuración de compilación
-- **ESLint**: `eslint.config.js` - reglas de linting
-- **Tailwind**: `tailwind.config.js` - configuración de themes
-- **Vitest**: `vitest.config.ts` - configuración de tests
-- Path alias: `@/` apunta a `src/`
+- Cada componente funcional debe ser exportado por defecto (`export default`).
+- Tipar explícitamente todas las Props mediante interfaces.
+- Separar las preocupaciones: delegar la lógica compleja a custom hooks y mantener la UI declarativa.
 
----
+### Manejo de Errores y Logging
 
-## Inspiración: Augusto Polonio
+- Utilizar bloques `try/catch` para peticiones asíncronas y operaciones propensas a fallos (ej. persistencia local, carga de PDFs).
+- Utilizar abstracciones de logger o consola limpia. Evitar `console.log` en producción.
+- Mostrar alertas elegantes al usuario usando `sonner` en lugar de `alert()` del navegador.
 
-Este portfolio está inspirado en el diseño de [Augusto Polonio](https://augustopolonio.vercel.app):
+### Testing
 
-### Características adoptadas
+- Todo componente interactivo o de lógica crítica (hooks, utilidades) debe contar con pruebas unitarias (`vitest` + `@testing-library/react`).
+- Garantizar la independencia de los tests limpiando los mocks y estados locales en `beforeEach`.
 
-- Hero section con foto avatar (arriba centrado)
-- Terminal interactivo para explorar contenido
-- Esquema de colores minimalista
-- Animaciones suaves
-- Social links en hero section
-- Grid de tarjetas de proyectos
-- Botón de CV/Resume con icono de documento
+### Documentación
 
-### Referencias
+- Mantener comentarios concisos explicando el "porqué" de lógicas complejas, no el "cómo".
+- Las decisiones arquitectónicas críticas deben documentarse en el registro de decisiones (`doc/memory/decisions.md`).
 
-- Web: https://github.com/augustopolonio/augustopolonio-website
-- Juego 2D: https://github.com/augustopolonio/portfolio-game-2d
+### Seguridad
 
----
+- No harcodear claves de API ni credenciales sensibles. Usar variables de entorno (`.env`).
+- Sanitizar entradas de usuario y validar esquemas de datos con `Zod`.
 
-## Roadmap: Funcionalidades Futuras
+### Estilos (Tailwind CSS)
 
-### Portfolio Game 2D (Pendiente)
-
-- Juego estilo RPG embebido (iframe)
-- Personaje con controles WASD
-- NPCs con información del portfolio
-- Pixel art tilesets
-- Música de fondo (Suno AI)
-
-### Mejoras SEO
-
-- sitemap.xml dinámico
-- robots.txt
-- JSON-LD schema markup
-- Open Graph tags
-
-### Analytics
-
-- Google Analytics 4
-- Vercel Analytics
-- Event tracking
+- Enfoque móvil-first utilizando breakpoints de Tailwind (`md:`, `lg:`).
+- Utilizar variables de tema de color semántico definidas en CSS para soportar dark mode (`dark:`).
+- Usar la utilidad `cn(...)` para combinar y condicionar clases de Tailwind de forma limpia.
 
 ---
 
-## MCPs Recomendados
+## 6. Restricciones del Agente
 
-Este proyecto recomienda los siguientes Model Context Protocols (MCPs):
-
-### MCPs de Alta Prioridad
-
-| MCP            | Descripción                               | Paquete           |
-| -------------- | ----------------------------------------- | ----------------- |
-| Playwright MCP | Testing E2E y automatización de navegador | `@playwright/mcp` |
-| GitHub MCP     | Integración con GitHub API                | `github-mcp`      |
-
-### MCPs de Prioridad Media
-
-| MCP           | Descripción                   | Paquete                   |
-| ------------- | ----------------------------- | ------------------------- |
-| Tavily MCP    | Búsqueda web estructurada     | `tavily-mcp`              |
-| Puppeteer MCP | Control de navegador headless | `@hisma/server-puppeteer` |
-
-### Configuración
-
-Ver archivo `MCPS.md` para instrucciones de instalación y configuración.
+- **Prohibición de cambios masivos sin plan**: El agente NUNCA debe modificar código sustancial sin un plan de implementación aprobado previamente.
+- **No inventar librerías**: No instales nuevas dependencias en `package.json` a menos que sea explícitamente aprobado.
+- **No degradar la arquitectura**: Respetar el flujo de datos unidireccional y la separación de componentes/páginas/hooks.
+- **No dejar código muerto u huérfano**: Si se refactoriza o elimina una funcionalidad, deben borrarse sus archivos de test, datos y referencias correspondientes.
+- **No modificar estilos globales**: Evitar realizar cambios ad-hoc sobre `index.css` que puedan romper el diseño unificado de la aplicación.
 
 ---
 
-## Recursos útiles
+## 7. Flujo de Trabajo (AI-First Workflow)
 
-- React 19: https://react.dev
-- Tailwind CSS: https://tailwindcss.com
-- Vitest: https://vitest.dev
-- Testing Library: https://testing-library.com
-- Lucide React (iconos): https://lucide.dev
-- Skills.sh: https://skills.sh
-- MCP Market: https://mcpmarket.com
-- Augusto Polonio: https://augustopolonio.vercel.app
+Los agentes operarán estrictamente bajo el siguiente flujo:
+
+1.  **Plan Mode**: Ante cualquier tarea compleja, detenerse y crear o actualizar un plan de implementación en `implementation_plan.md` y esperar aprobación del usuario.
+2.  **Spec-Driven Development**: Antes de implementar una feature, se redactará su especificación detallada en `spec/features/` bajo un flujo de ciclo de vida (Specify -> Plan -> Tasks -> Implement -> Verify).
+3.  **Límite de Confianza**: Si la confianza del agente sobre una tarea es inferior al **80%**, debe detenerse e interactuar con el usuario para resolver dudas.
+4.  **Resumen de Cambios**: Al finalizar cada turno, se debe proveer un resumen exhaustivo de cambios e indicar los archivos modificados.
+
+---
+
+## 8. Verificación y Criterios de Aceptación (QA)
+
+Ninguna tarea se dará por finalizada a menos que se cumplan las siguientes validaciones locales de forma exitosa:
+
+- `npm run lint` pasa sin advertencias ni errores.
+- `npm run build` compila la aplicación para producción sin fallos.
+- `npx vitest run` pasa el 100% de la suite de pruebas del proyecto.
+- La documentación y especificaciones se encuentran sincronizadas.

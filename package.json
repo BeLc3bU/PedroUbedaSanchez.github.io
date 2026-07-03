@@ -12,14 +12,16 @@
         ]
     },
     "scripts": {
-        "dev": "vite",
-        "build": "tsc -b && vite build && node scripts/generate-sitemap.js && node scripts/copy-404.js",
+        "dev": "next dev",
+        "build": "next build && node scripts/rename-out-to-dist.js",
         "lint": "eslint .",
-        "preview": "vite preview",
-        "serve": "vite preview",
+        "preview": "npx serve dist",
+        "serve": "npx serve dist",
         "prepare": "husky",
         "format": "prettier --write .",
-        "format:check": "prettier --check ."
+        "format:check": "prettier --check .",
+        "typecheck": "tsc --noEmit",
+        "verify": "node scripts/loop-verify.js"
     },
     "dependencies": {
         "@hookform/resolvers": "^5.4.0",
@@ -33,6 +35,7 @@
         "clsx": "^2.1.1",
         "framer-motion": "^12.40.0",
         "lucide-react": "^0.556.0",
+        "next": "^16.2.10",
         "react": "^19.2.6",
         "react-dom": "^19.2.6",
         "react-helmet": "^6.1.0",
