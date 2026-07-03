@@ -19,7 +19,6 @@ import {
 import { SocialLinks } from "@/components/SocialLinks";
 
 import ClientTerminal from "@/components/ClientTerminal";
-import ClientSkillsMap from "@/components/ClientSkillsMap";
 
 export const metadata: Metadata = {
     title: "Pedro Úbeda Sánchez | Software Developer & IT Infrastructure",
@@ -169,14 +168,6 @@ export default function HomePage() {
                                     ))}
                                 </div>
                             </div>
-                        </div>
-
-                        {/* Interactive Skills Map */}
-                        <div className="mt-12">
-                            <h3 className="text-lg font-semibold mb-6 text-center">
-                                Mapa de Habilidades Interactivo
-                            </h3>
-                            <ClientSkillsMap />
                         </div>
                     </AnimateOnScroll>
                 </div>
