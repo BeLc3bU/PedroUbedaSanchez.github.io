@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.9.0](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/compare/v1.8.0...v1.9.0) (2026-07-03)
+
+
+### Features
+
+* migrate project to Next.js (App Router) and configure static export for GitHub Pages ([d0414b4](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/d0414b45f47b40d339a0e82cf97a3dab5fbcd5f7))
+
+
+### Bug Fixes
+
+* resolve ReactFlow memoization warning and image layout height warning ([7a5536e](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/7a5536e304b514bd147e2d561c1e42b1c2ed7fc1))
+* resolve ReactFlow types memoization and deprecate THREE.Clock useFrame delta ([147ec75](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/147ec75d3eb04669119594bb1c0237d9004666b2))
+* update tailwind content paths to scan app and components folders ([2436e67](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/2436e67cff9e71aebc96743f4043daad60aae9c7))
+
 ## [1.8.0](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/compare/v1.7.3...v1.8.0) (2026-05-30)
 
 ### Features
