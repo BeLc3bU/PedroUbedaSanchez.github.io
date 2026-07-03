@@ -137,17 +137,14 @@ export default function HeroInteractive() {
                 transition={{ duration: 0.6 }}
                 className="relative mb-8"
             >
-                <div
-                    className="w-40 h-56 md:w-48 md:h-72 rounded-[2rem] overflow-hidden border-4 border-primary shadow-2xl relative"
-                    style={{ position: "relative" }}
-                >
+                <div className="rounded-[2rem] overflow-hidden border-4 border-primary shadow-2xl">
                     <Image
                         src="/foto.webp"
                         alt={portfolioData.name}
-                        fill
+                        width={192}
+                        height={288}
                         priority
-                        className="object-cover"
-                        sizes="(max-width: 768px) 160px, 192px"
+                        className="w-40 h-56 md:w-48 md:h-72 object-cover"
                     />
                 </div>
             </motion.div>

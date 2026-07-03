@@ -15,6 +15,9 @@ import ReactFlow, {
 } from "reactflow";
 import "reactflow/dist/style.css";
 
+const nodeTypes = {};
+const edgeTypes = {};
+
 const initialNodes: Node[] = [
     {
         id: "core",
@@ -90,6 +93,8 @@ export default function SkillsMap() {
     return (
         <div className="h-[500px] w-full bg-card/20 backdrop-blur-sm border border-border rounded-xl overflow-hidden shadow-2xl">
             <ReactFlow
+                nodeTypes={nodeTypes}
+                edgeTypes={edgeTypes}
                 nodes={nodes}
                 edges={edges}
                 onNodesChange={onNodesChange}
