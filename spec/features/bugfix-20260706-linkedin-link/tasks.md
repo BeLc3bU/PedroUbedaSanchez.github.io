@@ -6,4 +6,3 @@
 - [x] Reemplazar el enlace en `index.html`.
 - [x] Ejecutar validaciones completas del proyecto (`npm run verify`).
 - [x] Inicializar repositorio local Git, conectar origen remoto y hacer push a producción (`origin main`).
-

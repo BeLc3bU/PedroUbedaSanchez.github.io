@@ -59,3 +59,14 @@ Este documento define el protocolo y el flujo de pasos exactos que los agentes d
     1.  Escanear los archivos modificados con `git diff`.
     2.  Comprobar cada cambio contra las directrices de `AGENTS.md` (naming, tipos, imports, testing, estilos).
     3.  Generar un reporte detallado con las desviaciones detectadas (si las hay) y las correcciones a aplicar de forma automática.
+
+## `/deploy`
+
+- **Propósito**: Automatizar la verificación y subida de los cambios locales al repositorio remoto de producción.
+- **Flujo de ejecución**:
+    1.  Ejecutar la validación completa del proyecto (`npm run verify` o comando `/verify`).
+    2.  Verificar que no existan errores de compilación, de tipado o pruebas rotas.
+    3.  Añadir los archivos locales al área de preparación de Git (`git add .`).
+    4.  Crear un commit limpio siguiendo el formato Conventional Commits en base a los cambios realizados.
+    5.  Hacer push a la rama principal (`git push origin main`), lo cual desencadenará el workflow de despliegue automático en GitHub Actions.
+    6.  Reportar el resultado de la subida al usuario.
