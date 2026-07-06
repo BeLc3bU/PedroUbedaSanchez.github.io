@@ -250,7 +250,7 @@ export const portfolioData = {
 
     social: {
         github: "https://github.com/BeLc3bU",
-        linkedin: "https://www.linkedin.com/in/pubesan/",
+        linkedin: "https://www.linkedin.com/in/pedroubedasanchez/",
         email: "contacto@pedroubedasanchez.es",
         whatsapp:
             "https://wa.me/34635945779?text=Hola%20Pedro,%20me%20interesa%20contactar%20contigo",

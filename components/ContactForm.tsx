@@ -158,7 +158,9 @@ export default function ContactForm() {
                                     <p className="text-xs text-muted-foreground font-mono">
                                         Red de LinkedIn
                                     </p>
-                                    <p className="text-sm font-medium">linkedin.com/in/peubesa</p>
+                                    <p className="text-sm font-medium">
+                                        linkedin.com/in/pedroubedasanchez
+                                    </p>
                                 </div>
                             </a>
                         </div>
