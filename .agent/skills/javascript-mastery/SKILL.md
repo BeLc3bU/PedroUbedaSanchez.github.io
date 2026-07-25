@@ -19,16 +19,16 @@ source: community
 
 ## Quick Reference Card
 
-| Concept        | Key Point                         |
+| Concept | Key Point |
 | :------------- | :-------------------------------- | --- | ------------------------------- |
-| `==` vs `===`  | Always use `===`                  |
-| `var` vs `let` | Prefer `let`/`const`              |
-| Closures       | Function + lexical scope          |
-| `this`         | Depends on how function is called |
-| Event loop     | Microtasks before macrotasks      |
-| Pure functions | Same input → same output          |
-| Prototypes     | `__proto__` → prototype chain     |
-| `??` vs `      |                                   | `   | `??` only checks null/undefined |
+| `==` vs `===` | Always use `===` |
+| `var` vs `let` | Prefer `let`/`const` |
+| Closures | Function + lexical scope |
+| `this` | Depends on how function is called |
+| Event loop | Microtasks before macrotasks |
+| Pure functions | Same input → same output |
+| Prototypes | `__proto__` → prototype chain |
+| `??` vs `     |                                   |` | `??` only checks null/undefined |
 
 ## Resources
 

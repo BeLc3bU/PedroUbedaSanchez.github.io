@@ -7,10 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.10.1](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/compare/v1.10.0...v1.10.1) (2026-07-06)
 
-
 ### Bug Fixes
 
-* corrigue el enlace incorrecto de linkedin ([71dbe46](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/71dbe46071607bef11be50b8bb256a48202047ef))
+- corrigue el enlace incorrecto de linkedin ([71dbe46](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/71dbe46071607bef11be50b8bb256a48202047ef))
 
 ## [1.10.0](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/compare/v1.9.0...v1.10.0) (2026-07-03)
 
