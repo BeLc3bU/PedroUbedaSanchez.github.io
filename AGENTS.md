@@ -116,14 +116,17 @@ La estructura de carpetas sigue un patrón estructurado modular en React:
 
 ---
 
-## 7. Flujo de Trabajo (AI-First Workflow)
+## 7. Flujo de Trabajo Spec-Driven Development (GitHub Spec Kit)
 
-Los agentes operarán estrictamente bajo el siguiente flujo:
+Este repositorio utiliza **GitHub Spec Kit (`specify`)** para guiar el desarrollo mediante especificaciones:
 
-1.  **Plan Mode**: Ante cualquier tarea compleja, detenerse y crear o actualizar un plan de implementación en `implementation_plan.md` y esperar aprobación del usuario.
-2.  **Spec-Driven Development**: Antes de implementar una feature, se redactará su especificación detallada en `spec/features/` bajo un flujo de ciclo de vida (Specify -> Plan -> Tasks -> Implement -> Verify).
-3.  **Límite de Confianza**: Si la confianza del agente sobre una tarea es inferior al **80%**, debe detenerse e interactuar con el usuario para resolver dudas.
-4.  **Resumen de Cambios**: Al finalizar cada turno, se debe proveer un resumen exhaustivo de cambios e indicar los archivos modificados.
+1. **Especificación (`/speckit-specify`)**: Crear o actualizar la especificación funcional en `spec/features/<numero>-<nombre>/spec.md`.
+2. **Clarificación (`/speckit-clarify` - opcional)**: Resolver dudas o ambigüedades antes de planificar.
+3. **Planificación (`/speckit-plan`)**: Generar el plan técnico de arquitectura (`plan.md`).
+4. **Desglose de Tareas (`/speckit-tasks`)**: Generar la lista de tareas en `tasks.md`.
+5. **Análisis (`/speckit-analyze` - opcional)**: Auditar la consistencia entre spec, plan y tasks.
+6. **Ejecución (`/speckit-implement`)**: Implementar las tareas planificadas.
+7. **Verificación & Convergencia (`/speckit-converge`)**: Evaluar el estado del código y completar tareas pendientes.
 
 ---
 

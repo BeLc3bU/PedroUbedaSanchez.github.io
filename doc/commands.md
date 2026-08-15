@@ -4,43 +4,25 @@ Este documento define el protocolo y el flujo de pasos exactos que los agentes d
 
 ---
 
-## `/spec <nombre-feature>`
+## `/speckit-specify`
 
-- **Propósito**: Inicializar la especificación técnica de una nueva funcionalidad antes de programar nada.
-- **Flujo de ejecución**:
-    1.  Crear la carpeta en `spec/features/0XX-<nombre-feature>/`.
-    2.  Crear el archivo `spec.md` definiendo el estado en `Specify`, la descripción funcional y los criterios de aceptación.
-    3.  Registrar la feature en el roadmap general `spec/constitution/roadmap.md`.
-    4.  Presentar el resultado al usuario pidiendo su aprobación y feedback.
+- **Propósito**: Crear o actualizar la especificación funcional de una nueva característica en `spec/features/<numero>-<nombre>/spec.md`.
 
-## `/feature <nombre-feature>`
+## `/speckit-plan`
 
-- **Propósito**: Preparar el plan de implementación y las tareas técnicas de una funcionalidad especificada.
-- **Flujo de ejecución**:
-    1.  Verificar que existe la especificación de la feature en `spec/features/0XX-<nombre-feature>/spec.md`.
-    2.  Cambiar el estado en la spec a `Plan`.
-    3.  Crear el archivo `plan.md` detallando la arquitectura, componentes modificados, dependencias y esquema de datos.
-    4.  Crear el archivo `tasks.md` con la lista de tareas de desarrollo y verificación paso a paso.
-    5.  Presentar el plan al usuario para su aprobación final antes de programar.
+- **Propósito**: Generar el plan técnico de implementación, diseño de arquitectura, esquemas y componentes afectados (`plan.md`).
 
-## `/bugfix <descripcion-bug>`
+## `/speckit-tasks`
 
-- **Propósito**: Inicializar la especificación y resolución de un bug reportado.
-- **Flujo de ejecución**:
-    1.  Crear una carpeta bajo `spec/features/bugfix-<fecha>-<nombre-corto>/`.
-    2.  Crear un archivo `spec.md` con la descripción del bug, los pasos de reproducción y el comportamiento esperado (Criterios de Aceptación).
-    3.  Crear `plan.md` identificando la causa raíz y la solución técnica.
-    4.  Crear `tasks.md` para la corrección y los tests unitarios necesarios que validen el arreglo.
-    5.  Presentar la propuesta de corrección al usuario.
+- **Propósito**: Crear el desglose de tareas ejecutables y secuenciales con sus criterios de prueba (`tasks.md`).
 
-## `/refactor <objetivo>`
+## `/speckit-implement`
 
-- **Propósito**: Ejecutar una refactorización de código minimizando la deuda técnica.
-- **Flujo de ejecución**:
-    1.  Identificar y documentar en `spec/features/refactor-<nombre>/spec.md` los componentes que serán afectados y la justificación de la refactorización.
-    2.  Detallar en `plan.md` cómo se asegurará que no hay cambios en el comportamiento externo (regresión) y las pruebas afectadas.
-    3.  Crear la lista de tareas en `tasks.md`.
-    4.  Ejecutar el cambio y verificar en bucle con el script de loop verify.
+- **Propósito**: Ejecutar la implementación en el código fuente procesando la lista de tareas definida.
+
+## `/speckit-converge`
+
+- **Propósito**: Evaluar la coincidencia entre el código actual y la especificación, y agregar cualquier tarea pendiente a `tasks.md`.
 
 ## `/verify`
 

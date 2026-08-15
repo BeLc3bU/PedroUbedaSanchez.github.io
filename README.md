@@ -37,22 +37,17 @@ portfolio/
 │   ├── lib/               # Utilidades
 │   ├── App.tsx            # Configuración de rutas
 │   └── main.tsx           # Punto de entrada
-├── .opencode/
-│   ├── skills/            # Skills para agentes
-│   │   ├── vite-build/
-│   │   ├── react-best-practices/
-│   │   ├── frontend-design/
-│   │   ├── seo-audit/
-│   │   ├── systematic-debugging/
-│   │   └── webapp-testing/
-│   └── opencode.json      # Configuración de agentes
+├── .agents/
+│   ├── skills/            # Skills de GitHub Spec Kit (/speckit-specify, /speckit-plan, etc.)
+│   └── AGENTS.md          # Reglas del agente sincronizadas
+├── .specify/              # Configuración y plantillas oficiales de GitHub Spec Kit
 ├── .github/workflows/     # GitHub Actions
 │   ├── deploy.yml         # Despliegue a GitHub Pages
 │   ├── ci-tests.yml       # CI: tests, lint, typecheck
 │   ├── release-please.yml # Releases automáticas
 │   └── docs-check.yml    # Check de documentación
 ├── dist/                  # Build de producción
-├── AGENTS.md              # Directrices para agentes IA
+├── AGENTS.md              # Directrices del proyecto AI-First (Spec Kit)
 ├── MCPS.md                # Guía de MCPs recomendados
 ├── ROADMAP.md             # Roadmap de mejoras
 └── package.json           # Dependencias y scripts
