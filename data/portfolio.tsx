@@ -147,17 +147,24 @@ export const portfolioData = {
     experience: [
         {
             id: "militar",
-            title: "Militar (Informático/Aviónico)",
+            title: "Militar (Informático/Aviónico / Desarrollo de Aplicaciones)",
             company: "Fuerzas Armadas",
-            period: "2008 - 2025",
+            period: "2008 - Actualidad",
             location: "España",
             highlights: [
-                "Mantenimiento, diagnóstico y solución de averías de simuladores de vuelo y flota de aviones a nivel informativo y electrónico.",
+                "Desarrollo de aplicaciones, scripts y herramientas de gestión y soporte técnico.",
+                "Mantenimiento, diagnóstico y solución de averías de simuladores de vuelo y flota de aviones a nivel informático y electrónico.",
                 "Gestión administrativa y logística de componentes de aviónica.",
                 "Elaboración de informes técnicos de precisión y control de calidad.",
                 "Servicio de control de accesos y vigilancia operativa.",
             ],
-            technologies: ["Electrónica", "Aviónica", "Simuladores de vuelo", "Gestión logística"],
+            technologies: [
+                "Desarrollo de aplicaciones",
+                "Electrónica",
+                "Aviónica",
+                "Simuladores de vuelo",
+                "Gestión logística",
+            ],
         },
         {
             id: "icono",
