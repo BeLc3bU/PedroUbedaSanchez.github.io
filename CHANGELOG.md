@@ -1,0 +1,151 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.11.0](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/compare/v1.10.1...v1.11.0) (2026-08-16)
+
+### Features
+
+- **cv:** actualizar ultima experiencia laboral e incluir desarrollo de aplicaciones ([e924b2d](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/e924b2d7ea3c1a9a337138bd7c6c1e55fb869293))
+
+## [1.10.1](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/compare/v1.10.0...v1.10.1) (2026-07-06)
+
+### Bug Fixes
+
+- corrigue el enlace incorrecto de linkedin ([71dbe46](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/71dbe46071607bef11be50b8bb256a48202047ef))
+
+## [1.10.0](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/compare/v1.9.0...v1.10.0) (2026-07-03)
+
+### Features
+
+- remove SkillsMap and prevent Terminal autofocus scrolling ([e16970d](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/e16970d2b60b1da012ddd348475fb4cb203e2622))
+
+## [1.9.0](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/compare/v1.8.0...v1.9.0) (2026-07-03)
+
+### Features
+
+- migrate project to Next.js (App Router) and configure static export for GitHub Pages ([d0414b4](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/d0414b45f47b40d339a0e82cf97a3dab5fbcd5f7))
+
+### Bug Fixes
+
+- resolve ReactFlow memoization warning and image layout height warning ([7a5536e](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/7a5536e304b514bd147e2d561c1e42b1c2ed7fc1))
+- resolve ReactFlow types memoization and deprecate THREE.Clock useFrame delta ([147ec75](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/147ec75d3eb04669119594bb1c0237d9004666b2))
+- update tailwind content paths to scan app and components folders ([2436e67](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/2436e67cff9e71aebc96743f4043daad60aae9c7))
+
+## [1.8.0](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/compare/v1.7.3...v1.8.0) (2026-05-30)
+
+### Features
+
+- optimize 3D performance, automate sitemap generation and integrate agent skills ([500ff65](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/500ff65ca3533f0ab162302f2f09a19f70f07355))
+
+## [1.8.0] - 2026-05-30
+
+### Added
+
+- Script automatizado de Node.js en ES Modules (`scripts/generate-sitemap.js`) para generar de forma dinámica el archivo `sitemap.xml` durante el proceso de build, y configurado en el script `build` de `package.json`.
+- Integración global del fondo animado 3D de partículas flotantes `TechBackground` con carga diferida (`React.lazy` y `<Suspense>`) en `Layout.tsx` para mejorar la estética visual sin penalizar el rendimiento inicial.
+- Nuevas skills optimizadas para los agentes bajo `.agent/skills/` (`tailwind-styling`, `react-best-practices`, `framer-motion-animations`, `systematic-debugging` y `webapp-testing`).
+
+### Changed
+
+- Configuración de `manualChunks` en `vite.config.ts` para extraer `three`, `@react-three/fiber` y `@react-three/drei` a un chunk independiente `vendor-three`, logrando reducir el peso del bundle principal de 324kB a 153kB (más del 50% de optimización).
+- Habilitada la redirección de logs en la firma de `execute` en `src/agents/core/` (`types.ts`, `BaseAgent.ts`, `Orchestrator.ts`) y todos los agentes especializados para admitir un callback `onLog` y poder retransmitir logs al terminal de forma asíncrona.
+- Integrado el comando interactivo `agents` dentro de `Terminal.tsx` y registrado en `portfolio.tsx` para lanzar el orquestador de agentes directamente desde la línea de comandos de la web.
+- Actualización completa de la ruta de desarrollo en `ROADMAP.md` para reflejar el estado actual del portafolio.
+
+## [1.7.3](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/compare/v1.7.2...v1.7.3) (2026-05-30)
+
+### Bug Fixes
+
+- solucionar directiva ts-expect-error sin usar y actualizar agentes y UI ([8da17ea](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/8da17ea3e9dd7ecf39448ca7060e23728b7548ac))
+
+## [1.7.2](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/compare/v1.7.1...v1.7.2) (2026-03-13)
+
+### Bug Fixes
+
+- remove stats boxes from CV PDF ([853e964](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/853e9640b6acf1a65874b68a4c3e4b20d5cf68c4))
+
+## [1.7.1](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/compare/v1.7.0...v1.7.1) (2026-03-13)
+
+### Bug Fixes
+
+- correct WhatsApp phone number ([6e6ea46](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/6e6ea46fd13f5c9676ff2e55f74543121d5bd9e3))
+- correct WhatsApp phone number to +34635945770 ([c3a66ac](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/c3a66acc697d6880af437b29a29f0945b9d22edf))
+- correct WhatsApp phone number to +34635945779 ([cf1ef7e](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/cf1ef7e7b12909e94c7dee3c3e8f2d2cee152c38))
+
+## [1.7.0](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/compare/v1.6.0...v1.7.0) (2026-03-13)
+
+### Features
+
+- add performance optimizations ([f22ff51](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/f22ff51bc574db4df1921b9aac33cf7985eae3af))
+
+## [1.6.0](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/compare/v1.5.0...v1.6.0) (2026-03-13)
+
+### Features
+
+- add Git hooks and code quality tools ([cf0db3e](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/cf0db3ec85fce8ce5e88bcd04cac458ac0b2df9d))
+
+## [1.5.0](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/compare/v1.4.0...v1.5.0) (2026-03-13)
+
+### Features
+
+- improve accessibility (WCAG 2.1) ([b0ec937](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/b0ec9378979b87f8594a098842e5786833dfa8ea))
+
+## [1.4.0](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/compare/v1.3.0...v1.4.0) (2026-03-13)
+
+### Features
+
+- add advanced animations and reduced motion support ([d90fc89](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/d90fc89adae10454098f358fef2a644b99b5b918))
+
+## [1.3.0](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/compare/v1.2.0...v1.3.0) (2026-03-13)
+
+### Features
+
+- add documentation check workflow ([7612af6](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/7612af6a62315c1339bfad34d85190663861ad68))
+- add documentation check workflow ([c85b950](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/c85b9505078d4ca5bf28b90ff3239c9ab6d2e7d8))
+
+## [1.2.0](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/compare/v1.1.0...v1.2.0) (2026-03-13)
+
+### Features
+
+- add analytics event tracking for GA4 ([bf83e1a](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/bf83e1a44221558c7d657f4c9c9342ffb65e4adc))
+
+## [1.1.0](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/compare/v1.0.0...v1.1.0) (2026-03-13)
+
+### Features
+
+- add og-image for social sharing ([cda80ab](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/cda80ab7c56b090490f53ba37b5b1538ecf20e57))
+- implement advanced SEO optimizations ([f65502b](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/f65502b569b5433d60c426218584d7c54241f970))
+
+## 1.0.0 (2026-03-13)
+
+### Features
+
+- add release-please automation for automated releases ([7046906](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/7046906488f4258de4ecc44894b81aa6620b8271))
+
+### Bug Fixes
+
+- add CHANGELOG and VERSION files for release-please ([cd5acf8](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/cd5acf8cecfd1b7ebc120d7c9c45879d804dd92f))
+- mobile menu z-index visibility issue ([fec8ae4](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/fec8ae4ed8e34c95e4c8cac9c23437f8cc3e36cc))
+
+## [1.0.0] - 2026-03-13
+
+### Features
+
+- Initial portfolio setup with Augusto Polonio-inspired design
+- CV/Resume PDF generation with @react-pdf/renderer
+- Full-screen CV page with PDF viewer, back and download buttons
+- Header with About navigation and Resume with document icon
+- Light mode visibility fixes
+- Stats cards and hobbies section in Augusto style
+- 6 specialized agents (Frontend, Testing, SEO, Design, GameDev, Analytics)
+- 5 new skills (react-best-practices, frontend-design, seo-audit, systematic-debugging, webapp-testing)
+- MCPs configured (Playwright, GitHub, Tavily, Puppeteer)
+- GitHub Actions for automatic deployment to pedroubedasanchez.es
+
+### Fixes
+
+- Mobile menu z-index visibility issue

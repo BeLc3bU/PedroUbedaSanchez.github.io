@@ -1,0 +1,296 @@
+import type { TranslationDictionary } from "./es";
+
+export const en: TranslationDictionary = {
+    locale: "en",
+    nav: {
+        projects: "Projects",
+        experience: "Experience",
+        skills: "Skills",
+        education: "Education",
+        about: "About",
+        contact: "Contact",
+        resume: "Resume",
+        themeToggle: "Toggle theme",
+        languageToggle: "Change language",
+        openMenu: "Open navigation menu",
+        closeMenu: "Close navigation menu",
+    },
+    hero: {
+        greeting: "Hi, I'm",
+        titles: [
+            "Pedro Úbeda",
+            "a Software Developer",
+            "IT Infrastructure Specialist",
+            "Avionic Maintenance Senior",
+        ],
+        slides: [
+            {
+                tagline: "Welcome to my technical portfolio",
+                tags: ["IT Professional", "Avionics", "Mission-Critical"],
+            },
+            {
+                tagline: "Maintaining critical systems and simulators",
+                tags: ["Hardware", "Software", "Networking"],
+            },
+            {
+                tagline: "Building robust and secure infrastructure",
+                tags: ["Active Directory", "Servers", "Databases"],
+            },
+            {
+                tagline: "Let's create engineering solutions together",
+                tags: ["20+ Years Exp.", "Technical Support", "Infrastructure"],
+            },
+        ],
+        viewProjects: "View Projects",
+        aboutMe: "About Me",
+    },
+    terminal: {
+        title: "Interactive Terminal",
+        subtitle: "Explore my portfolio the developer way. Type",
+        helpHint: "to view available commands.",
+    },
+    projects: {
+        title: "Featured Projects",
+        subtitle:
+            "A curated showcase of technical projects, tooling, and engineering achievements.",
+        items: [
+            {
+                id: "avionics",
+                title: "Armed Forces Avionics Systems",
+                category: "Hardware & Systems",
+                description:
+                    "Preventive and corrective diagnostics and maintenance of electronic systems across military aircraft fleets and flight simulators.",
+                tags: ["Electronics", "Diagnostics", "Critical Systems"],
+            },
+            {
+                id: "infrastructure",
+                title: "IT Infrastructure & Networking",
+                category: "IT Administration",
+                description:
+                    "Design, deployment, and administration of local networks, Active Directory domains, and document management servers.",
+                tags: ["SysAdmin", "Networking", "Active Directory"],
+            },
+            {
+                id: "inventory",
+                title: "Technical Inventory Management",
+                category: "Software & Data",
+                description:
+                    "Development and maintenance of database systems for real-time tracking of critical avionics components.",
+                tags: ["Databases", "Logistics", "Advanced Excel"],
+            },
+            {
+                id: "portfolio",
+                title: "Professional Portfolio Web",
+                category: "Web Development",
+                description:
+                    "Modern, dynamic personal portfolio built with React 19, TypeScript, Next.js, and Tailwind CSS.",
+                tags: ["React", "TypeScript", "Tailwind"],
+            },
+        ],
+    },
+    experience: {
+        title: "Work Experience",
+        subtitle: "Over two decades of professional excellence in mission-critical systems and IT.",
+        items: [
+            {
+                id: "militar",
+                title: "Military Specialist (IT / Avionics / Application Development)",
+                company: "Armed Forces",
+                period: "2008 - Present",
+                location: "Spain",
+                highlights: [
+                    "Development of custom applications, scripts, and internal technical support tooling.",
+                    "Hardware & electronic maintenance, diagnostics, and troubleshooting for aircraft fleets and flight simulators.",
+                    "Logistical and administrative management of mission-critical avionics components.",
+                    "High-precision technical reporting and strict quality assurance compliance.",
+                    "Operational security, facility protection, and access control management.",
+                ],
+                technologies: [
+                    "Application Dev",
+                    "Electronics",
+                    "Avionics",
+                    "Flight Simulators",
+                    "Logistics",
+                ],
+            },
+            {
+                id: "icono",
+                title: "Accounting Administrator",
+                company: "ICONO TELECOM",
+                period: "2007 - 2008",
+                location: "Spain",
+                highlights: [
+                    "Comprehensive accounts payable/receivable management and client ledger reconciliation.",
+                    "Advanced bookkeeping, bank reconciliation, and automated invoicing.",
+                    "Executive financial reporting and corporate expense optimization.",
+                ],
+                technologies: ["Accounting", "Invoicing", "Advanced Excel"],
+            },
+            {
+                id: "truccsa",
+                title: "Administrative Assistant",
+                company: "TRUCCSA",
+                period: "2006 - 2007",
+                location: "Spain",
+                highlights: [
+                    "Order processing, delivery note management, and billing workflow administration.",
+                    "Auxiliary accounting, warehouse stock control, and official registry management.",
+                ],
+                technologies: ["Commercial Admin", "Inventory"],
+            },
+            {
+                id: "militar-early",
+                title: "Military Specialist (Administration / Telecommunications)",
+                company: "Armed Forces",
+                period: "2002 - 2005",
+                location: "Spain",
+                highlights: [
+                    "Official document archive management, secure correspondence, and classified records.",
+                    "Database maintenance and technical equipment inventory tracking.",
+                    "Installation, calibration, and maintenance of telecommunication systems.",
+                ],
+                technologies: ["Telecommunications", "Databases", "Archiving"],
+            },
+        ],
+    },
+    skills: {
+        title: "Skills & Competencies",
+        subtitle:
+            "A comprehensive toolkit of technical capabilities, tooling, and professional competencies.",
+        technicalTitle: "Technical Skills",
+        competenciesTitle: "Core Competencies",
+        tools: [
+            "Microsoft 365 (Word, Excel, PowerPoint)",
+            "HTML5, CSS & Modern JavaScript",
+            "AI Tooling for Workflow Automation",
+            "Active Directory & Virtual Machines",
+            "Hosting & Server Management",
+            "Databases & Inventory Tracking",
+            "Technical Document Management",
+            "Electrical Schematics & Technical Manuals",
+            "Instrumentation & Diagnostics",
+        ],
+        competencies: [
+            "Critical systems diagnostics & root-cause analysis",
+            "Logistics & administrative workflow management",
+            "Preventive and corrective systems maintenance",
+            "Technical documentation and QA standards",
+            "Technical communication & cross-functional leadership",
+            "High-pressure environment adaptability",
+            "Continuous self-directed learning",
+            "Results-oriented execution",
+            "Military discipline & methodical organization",
+        ],
+    },
+    education: {
+        title: "Education & Certifications",
+        subtitle: "Formal academic qualifications and recognized professional military honors.",
+        certificationsTitle: "Certifications",
+        honorsTitle: "Honors & Awards",
+        certifications: [
+            {
+                title: "Higher Vocational Degree in Management Information Systems",
+                institution: "CIF CARLOS III, Cartagena",
+                year: "1998-2001",
+            },
+            {
+                title: "Cybersecurity Specialization Course",
+                institution: "INCIBE, León",
+                year: "2018",
+            },
+            {
+                title: "NATO HPS CRYPTO Course",
+                institution: "Ministry of Defense",
+                year: "2024",
+            },
+        ],
+        honors: [
+            {
+                title: "Aeronautical Merit Cross",
+                institution: "White Badge Distinction",
+                year: "",
+            },
+            {
+                title: "Military Long Service Cross",
+                institution: "Bronze Category",
+                year: "",
+            },
+            {
+                title: "DANA 2024 Emergency Support Honor",
+                institution: "Emergency Operations & Support",
+                year: "2024",
+            },
+        ],
+    },
+    about: {
+        title: "About Me",
+        bio1: "IT and Avionics professional with over 20 years of experience in mission-critical systems maintenance, advanced technical support, and infrastructure administration. Specialized in precision diagnostics, fault resolution, and systems administration in high-demand environments. Seeking new challenges to apply deep technical expertise.",
+        bio2: "My long military background has instilled in me iron discipline, resilience under pressure, and an unwavering commitment to excellence. I am in continuous learning, exploring modern technologies and methodologies to deliver robust and innovative engineering solutions.",
+        stats: [
+            { value: "20+ Years", label: "IT & Avionics" },
+            { value: "17+ Years", label: "Military Service" },
+            { value: "1000+", label: "Systems Maintained" },
+        ],
+        hobbiesTitle: "Hobbies & Interests",
+        hobbies: ["Running", "Swimming", "Cycling", "Gaming", "Hardware & Computing"],
+    },
+    contact: {
+        badge: "Communication Channels",
+        title: "Establish Link",
+        subtitle:
+            "If you require technical support, have an engineering proposal, or wish to connect, please initiate a transmission using the form below.",
+        channelsTitle: "Contact Channels",
+        emailLabel: "Primary Email",
+        phoneLabel: "Secure Phone Line",
+        phoneReveal: "Reveal Phone",
+        linkedinLabel: "LinkedIn Network",
+        nameLabel: "Your Identity",
+        namePlaceholder: "e.g. John Doe",
+        emailInputLabel: "Return Address (Email)",
+        emailPlaceholder: "e.g. john@example.com",
+        messageLabel: "Transmission Payload (Message)",
+        messagePlaceholder: "Type your message here...",
+        submitBtn: "Initiate Transmission",
+        submittingBtn: "Transmitting...",
+        toastSuccessTitle: "Transmission Successful!",
+        toastSuccessDesc: "Received your encrypted transmission. I will review and reply promptly.",
+        toastErrorTitle: "Critical Error",
+        toastErrorDesc: "Communication link failure. Please retry your transmission.",
+        connectTitle: "Let's Connect",
+        connectSubtitle:
+            "Always open to discussing technical projects, creative ideas, or engineering opportunities.",
+        linkedinBtn: "Connect on LinkedIn",
+    },
+    cv: {
+        back: "Back",
+        download: "Download PDF",
+        generating: "Generating...",
+        loading: "Loading resume...",
+        resumeTitle: "Curriculum Vitae",
+        additionalInfo: "Additional Information",
+        availability: "Willingness to travel",
+        vehicle: "Own vehicle / Driving license",
+        spanish: "Spanish (Native)",
+        english: "English (A2)",
+    },
+    game: {
+        title: "Tech Hangar",
+        subtitle: "Explore Pedro's core areas of expertise in this interactive simulation.",
+        openButton: "Launch Tech Hangar",
+        badge: "Simulation & Exploration",
+        description:
+            "Control the avatar with WASD, arrow keys, or on-screen touch buttons. Approach stations and press [E] to interact. Walk through the bottom [EXIT] door to leave.",
+        controls:
+            "Controls: W/A/S/D or Arrows to move • [E] or Space to interact • Exit door at bottom [EXIT]",
+        closeGame: "Exit Hangar",
+        pause: "Pause",
+        resume: "Resume",
+        interactionHint: "Press [E] to open station",
+        closeDialog: "Close Dialog",
+        next: "Next",
+        understood: "Understood",
+    },
+    footer: {
+        rights: "All rights reserved.",
+    },
+};
