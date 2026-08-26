@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 1.0.0 (2026-08-26)
+
+
+### Features
+
+* release v1.11.0 with static export for GitHub Pages ([067965a](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/067965a23cd141acd2ee283e2fdfd537eb4687c8))
+
 ## [1.11.0](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/compare/v1.10.1...v1.11.0) (2026-08-16)
 
 ### Features
