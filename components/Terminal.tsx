@@ -274,12 +274,13 @@ export function Terminal() {
             case "game":
             case "play":
             case "hangar":
+            case "tactical":
                 newHistory.push({
                     type: "success",
                     content:
                         language === "es"
-                            ? "[Simulación] Iniciando Hangar Tecnológico..."
-                            : "[Simulation] Launching Tech Hangar...",
+                            ? "[Simulación] Iniciando Hangar Táctico..."
+                            : "[Simulation] Launching Tactical Hangar...",
                 });
                 setIsGameOpen(true);
                 break;

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import { useLanguage } from "@/hooks/useLanguage";
 import {
     createInitialGameState,
@@ -11,16 +12,21 @@ import {
     MAP_WIDTH,
     MAP_HEIGHT,
 } from "@/lib/game/engine";
+import { tacticalAudio } from "@/lib/game/audio";
 import type { GameState, InteractiveStation } from "@/lib/game/types";
+import TacticalHUD from "./TacticalHUD";
 import {
     ChevronUp,
     ChevronDown,
     ChevronLeft,
     ChevronRight,
-    Gamepad2,
     X,
     Sparkles,
     CheckCircle2,
+    ExternalLink,
+    FileDown,
+    Send,
+    Radio,
 } from "lucide-react";
 
 interface HangarGameProps {
@@ -29,6 +35,7 @@ interface HangarGameProps {
 
 export default function HangarGame({ onClose }: HangarGameProps) {
     const { language, t } = useLanguage();
+    const router = useRouter();
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const [gameState, setGameState] = useState<GameState>(() => createInitialGameState());
     const [activeStation, setActiveStation] = useState<InteractiveStation | null>(null);
@@ -79,38 +86,87 @@ export default function HangarGame({ onClose }: HangarGameProps) {
         };
     }, [keysPressed]);
 
+    const openStation = useCallback((station: InteractiveStation) => {
+        tacticalAudio.playStationOpen();
+        setActiveStation(station);
+        setDialogStep(0);
+    }, []);
+
+    const closeStation = useCallback(() => {
+        tacticalAudio.playStationClose();
+        setActiveStation(null);
+        setDialogStep(0);
+    }, []);
+
     const handleInteract = useCallback(() => {
         if (activeStationRef.current) {
-            // If already in dialog, advance or close
             const currentStation = activeStationRef.current;
             const currentLang = language === "en" ? "en" : "es";
             const totalLines = currentStation.dialog[currentLang].lines.length;
 
             setDialogStep((prev) => {
                 if (prev + 1 >= totalLines) {
-                    setActiveStation(null);
+                    closeStation();
                     return 0;
                 }
+                tacticalAudio.playSelect();
                 return prev + 1;
             });
         } else {
-            // Try to open near station
             setGameState((prev) => {
                 const near = findNearStation(prev.player, prev.stations);
                 if (near) {
-                    setActiveStation(near);
-                    setDialogStep(0);
+                    openStation(near);
                 }
                 return prev;
             });
         }
-    }, [language]);
+    }, [language, openStation, closeStation]);
 
-    // Keyboard handlers
+    // Handle Direct Tactical Action
+    const handleStationAction = (actionTarget: string, actionType: "route" | "scroll" | "link") => {
+        tacticalAudio.playSelect();
+        if (actionType === "route") {
+            if (onClose) onClose();
+            router.push(actionTarget);
+        } else if (actionType === "scroll") {
+            if (onClose) onClose();
+            const element = document.querySelector(actionTarget);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+            }
+        } else if (actionType === "link") {
+            window.open(actionTarget, "_blank", "noopener,noreferrer");
+        }
+    };
+
+    // Keyboard handlers with shortcuts 1..4
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
             if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Space"].includes(e.code)) {
                 e.preventDefault();
+            }
+
+            // Direct station shortcuts (1: Avionics, 2: Agents, 3: Infra, 4: Command)
+            if (e.key === "1" || e.code === "Digit1") {
+                const st = gameState.stations[0];
+                if (st) openStation(st);
+                return;
+            }
+            if (e.key === "2" || e.code === "Digit2") {
+                const st = gameState.stations[1];
+                if (st) openStation(st);
+                return;
+            }
+            if (e.key === "3" || e.code === "Digit3") {
+                const st = gameState.stations[2];
+                if (st) openStation(st);
+                return;
+            }
+            if (e.key === "4" || e.code === "Digit4") {
+                const st = gameState.stations[3];
+                if (st) openStation(st);
+                return;
             }
 
             if (e.code === "KeyE" || e.code === "Space" || e.code === "Enter") {
@@ -120,9 +176,9 @@ export default function HangarGame({ onClose }: HangarGameProps) {
 
             if (e.code === "Escape") {
                 if (activeStationRef.current) {
-                    setActiveStation(null);
-                    setDialogStep(0);
+                    closeStation();
                 } else if (onClose) {
+                    tacticalAudio.playStationClose();
                     onClose();
                 }
                 return;
@@ -142,7 +198,7 @@ export default function HangarGame({ onClose }: HangarGameProps) {
             window.removeEventListener("keydown", handleKeyDown);
             window.removeEventListener("keyup", handleKeyUp);
         };
-    }, [handleInteract, onClose]);
+    }, [handleInteract, onClose, openStation, closeStation, gameState.stations]);
 
     const onCloseRef = useRef(onClose);
     useEffect(() => {
@@ -175,7 +231,7 @@ export default function HangarGame({ onClose }: HangarGameProps) {
                         // Check if player reaches the bottom exit door
                         if (checkExitDoorTrigger(updatedPlayer)) {
                             isExiting = true;
-                            // Trigger exit safely outside the state updater cycle
+                            tacticalAudio.playStationClose();
                             setTimeout(() => {
                                 onCloseRef.current?.();
                             }, 0);
@@ -224,7 +280,16 @@ export default function HangarGame({ onClose }: HangarGameProps) {
     const currentLang = language === "en" ? "en" : "es";
 
     return (
-        <div className="flex flex-col items-center w-full max-w-4xl mx-auto select-none">
+        <div className="flex flex-col items-center w-full max-w-4xl mx-auto select-none gap-3">
+            {/* Tactical HUD Header & Quick Navigation Dock */}
+            <TacticalHUD
+                coords={{ x: gameState.player.x, y: gameState.player.y }}
+                stations={gameState.stations}
+                activeStationId={activeStation?.id || null}
+                onSelectStation={openStation}
+                onClose={onClose}
+            />
+
             {/* Game Canvas Container */}
             <div className="relative w-full rounded-2xl overflow-hidden border-2 border-primary/40 shadow-2xl bg-black aspect-[800/560]">
                 <canvas
@@ -234,39 +299,19 @@ export default function HangarGame({ onClose }: HangarGameProps) {
                     className="w-full h-full object-contain block"
                 />
 
-                {/* Top Status Header */}
-                <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
-                    <div className="flex items-center gap-2 bg-background/90 backdrop-blur border border-border px-3 py-1.5 rounded-xl shadow">
-                        <Gamepad2 className="w-4 h-4 text-primary" />
-                        <span className="text-xs font-mono font-bold text-foreground">
-                            {t.game.title}
-                        </span>
-                    </div>
-
-                    {onClose && (
-                        <button
-                            onClick={onClose}
-                            className="pointer-events-auto p-1.5 rounded-xl bg-background/90 hover:bg-background text-muted-foreground hover:text-foreground border border-border transition-colors shadow"
-                            title={t.game.closeGame}
-                            aria-label={t.game.closeGame}
-                        >
-                            <X className="w-4 h-4" />
-                        </button>
-                    )}
-                </div>
-
-                {/* Dialog Box Modal (RPG Overlay) */}
+                {/* Sub-system Dialog Box Modal (Tactical Terminal Overlay) */}
                 {activeStation && (
-                    <div className="absolute inset-x-4 bottom-4 z-20 animate-in fade-in slide-in-from-bottom-4 duration-200">
+                    <div className="absolute inset-x-3 md:inset-x-6 bottom-3 z-20 animate-in fade-in slide-in-from-bottom-3 duration-200">
                         <div
-                            className="bg-card/95 backdrop-blur-md border-2 rounded-2xl p-5 shadow-2xl text-foreground"
+                            className="bg-card/95 backdrop-blur-md border-2 rounded-2xl p-4 md:p-5 shadow-2xl text-foreground"
                             style={{ borderColor: activeStation.color }}
                         >
-                            <div className="flex items-start justify-between gap-4 mb-3 border-b border-border/60 pb-3">
-                                <div className="flex items-center gap-3.5">
+                            {/* Header */}
+                            <div className="flex items-start justify-between gap-3 mb-3 border-b border-border/60 pb-3">
+                                <div className="flex items-center gap-3">
                                     {/* Pixel Art NPC Portrait Avatar */}
                                     <div
-                                        className="w-14 h-14 rounded-xl overflow-hidden border-2 flex-shrink-0 shadow-lg relative bg-slate-900"
+                                        className="w-12 h-12 md:w-14 md:h-14 rounded-xl overflow-hidden border-2 flex-shrink-0 shadow-lg relative bg-slate-900"
                                         style={{ borderColor: activeStation.color }}
                                     >
                                         <div
@@ -281,7 +326,13 @@ export default function HangarGame({ onClose }: HangarGameProps) {
                                         />
                                     </div>
                                     <div>
-                                        <h4 className="font-bold text-sm text-foreground flex items-center gap-2">
+                                        <div
+                                            className="text-[10px] uppercase font-mono tracking-wider font-bold"
+                                            style={{ color: activeStation.color }}
+                                        >
+                                            {activeStation.dialog[currentLang].title}
+                                        </div>
+                                        <h4 className="font-bold text-sm md:text-base text-foreground flex items-center gap-2">
                                             {activeStation.dialog[currentLang].speaker}
                                             <span
                                                 className="w-2 h-2 rounded-full animate-pulse"
@@ -294,27 +345,26 @@ export default function HangarGame({ onClose }: HangarGameProps) {
                                     </div>
                                 </div>
                                 <button
-                                    onClick={() => {
-                                        setActiveStation(null);
-                                        setDialogStep(0);
-                                    }}
-                                    className="p-1 rounded-lg hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors"
+                                    onClick={closeStation}
+                                    onMouseEnter={() => tacticalAudio.playHover()}
+                                    className="p-1.5 rounded-lg hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors"
                                     aria-label={t.game.closeDialog}
                                 >
                                     <X className="w-4 h-4" />
                                 </button>
                             </div>
 
-                            <p className="text-sm md:text-base leading-relaxed mb-4 min-h-[48px] text-foreground/90">
+                            {/* Dialogue Line */}
+                            <p className="text-sm md:text-base leading-relaxed mb-3 min-h-[44px] text-foreground/95">
                                 {activeStation.dialog[currentLang].lines[dialogStep]}
                             </p>
 
                             {/* Highlights Badges */}
-                            <div className="flex flex-wrap gap-2 mb-4">
+                            <div className="flex flex-wrap gap-1.5 mb-3">
                                 {activeStation.dialog[currentLang].highlights.map((tag, idx) => (
                                     <span
                                         key={idx}
-                                        className="text-xs px-2.5 py-1 rounded-full font-medium flex items-center gap-1.5 border"
+                                        className="text-xs px-2.5 py-0.5 rounded-full font-medium flex items-center gap-1.5 border"
                                         style={{
                                             backgroundColor: `${activeStation.color}15`,
                                             borderColor: `${activeStation.color}40`,
@@ -327,29 +377,82 @@ export default function HangarGame({ onClose }: HangarGameProps) {
                                 ))}
                             </div>
 
-                            {/* Dialog Actions */}
-                            <div className="flex justify-between items-center pt-2">
-                                <span className="text-xs text-muted-foreground font-mono">
-                                    {dialogStep + 1} /{" "}
-                                    {activeStation.dialog[currentLang].lines.length}
-                                </span>
-                                <button
-                                    onClick={handleInteract}
-                                    className="px-4 py-2 text-xs font-semibold rounded-xl text-primary-foreground flex items-center gap-2 transition-all hover:opacity-95 shadow"
-                                    style={{ backgroundColor: activeStation.color }}
-                                >
-                                    {dialogStep + 1 <
-                                    activeStation.dialog[currentLang].lines.length ? (
-                                        <>
-                                            {t.game.next} <ChevronRight className="w-3.5 h-3.5" />
-                                        </>
-                                    ) : (
-                                        <>
-                                            <CheckCircle2 className="w-3.5 h-3.5" />{" "}
-                                            {t.game.understood}
-                                        </>
+                            {/* Direct Tactical Actions & Next Dialog Controls */}
+                            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 pt-2 border-t border-border/40">
+                                {/* Direct Action Shortcuts */}
+                                <div className="flex items-center gap-2 flex-wrap">
+                                    {activeStation.action && (
+                                        <button
+                                            onClick={() =>
+                                                activeStation.action &&
+                                                handleStationAction(
+                                                    activeStation.action.target,
+                                                    activeStation.action.type
+                                                )
+                                            }
+                                            className="px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 border transition-all hover:scale-[1.02] shadow-sm text-foreground bg-secondary/80 hover:bg-secondary border-border/80"
+                                        >
+                                            {activeStation.action.type === "route" ? (
+                                                <FileDown className="w-3.5 h-3.5 text-primary" />
+                                            ) : activeStation.action.type === "link" ? (
+                                                <ExternalLink className="w-3.5 h-3.5 text-primary" />
+                                            ) : (
+                                                <Radio className="w-3.5 h-3.5 text-primary" />
+                                            )}
+                                            <span>
+                                                {language === "es"
+                                                    ? activeStation.action.label.es
+                                                    : activeStation.action.label.en}
+                                            </span>
+                                        </button>
                                     )}
-                                </button>
+
+                                    {activeStation.secondaryAction && (
+                                        <button
+                                            onClick={() =>
+                                                activeStation.secondaryAction &&
+                                                handleStationAction(
+                                                    activeStation.secondaryAction.target,
+                                                    activeStation.secondaryAction.type
+                                                )
+                                            }
+                                            className="px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 border transition-all hover:scale-[1.02] shadow-sm text-foreground bg-secondary/80 hover:bg-secondary border-border/80"
+                                        >
+                                            <Send className="w-3.5 h-3.5 text-amber-400" />
+                                            <span>
+                                                {language === "es"
+                                                    ? activeStation.secondaryAction.label.es
+                                                    : activeStation.secondaryAction.label.en}
+                                            </span>
+                                        </button>
+                                    )}
+                                </div>
+
+                                {/* Step Progress & Next Button */}
+                                <div className="flex items-center justify-between sm:justify-end gap-3">
+                                    <span className="text-xs text-muted-foreground font-mono">
+                                        {dialogStep + 1} /{" "}
+                                        {activeStation.dialog[currentLang].lines.length}
+                                    </span>
+                                    <button
+                                        onClick={handleInteract}
+                                        className="px-4 py-2 text-xs font-semibold rounded-xl text-primary-foreground flex items-center gap-2 transition-all hover:opacity-95 shadow"
+                                        style={{ backgroundColor: activeStation.color }}
+                                    >
+                                        {dialogStep + 1 <
+                                        activeStation.dialog[currentLang].lines.length ? (
+                                            <>
+                                                {t.game.next}{" "}
+                                                <ChevronRight className="w-3.5 h-3.5" />
+                                            </>
+                                        ) : (
+                                            <>
+                                                <CheckCircle2 className="w-3.5 h-3.5" />{" "}
+                                                {t.game.understood}
+                                            </>
+                                        )}
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -357,7 +460,7 @@ export default function HangarGame({ onClose }: HangarGameProps) {
             </div>
 
             {/* Virtual Controls Bar (Mobile & Desktop Touch) */}
-            <div className="w-full mt-4 flex flex-col md:flex-row items-center justify-between gap-4 p-4 rounded-2xl bg-card border border-border">
+            <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4 p-4 rounded-2xl bg-card border border-border">
                 {/* Desktop Instructions */}
                 <div className="text-xs text-muted-foreground font-mono text-center md:text-left">
                     <p className="font-semibold text-foreground mb-1">{t.game.controls}</p>

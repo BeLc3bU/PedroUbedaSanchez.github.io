@@ -1,7 +1,14 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import HangarGame from "./HangarGame";
 import { LanguageProvider } from "@/context/LanguageProvider";
+
+// Mock next/navigation
+vi.mock("next/navigation", () => ({
+    useRouter: () => ({
+        push: vi.fn(),
+    }),
+}));
 
 // Mock Canvas context for jsdom
 HTMLCanvasElement.prototype.getContext = vi.fn(() => ({
@@ -38,14 +45,20 @@ HTMLCanvasElement.prototype.getContext = vi.fn(() => ({
 })) as unknown as typeof HTMLCanvasElement.prototype.getContext;
 
 describe("HangarGame Component", () => {
-    it("should render game canvas, title, and virtual controller", () => {
+    beforeEach(() => {
+        vi.clearAllMocks();
+    });
+
+    it("should render Tactical HUD, live telemetry, and virtual controller", () => {
         render(
             <LanguageProvider>
                 <HangarGame />
             </LanguageProvider>
         );
 
-        expect(screen.getByText(/Hangar Tecnológico|Tech Hangar/i)).toBeInTheDocument();
+        expect(screen.getByText(/SYSTEM:/i)).toBeInTheDocument();
+        expect(screen.getByText(/ONLINE/i)).toBeInTheDocument();
+        expect(screen.getByText(/PEDRO ÚBEDA/i)).toBeInTheDocument();
         expect(screen.getByLabelText("Up")).toBeInTheDocument();
         expect(screen.getByLabelText("Left")).toBeInTheDocument();
         expect(screen.getByLabelText("Right")).toBeInTheDocument();
@@ -53,7 +66,23 @@ describe("HangarGame Component", () => {
         expect(screen.getByLabelText("Interact Action")).toBeInTheDocument();
     });
 
-    it("should call onClose when close button is clicked", () => {
+    it("should render direct route matrix dock buttons and allow clicking them", () => {
+        render(
+            <LanguageProvider>
+                <HangarGame />
+            </LanguageProvider>
+        );
+
+        const avionicsBtn = screen.getByText(
+            /Sistemas Críticos & Aviónica|Critical Systems & Avionics/i
+        );
+        expect(avionicsBtn).toBeInTheDocument();
+
+        fireEvent.click(avionicsBtn);
+        expect(screen.getByText(/Estación de Aviónica|Avionics & Hardware/i)).toBeInTheDocument();
+    });
+
+    it("should call onClose when close button in HUD is clicked", () => {
         const onCloseMock = vi.fn();
         render(
             <LanguageProvider>
@@ -61,7 +90,7 @@ describe("HangarGame Component", () => {
             </LanguageProvider>
         );
 
-        const closeBtn = screen.getByTitle(/Salir del Hangar|Exit Hangar/i);
+        const closeBtn = screen.getByTitle(/Salir del Hangar|Close Hangar/i);
         fireEvent.click(closeBtn);
         expect(onCloseMock).toHaveBeenCalledTimes(1);
     });

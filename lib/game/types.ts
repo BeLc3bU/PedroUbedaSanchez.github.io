@@ -28,6 +28,15 @@ export interface Player {
     stepAnim: number;
 }
 
+export interface StationAction {
+    type: "route" | "scroll" | "link";
+    target: string;
+    label: {
+        es: string;
+        en: string;
+    };
+}
+
 export interface InteractiveStation {
     id: "avionics" | "agents" | "infra" | "command";
     npcId: "pedro" | "nexus" | "alex" | "command";
@@ -45,6 +54,8 @@ export interface InteractiveStation {
         es: string;
         en: string;
     };
+    action?: StationAction;
+    secondaryAction?: StationAction;
     dialog: {
         es: {
             title: string;

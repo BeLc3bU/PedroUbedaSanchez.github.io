@@ -18,6 +18,14 @@ export const STATIONS: InteractiveStation[] = [
             es: "Sistemas Críticos & Aviónica",
             en: "Critical Systems & Avionics",
         },
+        action: {
+            type: "scroll",
+            target: "#projects",
+            label: {
+                es: "Explorar Sistemas de Aviónica",
+                en: "Explore Avionics Systems",
+            },
+        },
         dialog: {
             es: {
                 title: "Estación de Aviónica & Hardware",
@@ -64,6 +72,14 @@ export const STATIONS: InteractiveStation[] = [
             es: "Agentes IA & Fullstack Lab",
             en: "AI Agents & Fullstack Lab",
         },
+        action: {
+            type: "link",
+            target: "https://github.com/BeLc3bU",
+            label: {
+                es: "Ver Código en GitHub",
+                en: "View GitHub Codebase",
+            },
+        },
         dialog: {
             es: {
                 title: "Laboratorio de Agentes & Software",
@@ -105,6 +121,14 @@ export const STATIONS: InteractiveStation[] = [
         tagline: {
             es: "Infraestructura IT & Servidores",
             en: "IT Infrastructure & Servers",
+        },
+        action: {
+            type: "scroll",
+            target: "#experience",
+            label: {
+                es: "Ver Trayectoria IT Completa",
+                en: "View Complete IT Track Record",
+            },
         },
         dialog: {
             es: {
@@ -151,6 +175,22 @@ export const STATIONS: InteractiveStation[] = [
         tagline: {
             es: "Puente de Mando & Currículum",
             en: "Command Bridge & Resume",
+        },
+        action: {
+            type: "route",
+            target: "/cv",
+            label: {
+                es: "Ver y Descargar CV Oficial PDF",
+                en: "View & Download Official PDF CV",
+            },
+        },
+        secondaryAction: {
+            type: "scroll",
+            target: "#contact",
+            label: {
+                es: "Transmitir Mensaje Directo",
+                en: "Transmit Direct Message",
+            },
         },
         dialog: {
             es: {

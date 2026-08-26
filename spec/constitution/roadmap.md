@@ -31,5 +31,10 @@ Este documento define la planificación oficial de las funcionalidades y mejoras
 
 ### 6. SPEC-004: Minijuego RPG 2D Embebido (P2)
 
-- **Estado**: Pendiente.
+- **Estado**: ✅ Completado (Base Canvas 2D inicial integrada).
 - **Detalle**: Simulación interactiva de hangar y agentes virtuales en Canvas pixel-art.
+
+### 7. SPEC-007: Evolución del Hangar Táctico - Hub Interactivo de CV (P1)
+
+- **Estado**: ✅ Completado.
+- **Detalle**: Transformación del Hangar en un centro táctico de operaciones y navegación interactiva del perfil profesional con doble modo (exploración / acceso directo), telemetría, audio nativo y acciones directas.
