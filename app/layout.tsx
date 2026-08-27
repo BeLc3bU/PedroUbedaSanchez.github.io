@@ -77,7 +77,7 @@ export default function RootLayout({
                     }}
                 />
             </head>
-            <body className="flex flex-col min-h-screen bg-background dark:bg-slate-900 text-foreground dark:text-slate-200 antialiased">
+            <body className="flex flex-col min-h-screen bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary">
                 <LanguageProvider>
                     <ClientBackground />
 
