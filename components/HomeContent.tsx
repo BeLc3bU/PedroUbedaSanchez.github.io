@@ -20,6 +20,7 @@ import {
 import { SocialLinks } from "@/components/SocialLinks";
 import ClientTerminal from "@/components/ClientTerminal";
 import GameSection from "@/components/GameSection";
+import InteractiveAvatar from "@/components/InteractiveAvatar";
 
 const projectIcons = ["Cpu", "Settings", "Database", "Layout"];
 
@@ -229,13 +230,7 @@ export default function HomeContent() {
                         <h2 className="text-3xl font-bold mb-8 font-display">{t.about.title}</h2>
 
                         <div className="flex flex-col md:flex-row gap-8 items-start">
-                            <div className="w-40 h-56 md:w-48 md:h-72 rounded-[2rem] overflow-hidden border-4 border-primary shadow-2xl flex-shrink-0 relative">
-                                <img
-                                    src="/foto.webp"
-                                    alt={portfolioData.name}
-                                    className="w-full h-full object-cover"
-                                />
-                            </div>
+                            <InteractiveAvatar priority={false} defaultFlipped={true} />
                             <div>
                                 <p className="text-muted-foreground leading-relaxed mb-4">
                                     {t.about.bio1}

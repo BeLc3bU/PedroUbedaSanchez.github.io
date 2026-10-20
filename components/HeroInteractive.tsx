@@ -2,11 +2,10 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import { Sparkles, Wrench, Settings, Cpu } from "lucide-react";
-import { portfolioData } from "@/data/portfolio";
 import { SocialLinks } from "@/components/SocialLinks";
 import { useLanguage } from "@/hooks/useLanguage";
+import InteractiveAvatar from "@/components/InteractiveAvatar";
 
 function TypingTitle() {
     const { t } = useLanguage();
@@ -122,23 +121,14 @@ export default function HeroInteractive() {
 
     return (
         <div className="max-w-6xl mx-auto flex flex-col items-center">
-            {/* Avatar - Centered on top */}
+            {/* Avatar - Centered on top with 3D flip */}
             <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6 }}
                 className="relative mb-8"
             >
-                <div className="rounded-[2rem] overflow-hidden border-4 border-primary shadow-2xl">
-                    <Image
-                        src="/foto.webp"
-                        alt={portfolioData.name}
-                        width={192}
-                        height={288}
-                        priority
-                        className="w-40 h-56 md:w-48 md:h-72 object-cover"
-                    />
-                </div>
+                <InteractiveAvatar priority />
             </motion.div>
 
             {/* Text Content - Below avatar */}
