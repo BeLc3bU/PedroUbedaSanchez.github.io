@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/compare/v1.3.0...v1.4.0) (2026-10-20)
+
+
+### Features
+
+* complete Hangar Tactico evolution as interactive CV hub (SPEC-007) ([d566bc4](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/d566bc47f76fb9b61dcd496e3e8546d111d76c25))
+* fix styles, animations, allowed origins and sync specs ([ba76bac](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/ba76bac0a905d423b4d703f508df8021e652691f))
+* **game:** replicate 2D RPG adventure portfolio game with Phaser 3 a… ([846796b](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/846796b8636089d78108403a52a748825d4c4205))
+* **game:** replicate 2D RPG adventure portfolio game with Phaser 3 and Tiled maps (SPEC-008) ([f69e265](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/f69e2650f8099b243011d46b7511e69690df3f68))
+* release v1.11.0 with static export for GitHub Pages ([067965a](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/067965a23cd141acd2ee283e2fdfd537eb4687c8))
+
 ## [1.3.0](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/compare/v1.2.0...v1.3.0) (2026-10-20)
 
 
