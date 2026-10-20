@@ -3,9 +3,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Maximize2, Minimize2, Gamepad2, Volume2, VolumeX } from "lucide-react";
+import { X, Maximize2, Minimize2, Gamepad2 } from "lucide-react";
 
-const RPGGameContainer = dynamic(() => import("./RPGGameContainer"), { ssr: false });
+const PhaserGame = dynamic(() => import("./PhaserGame"), { ssr: false });
 
 interface PortfolioGameModalProps {
     isOpen: boolean;
@@ -14,7 +14,6 @@ interface PortfolioGameModalProps {
 
 export const PortfolioGameModal: React.FC<PortfolioGameModalProps> = ({ isOpen, onClose }) => {
     const [isFullscreen, setIsFullscreen] = useState(false);
-    const [isMuted, setIsMuted] = useState(false);
     const modalRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -67,27 +66,15 @@ export const PortfolioGameModal: React.FC<PortfolioGameModalProps> = ({ isOpen, 
                     } bg-card border border-primary/20 shadow-2xl flex flex-col overflow-hidden`}
                 >
                     {/* Top Bar */}
-                    <div className="flex items-center justify-between px-5 py-3.5 border-b border-border/40 bg-secondary/20">
+                    <div className="flex items-center justify-between px-5 py-3 border-b border-border/40 bg-secondary/30 z-20">
                         <div className="flex items-center gap-2.5">
                             <Gamepad2 className="w-5 h-5 text-primary" />
-                            <span className="font-bold text-sm text-foreground tracking-tight">
+                            <span className="font-bold text-sm text-foreground tracking-tight font-mono">
                                 Pedro Úbeda — Portfolio Adventure 2D
                             </span>
                         </div>
 
                         <div className="flex items-center gap-2">
-                            <button
-                                onClick={() => setIsMuted(!isMuted)}
-                                className="p-1.5 rounded-lg hover:bg-muted text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
-                                title={isMuted ? "Activar sonido" : "Silenciar"}
-                            >
-                                {isMuted ? (
-                                    <VolumeX className="w-4 h-4" />
-                                ) : (
-                                    <Volume2 className="w-4 h-4" />
-                                )}
-                            </button>
-
                             <button
                                 onClick={toggleFullscreen}
                                 className="p-1.5 rounded-lg hover:bg-muted text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
@@ -115,8 +102,8 @@ export const PortfolioGameModal: React.FC<PortfolioGameModalProps> = ({ isOpen, 
                     </div>
 
                     {/* Game Content */}
-                    <div className="flex-1 w-full h-full relative">
-                        <RPGGameContainer />
+                    <div className="flex-1 w-full h-full relative overflow-hidden bg-black">
+                        <PhaserGame />
                     </div>
                 </motion.div>
             </div>
