@@ -1,4 +1,4 @@
-﻿import Phaser from "phaser";
+import Phaser from "phaser";
 import { Analytics } from "./analytics";
 
 export interface WelcomePanelOptions {
@@ -479,7 +479,21 @@ export default class WelcomePanel {
                 action: () => {
                     if (this.currentUrl) {
                         Analytics.trackExternalLinkClick(this.currentUrl, "Portfolio");
-                        window.open(this.currentUrl, "_blank");
+                        if (
+                            this.currentUrl.startsWith("#") ||
+                            this.currentUrl.startsWith("/#") ||
+                            this.currentUrl.startsWith("/")
+                        ) {
+                            if (typeof window !== "undefined") {
+                                window.dispatchEvent(
+                                    new CustomEvent("game:navigate", {
+                                        detail: { url: this.currentUrl },
+                                    })
+                                );
+                            }
+                        } else {
+                            window.open(this.currentUrl, "_blank");
+                        }
                     }
                     this.close();
                 },

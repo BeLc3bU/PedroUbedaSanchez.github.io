@@ -27,10 +27,36 @@ export const PortfolioGameModal: React.FC<PortfolioGameModalProps> = ({ isOpen, 
             }
         };
 
+        const handleGameNavigation = (e: Event) => {
+            const customEvent = e as CustomEvent<{ url?: string; target?: string }>;
+            const targetUrl = customEvent.detail?.url || customEvent.detail?.target || "#contact";
+
+            if (document.fullscreenElement) {
+                document.exitFullscreen().catch(() => {});
+            }
+
+            onClose();
+
+            setTimeout(() => {
+                if (targetUrl.startsWith("#") || targetUrl.startsWith("/#")) {
+                    const hash = targetUrl.replace(/^\//, "");
+                    const el = document.querySelector(hash);
+                    if (el) {
+                        el.scrollIntoView({ behavior: "smooth", block: "start" });
+                        window.history.pushState(null, "", hash);
+                    }
+                } else if (targetUrl.startsWith("/")) {
+                    window.location.href = targetUrl;
+                }
+            }, 100);
+        };
+
+        window.addEventListener("game:navigate", handleGameNavigation);
         document.addEventListener("fullscreenchange", handleFullscreenChange);
         window.addEventListener("keydown", handleKeyDown);
 
         return () => {
+            window.removeEventListener("game:navigate", handleGameNavigation);
             document.removeEventListener("fullscreenchange", handleFullscreenChange);
             window.removeEventListener("keydown", handleKeyDown);
         };
