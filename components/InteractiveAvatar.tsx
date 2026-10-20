@@ -47,56 +47,37 @@ export default function InteractiveAvatar({
                 whileHover={shouldReduceMotion ? {} : { scale: 1.03 }}
                 whileTap={shouldReduceMotion ? {} : { scale: 0.97 }}
             >
-                {/* 3D Card Inner */}
-                <motion.div
-                    className="w-40 h-56 md:w-48 md:h-72 rounded-[2rem] overflow-hidden border-4 border-primary shadow-2xl relative"
-                    style={{ transformStyle: "preserve-3d" }}
-                    animate={{ rotateY: isFlipped ? 180 : 0 }}
-                    transition={
-                        shouldReduceMotion
-                            ? { duration: 0 }
-                            : { duration: 0.6, ease: [0.23, 1, 0.32, 1] }
-                    }
-                >
-                    {/* Front: Avatar 3D (Voxel) */}
-                    <div
-                        className="absolute inset-0 w-full h-full bg-[#1b3459]"
-                        style={{
-                            backfaceVisibility: "hidden",
-                            WebkitBackfaceVisibility: "hidden",
+                {/* 3D Flip Card Frame */}
+                <div className="w-40 h-56 md:w-48 md:h-72 rounded-[2rem] overflow-hidden border-4 border-primary shadow-2xl relative bg-[#1b3459]">
+                    <motion.div
+                        key={isFlipped ? "real-photo" : "avatar-3d"}
+                        initial={
+                            shouldReduceMotion
+                                ? { opacity: 0 }
+                                : { rotateY: isFlipped ? -90 : 90, opacity: 0.6 }
+                        }
+                        animate={{ rotateY: 0, opacity: 1 }}
+                        transition={{
+                            duration: shouldReduceMotion ? 0.15 : 0.35,
+                            ease: [0.23, 1, 0.32, 1],
                         }}
+                        className="w-full h-full"
                     >
                         <Image
-                            src="/avatar.webp"
-                            alt={`${portfolioData.name} - Avatar 3D`}
+                            src={isFlipped ? "/foto.webp" : "/avatar.webp"}
+                            alt={
+                                isFlipped
+                                    ? `${portfolioData.name} - Foto Real`
+                                    : `${portfolioData.name} - Avatar 3D`
+                            }
                             width={192}
                             height={288}
                             priority={priority}
                             sizes="(max-width: 768px) 160px, 192px"
                             className="w-full h-full object-cover object-center"
                         />
-                    </div>
-
-                    {/* Back: Foto Real */}
-                    <div
-                        className="absolute inset-0 w-full h-full bg-card"
-                        style={{
-                            backfaceVisibility: "hidden",
-                            WebkitBackfaceVisibility: "hidden",
-                            transform: "rotateY(180deg)",
-                        }}
-                    >
-                        <Image
-                            src="/foto.webp"
-                            alt={`${portfolioData.name} - Foto Real`}
-                            width={192}
-                            height={288}
-                            priority={priority}
-                            sizes="(max-width: 768px) 160px, 192px"
-                            className="w-full h-full object-cover object-center"
-                        />
-                    </div>
-                </motion.div>
+                    </motion.div>
+                </div>
 
                 {/* Floating Interactive Badge */}
                 <motion.div
