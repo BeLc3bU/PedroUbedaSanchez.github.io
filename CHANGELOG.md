@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.0](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/compare/v1.6.0...v1.7.0) (2026-10-20)
+
+
+### Features
+
+* complete Hangar Tactico evolution as interactive CV hub (SPEC-007) ([d566bc4](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/d566bc47f76fb9b61dcd496e3e8546d111d76c25))
+* **copy:** update game section and terminal texts to 2D RPG Adventure ([d7c9e5d](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/d7c9e5d07c7bf172645057255dbc26594440f2af))
+* fix styles, animations, allowed origins and sync specs ([ba76bac](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/ba76bac0a905d423b4d703f508df8021e652691f))
+* **game:** implement 6 desks experiences, clean project popup, fix text encoding and optimize performance ([a4306ba](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/a4306ba8ce393ebe7389bed7ffc3f5067aec3f4e))
+* **game:** integrate full 2D RPG adventure engine with Tiled scenes, HUD, dialogues and audio from augustopolonio-game ([f7d0b43](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/f7d0b43e9ab342a162709860c91ceba0bf6c0a06))
+* **game:** integrate full 2D RPG adventure engine with Tiled scenes,… ([4e1f66e](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/4e1f66ea6960f7a1b88a237e7245eb4edee3bea7))
+* **game:** localize all in-game dialogues, HUD titles, panels, and Tiled map text to Spanish ([0bbd004](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/0bbd004e69bc1a896dcb9b63be5cc9f99789f92b))
+* **game:** replicate 2D RPG adventure portfolio game with Phaser 3 a… ([846796b](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/846796b8636089d78108403a52a748825d4c4205))
+* **game:** replicate 2D RPG adventure portfolio game with Phaser 3 and Tiled maps (SPEC-008) ([f69e265](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/f69e2650f8099b243011d46b7511e69690df3f68))
+* release v1.11.0 with static export for GitHub Pages ([067965a](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/067965a23cd141acd2ee283e2fdfd537eb4687c8))
+
+
+### Bug Fixes
+
+* **game:** remove unused eslint comment and ignore release files in prettier ([f1b2767](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/commit/f1b2767f6acdeaf95436480901c82460070c543e))
+
 ## [1.6.0](https://github.com/BeLc3bU/PedroUbedaSanchez.github.io/compare/v1.5.0...v1.6.0) (2026-10-20)
 
 
