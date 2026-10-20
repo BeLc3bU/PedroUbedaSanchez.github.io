@@ -1,0 +1,34 @@
+{
+    "mcpServers": {
+        "chrome-devtools": {
+            "command": "npx",
+            "args": ["-y", "chrome-devtools-mcp@latest"]
+        },
+        "context7": {
+            "serverUrl": "https://mcp.context7.com/mcp",
+            "headers": {
+                "CONTEXT7_API_KEY": "${CONTEXT7_API_KEY}"
+            }
+        },
+        "github": {
+            "command": "npx",
+            "args": ["-y", "@modelcontextprotocol/server-github"],
+            "env": {
+                "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
+            }
+        },
+        "figma": {
+            "command": "npx",
+            "args": ["-y", "figma-developer-mcp"],
+            "env": {
+                "FIGMA_ACCESS_TOKEN": "${FIGMA_ACCESS_TOKEN}"
+            }
+        },
+        "supabase": {
+            "serverUrl": "https://mcp.supabase.com/mcp",
+            "headers": {
+                "Authorization": "Bearer ${SUPABASE_ACCESS_TOKEN}"
+            }
+        }
+    }
+}
