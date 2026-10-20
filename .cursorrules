@@ -1,0 +1,5 @@
+# Reglas de Proyecto - Spec-Kit & Elite Agent
+1. Idioma: Toda respuesta, commit y documentación DEBE ser en Español.
+2. Metodología: Spec-Driven Development (SDD). No escribir código sin spec/plan/tasks en specs/.
+3. Guardrails: No comitear ni abrir PRs con errores de lint, typecheck o tests.
+4. Consulta .specify/memory/constitution.md para principios inmutables.
