@@ -1,28 +1,119 @@
 [
     {
-        "company": "Ejército del Aire y del Espacio (España)",
+        "company": "Fuerzas Armadas (Ejército del Aire y del Espacio)",
         "location": "Albacete, España",
-        "title": "Especialista en Mantenimiento de Aviónica & Infraestructura IT",
-        "period": "2013 - Presente",
-        "description": "Mantenimiento preventivo y correctivo de aviónica, subsistemas de radar, comunicaciones criptográficas y redes tácticas operativas.",
+        "title": "Especialista en Software, Aviónica y Sistemas Críticos",
+        "period": "2008 - Actualidad",
+        "description": "Mantenimiento preventivo y correctivo de aviónica, desarrollo de scripts y herramientas de gestión, y soporte informático a simuladores de vuelo.",
         "highlights": [
-            "Diagnóstico avanzado y soporte a equipos de misión crítica.",
-            "Gestión y administración de redes tácticas y telecomunicaciones.",
-            "Cumplimiento estricto de protocolos de seguridad y fiabilidad operativa."
+            "Desarrollo de aplicaciones, scripts y herramientas internas de gestión y soporte técnico.",
+            "Mantenimiento, diagnóstico y resolución de averías en simuladores de vuelo y flota de aeronaves.",
+            "Gestión administrativa y logística de componentes de aviónica y control de calidad.",
+            "Elaboración de informes técnicos de precisión y estricto cumplimiento de protocolos de seguridad."
         ],
-        "technologies": ["Avionics", "Radar Systems", "Cryptography", "RF Networks", "Linux"]
+        "technologies": [
+            "Desarrollo de Aplicaciones",
+            "Electrónica",
+            "Aviónica",
+            "Simuladores de Vuelo",
+            "Linux",
+            "Gestión Logística"
+        ]
     },
     {
         "company": "Freelance & Consultoría AI-First",
-        "location": "Remoto",
-        "title": "Software Developer & AI Agent Architect",
+        "location": "Remoto, España",
+        "title": "Software Developer & AI Solutions Architect",
         "period": "2023 - Presente",
-        "description": "Diseño y despliegue de soluciones full-stack, automatizaciones empresariales y gobernanza para agentes de inteligencia artificial.",
+        "description": "Diseño y despliegue de soluciones full-stack, aplicaciones interactivas y gobernanza para agentes de inteligencia artificial.",
         "highlights": [
-            "Desarrollo de portales web interactivos y plataformas SaaS con React 19 y Next.js.",
-            "Implementación de flujos de desarrollo guiado por especificaciones (Spec-Driven Development).",
-            "Automatización de procesos mediante scraping y pipelines CI/CD de alta disponibilidad."
+            "Desarrollo de portales web interactivos y plataformas SaaS con React 19, TypeScript y Next.js.",
+            "Implementación de arquitecturas autónomas con gobernanza Spec-Driven Development (SDD v2).",
+            "Automatización de procesos mediante scraping, scripts avanzados y pipelines CI/CD."
         ],
-        "technologies": ["TypeScript", "React", "Next.js", "Node.js", "Docker", "Git", "Phaser"]
+        "technologies": [
+            "TypeScript",
+            "React",
+            "Next.js",
+            "Node.js",
+            "Tailwind CSS",
+            "Phaser 3",
+            "Git"
+        ]
+    },
+    {
+        "company": "ICONO TELECOM",
+        "location": "España",
+        "title": "Administrativo Contable",
+        "period": "2007 - 2008",
+        "description": "Gestión integral contable y administrativa para servicios e infraestructura de telecomunicaciones.",
+        "highlights": [
+            "Gestión de pagos a proveedores y conciliación bancaria de cuentas de clientes.",
+            "Contabilización de asientos contables, facturación avanzada y arqueo de caja.",
+            "Elaboración de informes ejecutivos financieros y control presupuestario de gastos."
+        ],
+        "technologies": [
+            "Contabilidad",
+            "Facturación",
+            "Excel Avanzado",
+            "ERP Contable",
+            "Gestión de Tesorería"
+        ]
+    },
+    {
+        "company": "TRUCCSA",
+        "location": "España",
+        "title": "Auxiliar Administrativo & Control de Gestión",
+        "period": "2006 - 2007",
+        "description": "Supervisión comercial y operativa de almacén, control documental y facturación.",
+        "highlights": [
+            "Gestión comercial completa de pedidos, albaranes y facturación.",
+            "Contabilidad auxiliar y control riguroso de stock y existencias de almacén.",
+            "Organización de registros documentales y atención logística."
+        ],
+        "technologies": [
+            "Gestión Comercial",
+            "Control de Stock",
+            "Facturación",
+            "Almacén",
+            "Logística"
+        ]
+    },
+    {
+        "company": "Fuerzas Armadas",
+        "location": "España",
+        "title": "Militar (Administración & Telecomunicaciones)",
+        "period": "2002 - 2005",
+        "description": "Mantenimiento de redes de telecomunicaciones tácticas, gestión de archivo oficial y custodia de información.",
+        "highlights": [
+            "Instalación, mantenimiento y soporte a sistemas y redes de telecomunicaciones.",
+            "Mantenimiento y administración de bases de datos críticas de inventario técnico.",
+            "Gestión de archivo, correspondencia oficial y protocolos de seguridad."
+        ],
+        "technologies": [
+            "Telecomunicaciones",
+            "Bases de Datos",
+            "Archivo Clasificado",
+            "Protocolos de Seguridad"
+        ]
+    },
+    {
+        "company": "CIFP Carlos III (Cartagena)",
+        "location": "Cartagena, España",
+        "title": "Técnico Especialista en Informática de Gestión (FP II)",
+        "period": "1998 - 2001",
+        "description": "Titulación técnica oficial en desarrollo de software, análisis informático, bases de datos relacionales y gestión empresarial.",
+        "highlights": [
+            "Fundamentos sólidos de algoritmia, programación estructurada y bases de datos.",
+            "Diseño de flujos administrativos e informatización de procesos empresariales.",
+            "Desarrollo de proyectos iniciales de desarrollo de software y gestión técnica."
+        ],
+        "technologies": [
+            "Informática de Gestión",
+            "Bases de Datos",
+            "Sistemas Operativos",
+            "Programación",
+            "Redes"
+        ]
     }
 ]

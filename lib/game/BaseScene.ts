@@ -2,7 +2,7 @@ import Phaser from "phaser";
 import DialogueBox, { type DialogueOptions } from "./DialogueBox";
 
 export const GAME_CONFIG = {
-    PLAYER_SPEED: 90,
+    PLAYER_SPEED: 110,
     CAMERA_ZOOM: 3,
     TRANSITION_DURATION: 500,
     DEBUG_PHYSICS: false,
@@ -27,6 +27,7 @@ export default abstract class BaseScene extends Phaser.Scene {
     private lastDirection = "down";
     private interactableZones: Map<Phaser.GameObjects.Zone, any> = new Map();
     private activeInteractables = new Set<any>();
+    private currentlyTouching = new Set<any>();
     protected objectSprites: Map<string, Phaser.GameObjects.Sprite> = new Map();
     protected music?: Phaser.Sound.BaseSound;
 
@@ -163,7 +164,7 @@ export default abstract class BaseScene extends Phaser.Scene {
     protected setupCamera(map: Phaser.Tilemaps.Tilemap) {
         this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
         this.cameras.main.setZoom(GAME_CONFIG.CAMERA_ZOOM);
-        this.cameras.main.startFollow(this.player, true);
+        this.cameras.main.startFollow(this.player, true, 0.15, 0.15);
         this.cameras.main.roundPixels = true;
         this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
         this.cameras.main.fadeIn(GAME_CONFIG.TRANSITION_DURATION);
@@ -407,19 +408,18 @@ export default abstract class BaseScene extends Phaser.Scene {
         this.lastInteractState = mobileInput.interact;
 
         // Track which zones are currently overlapping
-        const currentlyTouching = new Set<any>();
+        this.currentlyTouching.clear();
         this.currentInteractable = null;
 
         this.interactableZones.forEach((obj, _zone) => {
             const overlapping = this.physics.overlap(this.player, _zone);
 
             if (overlapping) {
-                currentlyTouching.add(obj);
+                this.currentlyTouching.add(obj);
                 this.currentInteractable = obj;
 
                 // Enter if not previously active
                 if (!this.activeInteractables.has(obj)) {
-                    console.log("Enter:", obj.name);
                     this.activeInteractables.add(obj);
                     // Position indicator above the interactable object
                     this.interactionIndicator.setPosition(obj.x! + obj.width! / 2, obj.y! - 20);
@@ -431,8 +431,7 @@ export default abstract class BaseScene extends Phaser.Scene {
 
         // Check for exits
         this.activeInteractables.forEach((_obj) => {
-            if (!currentlyTouching.has(_obj)) {
-                console.log("Exit:", _obj.name);
+            if (!this.currentlyTouching.has(_obj)) {
                 this.activeInteractables.delete(_obj);
                 this.interactionIndicator.setVisible(false);
                 this.onInteractableExit(_obj);

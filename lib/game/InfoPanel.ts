@@ -49,7 +49,6 @@ export default class InfoPanel {
 
     private currentGame?: GameData;
     private currentExperience?: ExperienceData;
-    private pendingImageKeys = new Set<string>();
 
     private readonly mobileFooterHeight = 86;
     private readonly desktopFooterHeight = 76;
@@ -434,15 +433,16 @@ export default class InfoPanel {
         }
     }
 
-    async showExperience(experienceId: string) {
+    async showExperience(experienceId: string | number) {
         try {
             const response = await fetch("/data/experiences.json");
             const experiences: ExperienceData[] = await response.json();
-            const index = parseInt(experienceId, 10);
+            const index =
+                typeof experienceId === "number" ? experienceId : parseInt(experienceId, 10);
             const experience = experiences[index];
 
             if (!experience) {
-                this.showError("Experience not found");
+                this.showError("Experiencia no encontrada");
                 return;
             }
 
@@ -452,7 +452,7 @@ export default class InfoPanel {
             this.show();
         } catch (error) {
             console.error("Error fetching experience data:", error);
-            this.showError("Failed to load experience data");
+            this.showError("Error al cargar la experiencia");
         }
     }
 
@@ -462,163 +462,134 @@ export default class InfoPanel {
         // Small inset so top badges/text aren't clipped by the content mask.
         let yOffset = 18;
 
+        const padding = this.getPadding();
+        const contentWidth = Math.max(180, this.panelWidth - padding * 2);
+
         // Status and Engine badges at top
-        const statusColor = game.status === "Publicado" ? "#4ade80" : "#fbbf24";
-        const statusText = game.status === "Publicado" ? "Publicado" : "En Desarrollo";
+        const isCompleted =
+            game.status === "Publicado" ||
+            game.status === "Producción" ||
+            game.status === "Production" ||
+            game.status === "Completed" ||
+            game.status === "Completado";
+        const statusColor = isCompleted ? "#4ade80" : "#60a5fa";
+        const statusText = isCompleted
+            ? game.status === "Completado"
+                ? "Completado"
+                : "Producción"
+            : "En Desarrollo";
 
         const badgeContainer = this.scene.add.container(0, yOffset);
         const statusBadge = this.createBadge(statusText, statusColor, 0);
         const engineBadge = this.createBadge(game.engine.toUpperCase(), "#3b82f6", 0);
 
-        // Space badges based on their real widths so longer text doesn't overlap.
         const gap = 14;
         const statusBg = statusBadge.getAt(0) as Phaser.GameObjects.Rectangle;
         const engineBg = engineBadge.getAt(0) as Phaser.GameObjects.Rectangle;
         const statusW = statusBg.displayWidth || statusBg.width;
         const engineW = engineBg.displayWidth || engineBg.width;
         const totalW = statusW + gap + engineW;
-
-        const padding = this.getPadding();
-        const maxW = this.panelWidth - padding * 2;
+        const maxW = contentWidth;
         const badgeH = Math.max(
             statusBg.displayHeight || statusBg.height,
             engineBg.displayHeight || engineBg.height
         );
 
         if (totalW > maxW) {
-            // Too tight: stack vertically and keep centered.
             statusBadge.setPosition(0, 0);
             engineBadge.setPosition(0, badgeH + 10);
             yOffset += badgeH * 2 + 18;
         } else {
-            // Side-by-side with consistent gap.
             statusBadge.setPosition(-totalW / 2 + statusW / 2, 0);
             engineBadge.setPosition(totalW / 2 - engineW / 2, 0);
-            yOffset += badgeH + 12;
+            yOffset += badgeH + 16;
         }
 
         badgeContainer.add([statusBadge, engineBadge]);
         this.content.add(badgeContainer);
 
-        // Title above image
+        // Title
         const title = this.scene.add.text(0, yOffset, game.title, {
             fontFamily: '"Press Start 2P"',
             fontSize: "20px",
             color: "#ffffff",
             fontStyle: "bold",
             align: "center",
-            wordWrap: { width: this.panelWidth - 60 },
+            wordWrap: { width: contentWidth, useAdvancedWrap: true },
         });
         title.setOrigin(0.5, 0);
         this.content.add(title);
-        yOffset += title.height;
+        yOffset += title.height + 20;
 
-        // Game image - load dynamically
-        const imageKey = `game_image_${game.id}`;
-        const imageUrl = `https://augustopolonio.vercel.app${game.image}`;
-
-        // Check if already loaded; guard against adding duplicate load listeners during resize re-renders.
-        if (this.scene.textures.exists(imageKey)) {
-            this.addGameImage(imageKey, yOffset, game);
-            return;
-        }
-
-        // If load is already in flight, keep the UI content without spamming load/start.
-        if (this.pendingImageKeys.has(imageKey)) {
-            // Render a placeholder; image will be injected when load completes.
-            this.addGameImage(imageKey, yOffset, game);
-            return;
-        }
-
-        this.pendingImageKeys.add(imageKey);
-        this.scene.load.image(imageKey, imageUrl);
-        this.scene.load.once("complete", () => {
-            this.pendingImageKeys.delete(imageKey);
-            // Only update if this panel is still showing the same game.
-            if (this.container.visible && this.currentGame?.id === game.id) {
-                this.addGameImage(imageKey, yOffset, game);
-                this.recomputeScrollBounds();
-            }
-        });
-        this.scene.load.start();
-    }
-
-    private addGameImage(imageKey: string, startYOffset: number, game: GameData) {
-        // Remove loading placeholder if exists
-        const existingImage = this.content
-            .getAll()
-            .find((obj: any) => obj.name === "game_image_container");
-        if (existingImage) {
-            existingImage.destroy();
-        }
-
-        const topMargin = 20;
-        const imageTopY = startYOffset + topMargin;
-        const imageContainer = this.scene.add.container(0, imageTopY);
-        imageContainer.name = "game_image_container";
-
-        const padding = this.getPadding();
-        const isMobile = !this.scene.game.device.os.desktop;
-        const maxWidth = Math.max(
-            220,
-            Math.min(isMobile ? 720 : 620, this.panelWidth - padding * 2 - 24)
-        );
-        // Let the image grow on larger panels, but keep a sensible bound.
-        const maxHeight = Math.max(
-            140,
-            Math.min(isMobile ? 420 : 340, Math.floor(this.panelHeight * 0.45))
-        );
-
-        let imageDisplayHeight = 170;
-
-        if (this.scene.textures.exists(imageKey)) {
-            const gameImage = this.scene.add.image(0, 0, imageKey);
-            // Scale to fit within responsive bounds
-            const scale = Math.min(maxWidth / gameImage.width, maxHeight / gameImage.height, 1);
-            gameImage.setScale(scale);
-            imageDisplayHeight = gameImage.displayHeight;
-            imageContainer.add(gameImage);
-        } else {
-            // Fallback if image fails to load
-            const imageBox = this.scene.add.rectangle(
-                0,
-                0,
-                maxWidth,
-                Math.min(240, maxHeight),
-                0x2a2a2a
-            );
-            imageBox.setStrokeStyle(2, 0x4a4a4a);
-            const imageText = this.scene.add.text(0, 0, "🎮", {
-                fontFamily: '"Press Start 2P"',
-                fontSize: "48px",
+        // Tags / Technologies badges
+        if (game.tags && game.tags.length > 0) {
+            const allBadges = game.tags.map((tag) => {
+                const badge = this.createTechBadge(tag);
+                const bg = badge.getAt(0) as Phaser.GameObjects.Rectangle;
+                return {
+                    badge,
+                    width: bg.displayWidth || bg.width,
+                    height: bg.displayHeight || bg.height,
+                };
             });
-            imageText.setOrigin(0.5);
-            imageContainer.add([imageBox, imageText]);
 
-            imageDisplayHeight = imageBox.displayHeight;
+            const rows: Array<
+                Array<{ badge: Phaser.GameObjects.Container; width: number; height: number }>
+            > = [];
+            let currentRow: Array<{
+                badge: Phaser.GameObjects.Container;
+                width: number;
+                height: number;
+            }> = [];
+            let currentRowWidth = 0;
+            const tagGap = 8;
+
+            for (const info of allBadges) {
+                const nextWidth = (currentRow.length > 0 ? tagGap : 0) + info.width;
+                if (currentRow.length > 0 && currentRowWidth + nextWidth > contentWidth) {
+                    rows.push(currentRow);
+                    currentRow = [];
+                    currentRowWidth = 0;
+                }
+                currentRow.push(info);
+                currentRowWidth += (currentRow.length > 1 ? tagGap : 0) + info.width;
+            }
+            if (currentRow.length > 0) rows.push(currentRow);
+
+            const tagsContainer = this.scene.add.container(0, yOffset);
+            let tagY = 0;
+            const rowGap = 8;
+
+            for (const row of rows) {
+                const rowHeight = Math.max(...row.map((r) => r.height)) + rowGap;
+                const rowWidth =
+                    row.reduce((sum, r) => sum + r.width, 0) + tagGap * Math.max(0, row.length - 1);
+                let x = -rowWidth / 2;
+
+                for (const item of row) {
+                    item.badge.setPosition(x + item.width / 2, tagY);
+                    tagsContainer.add(item.badge);
+                    x += item.width + tagGap;
+                }
+                tagY += rowHeight;
+            }
+
+            this.content.add(tagsContainer);
+            yOffset += tagY + 16;
         }
-
-        // Top-align the image so it never overlaps the title above.
-        imageContainer.setY(imageTopY + imageDisplayHeight / 2);
-
-        this.content.add(imageContainer);
-
-        // Advance yOffset based on actual image size.
-        const bottomY = imageContainer.y + imageDisplayHeight / 2;
-        let yOffset = bottomY + 22;
 
         // Description
         const description = this.scene.add.text(0, yOffset, game.description, {
             fontFamily: '"Press Start 2P"',
-            fontSize: "14px",
-            color: "#cccccc",
+            fontSize: "13px",
+            color: "#d1d5db",
             align: "center",
-            wordWrap: { width: this.panelWidth - padding * 2 - 24 },
-            lineSpacing: 5,
+            wordWrap: { width: contentWidth - 16, useAdvancedWrap: true },
+            lineSpacing: 8,
         });
         description.setOrigin(0.5, 0);
         this.content.add(description);
-        yOffset += description.height + 20;
+        yOffset += description.height + 25;
 
         // Fixed footer actions
         if (game.link && !game.link.includes("/unreleased-projects")) {
@@ -636,7 +607,6 @@ export default class InfoPanel {
             this.setFooterActions([{ text: "Cerrar", action: () => this.close() }]);
         }
 
-        // Async image/content affects scroll bounds; recompute if panel is already showing.
         if (this.container.visible) {
             this.recomputeScrollBounds();
         }
@@ -708,7 +678,7 @@ export default class InfoPanel {
 
         // Highlights
         if (experience.highlights.length > 0) {
-            const highlightsTitle = this.scene.add.text(0, yOffset, "Key Highlights:", {
+            const highlightsTitle = this.scene.add.text(0, yOffset, "Aspectos Clave:", {
                 fontFamily: '"Press Start 2P"',
                 fontSize: "16px",
                 color: "#ffffff",

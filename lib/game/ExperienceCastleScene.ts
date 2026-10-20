@@ -1,4 +1,4 @@
-﻿import BaseScene from "./BaseScene";
+import BaseScene from "./BaseScene";
 import { TiledMapLoader, type MapConfig } from "./TiledMapLoader";
 import { PLAYER_CONFIG } from "./GameConfig";
 import OutlineEffect from "./OutlineEffect";

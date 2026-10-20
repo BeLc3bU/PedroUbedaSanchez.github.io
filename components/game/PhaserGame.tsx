@@ -51,6 +51,16 @@ export const PhaserGame = () => {
                 ],
             },
             scene: [IslandScene, ExperienceCastleScene, ProjectsCastleScene, HUDScene],
+            fps: {
+                target: 60,
+                smoothStep: true,
+            },
+            render: {
+                antialias: false,
+                pixelArt: true,
+                roundPixels: true,
+                powerPreference: "high-performance",
+            },
             physics: {
                 default: "arcade",
                 arcade: {

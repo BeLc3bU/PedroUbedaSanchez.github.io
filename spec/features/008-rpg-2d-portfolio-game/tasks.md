@@ -1,7 +1,7 @@
 # Lista de Tareas Accionables: Sustitución por Juego 2D RPG de Portafolio
 
 **Feature Ref**: `spec/features/008-rpg-2d-portfolio-game/spec.md` y `plan.md`  
-**Progreso Total**: `[7 / 7 tareas completadas] (100%)`  
+**Progreso Total**: `[8 / 8 tareas completadas] (100%)`  
 **Última Actualización**: `2026-10-20`
 
 ---
@@ -60,3 +60,12 @@
     - **Archivos**: Todo el workspace
     - **Dependencias**: Todas las tareas anteriores
     - **Criterio de Verificación**: 0 errores de ESLint, build de producción en `dist` generado con éxito y tests pasando.
+
+---
+
+### Fase 6: Enriquecimiento de Contenidos, Corrección Tipográfica y Optimización de Rendimiento
+
+- [x] **`[TASK-008]`**: Completar las 6 experiencias del Castillo de Experiencia, refactorizar el modal de proyectos sin gamepad parpadeante, corregir el texto con caracteres corruptos y optimizar el rendimiento y fluidez del motor Phaser.
+    - **Archivos**: `public/data/experiences.json`, `public/data/games.json`, `lib/game/InfoPanel.ts`, `lib/game/IslandScene.ts`, `lib/game/BaseScene.ts`, `components/game/PhaserGame.tsx`
+    - **Dependencias**: `TASK-007`
+    - **Criterio de Verificación**: Todos los escritorios y proyectos muestran información real en español; eliminación de solicitudes externas y parpadeo; framerate estable a 60 FPS con cámara lerp suave y sin mojibake.

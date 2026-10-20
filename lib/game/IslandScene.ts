@@ -1,4 +1,4 @@
-﻿import BaseScene from "./BaseScene";
+import BaseScene from "./BaseScene";
 import { TiledMapLoader, type MapConfig } from "./TiledMapLoader";
 import { PLAYER_CONFIG } from "./GameConfig";
 import OutlineEffect from "./OutlineEffect";
@@ -123,7 +123,7 @@ export default class IslandScene extends BaseScene {
             this.time.delayedCall(500, () => {
                 const isDesktop = this.game.device.os.desktop;
                 const instructions = isDesktop
-                    ? "Use the arrow keys to move (â† â†‘ â†’ â†“) and press [E] to interact."
+                    ? "Usa las teclas de flechas o WASD para moverte y pulsa [E] para interactuar."
                     : "Usa los controles táctiles en pantalla para moverte e interactuar.";
 
                 this.showDialogue({
