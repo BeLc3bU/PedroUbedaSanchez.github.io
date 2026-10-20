@@ -97,7 +97,7 @@ export function Terminal() {
                               "    hobbies      - Intereses personales\n" +
                               "    contact      - Canales de contacto directo\n" +
                               "  [Simulación & Gamificación]\n" +
-                              "    game / play  - Inicia el minijuego retro 2D del Hangar\n" +
+                              "    game / play  - Inicia la Aventura RPG 2D en la isla interactiva\n" +
                               "    agents       - Ejecuta simulación orquestada de multi-agentes\n" +
                               "  [Sistema & Reactividad]\n" +
                               "    theme        - Cambia el tema visual (uso: theme light|dark|toggle)\n" +
@@ -119,7 +119,7 @@ export function Terminal() {
                               "    hobbies      - Personal interests & activities\n" +
                               "    contact      - Direct communication channels\n" +
                               "  [Simulation & Gamification]\n" +
-                              "    game / play  - Launch 2D Retro Tech Hangar simulation\n" +
+                              "    game / play  - Launch 2D RPG Adventure on the interactive island\n" +
                               "    agents       - Run multi-agent orchestration simulation\n" +
                               "  [System & Reactive]\n" +
                               "    theme        - Toggle or set visual theme (usage: theme light|dark|toggle)\n" +
@@ -273,14 +273,14 @@ export function Terminal() {
 
             case "game":
             case "play":
-            case "hangar":
-            case "tactical":
+            case "rpg":
+            case "adventure":
                 newHistory.push({
                     type: "success",
                     content:
                         language === "es"
-                            ? "[Simulación] Iniciando Hangar Táctico..."
-                            : "[Simulation] Launching Tactical Hangar...",
+                            ? "[Aventura] Iniciando Aventura RPG 2D..."
+                            : "[Adventure] Launching 2D RPG Adventure...",
                 });
                 setIsGameOpen(true);
                 break;

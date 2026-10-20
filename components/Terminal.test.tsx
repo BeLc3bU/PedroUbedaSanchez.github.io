@@ -103,7 +103,7 @@ describe("Terminal Component", () => {
         fireEvent.change(input, { target: { value: "game" } });
         fireEvent.keyDown(input, { key: "Enter", code: "Enter" });
 
-        expect(screen.getByText(/\[Simulación\] Iniciando Hangar/i)).toBeInTheDocument();
+        expect(screen.getByText(/\[Aventura\] Iniciando Aventura RPG 2D/i)).toBeInTheDocument();
     });
 
     it("should show error on unknown command", () => {
