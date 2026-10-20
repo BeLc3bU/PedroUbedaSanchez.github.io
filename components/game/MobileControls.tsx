@@ -1,108 +1,92 @@
-"use client";
-
-import React, { useRef, useState } from "react";
-import type { MobileInputState } from "@/lib/game/types";
+import { useEffect, useRef } from "react";
+import "./MobileControls.css";
 
 interface MobileControlsProps {
-    onInputUpdate: (input: MobileInputState) => void;
+    onMove: (direction: { x: number; y: number }) => void;
+    onInteract: () => void;
 }
 
-export const MobileControls: React.FC<MobileControlsProps> = ({ onInputUpdate }) => {
-    const joystickBaseRef = useRef<HTMLDivElement>(null);
-    const [stickPos, setStickPos] = useState({ x: 0, y: 0 });
-    const [isInteracting, setIsInteracting] = useState(false);
-    const activeTouchIdRef = useRef<number | null>(null);
+export const MobileControls = ({ onMove, onInteract }: MobileControlsProps) => {
+    const joystickRef = useRef<HTMLDivElement>(null);
+    const stickRef = useRef<HTMLDivElement>(null);
+    const isTouchingRef = useRef(false);
 
-    const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-        const touch = e.changedTouches[0];
-        activeTouchIdRef.current = touch.identifier;
-        updateJoystick(touch.clientX, touch.clientY);
-    };
+    useEffect(() => {
+        const joystick = joystickRef.current;
+        const stick = stickRef.current;
+        if (!joystick || !stick) return;
 
-    const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-        for (let i = 0; i < e.changedTouches.length; i++) {
-            const touch = e.changedTouches[i];
-            if (touch.identifier === activeTouchIdRef.current) {
-                updateJoystick(touch.clientX, touch.clientY);
-                break;
+        const handleTouchStart = (e: TouchEvent) => {
+            e.preventDefault();
+            isTouchingRef.current = true;
+        };
+
+        const handleTouchMove = (e: TouchEvent) => {
+            if (!isTouchingRef.current) return;
+            e.preventDefault();
+
+            const touch = e.touches[0];
+            const rect = joystick.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+
+            let deltaX = touch.clientX - centerX;
+            let deltaY = touch.clientY - centerY;
+
+            const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+            const maxDistance = rect.width / 2 - 20;
+
+            if (distance > maxDistance) {
+                deltaX = (deltaX / distance) * maxDistance;
+                deltaY = (deltaY / distance) * maxDistance;
             }
-        }
-    };
 
-    const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
-        for (let i = 0; i < e.changedTouches.length; i++) {
-            if (e.changedTouches[i].identifier === activeTouchIdRef.current) {
-                activeTouchIdRef.current = null;
-                setStickPos({ x: 0, y: 0 });
-                onInputUpdate({ x: 0, y: 0, interact: isInteracting });
-                break;
-            }
-        }
-    };
+            stick.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
 
-    const updateJoystick = (clientX: number, clientY: number) => {
-        if (!joystickBaseRef.current) return;
-        const rect = joystickBaseRef.current.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
+            const normalizedX = deltaX / maxDistance;
+            const normalizedY = deltaY / maxDistance;
+            onMove({ x: normalizedX, y: normalizedY });
+        };
 
-        const maxRadius = rect.width / 2;
-        const deltaX = clientX - centerX;
-        const deltaY = clientY - centerY;
-        const dist = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+        const handleTouchEnd = (e: TouchEvent) => {
+            e.preventDefault();
+            isTouchingRef.current = false;
+            stick.style.transform = "translate(0, 0)";
+            onMove({ x: 0, y: 0 });
+        };
 
-        let normX = deltaX / maxRadius;
-        let normY = deltaY / maxRadius;
+        joystick.addEventListener("touchstart", handleTouchStart);
+        joystick.addEventListener("touchmove", handleTouchMove);
+        joystick.addEventListener("touchend", handleTouchEnd);
 
-        if (dist > maxRadius) {
-            normX = deltaX / dist;
-            normY = deltaY / dist;
-        }
+        return () => {
+            joystick.removeEventListener("touchstart", handleTouchStart);
+            joystick.removeEventListener("touchmove", handleTouchMove);
+            joystick.removeEventListener("touchend", handleTouchEnd);
+        };
+    }, [onMove]);
 
-        setStickPos({ x: normX * 30, y: normY * 30 });
-        onInputUpdate({ x: normX, y: normY, interact: isInteracting });
-    };
+    const isMobile =
+        typeof window !== "undefined" &&
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-    const triggerAction = () => {
-        setIsInteracting(true);
-        onInputUpdate({ x: stickPos.x / 30, y: stickPos.y / 30, interact: true });
-        setTimeout(() => {
-            setIsInteracting(false);
-            onInputUpdate({
-                x: stickPos.x / 30,
-                y: stickPos.y / 30,
-                interact: false,
-            });
-        }, 150);
-    };
+    if (!isMobile) return null;
 
     return (
-        <div className="absolute inset-x-0 bottom-4 px-6 flex justify-between items-end pointer-events-none z-50">
-            {/* Joystick Base */}
-            <div
-                ref={joystickBaseRef}
-                onTouchStart={handleTouchStart}
-                onTouchMove={handleTouchMove}
-                onTouchEnd={handleTouchEnd}
-                onTouchCancel={handleTouchEnd}
-                className="w-24 h-24 rounded-full bg-slate-900/60 border-2 border-primary/40 backdrop-blur-sm relative flex items-center justify-center pointer-events-auto touch-none"
-            >
-                <div
-                    className="w-10 h-10 rounded-full bg-primary/80 shadow-lg shadow-primary/30 transform transition-transform duration-75"
-                    style={{
-                        transform: `translate(${stickPos.x}px, ${stickPos.y}px)`,
-                    }}
-                />
+        <div className="mobile-controls">
+            <div className="joystick" ref={joystickRef}>
+                <div className="joystick-stick" ref={stickRef} />
             </div>
-
-            {/* Action Button */}
             <button
-                onTouchStart={triggerAction}
-                onClick={triggerAction}
-                className="w-16 h-16 rounded-full bg-cyan-500/80 hover:bg-cyan-500 active:scale-95 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-cyan-500/30 flex items-center justify-center pointer-events-auto border border-cyan-400 touch-none cursor-pointer"
+                type="button"
+                className="interact-button"
+                onTouchStart={() => onInteract()}
+                onClick={() => onInteract()}
             >
-                ACT
+                A
             </button>
         </div>
     );
 };
+
+export default MobileControls;

@@ -29,4 +29,13 @@ export default defineConfig([
             "react-refresh/only-export-components": "off",
         },
     },
+    {
+        files: ["lib/game/**/*.{ts,tsx}", "lib/game/*.{ts,tsx}"],
+        rules: {
+            "@typescript-eslint/no-explicit-any": "off",
+            "@typescript-eslint/no-unused-vars": "off",
+            "@typescript-eslint/no-unused-expressions": "off",
+            "no-var": "off",
+        },
+    },
 ]);

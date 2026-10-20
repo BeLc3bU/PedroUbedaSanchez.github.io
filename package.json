@@ -37,6 +37,7 @@
         "lucide-react": "^0.556.0",
         "next": "^16.2.10",
         "phaser": "^3.90.0",
+        "phaser3-rex-plugins": "^1.80.20",
         "react": "^19.2.6",
         "react-dom": "^19.2.6",
         "react-helmet": "^6.1.0",

@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "title": "Elite Agent Bootstrap v2",
+        "description": "Arnés y gobernanza SDD v2 para desarrollo autónomo con agentes de IA, Hand-offs, registros de permisos y verificación continua.",
+        "status": "Production",
+        "tags": ["TypeScript", "Node.js", "AI-First", "SDD"],
+        "image": "",
+        "link": "https://github.com/BeLc3bU/PedroUbedaSanchez.github.io",
+        "engine": "TypeScript"
+    },
+    {
+        "id": 2,
+        "title": "Portfolio Web Personal Interactivo",
+        "description": "Portafolio web con estética cyberpunk minimalista, terminal interactiva Unix, generación de CV dinámico con React-PDF y visualizaciones 3D.",
+        "status": "Production",
+        "tags": ["Next.js 16", "React 19", "Tailwind CSS", "Phaser 3"],
+        "image": "",
+        "link": "https://pedroubedasanchez.es",
+        "engine": "Next.js"
+    },
+    {
+        "id": 3,
+        "title": "AlertasEmpleo",
+        "description": "Sistema automatizado de scraping, filtrado semántico y alertas tempranas de convocatorias públicas y ofertas tecnológicas.",
+        "status": "Completed",
+        "tags": ["Node.js", "Automation", "TypeScript", "Cheerio"],
+        "image": "",
+        "link": "https://github.com/BeLc3bU",
+        "engine": "Node.js"
+    },
+    {
+        "id": 4,
+        "title": "MamalotApp",
+        "description": "Aplicación integral de gestión y seguimiento operativo con arquitectura modular y enfoque centrado en el usuario.",
+        "status": "Active",
+        "tags": ["React", "TypeScript", "Tailwind CSS"],
+        "image": "",
+        "link": "https://github.com/BeLc3bU",
+        "engine": "React"
+    }
+]

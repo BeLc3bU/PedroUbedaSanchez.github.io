@@ -1,0 +1,28 @@
+[
+    {
+        "company": "Ejército del Aire y del Espacio (España)",
+        "location": "Albacete, España",
+        "title": "Especialista en Mantenimiento de Aviónica & Infraestructura IT",
+        "period": "2013 - Presente",
+        "description": "Mantenimiento preventivo y correctivo de aviónica, subsistemas de radar, comunicaciones criptográficas y redes tácticas operativas.",
+        "highlights": [
+            "Diagnóstico avanzado y soporte a equipos de misión crítica.",
+            "Gestión y administración de redes tácticas y telecomunicaciones.",
+            "Cumplimiento estricto de protocolos de seguridad y fiabilidad operativa."
+        ],
+        "technologies": ["Avionics", "Radar Systems", "Cryptography", "RF Networks", "Linux"]
+    },
+    {
+        "company": "Freelance & Consultoría AI-First",
+        "location": "Remoto",
+        "title": "Software Developer & AI Agent Architect",
+        "period": "2023 - Presente",
+        "description": "Diseño y despliegue de soluciones full-stack, automatizaciones empresariales y gobernanza para agentes de inteligencia artificial.",
+        "highlights": [
+            "Desarrollo de portales web interactivos y plataformas SaaS con React 19 y Next.js.",
+            "Implementación de flujos de desarrollo guiado por especificaciones (Spec-Driven Development).",
+            "Automatización de procesos mediante scraping y pipelines CI/CD de alta disponibilidad."
+        ],
+        "technologies": ["TypeScript", "React", "Next.js", "Node.js", "Docker", "Git", "Phaser"]
+    }
+]
