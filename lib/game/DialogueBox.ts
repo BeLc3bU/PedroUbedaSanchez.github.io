@@ -175,7 +175,6 @@ export default class DialogueBox {
         this.background.setStrokeStyle(3, 0x6e84e7);
 
         // Use the global plugin factory
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const add = this.scene.add as any;
 
         if (!add.rexBBCodeText) {

@@ -22,3 +22,7 @@ coverage/
 # Cache
 .cache/
 .next/
+
+# Release Please
+CHANGELOG.md
+.release-please-manifest.json
