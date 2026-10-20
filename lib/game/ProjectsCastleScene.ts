@@ -1,4 +1,4 @@
-import BaseScene from "./BaseScene";
+﻿import BaseScene from "./BaseScene";
 import { TiledMapLoader, type MapConfig } from "./TiledMapLoader";
 import { PLAYER_CONFIG } from "./GameConfig";
 import OutlineEffect from "./OutlineEffect";
@@ -101,7 +101,7 @@ export default class ProjectsCastleScene extends BaseScene {
         // Show environment name
         const hudScene = this.scene.get("HUDScene") as any;
         if (hudScene && hudScene.showEnvironmentName) {
-            hudScene.showEnvironmentName("Projects Castle");
+            hudScene.showEnvironmentName("Castillo de Proyectos");
         }
     }
 
@@ -127,7 +127,7 @@ export default class ProjectsCastleScene extends BaseScene {
                 return;
             }
 
-            Analytics.trackChestOpened("experience_chest", "Projects Castle");
+            Analytics.trackChestOpened("experience_chest", "Castillo de Proyectos");
             closedChest.setVisible(false);
             openChest?.setVisible(true);
 

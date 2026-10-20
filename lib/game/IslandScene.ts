@@ -105,7 +105,7 @@ export default class IslandScene extends BaseScene {
         if (this.registry.get("hasWelcomeShown")) {
             const hudScene = this.scene.get("HUDScene") as any;
             if (hudScene && hudScene.showEnvironmentName) {
-                hudScene.showEnvironmentName("Home Island");
+                hudScene.showEnvironmentName("Isla Principal");
             }
         }
 
@@ -124,10 +124,10 @@ export default class IslandScene extends BaseScene {
                 const isDesktop = this.game.device.os.desktop;
                 const instructions = isDesktop
                     ? "Use the arrow keys to move (â† â†‘ â†’ â†“) and press [E] to interact."
-                    : "Use the on-screen buttons to move and interact.";
+                    : "Usa los controles táctiles en pantalla para moverte e interactuar.";
 
                 this.showDialogue({
-                    text: `Hello, traveler! My name is Pedro.|||Welcome to my village â€” here you can explore my creations and experiences.|||${instructions}`,
+                    text: `¡Hola, explorador! Soy Pedro Úbeda.|||Bienvenido a mi isla: aquí puedes explorar mis proyectos y trayectoria.|||${instructions}`,
                     onClose: () => {
                         this.setMovementLocked(false);
                         const facing = this.registry.get("playerDirection") || "down";
@@ -136,7 +136,7 @@ export default class IslandScene extends BaseScene {
                         // Show environment name after intro
                         const hudScene = this.scene.get("HUDScene") as any;
                         if (hudScene && hudScene.showEnvironmentName) {
-                            hudScene.showEnvironmentName("Home Island");
+                            hudScene.showEnvironmentName("Isla Principal");
                         }
                     },
                 });
@@ -151,10 +151,10 @@ export default class IslandScene extends BaseScene {
         const infoType = obj.properties?.find((p: any) => p.name === "type")?.value;
         if (infoType === "welcome_info") {
             this.welcomePanel.show({
-                message: "Looking to connect?\nVisit my portfolio site for more info.",
+                message: "¿Quieres ponerte en contacto?\nVisita la sección de contacto de la web.",
                 url: "/#contact",
-                primaryText: "Take me there",
-                secondaryText: "Not now",
+                primaryText: "Ir al formulario",
+                secondaryText: "Ahora no",
             });
             return;
         }
@@ -169,7 +169,9 @@ export default class IslandScene extends BaseScene {
                 const requiredKey = `${keyColor}_key`;
 
                 if (!inventory.includes(requiredKey)) {
-                    this.showDialogue(`Locked! You need the ${keyColor} key.`);
+                    this.showDialogue(
+                        `¡Bloqueado! Necesitas la llave ${keyColor === "blue" ? "azul" : keyColor === "green" ? "verde" : keyColor}.`
+                    );
                     return;
                 }
             }

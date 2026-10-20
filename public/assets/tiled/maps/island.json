@@ -1,4 +1,4 @@
-{
+﻿{
     "compressionlevel": -1,
     "height": 50,
     "infinite": false,
@@ -1985,7 +1985,7 @@
                                 {
                                     "name": "text",
                                     "type": "string",
-                                    "value": "Follow this path to explore the castles."
+                                    "value": "Sigue este camino para explorar los castillos."
                                 }
                             ],
                             "rotation": 0,
@@ -2003,7 +2003,7 @@
                                 {
                                     "name": "text",
                                     "type": "string",
-                                    "value": "Under construction. Please, come back later."
+                                    "value": "En construcción. Por favor, vuelve más tarde."
                                 }
                             ],
                             "rotation": 0,
@@ -2021,7 +2021,7 @@
                                 {
                                     "name": "text",
                                     "type": "string",
-                                    "value": "Under construction. Please, come back later."
+                                    "value": "En construcción. Por favor, vuelve más tarde."
                                 }
                             ],
                             "rotation": 0,
@@ -2072,7 +2072,7 @@
                                 {
                                     "name": "key_word",
                                     "type": "string",
-                                    "value": "Projects Castle"
+                                    "value": "Castillo de Proyectos"
                                 },
                                 {
                                     "name": "key_word_color",
@@ -2082,7 +2082,7 @@
                                 {
                                     "name": "text",
                                     "type": "string",
-                                    "value": "You find the {0} key!"
+                                    "value": "¡Has encontrado la llave {0}!"
                                 }
                             ],
                             "rotation": 0,
@@ -2100,7 +2100,7 @@
                                 {
                                     "name": "key_word",
                                     "type": "string",
-                                    "value": "Projects"
+                                    "value": "Proyectos"
                                 },
                                 {
                                     "name": "key_word_color",
@@ -2110,7 +2110,7 @@
                                 {
                                     "name": "text",
                                     "type": "string",
-                                    "value": "Welcome to {0} castle! Explore all the games that I built."
+                                    "value": "¡Bienvenido al castillo de {0}! Explora mis proyectos destacados."
                                 }
                             ],
                             "rotation": 0,
@@ -2128,7 +2128,7 @@
                                 {
                                     "name": "key_word",
                                     "type": "string",
-                                    "value": "Experience"
+                                    "value": "Experiencia"
                                 },
                                 {
                                     "name": "key_word_color",
@@ -2138,7 +2138,7 @@
                                 {
                                     "name": "text",
                                     "type": "string",
-                                    "value": "Welcome to the castle {0}! Explore all the companies I've worked for."
+                                    "value": "¡Bienvenido al castillo de {0}! Explora las empresas y proyectos en los que he trabajado."
                                 }
                             ],
                             "rotation": 0,

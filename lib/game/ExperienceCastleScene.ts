@@ -1,4 +1,4 @@
-import BaseScene from "./BaseScene";
+﻿import BaseScene from "./BaseScene";
 import { TiledMapLoader, type MapConfig } from "./TiledMapLoader";
 import { PLAYER_CONFIG } from "./GameConfig";
 import OutlineEffect from "./OutlineEffect";
@@ -89,7 +89,7 @@ export default class ExperienceCastleScene extends BaseScene {
         // Show environment name
         const hudScene = this.scene.get("HUDScene") as any;
         if (hudScene && hudScene.showEnvironmentName) {
-            hudScene.showEnvironmentName("Experience Castle");
+            hudScene.showEnvironmentName("Castillo de Experiencia");
         }
 
         // Test for BBCode Text
@@ -116,14 +116,14 @@ export default class ExperienceCastleScene extends BaseScene {
             const openChest = this.objectSprites.get("projects_open_chest");
 
             if (closedChest?.visible) {
-                Analytics.trackChestOpened("chest", "Experience Castle");
+                Analytics.trackChestOpened("chest", "Castillo de Experiencia");
                 closedChest.setVisible(false);
                 openChest?.setVisible(true);
                 this.showDialogue(
-                    "Chest opened! Please read this important message: Thank you for playing this game. Have a great day! This chest is now empty."
+                    "¡Cofre abierto! Muchas gracias por explorar este juego. ¡Que tengas un excelente día! Este cofre ya está vacío."
                 );
             } else {
-                this.showDialogue("Chest already open");
+                this.showDialogue("El cofre ya está abierto.");
             }
         } else if (obj.name === "experience_closed_chest") {
             const closedChest = this.objectSprites.get("experience_closed_chest");
@@ -133,7 +133,7 @@ export default class ExperienceCastleScene extends BaseScene {
                 return;
             }
 
-            Analytics.trackChestOpened("experience_chest", "Experience Castle");
+            Analytics.trackChestOpened("experience_chest", "Castillo de Experiencia");
             closedChest.setVisible(false);
             openChest?.setVisible(true);
         }

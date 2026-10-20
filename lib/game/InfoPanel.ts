@@ -391,7 +391,7 @@ export default class InfoPanel {
         const label = buttonContainer.getAt(1) as Phaser.GameObjects.Text;
 
         // Determine if this is a Close button
-        const isCloseButton = label.text === "Close";
+        const isCloseButton = label.text === "Cerrar" || label.text === "Close";
 
         if (highlighted) {
             if (isCloseButton) {
@@ -463,8 +463,8 @@ export default class InfoPanel {
         let yOffset = 18;
 
         // Status and Engine badges at top
-        const statusColor = game.status === "released" ? "#4ade80" : "#fbbf24";
-        const statusText = game.status === "released" ? "Released" : "In Development";
+        const statusColor = game.status === "Publicado" ? "#4ade80" : "#fbbf24";
+        const statusText = game.status === "Publicado" ? "Publicado" : "En Desarrollo";
 
         const badgeContainer = this.scene.add.container(0, yOffset);
         const statusBadge = this.createBadge(statusText, statusColor, 0);
@@ -624,16 +624,16 @@ export default class InfoPanel {
         if (game.link && !game.link.includes("/unreleased-projects")) {
             this.setFooterActions([
                 {
-                    text: "Play Game",
+                    text: "Ver Proyecto",
                     action: () => {
                         Analytics.trackExternalLinkClick(game.link, game.title);
                         window.open(game.link, "_blank");
                     },
                 },
-                { text: "Close", action: () => this.close() },
+                { text: "Cerrar", action: () => this.close() },
             ]);
         } else {
-            this.setFooterActions([{ text: "Close", action: () => this.close() }]);
+            this.setFooterActions([{ text: "Cerrar", action: () => this.close() }]);
         }
 
         // Async image/content affects scroll bounds; recompute if panel is already showing.
@@ -736,7 +736,7 @@ export default class InfoPanel {
 
         // Technologies
         if (experience.technologies.length > 0) {
-            const techTitle = this.scene.add.text(0, yOffset, "Technologies:", {
+            const techTitle = this.scene.add.text(0, yOffset, "Tecnologías:", {
                 fontFamily: '"Press Start 2P"',
                 fontSize: "16px",
                 color: "#ffffff",
@@ -819,7 +819,7 @@ export default class InfoPanel {
         }
 
         // Fixed footer actions
-        this.setFooterActions([{ text: "Close", action: () => this.close() }]);
+        this.setFooterActions([{ text: "Cerrar", action: () => this.close() }]);
     }
 
     private setFooterActions(actions: Array<{ text: string; action: () => void }>) {
@@ -915,7 +915,7 @@ export default class InfoPanel {
         const fontSize = options?.fontSize ?? 16;
 
         // Use gray color for Close button, blue for others
-        const isCloseButton = text === "Close";
+        const isCloseButton = text === "Cerrar" || text === "Cerrar";
         const bgColor = isCloseButton ? 0x4a5568 : 0x3b82f6;
         const borderColor = isCloseButton ? 0x374151 : 0x2563eb;
 
@@ -964,7 +964,7 @@ export default class InfoPanel {
         });
         errorText.setOrigin(0.5);
         this.content.add(errorText);
-        this.setFooterActions([{ text: "Close", action: () => this.close() }]);
+        this.setFooterActions([{ text: "Cerrar", action: () => this.close() }]);
         this.show();
     }
 

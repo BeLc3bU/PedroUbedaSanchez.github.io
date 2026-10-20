@@ -1,4 +1,4 @@
-{
+﻿{
     "compressionlevel": -1,
     "height": 20,
     "infinite": false,
@@ -627,7 +627,7 @@
                                 {
                                     "name": "text",
                                     "type": "string",
-                                    "value": "You find the {0} key!"
+                                    "value": "¡Has encontrado la llave {0}!"
                                 }
                             ],
                             "rotation": 0,
