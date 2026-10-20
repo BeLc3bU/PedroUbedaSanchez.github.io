@@ -62,6 +62,14 @@ export default function RootLayout({
             suppressHydrationWarning
         >
             <head>
+                {/* Preload Press Start 2P font for RPG Game */}
+                <link
+                    rel="preload"
+                    href="/assets/fonts/PressStart2P.ttf"
+                    as="font"
+                    type="font/ttf"
+                    crossOrigin="anonymous"
+                />
                 {/* Script de bloqueo de parpadeo para el tema oscuro */}
                 <script
                     dangerouslySetInnerHTML={{

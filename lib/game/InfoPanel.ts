@@ -581,7 +581,7 @@ export default class InfoPanel {
         // Description
         const description = this.scene.add.text(0, yOffset, game.description, {
             fontFamily: '"Press Start 2P"',
-            fontSize: "13px",
+            fontSize: "14px",
             color: "#d1d5db",
             align: "center",
             wordWrap: { width: contentWidth - 16, useAdvancedWrap: true },
