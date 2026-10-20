@@ -10,77 +10,27 @@ export interface Size {
     height: number;
 }
 
-export interface RectCollider {
+export interface MobileInputState {
     x: number;
     y: number;
-    width: number;
-    height: number;
+    interact: boolean;
 }
 
-export interface Player {
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-    speed: number;
-    direction: Direction;
-    isMoving: boolean;
-    stepAnim: number;
+export interface GameItemDetail {
+    company?: string;
+    period?: string;
+    location?: string;
+    category?: string;
+    highlights?: string[];
+    tags?: string[];
+    technologies?: string[];
+    link?: string;
 }
 
-export interface StationAction {
-    type: "route" | "scroll" | "link";
-    target: string;
-    label: {
-        es: string;
-        en: string;
-    };
-}
-
-export interface InteractiveStation {
-    id: "avionics" | "agents" | "infra" | "command";
-    npcId: "pedro" | "nexus" | "alex" | "command";
-    name: string;
-    icon: string;
-    color: string;
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-    interactRadius: number;
-    portraitCol: number; // 0 o 1
-    portraitRow: number; // 0 o 1
-    tagline: {
-        es: string;
-        en: string;
-    };
-    action?: StationAction;
-    secondaryAction?: StationAction;
-    dialog: {
-        es: {
-            title: string;
-            speaker: string;
-            role: string;
-            lines: string[];
-            highlights: string[];
-        };
-        en: {
-            title: string;
-            speaker: string;
-            role: string;
-            lines: string[];
-            highlights: string[];
-        };
-    };
-}
-
-export interface GameState {
-    player: Player;
-    stations: InteractiveStation[];
-    obstacles: RectCollider[];
-    activeStationId: string | null;
-    isNearStation: InteractiveStation | null;
-    isPaused: boolean;
-    mapWidth: number;
-    mapHeight: number;
+export interface GameInteractionPayload {
+    type: "PROJECTS" | "EXPERIENCE" | "SKILLS" | "ABOUT" | "CONTACT";
+    title?: string;
+    description?: string;
+    id?: string;
+    details?: GameItemDetail;
 }

@@ -46,12 +46,12 @@ Los agentes DEBEN seguir este pipeline para cada funcionalidad:
 
 ## 👥 Sistema de Agentes Especializados
 
-| Agente                | Responsabilidad                                         | Skills / Herramientas |
-| --------------------- | ------------------------------------------------------- | --------------------- |
-| **Orchestrator**      | Coordinación global, supervisión de fases y delegación  | orchestrator-core     |
-| **SpecAgent**         | Guardián de especificaciones, contratos y flujo SDD     | spec-kit              |
-| **OptimizationAgent** | Auditoría de rendimiento, bundle size y refactorización | performance-audit     |
-{{SPECIALIZED_AGENTS_LIST}}
+| Agente                      | Responsabilidad                                         | Skills / Herramientas |
+| --------------------------- | ------------------------------------------------------- | --------------------- |
+| **Orchestrator**            | Coordinación global, supervisión de fases y delegación  | orchestrator-core     |
+| **SpecAgent**               | Guardián de especificaciones, contratos y flujo SDD     | spec-kit              |
+| **OptimizationAgent**       | Auditoría de rendimiento, bundle size y refactorización | performance-audit     |
+| {{SPECIALIZED_AGENTS_LIST}} |
 
 ---
 
@@ -65,4 +65,5 @@ Los agentes DEBEN seguir este pipeline para cada funcionalidad:
 ---
 
 ## 🗺️ Plan de Fases del Proyecto
+
 {{PHASE_PLAN_CHECKLIST}}

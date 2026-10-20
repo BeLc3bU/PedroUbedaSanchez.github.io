@@ -1,0 +1,47 @@
+{
+    "columns": 7,
+    "image": "..\/..\/Assets\/2D\/P_P_FREE_RPG_TILESET\/P_P_FREE_RPG_TILESET\/decor.png",
+    "imageheight": 144,
+    "imagewidth": 168,
+    "margin": 0,
+    "name": "decor",
+    "spacing": 0,
+    "tilecount": 42,
+    "tiledversion": "1.11.2",
+    "tileheight": 24,
+    "tiles": [
+        {
+            "id": 1,
+            "properties": [
+                {
+                    "name": "name",
+                    "type": "string",
+                    "value": "chest"
+                },
+                {
+                    "name": "state",
+                    "type": "string",
+                    "value": "closed"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "properties": [
+                {
+                    "name": "name",
+                    "type": "string",
+                    "value": "chest"
+                },
+                {
+                    "name": "state",
+                    "type": "string",
+                    "value": "open"
+                }
+            ]
+        }
+    ],
+    "tilewidth": 24,
+    "type": "tileset",
+    "version": "1.10"
+}

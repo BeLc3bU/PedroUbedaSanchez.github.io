@@ -9,7 +9,7 @@ import { useTheme } from "@/hooks/useTheme";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useRouter } from "next/navigation";
 import { Terminal as TerminalIcon, Sparkles } from "lucide-react";
-import HangarModal from "./game/HangarModal";
+import PortfolioGameModal from "./game/PortfolioGameModal";
 
 interface TerminalLine {
     type: "input" | "output" | "error" | "success" | "info";
@@ -591,7 +591,7 @@ export function Terminal() {
                 </div>
             </div>
 
-            <HangarModal isOpen={isGameOpen} onClose={() => setIsGameOpen(false)} />
+            <PortfolioGameModal isOpen={isGameOpen} onClose={() => setIsGameOpen(false)} />
         </>
     );
 }
