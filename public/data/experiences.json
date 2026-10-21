@@ -98,22 +98,27 @@
         ]
     },
     {
-        "company": "CIFP Carlos III (Cartagena)",
-        "location": "Cartagena, España",
-        "title": "Técnico Especialista en Informática de Gestión (FP II)",
-        "period": "1998 - 2001",
-        "description": "Titulación técnica oficial en desarrollo de software, análisis informático, bases de datos relacionales y gestión empresarial.",
+        "company": "Habilidades & Competencias",
+        "location": "IT & Aviónica",
+        "title": "Capacidades Técnicas & Competencias Profesionales",
+        "period": "20+ Años de Trayectoria",
+        "description": "Conjunto integral de habilidades técnicas, metodologías de ingeniería, diagnóstico en sistemas críticos y gestión operativa multidisciplinar.",
         "highlights": [
-            "Fundamentos sólidos de algoritmia, programación estructurada y bases de datos.",
-            "Diseño de flujos administrativos e informatización de procesos empresariales.",
-            "Desarrollo de proyectos iniciales de desarrollo de software y gestión técnica."
+            "Análisis y diagnóstico avanzado en entornos críticos y simuladores de vuelo.",
+            "Desarrollo de software, automatización con agentes de IA y gobernanza SDD v2.",
+            "Administración de infraestructuras IT, Active Directory, redes y gestión documental.",
+            "Alta adaptabilidad bajo presión, orientación a resultados y disciplina operativa."
         ],
         "technologies": [
-            "Informática de Gestión",
+            "TypeScript",
+            "Python",
+            "React / Next.js",
+            "Linux",
+            "Active Directory",
+            "IA & Automatización",
+            "Aviónica",
             "Bases de Datos",
-            "Sistemas Operativos",
-            "Programación",
-            "Redes"
+            "Diagnóstico Crítico"
         ]
     }
 ]

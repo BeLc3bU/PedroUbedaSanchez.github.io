@@ -593,9 +593,10 @@ export default class InfoPanel {
 
         // Fixed footer actions
         if (game.link && !game.link.includes("/unreleased-projects")) {
+            const buttonText = game.link.includes("github.com") ? "Ver GitHub" : "Ver Proyecto";
             this.setFooterActions([
                 {
-                    text: "Ver Proyecto",
+                    text: buttonText,
                     action: () => {
                         Analytics.trackExternalLinkClick(game.link, game.title);
                         window.open(game.link, "_blank");

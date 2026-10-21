@@ -1,8 +1,8 @@
 # Lista de Tareas Accionables: Sustitución por Juego 2D RPG de Portafolio
 
 **Feature Ref**: `spec/features/008-rpg-2d-portfolio-game/spec.md` y `plan.md`  
-**Progreso Total**: `[8 / 8 tareas completadas] (100%)`  
-**Última Actualización**: `2026-10-20`
+**Progreso Total**: `[10 / 10 tareas completadas] (100%)`  
+**Última Actualización**: `2026-10-21`
 
 ---
 
@@ -69,3 +69,17 @@
     - **Archivos**: `public/data/experiences.json`, `public/data/games.json`, `lib/game/InfoPanel.ts`, `lib/game/IslandScene.ts`, `lib/game/BaseScene.ts`, `components/game/PhaserGame.tsx`
     - **Dependencias**: `TASK-007`
     - **Criterio de Verificación**: Todos los escritorios y proyectos muestran información real en español; eliminación de solicitudes externas y parpadeo; framerate estable a 60 FPS con cámara lerp suave y sin mojibake.
+
+---
+
+### Fase 7: Filtrado Exclusivo de Repositorios de GitHub en Castillo de Proyectos
+
+- [x] **`[TASK-009]`**: Actualizar datos de proyectos para mostrar única y exclusivamente repositorios de GitHub de BeLc3bU y contextualizar botón del modal.
+    - **Archivos**: `public/data/games.json`, `lib/game/InfoPanel.ts`
+    - **Dependencias**: `TASK-008`
+    - **Criterio de Verificación**: Los 6 escritorios del Castillo de Proyectos corresponden a repositorios de GitHub válidos (`elite-agent-bootstrap`, `PedroUbedaSanchez.github.io`, `SeartchJobs`, `CommonPay`, `Suboficiales2026`, `test-Cabo1`), y el botón muestra 'Ver GitHub' dirigiendo a la URL del repositorio.
+
+- [x] **`[TASK-010]`**: Actualizar la Mesa 6 del Castillo de Experiencia para mostrar Habilidades y Competencias en lugar de estudios previos.
+    - **Archivos**: `public/data/experiences.json`
+    - **Dependencias**: `TASK-009`
+    - **Criterio de Verificación**: La mesa 6 muestra el panel de Habilidades & Competencias con capacidades clave y tecnologías alineadas con el portfolio.
