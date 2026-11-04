@@ -116,11 +116,11 @@ La estructura de carpetas sigue un patrón estructurado modular en React:
 
 ---
 
-## 7. Flujo de Trabajo Spec-Driven Development (GitHub Spec Kit)
+## 7. Flujo de Trabajo Organic-Driven Development (ODD - Gentle Shell) (GitHub Spec Kit)
 
 Este repositorio utiliza **GitHub Spec Kit (`specify`)** para guiar el desarrollo mediante especificaciones:
 
-1. **Especificación (`/speckit-specify`)**: Crear o actualizar la especificación funcional en `spec/features/<numero>-<nombre>/spec.md`.
+1. **Especificación (`/speckit-specify`)**: Crear o actualizar la especificación funcional en `odd/tasks/<numero>-<nombre>/spec.md`.
 2. **Clarificación (`/speckit-clarify` - opcional)**: Resolver dudas o ambigüedades antes de planificar.
 3. **Planificación (`/speckit-plan`)**: Generar el plan técnico de arquitectura (`plan.md`).
 4. **Desglose de Tareas (`/speckit-tasks`)**: Generar la lista de tareas en `tasks.md`.
