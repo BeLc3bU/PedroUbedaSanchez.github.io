@@ -50,8 +50,8 @@ export default function GameSection() {
                 </AnimateOnScroll>
             </div>
 
-            {/* Game Adventure Modal */}
-            <PortfolioGameModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+            {/* Game Adventure Modal (lazy-mounted only when opened) */}
+            {isOpen && <PortfolioGameModal isOpen={isOpen} onClose={() => setIsOpen(false)} />}
         </section>
     );
 }

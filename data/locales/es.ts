@@ -252,6 +252,15 @@ export const es = {
         toastSuccessDesc: "He recibido su mensaje encriptado. Procederé a revisarlo a la brevedad.",
         toastErrorTitle: "Error crítico",
         toastErrorDesc: "Fallo en el enlace de comunicación. Reintegre el envío.",
+        validation: {
+            nameRequired: "Identidad requerida.",
+            nameMin: "Introduce al menos 2 caracteres.",
+            emailInvalid: "Formato de comunicación no válido.",
+            messageRequired: "Mensaje vacío.",
+            messageMin: "El mensaje debe tener al menos 10 caracteres.",
+            messageMax: "El mensaje no puede superar los 2000 caracteres.",
+            charCount: "caracteres",
+        },
         connectTitle: "Conectemos",
         connectSubtitle:
             "Siempre abierto a debatir nuevos proyectos, ideas creativas u oportunidades profesionales.",

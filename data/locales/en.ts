@@ -256,6 +256,15 @@ export const en: TranslationDictionary = {
         toastSuccessDesc: "Received your encrypted transmission. I will review and reply promptly.",
         toastErrorTitle: "Critical Error",
         toastErrorDesc: "Communication link failure. Please retry your transmission.",
+        validation: {
+            nameRequired: "Identity is required.",
+            nameMin: "Please enter at least 2 characters.",
+            emailInvalid: "Invalid email format.",
+            messageRequired: "Message cannot be empty.",
+            messageMin: "Message must be at least 10 characters.",
+            messageMax: "Message cannot exceed 2000 characters.",
+            charCount: "characters",
+        },
         connectTitle: "Let's Connect",
         connectSubtitle:
             "Always open to discussing technical projects, creative ideas, or engineering opportunities.",

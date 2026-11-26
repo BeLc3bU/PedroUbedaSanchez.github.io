@@ -4,6 +4,7 @@ import { PLAYER_CONFIG } from "./GameConfig";
 import OutlineEffect from "./OutlineEffect";
 import InfoPanel from "./InfoPanel";
 import { Analytics } from "./analytics";
+import { addInventoryItem, markChestOpened } from "./progressStorage";
 
 export default class ProjectsCastleScene extends BaseScene {
     private infoPanel!: InfoPanel;
@@ -47,6 +48,7 @@ export default class ProjectsCastleScene extends BaseScene {
         // Load dialogue button textures
         this.load.image("e_key_button", "assets/textures/e_key.png");
         this.load.image("a_button", "assets/textures/a_button.png");
+        TiledMapLoader.attachLoadingProgress(this);
     }
 
     create() {
@@ -87,8 +89,11 @@ export default class ProjectsCastleScene extends BaseScene {
             topLayer?.setDepth(map.heightInPixels + 1000);
         }
 
-        // Our loader doesn't respect Tiled's initial visibility flag, so hide open chest explicitly.
-        this.objectSprites.get("experience_open_chest")?.setVisible(false);
+        // Our loader doesn't respect Tiled's initial visibility flag, so restore saved chest state explicitly.
+        const openedChests: string[] = this.registry.get("openedChests") || [];
+        const isExperienceChestOpened = openedChests.includes("experience_closed_chest");
+        this.objectSprites.get("experience_closed_chest")?.setVisible(!isExperienceChestOpened);
+        this.objectSprites.get("experience_open_chest")?.setVisible(isExperienceChestOpened);
 
         this.setupColliders(map); // 'System/Colliders'
         this.setupInteractables(map); // 'System/Interactables'
@@ -130,6 +135,11 @@ export default class ProjectsCastleScene extends BaseScene {
             Analytics.trackChestOpened("experience_chest", "Castillo de Proyectos");
             closedChest.setVisible(false);
             openChest?.setVisible(true);
+            const openedChests: string[] = this.registry.get("openedChests") || [];
+            if (!openedChests.includes("experience_closed_chest")) {
+                this.registry.set("openedChests", [...openedChests, "experience_closed_chest"]);
+            }
+            markChestOpened("experience_closed_chest");
 
             // Key animation (reuse the same key sprite frame as HUD for now)
             if (openChest) {
@@ -171,6 +181,7 @@ export default class ProjectsCastleScene extends BaseScene {
                             if (!currentInventory.includes("green_key")) {
                                 Analytics.trackKeyCollected("green");
                                 this.registry.set("inventory", [...currentInventory, "green_key"]);
+                                addInventoryItem("green_key");
                             }
                         },
                     });

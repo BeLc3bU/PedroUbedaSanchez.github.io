@@ -36,6 +36,7 @@ export default class ExperienceCastleScene extends BaseScene {
         // Load dialogue button textures
         this.load.image("e_key_button", "assets/textures/e_key.png");
         this.load.image("a_button", "assets/textures/a_button.png");
+        TiledMapLoader.attachLoadingProgress(this);
     }
 
     create() {

@@ -3,9 +3,19 @@
 import React, { useState, useRef, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Maximize2, Minimize2, Gamepad2 } from "lucide-react";
+import { X, Maximize2, Minimize2, Gamepad2, RotateCcw, Loader2 } from "lucide-react";
+import { toast } from "sonner";
+import { resetGameProgress } from "@/lib/game/progressStorage";
 
-const PhaserGame = dynamic(() => import("./PhaserGame"), { ssr: false });
+const PhaserGame = dynamic(() => import("./PhaserGame"), {
+    ssr: false,
+    loading: () => (
+        <div className="w-full h-full flex flex-col items-center justify-center gap-3 text-cyan-400 font-mono text-xs">
+            <Loader2 className="w-8 h-8 animate-spin" />
+            <span>Cargando motor RPG 2D...</span>
+        </div>
+    ),
+});
 
 interface PortfolioGameModalProps {
     isOpen: boolean;
@@ -14,6 +24,7 @@ interface PortfolioGameModalProps {
 
 export const PortfolioGameModal: React.FC<PortfolioGameModalProps> = ({ isOpen, onClose }) => {
     const [isFullscreen, setIsFullscreen] = useState(false);
+    const [gameSessionKey, setGameSessionKey] = useState(0);
     const modalRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -75,6 +86,14 @@ export const PortfolioGameModal: React.FC<PortfolioGameModalProps> = ({ isOpen, 
         }
     };
 
+    const handleResetProgress = () => {
+        resetGameProgress();
+        setGameSessionKey((prev) => prev + 1);
+        toast.success("Progreso reiniciado", {
+            description: "Tu aventura vuelve al punto de partida.",
+        });
+    };
+
     if (!isOpen) return null;
 
     return (
@@ -101,6 +120,15 @@ export const PortfolioGameModal: React.FC<PortfolioGameModalProps> = ({ isOpen, 
                         </div>
 
                         <div className="flex items-center gap-2">
+                            <button
+                                onClick={handleResetProgress}
+                                className="p-1.5 rounded-lg hover:bg-muted text-muted-foreground hover:text-cyan-400 transition-colors cursor-pointer"
+                                title="Reiniciar progreso guardado"
+                                aria-label="Reiniciar progreso guardado"
+                            >
+                                <RotateCcw className="w-4 h-4" />
+                            </button>
+
                             <button
                                 onClick={toggleFullscreen}
                                 className="p-1.5 rounded-lg hover:bg-muted text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
@@ -129,7 +157,7 @@ export const PortfolioGameModal: React.FC<PortfolioGameModalProps> = ({ isOpen, 
 
                     {/* Game Content */}
                     <div className="flex-1 w-full h-full relative overflow-hidden bg-black">
-                        <PhaserGame />
+                        <PhaserGame key={gameSessionKey} />
                     </div>
                 </motion.div>
             </div>

@@ -5,12 +5,15 @@ import IslandScene from "@/lib/game/IslandScene";
 import HUDScene from "@/lib/game/HUDScene";
 import ProjectsCastleScene from "@/lib/game/ProjectsCastleScene";
 import ExperienceCastleScene from "@/lib/game/ExperienceCastleScene";
+import { loadGameProgress } from "@/lib/game/progressStorage";
+import { detectTouchMobileDevice } from "@/lib/game/deviceDetection";
 import MobileControls from "./MobileControls";
 import "./PhaserGame.css";
 
 export const PhaserGame = () => {
     const gameContainer = useRef<HTMLDivElement>(null);
     const gameInstance = useRef<Phaser.Game | null>(null);
+    const interactTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const [mobileInput, setMobileInput] = useState({
         x: 0,
         y: 0,
@@ -20,14 +23,25 @@ export const PhaserGame = () => {
         if (typeof window === "undefined") return true;
         return window.innerWidth > window.innerHeight;
     });
-
-    const isMobile =
-        typeof window !== "undefined" &&
-        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const [isMobile] = useState(() => detectTouchMobileDevice());
 
     const handleInteract = useCallback(() => {
+        if (interactTimeoutRef.current) {
+            clearTimeout(interactTimeoutRef.current);
+        }
         setMobileInput((prev) => ({ ...prev, interact: true }));
-        setTimeout(() => setMobileInput((prev) => ({ ...prev, interact: false })), 100);
+        interactTimeoutRef.current = setTimeout(() => {
+            setMobileInput((prev) => ({ ...prev, interact: false }));
+            interactTimeoutRef.current = null;
+        }, 100);
+    }, []);
+
+    useEffect(() => {
+        return () => {
+            if (interactTimeoutRef.current) {
+                clearTimeout(interactTimeoutRef.current);
+            }
+        };
     }, []);
 
     useEffect(() => {
@@ -91,6 +105,14 @@ export const PhaserGame = () => {
                     autoCenter: Phaser.Scale.CENTER_BOTH,
                     width: 800,
                     height: 500,
+                },
+                callbacks: {
+                    preBoot: (bootedGame) => {
+                        const saved = loadGameProgress();
+                        bootedGame.registry.set("inventory", saved.inventory);
+                        bootedGame.registry.set("openedChests", saved.openedChests);
+                        bootedGame.registry.set("hasWelcomeShown", saved.hasWelcomeShown);
+                    },
                 },
             };
 

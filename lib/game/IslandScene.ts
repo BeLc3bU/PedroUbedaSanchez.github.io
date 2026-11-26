@@ -4,6 +4,7 @@ import { PLAYER_CONFIG } from "./GameConfig";
 import OutlineEffect from "./OutlineEffect";
 import { Analytics } from "./analytics";
 import WelcomePanel from "./WelcomePanel";
+import { addInventoryItem, markChestOpened, markWelcomeShown } from "./progressStorage";
 
 export default class IslandScene extends BaseScene {
     private welcomePanel!: WelcomePanel;
@@ -49,6 +50,7 @@ export default class IslandScene extends BaseScene {
         // Load dialogue button textures
         this.load.image("e_key_button", "assets/textures/e_key.png");
         this.load.image("a_button", "assets/textures/a_button.png");
+        TiledMapLoader.attachLoadingProgress(this);
     }
 
     create() {
@@ -92,7 +94,10 @@ export default class IslandScene extends BaseScene {
             topLayer?.setDepth(map.heightInPixels + 1000); // Ensure it's above everything
         }
 
-        this.objectSprites.get("projects_open_chest")?.setVisible(false);
+        const openedChests: string[] = this.registry.get("openedChests") || [];
+        const isProjectsChestOpened = openedChests.includes("projects_closed_chest");
+        this.objectSprites.get("projects_closed_chest")?.setVisible(!isProjectsChestOpened);
+        this.objectSprites.get("projects_open_chest")?.setVisible(isProjectsChestOpened);
         this.setupColliders(map); // 'System/Colliders'
         this.setupInteractables(map); // 'System/Interactables'
         this.setupInput();
@@ -142,6 +147,7 @@ export default class IslandScene extends BaseScene {
                 });
             });
             this.registry.set("hasWelcomeShown", true);
+            markWelcomeShown();
         }
     }
 
@@ -194,6 +200,11 @@ export default class IslandScene extends BaseScene {
                 Analytics.trackChestOpened("projects_chest", "Island");
                 closedChest.setVisible(false);
                 openChest?.setVisible(true);
+                const openedChests: string[] = this.registry.get("openedChests") || [];
+                if (!openedChests.includes("projects_closed_chest")) {
+                    this.registry.set("openedChests", [...openedChests, "projects_closed_chest"]);
+                }
+                markChestOpened("projects_closed_chest");
 
                 // Added key animation
                 if (openChest) {
@@ -241,6 +252,7 @@ export default class IslandScene extends BaseScene {
                                         ...currentInventory,
                                         "blue_key",
                                     ]);
+                                    addInventoryItem("blue_key");
                                 }
                             },
                         });

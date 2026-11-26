@@ -68,6 +68,50 @@ export class TiledMapLoader {
         scene.load.tilemapTiledJSON(config.mapKey, config.mapPath);
     }
 
+    /**
+     * Muestra una barra de progreso minimalista mientras se descargan los assets de la escena.
+     * Solo se renderiza si hay archivos pendientes en la cola de carga.
+     */
+    static attachLoadingProgress(scene: Phaser.Scene) {
+        if (scene.load.totalToLoad === 0) return;
+
+        const { width, height } = scene.scale;
+        const barWidth = Math.min(280, Math.max(160, width * 0.45));
+        const barHeight = 14;
+        const centerX = width / 2;
+        const centerY = height / 2;
+
+        const container = scene.add.container(0, 0).setDepth(20000);
+        const bgBox = scene.add
+            .rectangle(centerX, centerY, barWidth + 8, barHeight + 8, 0x0f172a, 0.9)
+            .setStrokeStyle(2, 0x38bdf8, 0.8);
+        const fillBar = scene.add
+            .rectangle(centerX - barWidth / 2, centerY, 0, barHeight, 0x38bdf8, 1)
+            .setOrigin(0, 0.5);
+        const label = scene.add
+            .text(centerX, centerY - 24, "Cargando mundo... 0%", {
+                fontFamily: '"Press Start 2P", monospace',
+                fontSize: "11px",
+                color: "#e2e8f0",
+            })
+            .setOrigin(0.5);
+
+        container.add([bgBox, fillBar, label]);
+
+        const onProgress = (value: number) => {
+            fillBar.width = barWidth * value;
+            label.setText(`Cargando mundo... ${Math.round(value * 100)}%`);
+        };
+
+        const cleanup = () => {
+            scene.load.off("progress", onProgress);
+            container.destroy(true);
+        };
+
+        scene.load.on("progress", onProgress);
+        scene.load.once("complete", cleanup);
+    }
+
     static createMap(
         scene: Phaser.Scene,
         config: MapConfig

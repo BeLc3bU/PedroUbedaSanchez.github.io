@@ -1,12 +1,28 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { pdf } from "@react-pdf/renderer";
-import CVDocument from "@/components/CVDocument";
+import { useState, useEffect, useCallback } from "react";
 import { portfolioData } from "@/data/portfolio";
 import { Download, ArrowLeft, Loader2, Globe } from "lucide-react";
 import { useLanguage } from "@/hooks/useLanguage";
+import type { Locale } from "@/data/locales";
 import Link from "next/link";
+
+async function renderResumeBlob(locale: Locale): Promise<Blob> {
+    const [{ pdf }, { default: CVDocument }] = await Promise.all([
+        import("@react-pdf/renderer"),
+        import("@/components/CVDocument"),
+    ]);
+    return pdf(<CVDocument locale={locale} />).toBlob();
+}
+
+function triggerBlobDownload(url: string, filename: string) {
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
 
 export default function CVPage() {
     const { language, toggleLanguage, t } = useLanguage();
@@ -16,11 +32,13 @@ export default function CVPage() {
 
     useEffect(() => {
         const timer = setTimeout(() => setMounted(true), 0);
+        let cancelled = false;
         let currentUrl: string | null = null;
 
         const generatePdf = async () => {
             try {
-                const blob = await pdf(<CVDocument locale={language} />).toBlob();
+                const blob = await renderResumeBlob(language);
+                if (cancelled) return;
                 const url = URL.createObjectURL(blob);
                 currentUrl = url;
                 setPdfUrl(url);
@@ -32,6 +50,7 @@ export default function CVPage() {
         generatePdf();
 
         return () => {
+            cancelled = true;
             clearTimeout(timer);
             if (currentUrl) {
                 URL.revokeObjectURL(currentUrl);
@@ -39,34 +58,25 @@ export default function CVPage() {
         };
     }, [language]);
 
-    const handleDownload = async () => {
-        if (!pdfUrl) {
-            setLoading(true);
-            try {
-                const blob = await pdf(<CVDocument locale={language} />).toBlob();
-                const url = URL.createObjectURL(blob);
-                const link = document.createElement("a");
-                link.href = url;
-                link.download = `${portfolioData.name.replace(/\s+/g, "_")}_Resume_${language.toUpperCase()}.pdf`;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                URL.revokeObjectURL(url);
-            } catch (error) {
-                console.error("Error generating PDF:", error);
-            } finally {
-                setLoading(false);
-            }
+    const handleDownload = useCallback(async () => {
+        const filename = `${portfolioData.name.replace(/\s+/g, "_")}_Resume_${language.toUpperCase()}.pdf`;
+        if (pdfUrl) {
+            triggerBlobDownload(pdfUrl, filename);
             return;
         }
 
-        const link = document.createElement("a");
-        link.href = pdfUrl;
-        link.download = `${portfolioData.name.replace(/\s+/g, "_")}_Resume_${language.toUpperCase()}.pdf`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    };
+        setLoading(true);
+        try {
+            const blob = await renderResumeBlob(language);
+            const url = URL.createObjectURL(blob);
+            triggerBlobDownload(url, filename);
+            URL.revokeObjectURL(url);
+        } catch (error) {
+            console.error("Error generating PDF:", error);
+        } finally {
+            setLoading(false);
+        }
+    }, [language, pdfUrl]);
 
     if (!mounted) {
         return (

@@ -102,4 +102,54 @@ describe("ContactForm Component", () => {
             );
         });
     });
+
+    it("associates accessible labels, sets aria-invalid, and validates on blur", async () => {
+        render(<ContactForm />);
+
+        const nameInput = screen.getByLabelText(/Su Identidad/i);
+        const emailInput = screen.getByLabelText(/Vía de Retorno/i);
+        const messageInput = screen.getByLabelText(/Cuerpo de Transmisión/i);
+
+        expect(nameInput).toHaveAttribute("aria-invalid", "false");
+
+        fireEvent.change(emailInput, { target: { value: "not-an-email" } });
+        fireEvent.blur(emailInput);
+
+        await waitFor(() => {
+            expect(emailInput).toHaveAttribute("aria-invalid", "true");
+            expect(screen.getByRole("alert")).toHaveTextContent(
+                /Formato de comunicación no válido./i
+            );
+        });
+
+        fireEvent.change(emailInput, { target: { value: "valid@example.com" } });
+        await waitFor(() => {
+            expect(emailInput).toHaveAttribute("aria-invalid", "false");
+        });
+
+        fireEvent.change(messageInput, { target: { value: "Hola" } });
+        expect(screen.getByText(/4\/2000 caracteres/i)).toBeInTheDocument();
+    });
+
+    it("renders localized validation messages when language is set to English", async () => {
+        window.localStorage.setItem("portfolio_lang", "en");
+        const { LanguageProvider } = await import("@/hooks/useLanguage");
+
+        render(
+            <LanguageProvider>
+                <ContactForm />
+            </LanguageProvider>
+        );
+
+        const submitBtn = screen.getByRole("button", { name: /Initiate Transmission/i });
+        fireEvent.click(submitBtn);
+
+        await waitFor(() => {
+            expect(screen.getByText(/Identity is required./i)).toBeInTheDocument();
+            expect(screen.getByText(/Invalid email format./i)).toBeInTheDocument();
+            expect(screen.getByText(/Message cannot be empty./i)).toBeInTheDocument();
+        });
+
+        window.localStorage.removeItem("portfolio_lang");
+    });
 });
