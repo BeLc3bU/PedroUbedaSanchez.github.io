@@ -3,3 +3,10 @@
 2. Metodología: Spec-Driven Development (SDD). No escribir código sin spec/plan/tasks en specs/.
 3. Guardrails: No comitear ni abrir PRs con errores de lint, typecheck o tests.
 4. Consulta .specify/memory/constitution.md para principios inmutables.
+
+
+# Reglas de Proyecto - ODD (Gentle Shell v5) & Elite Agent
+1. Idioma: Toda respuesta, commit y documentación DEBE ser en Español.
+2. Metodología: Organic-Driven Development (ODD) — Gentle Shell v5.
+3. Guardrails: No comitear con marcadores de conflicto, rutas sensibles ni fallos de lint/tests.
+4. Tareas grandes: documentar en odd/tasks/<feature>.md y cerrar cambios con línea Risk:.

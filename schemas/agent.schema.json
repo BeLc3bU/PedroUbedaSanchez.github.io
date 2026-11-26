@@ -1,0 +1,141 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AgentDefinition",
+  "description": "Esquema formal para la declaración de agentes, capacidades y políticas de seguridad en Elite Agent Bootstrap v2",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "description",
+    "role",
+    "capabilities",
+    "allowed_files",
+    "forbidden_files",
+    "risk_level",
+    "requires_human_approval",
+    "can_modify_code",
+    "can_modify_specs",
+    "can_modify_governance",
+    "can_commit",
+    "can_merge"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "Identificador único en kebab-case para el agente"
+    },
+    "name": {
+      "type": "string",
+      "description": "Nombre legible del agente"
+    },
+    "description": {
+      "type": "string",
+      "description": "Responsabilidad principal y propósito del agente"
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "orchestrator",
+        "spec-agent",
+        "implementer",
+        "tester",
+        "security-agent",
+        "reviewer",
+        "optimization-agent",
+        "custom"
+      ],
+      "description": "Rol funcional en el ciclo de vida del software"
+    },
+    "capabilities": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Lista de habilidades y capacidades técnicas del agente"
+    },
+    "tools": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": [],
+      "description": "Herramientas de terminal o MCP a las que tiene acceso el agente"
+    },
+    "skills": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": [],
+      "description": "Skills instaladas o requeridas por el agente (ej. speckit-odd)"
+    },
+    "inputs": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": [],
+      "description": "Tipos de artefactos o datos esperados de entrada"
+    },
+    "outputs": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": [],
+      "description": "Tipos de artefactos o datos generados de salida"
+    },
+    "allowed_files": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Patrones glob de archivos y rutas donde el agente tiene autorización de lectura/escritura"
+    },
+    "forbidden_files": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Patrones glob de archivos terminantemente prohibidos para este agente"
+    },
+    "dependencies": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": [],
+      "description": "IDs de otros agentes de los que depende para completar su ciclo"
+    },
+    "risk_level": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "critical"],
+      "description": "Clasificación de riesgo operativo del agente según las directrices OWASP"
+    },
+    "requires_human_approval": {
+      "type": "boolean",
+      "description": "Indica si las acciones de este agente requieren confirmación humana explícita antes de ejecutarse"
+    },
+    "can_delegate": {
+      "type": "boolean",
+      "default": false,
+      "description": "Indica si el agente puede invocar o delegar subtareas en otros agentes"
+    },
+    "can_modify_code": {
+      "type": "boolean",
+      "description": "Permiso para crear o editar código de producción en src/, app/, etc."
+    },
+    "can_modify_specs": {
+      "type": "boolean",
+      "description": "Permiso para crear o editar documentos ODD en odd/tasks/ o specs/"
+    },
+    "can_modify_governance": {
+      "type": "boolean",
+      "description": "Permiso para modificar la constitución o las reglas del registro (Requiere aprobación humana)"
+    },
+    "can_commit": {
+      "type": "boolean",
+      "description": "Permiso para registrar commits de Git de forma autónoma"
+    },
+    "can_merge": {
+      "type": "boolean",
+      "description": "Permiso para fusionar Pull Requests o ramas protegidas (Normalmente false)"
+    },
+    "can_read_memory": {
+      "type": "boolean",
+      "default": true,
+      "description": "Permiso para consultar el índice y las memorias persistentes del repositorio"
+    },
+    "can_write_memory": {
+      "type": "boolean",
+      "default": false,
+      "description": "Permiso para registrar, proponer o editar entradas de memoria persistente"
+    }
+  },
+  "additionalProperties": false
+}

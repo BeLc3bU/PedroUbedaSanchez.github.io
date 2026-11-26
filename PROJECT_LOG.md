@@ -10,3 +10,9 @@ Este archivo actúa como la memoria a largo plazo del proyecto. Registra decisio
 - **Stack Tecnológico**: Node.js / TypeScript / Web (temp_app)
 - **Metodología**: Spec-Driven Development (SDD) con Spec-Kit.
 - **Directrices**: Especificaciones formales en `specs/` y principios en `.specify/memory/constitution.md`.
+
+
+## [2026-11-26] - Integración ODD (Gentle Shell v5)
+- **Evento**: Integración segura de gobernanza ODD.
+- **Stack**: Node.js / TypeScript / Web (temp_app)
+- **Estado**: Guardrails y plantillas activadas sin alterar archivos existentes.

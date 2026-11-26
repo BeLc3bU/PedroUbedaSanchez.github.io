@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AgentRegistry",
+  "description": "Registro oficial y catálogo de gobernanza de agentes de IA para Elite Agent Bootstrap v2",
+  "type": "object",
+  "required": [
+    "version",
+    "project_name",
+    "governance_source",
+    "agents"
+  ],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Versión del esquema de registro (ej. 2.0.0)"
+    },
+    "project_name": {
+      "type": "string",
+      "description": "Nombre del proyecto o repositorio asociado"
+    },
+    "description": {
+      "type": "string",
+      "description": "Descripción general del ecosistema de agentes del proyecto"
+    },
+    "governance_source": {
+      "type": "string",
+      "default": "AGENTS.md",
+      "description": "Ruta al documento rector de gobernanza y reglas ODD del proyecto"
+    },
+    "default_decision_provider": {
+      "type": "string",
+      "enum": ["deterministic", "kev", "systemone", "hybrid"],
+      "default": "deterministic",
+      "description": "Proveedor por defecto para la toma de decisiones y enrutamiento"
+    },
+    "agents": {
+      "type": "array",
+      "items": {
+        "$ref": "agent.schema.json"
+      },
+      "minItems": 1,
+      "description": "Lista de agentes registrados con sus roles y políticas de seguridad"
+    }
+  },
+  "additionalProperties": false
+}

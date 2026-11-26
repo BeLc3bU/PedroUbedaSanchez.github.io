@@ -1,0 +1,105 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "HandoffProtocol",
+  "description": "Contrato formal de traspaso de tareas, artefactos, evidencia y contexto entre agentes en Elite Agent Bootstrap v2",
+  "type": "object",
+  "required": [
+    "handoff_id",
+    "from",
+    "to",
+    "task_id",
+    "objective",
+    "context",
+    "inputs",
+    "constraints",
+    "completed",
+    "decisions",
+    "artifacts",
+    "evidence",
+    "risks",
+    "next_action",
+    "required_approval",
+    "timestamp"
+  ],
+  "properties": {
+    "handoff_id": {
+      "type": "string",
+      "pattern": "^HO-[0-9]{3}-[a-z0-9-]+$",
+      "description": "Identificador único del traspaso (ej. HO-001-spec-to-implementer)"
+    },
+    "from": {
+      "type": "string",
+      "description": "ID del agente emisor registrado en .agents/registry.json"
+    },
+    "to": {
+      "type": "string",
+      "description": "ID del agente receptor registrado en .agents/registry.json"
+    },
+    "task_id": {
+      "type": "string",
+      "description": "Identificador de la tarea asociada (ej. TASK-001 o SPEC-004)"
+    },
+    "objective": {
+      "type": "string",
+      "description": "Propósito conciso del traspaso"
+    },
+    "context": {
+      "type": "string",
+      "description": "Resumen del estado actual del sistema y la tarea"
+    },
+    "inputs": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Insumos, archivos fuente o requerimientos recibidos"
+    },
+    "constraints": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Restricciones de arquitectura, rendimiento o seguridad que aplican"
+    },
+    "completed": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Lista de subtareas completadas por el emisor"
+    },
+    "decisions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Decisiones técnicas tomadas por el emisor que condicionan el trabajo"
+    },
+    "artifacts": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Archivos o especificaciones generadas entregadas al receptor"
+    },
+    "evidence": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Rutas relativas a comprobantes de verificación (.evidence/ o tests)"
+    },
+    "unresolved": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": [],
+      "description": "Puntos de duda o elementos pendientes que el receptor debe resolver"
+    },
+    "risks": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Riesgos técnicos o de seguridad identificados"
+    },
+    "next_action": {
+      "type": "string",
+      "description": "Acción inmediata que debe emprender el agente receptor"
+    },
+    "required_approval": {
+      "type": "boolean",
+      "description": "Indica si se requiere aprobación humana explícita antes de ejecutar el next_action"
+    },
+    "timestamp": {
+      "type": "string",
+      "description": "Marca temporal ISO-8601 del traspaso"
+    }
+  },
+  "additionalProperties": false
+}

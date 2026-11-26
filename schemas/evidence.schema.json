@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EvidenceRecord",
+  "description": "Comprobante inmutable de verificación y ejecución de tareas para el sistema de evidencias de Elite Agent Bootstrap v2",
+  "type": "object",
+  "required": [
+    "evidence_id",
+    "task_id",
+    "feature_id",
+    "runner_agent",
+    "command",
+    "exit_code",
+    "status",
+    "summary",
+    "timestamp"
+  ],
+  "properties": {
+    "evidence_id": {
+      "type": "string",
+      "pattern": "^EV-[0-9]{3}-[a-z0-9-]+$",
+      "description": "Identificador único de la evidencia (ej. EV-001-unit-tests)"
+    },
+    "task_id": {
+      "type": "string",
+      "description": "ID de la tarea verificada (ej. TASK-001)"
+    },
+    "feature_id": {
+      "type": "string",
+      "description": "Nombre o slug de la feature asociada (ej. 004-v2-phase3-handoffs-evidence)"
+    },
+    "runner_agent": {
+      "type": "string",
+      "description": "ID del agente que ejecutó y recopiló la evidencia (ej. tester o implementer)"
+    },
+    "command": {
+      "type": "string",
+      "description": "Comando exacto de terminal ejecutado para la verificación (ej. npm test o speckit verify)"
+    },
+    "exit_code": {
+      "type": "integer",
+      "description": "Código de retorno de la ejecución (0 indica éxito)"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["passed", "failed", "skipped"],
+      "description": "Resultado de la prueba o validación"
+    },
+    "summary": {
+      "type": "string",
+      "description": "Resumen conciso del resultado obtenido"
+    },
+    "log_artifact": {
+      "type": "string",
+      "description": "Ruta relativa al archivo de log de salida capturado (.txt, .log)"
+    },
+    "visual_proof": {
+      "type": "string",
+      "description": "Ruta opcional a captura de pantalla o grabación si la tarea afecta a UI"
+    },
+    "timestamp": {
+      "type": "string",
+      "description": "Marca temporal ISO-8601 de la verificación"
+    }
+  },
+  "additionalProperties": false
+}
