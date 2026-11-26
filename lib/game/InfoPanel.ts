@@ -589,7 +589,6 @@ export default class InfoPanel {
         });
         description.setOrigin(0.5, 0);
         this.content.add(description);
-        yOffset += description.height + 25;
 
         // Fixed footer actions
         if (game.link && !game.link.includes("/unreleased-projects")) {

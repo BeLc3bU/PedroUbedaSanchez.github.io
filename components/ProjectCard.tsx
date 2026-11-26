@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Cpu, Settings, Database, Layout, ExternalLink, Github } from "lucide-react";
+import { Cpu, Settings, Database, Layout, ExternalLink } from "lucide-react";
+import { GithubIcon } from "@/components/ui/BrandIcons";
 
 interface Project {
     id: string;
@@ -77,7 +78,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                         rel="noopener noreferrer"
                         className="text-muted-foreground hover:text-primary transition-colors"
                     >
-                        <Github size={18} />
+                        <GithubIcon size={18} />
                     </a>
                 )}
             </div>

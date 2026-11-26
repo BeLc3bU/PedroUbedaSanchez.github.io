@@ -17,7 +17,7 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            "@": path.resolve(__dirname, "./"),
+            "@": path.resolve(import.meta.dirname, "./"),
         },
     },
     build: {
@@ -26,12 +26,24 @@ export default defineConfig({
         emptyOutDir: true,
         rollupOptions: {
             output: {
-                manualChunks: {
-                    "vendor-react": ["react", "react-dom", "react-router-dom"],
-                    "vendor-ui": ["@radix-ui/react-slot", "class-variance-authority", "clsx"],
-                    "vendor-motion": ["framer-motion"],
-                    "vendor-pdf": ["@react-pdf/renderer"],
-                    "vendor-three": ["three", "@react-three/fiber", "@react-three/drei"],
+                manualChunks(id) {
+                    if (
+                        id.includes("node_modules/react/") ||
+                        id.includes("node_modules/react-dom/") ||
+                        id.includes("node_modules/react-router-dom/")
+                    ) {
+                        return "vendor-react";
+                    }
+                    if (
+                        id.includes("@radix-ui/react-slot") ||
+                        id.includes("class-variance-authority") ||
+                        id.includes("node_modules/clsx/")
+                    ) {
+                        return "vendor-ui";
+                    }
+                    if (id.includes("framer-motion")) return "vendor-motion";
+                    if (id.includes("@react-pdf/renderer")) return "vendor-pdf";
+                    if (id.includes("three") || id.includes("@react-three")) return "vendor-three";
                 },
             },
         },

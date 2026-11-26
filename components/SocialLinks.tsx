@@ -1,6 +1,7 @@
 "use client";
 
-import { Github, Linkedin, Mail, FileText, MessageCircle } from "lucide-react";
+import { Mail, FileText, MessageCircle } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "@/components/ui/BrandIcons";
 import { portfolioData } from "../data/portfolio";
 import { useRouter } from "next/navigation";
 
@@ -24,7 +25,7 @@ export function SocialLinks() {
                 className="p-2.5 rounded-xl bg-secondary hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-all"
                 aria-label="GitHub"
             >
-                <Github size={20} />
+                <GithubIcon size={20} />
             </a>
             <a
                 href={portfolioData.social.linkedin}
@@ -34,7 +35,7 @@ export function SocialLinks() {
                 className="p-2.5 rounded-xl bg-secondary hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-all"
                 aria-label="LinkedIn"
             >
-                <Linkedin size={20} />
+                <LinkedinIcon size={20} />
             </a>
             <a
                 href={`mailto:${portfolioData.social.email}`}
